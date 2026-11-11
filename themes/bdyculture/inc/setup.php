@@ -102,6 +102,6 @@ function bdy_meta_description() {
 		return;
 	}
 
-	echo '<meta name="description" content="' . esc_attr( wp_strip_all_tags( $description ) ) . '">' . "\n";
+	echo '<meta name="description" content="' . esc_attr( wp_strip_all_tags( bdy_tokens( (string) $description, false ) ) ) . '">' . "\n";
 }
 add_action( 'wp_head', 'bdy_meta_description', 2 );

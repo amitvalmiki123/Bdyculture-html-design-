@@ -56,7 +56,50 @@ Nothing else is required: every section is already populated from `defaults.php`
 
 ---
 
-## 4. Editing content
+## 4. Where each part is managed
+
+| What you see | Where it is edited | Notes |
+| --- | --- | --- |
+| Logo, header row (Enquire / Book Online) | Theme Settings → **Header & navigation** | phone + booking URL come from Clinic details |
+| Primary navigation + Services dropdown | Theme Settings → **Header & navigation** (repeater: label, link, optional children, optional icon) | one place for desktop nav **and** the mobile drawer |
+| Mobile action bar (Call / Book Online) | Theme Settings → **Mobile action bar** | labels editable, numbers/URLs inherited |
+| Footer (tagline, three columns, legal bar) | Theme Settings → **Footer** | columns are repeaters of links (page / tel / email) |
+| Phone, emails, address, booking URL, hours | Theme Settings → **Clinic details** | see §5 — one change updates the whole site |
+| Home page sections | Pages → *Home* → tab per section | show toggle + order per section |
+| Inner pages | Pages → *(page)* → **Page hero** tab | then normal editor content |
+| Colours, fonts, sizes, spacing, container | Appearance → Customize → **Theme Design** | live preview, only changed values printed |
+
+Navigation is intentionally **not** a WordPress menu (`Appearance → Menus`) and the footer is not a widget area:
+the design's dropdown carries an icon per service and the drawer mirrors it, which a WP menu cannot express, and a
+single options page keeps header + drawer + footer in one screen. If you would rather use native WP menus, that is a
+small add-on — say the word and it can be wired as an override.
+
+## 5. Single source of truth — clinic details & tokens
+
+The phone number, both email addresses and the address exist **once**, in Theme Settings → *Clinic details*
+(`defaults.php` only supplies the shipped fallback). Everything else reads them:
+
+| Token | Renders as | Where it can be used |
+| --- | --- | --- |
+| `{phone}` | `07 3073 1616` | any text / textarea field, repeater row, button label, footer link label |
+| `{phone_link}` | `<a href="tel:…">07 3073 1616</a>` | textarea / repeater fields (auto-downgrades to plain text in a button label) |
+| `{phone_tel}` | `0730731616` | `tel` link values in the footer repeater |
+| `{email}` / `{email_link}` | `hello@bdyculture.com.au` / as a link | same as above |
+| `{referrals_email}` / `{referrals_email_link}` | `referrals@bdyculture.com.au` / as a link | same as above |
+| `{address}` | `671 Gympie Road, Suite 5, Level 1, Chermside QLD 4032` | any text field |
+| `{address_html}` | the same address with a `<br>` between the two lines | textarea / repeater fields |
+
+The shipped copy already uses these tokens (hero/continuum/home-visit buttons, footer *Visit us* column, contact
+list, FAQ intro and answers, expect step, map card, meta description, JSON-LD). So:
+
+* change the phone once → 17 visible mentions, 13 `tel:` links and the schema update;
+* change an email once → footer, contact section, referral copy and the FAQ answer follow;
+* change the address once → footer column, contact list, map card and the "Where is the clinic?" answer follow.
+
+Verified by rendering the front page with a swapped phone/email/address: **0 stale occurrences** of the old values.
+Text is only rewritten if it uses a token — free-form prose you type yourself stays exactly as typed.
+
+## 6. Editing content
 
 * **Home page** — Pages → *Home*. The field group is split into tabs, one per section
   (`1. Hero` … `11. Map`). Each tab starts with `Show this section` and `Order`.
@@ -86,7 +129,7 @@ CF7 output is styled by `.card-form__embed` in `main.css`, so standard CF7 marku
 
 ---
 
-## 5. Theme structure
+## 7. Theme structure
 
 ```
 bdyculture-parent/          # 3 files only: style.css, functions.php, index.php
@@ -117,7 +160,7 @@ field; `docs/preservation.md` records the fidelity checks.
 
 ---
 
-## 6. Support notes
+## 8. Support notes
 
 * **Field keys** are `field_{name}` and unique across the theme. Do not rename a field in the ACF UI —
   change it in `inc/acf/*.php` so the code and the database stay aligned.

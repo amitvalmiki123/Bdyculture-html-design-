@@ -97,7 +97,7 @@ $bdy_inset    = '--x:' . bdy_string( 'home_continuum_inset_x', $bdy_d['home_cont
 					<div class="more__body">
 						<?php foreach ( $bdy_paras as $bdy_row ) : ?>
 							<?php if ( ! empty( $bdy_row['continuum_para_text'] ) ) : ?>
-								<p><?php echo esc_html( wp_strip_all_tags( $bdy_row['continuum_para_text'] ) ); ?></p>
+								<p><?php echo bdy_row_text( $bdy_row, 'continuum_para_text' ); ?></p>
 							<?php endif; ?>
 						<?php endforeach; ?>
 					</div>

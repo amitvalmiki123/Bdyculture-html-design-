@@ -180,24 +180,77 @@ function bdy_directions_url() {
  * @param string $html Escaped HTML.
  * @return string
  */
-function bdy_tokens( $html ) {
+function bdy_tokens( $html, $links = true ) {
 	if ( '' === $html || false === strpos( $html, '{' ) ) {
 		return $html;
 	}
 
-	$email           = bdy_clinic_email();
-	$referrals_email = bdy_referrals_email();
+	$email           = esc_html( bdy_clinic_email() );
+	$referrals_email = esc_html( bdy_referrals_email() );
+
+	if ( ! $links ) {
+		// Inside an attribute or a button label an anchor would be invalid,
+		// so the link tokens degrade to their plain value.
+		$replace = array(
+			'{phone_link}'           => esc_html( bdy_phone_display() ),
+			'{phone}'                => esc_html( bdy_phone_display() ),
+			'{phone_tel}'            => esc_attr( bdy_phone_number() ),
+			'{address}'              => esc_html( bdy_address_plain() ),
+			'{address_html}'         => bdy_address_html(),
+			'{email_link}'           => $email,
+			'{email}'                => $email,
+			'{referrals_email_link}' => $referrals_email,
+			'{referrals_email}'      => $referrals_email,
+		);
+
+		return strtr( $html, $replace );
+	}
 
 	$replace = array(
 		'{phone_link}'           => bdy_phone_link(),
-		'{phone}'                => bdy_phone_display(),
-		'{email_link}'           => $email ? '<a href="' . esc_url( 'mailto:' . $email ) . '">' . esc_html( $email ) . '</a>' : '',
-		'{email}'                => esc_html( $email ),
-		'{referrals_email_link}' => $referrals_email ? '<a href="' . esc_url( 'mailto:' . $referrals_email ) . '">' . esc_html( $referrals_email ) . '</a>' : '',
-		'{referrals_email}'      => esc_html( $referrals_email ),
+		'{phone}'                => esc_html( bdy_phone_display() ),
+		'{phone_tel}'            => esc_attr( bdy_phone_number() ),
+		'{address}'              => esc_html( bdy_address_plain() ),
+		'{address_html}'         => bdy_address_html(),
+		'{email_link}'           => $email ? '<a href="' . esc_url( 'mailto:' . bdy_clinic_email() ) . '">' . $email . '</a>' : '',
+		'{email}'                => $email,
+		'{referrals_email_link}' => $referrals_email ? '<a href="' . esc_url( 'mailto:' . bdy_referrals_email() ) . '">' . $referrals_email . '</a>' : '',
+		'{referrals_email}'      => $referrals_email,
 	);
 
 	return strtr( $html, $replace );
+}
+
+/**
+ * Clinic address as one plain line (no markup).
+ *
+ * @return string
+ */
+function bdy_address_plain() {
+	$parts = array_filter(
+		array(
+			trim( (string) bdy_address_1() ),
+			trim( (string) bdy_address_2() ),
+		)
+	);
+
+	return implode( ', ', $parts );
+}
+
+/**
+ * Clinic address as two lines of escaped HTML (design shows a <br>).
+ *
+ * @return string
+ */
+function bdy_address_html() {
+	$line_1 = esc_html( trim( (string) bdy_address_1() ) );
+	$line_2 = esc_html( trim( (string) bdy_address_2() ) );
+
+	if ( '' === $line_1 ) {
+		return $line_2;
+	}
+
+	return $line_2 ? $line_1 . '<br>' . $line_2 : $line_1;
 }
 
 /**
@@ -256,7 +309,7 @@ function bdy_button( $text, $url, $style = 'signal', $args = array() ) {
 	// The design puts the phone icon before the label and the arrow after it.
 	$icon       = $args['icon'] ? bdy_icon( $args['icon'], array( 'size' => (int) $args['icon_size'] ) ) : '';
 	$icon_after = ( 'arrow' === $args['icon'] );
-	$label      = esc_html( $text );
+	$label      = bdy_tokens( esc_html( $text ), false );
 
 	if ( $icon_after ) {
 		$label .= $icon;

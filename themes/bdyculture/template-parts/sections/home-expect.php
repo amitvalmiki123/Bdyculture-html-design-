@@ -37,10 +37,10 @@ $bdy_steps = bdy_rows( 'home_expect_steps', $bdy_d['home_expect_steps'] );
 					<li class="reveal">
 						<span class="steps__n" aria-hidden="true"><?php echo (int) ( $bdy_i + 1 ); ?></span>
 						<?php if ( ! empty( $bdy_row['expect_step_title'] ) ) : ?>
-							<h3><?php echo esc_html( $bdy_row['expect_step_title'] ); ?></h3>
+							<h3><?php echo bdy_row_text( $bdy_row, 'expect_step_title' ); ?></h3>
 						<?php endif; ?>
 						<?php if ( ! empty( $bdy_row['expect_step_text'] ) ) : ?>
-							<p><?php echo esc_html( wp_strip_all_tags( $bdy_row['expect_step_text'] ) ); ?></p>
+							<p><?php echo bdy_row_text( $bdy_row, 'expect_step_text' ); ?></p>
 						<?php endif; ?>
 					</li>
 				<?php endforeach; ?>

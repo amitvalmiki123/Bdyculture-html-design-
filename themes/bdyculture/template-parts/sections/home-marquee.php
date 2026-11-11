@@ -26,7 +26,7 @@ if ( ! $bdy_items ) {
 				<?php if ( empty( $bdy_row['marquee_item_text'] ) ) : ?>
 					<?php continue; ?>
 				<?php endif; ?>
-				<span><?php echo esc_html( $bdy_row['marquee_item_text'] ); ?></span><i></i>
+				<span><?php echo bdy_row_text( $bdy_row, 'marquee_item_text' ); ?></span><i></i>
 			<?php endforeach; ?>
 		<?php endfor; ?>
 	</div>

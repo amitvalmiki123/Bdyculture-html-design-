@@ -188,6 +188,39 @@ function bdy_html( $selector, $default = '', $context = null ) {
 }
 
 /**
+ * Escaped plain text from a repeater row.
+ *
+ * Repeater rows bypass bdy_text(), so this keeps the Site Settings tokens
+ * ({phone}, {email}, {referrals_email} …) working inside every repeatable row.
+ *
+ * @param array  $row Repeater row.
+ * @param string $key Sub-field name.
+ * @return string
+ */
+function bdy_row_text( $row, $key ) {
+	if ( ! isset( $row[ $key ] ) || ! is_scalar( $row[ $key ] ) ) {
+		return '';
+	}
+
+	return bdy_tokens( esc_html( wp_strip_all_tags( (string) $row[ $key ] ) ), false );
+}
+
+/**
+ * Escaped HTML from a repeater row (allows inline links, <br>, <strong>…).
+ *
+ * @param array  $row Repeater row.
+ * @param string $key Sub-field name.
+ * @return string
+ */
+function bdy_row_html( $row, $key ) {
+	if ( ! isset( $row[ $key ] ) || ! is_scalar( $row[ $key ] ) ) {
+		return '';
+	}
+
+	return bdy_tokens( wp_kses_post( (string) $row[ $key ] ) );
+}
+
+/**
  * Escaped attribute value (Rule 16).
  *
  * @param string          $selector Field name.

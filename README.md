@@ -47,6 +47,18 @@ place**. This build therefore uses ACF Pro, 20 repeaters and one *BDYCULTURE →
 page. Everything else in the 19 rules is implemented as written, and the deviation is documented in
 `docs/install.md`. Every ACF field has a `defaults.php` fallback, so the theme still renders without ACF.
 
+## Where content is edited
+
+| Content | Location |
+| --- | --- |
+| Header, navigation, mobile bar, footer, phone / emails / address / hours | **BDYCULTURE → Theme Settings** (one options page) |
+| Home page sections (copy, images, links, order, show/hide) | Pages → *Home*, one tab per section |
+| Inner pages | Pages → *(page)* → *Page hero* tab |
+| Colours, fonts, sizes, spacing, container width | Appearance → Customize → **Theme Design** |
+
+Clinic details are a single source: buttons, footer links, contact list, FAQ answers, map card, meta description and
+the JSON-LD read them through `{phone}`, `{email}`, `{address}` tokens (full list in `docs/install.md` §5).
+
 ## Open items for the client
 
 1. **Clinic hours** — currently the design's placeholder text.

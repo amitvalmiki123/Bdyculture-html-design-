@@ -70,8 +70,8 @@ function bdy_schema_faqs() {
 	$faqs     = array();
 
 	foreach ( $rows as $row ) {
-		$question = isset( $row['faq_question'] ) ? wp_strip_all_tags( $row['faq_question'] ) : '';
-		$answer   = isset( $row['faq_answer'] ) ? wp_strip_all_tags( $row['faq_answer'] ) : '';
+		$question = isset( $row['faq_question'] ) ? wp_strip_all_tags( bdy_tokens( (string) $row['faq_question'], false ) ) : '';
+		$answer   = isset( $row['faq_answer'] ) ? wp_strip_all_tags( bdy_tokens( (string) $row['faq_answer'], false ) ) : '';
 
 		if ( ! $question || ! $answer ) {
 			continue;
@@ -104,7 +104,7 @@ function bdy_schema_output() {
 	$clinic = array(
 		'@context'           => 'https://schema.org',
 		'@type'              => 'MedicalClinic',
-		'name'               => 'BDYCULTURE Rehab & Performance Clinic',
+		'name'               => get_bloginfo( 'name' ),
 		'url'                => home_url( '/' ),
 		'telephone'          => '+' . preg_replace( '/^0/', '61', bdy_phone_number() ),
 		'email'              => bdy_clinic_email(),

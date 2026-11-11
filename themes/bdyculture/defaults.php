@@ -50,7 +50,7 @@ function bdy_defaults_all() {
 			'clinic_directions_url'     => 'https://www.google.com/maps/search/?api=1&query=671+Gympie+Road+Suite+5+Level+1+Chermside+QLD+4032',
 			'clinic_hours'              => 'Placeholder — client to confirm clinic hours',
 			'clinic_tagline'            => 'Allied health and rehabilitation in Chermside, Brisbane.',
-			'clinic_meta_description'   => 'Physiotherapy, exercise physiology, occupational therapy and clinical Pilates in Chermside, Brisbane. Book online or call 07 3073 1616.',
+			'clinic_meta_description'   => 'Physiotherapy, exercise physiology, occupational therapy and clinical Pilates in Chermside, Brisbane. Book online or call {phone}.',
 
 			'header_enquire_text'       => 'Enquire',
 			'header_drawer_enquire_text' => 'Send an enquiry',
@@ -145,11 +145,11 @@ function bdy_defaults_all() {
 				),
 				array(
 					'col_title' => 'Visit us',
-					'col_text'  => '671 Gympie Road, Suite 5, Level 1<br>Chermside QLD 4032',
+					'col_text'  => '{address_html}',
 					'col_links' => array(
-						array( 'link_label' => '07 3073 1616', 'link_url' => '0730731616', 'link_type' => 'tel' ),
-						array( 'link_label' => 'hello@bdyculture.com.au', 'link_url' => 'hello@bdyculture.com.au', 'link_type' => 'email' ),
-						array( 'link_label' => 'referrals@bdyculture.com.au', 'link_url' => 'referrals@bdyculture.com.au', 'link_type' => 'email' ),
+						array( 'link_label' => '{phone}', 'link_url' => '{phone_tel}', 'link_type' => 'tel' ),
+						array( 'link_label' => '{email}', 'link_url' => '{email}', 'link_type' => 'email' ),
+						array( 'link_label' => '{referrals_email}', 'link_url' => '{referrals_email}', 'link_type' => 'email' ),
 					),
 				),
 			),
@@ -175,7 +175,7 @@ function bdy_defaults_all() {
 						'hero_btn_new_tab' => true,
 					),
 					array(
-						'hero_btn_text'    => 'Call 07 3073 1616',
+						'hero_btn_text'    => 'Call {phone}',
 						'hero_btn_url'     => 'tel',
 						'hero_btn_style'   => 'call',
 						'hero_btn_icon'    => 'phone',
@@ -385,7 +385,7 @@ function bdy_defaults_all() {
 				),
 				'home_continuum_btn_1_text'  => 'Book an Appointment',
 				'home_continuum_btn_1_url'   => 'https://book.nookal.com/bookings/book/EA59F8c8-2593-a0ee-Fbca-FEaEb0d0beE6/select',
-				'home_continuum_btn_2_text'  => 'Call 07 3073 1616',
+				'home_continuum_btn_2_text'  => 'Call {phone}',
 				'home_continuum_btn_2_url'   => 'tel',
 			),
 
@@ -413,7 +413,7 @@ function bdy_defaults_all() {
 				'home_expect_steps'      => array(
 					array(
 						'expect_step_title' => 'Book or refer',
-						'expect_step_text'  => 'Book online through Nookal in a couple of minutes, call the clinic on 07 3073 1616, or send an enquiry. Referrers can email the team directly. If you are not sure which service you need, tell us what is going on and we will help you choose.',
+						'expect_step_text'  => 'Book online through Nookal in a couple of minutes, call the clinic on {phone}, or send an enquiry. Referrers can email the team directly. If you are not sure which service you need, tell us what is going on and we will help you choose.',
 					),
 					array(
 						'expect_step_title' => 'Your first appointment',
@@ -457,7 +457,7 @@ function bdy_defaults_all() {
 				'pair_1_title'            => 'Care that can come to you.',
 				'pair_1_text'             => 'Physiotherapy and exercise physiology home visits may be available across Chermside and surrounding suburbs, subject to location, clinical needs and practitioner availability. Contact our team to enquire.',
 				'pair_1_style'            => 'ink',
-				'pair_1_btn_1_text'       => 'Call 07 3073 1616',
+				'pair_1_btn_1_text'       => 'Call {phone}',
 				'pair_1_btn_1_url'        => 'tel',
 				'pair_1_btn_1_style'      => 'signal',
 				'pair_1_btn_2_text'       => 'Ask about home visits',
@@ -488,7 +488,7 @@ function bdy_defaults_all() {
 				'home_faq_items'     => array(
 					array(
 						'faq_question' => 'Do I need a referral to book an appointment?',
-						'faq_answer'   => 'It depends on the service and how your care is funded. Private appointments can be booked online through Nookal. Funded pathways such as Medicare Chronic Condition Management, WorkCover Queensland, Queensland CTP, NDIS and DVA can have their own paperwork or referral requirements, so call 07 3073 1616 and our team will confirm what applies to you.',
+						'faq_answer'   => 'It depends on the service and how your care is funded. Private appointments can be booked online through Nookal. Funded pathways such as Medicare Chronic Condition Management, WorkCover Queensland, Queensland CTP, NDIS and DVA can have their own paperwork or referral requirements, so call {phone} and our team will confirm what applies to you.',
 					),
 					array(
 						'faq_question' => 'Which service is right for me?',
@@ -500,7 +500,7 @@ function bdy_defaults_all() {
 					),
 					array(
 						'faq_question' => 'Where is the clinic?',
-						'faq_answer'   => 'We are at 671 Gympie Road, Suite 5, Level 1, Chermside QLD 4032, Brisbane. Use the map on this page for directions.',
+						'faq_answer'   => 'We are at {address}, Brisbane. Use the map on this page for directions.',
 					),
 					array(
 						'faq_question' => 'Do you offer home visits?',
@@ -516,7 +516,7 @@ function bdy_defaults_all() {
 					),
 					array(
 						'faq_question' => 'How do I refer a patient?',
-						'faq_answer'   => 'Email referrals@bdyculture.com.au with the subject line “Patient Referral – BDYCULTURE”, or call 07 3073 1616. Visit our Referrers page for the full steps, including secure messaging advice.',
+						'faq_answer'   => 'Email {referrals_email} with the subject line “Patient Referral – BDYCULTURE”, or call {phone}. Visit our Referrers page for the full steps, including secure messaging advice.',
 					),
 				),
 			),
@@ -529,7 +529,7 @@ function bdy_defaults_all() {
 				'home_contact_title'     => 'Let’s get you moving.',
 				'home_contact_intro'     => 'Book online in minutes, call the clinic, or send us a message and we’ll come back to you. Referrers are welcome to use the form or email the team directly.',
 				'home_contact_list'      => array(
-					array( 'contact_list_label' => 'Visit us', 'contact_list_value' => '671 Gympie Road, Suite 5, Level 1<br>Chermside QLD 4032', 'contact_list_placeholder' => false ),
+					array( 'contact_list_label' => 'Visit us', 'contact_list_value' => '{address_html}', 'contact_list_placeholder' => false ),
 					array( 'contact_list_label' => 'General enquiries', 'contact_list_value' => '{email_link}', 'contact_list_placeholder' => false ),
 					array( 'contact_list_label' => 'Referrals', 'contact_list_value' => '{referrals_email_link}', 'contact_list_placeholder' => false ),
 					array( 'contact_list_label' => 'Opening hours', 'contact_list_value' => 'Placeholder — client to confirm clinic hours', 'contact_list_placeholder' => true ),
@@ -576,7 +576,7 @@ function bdy_defaults_all() {
 				'home_map_zoom'         => '16',
 				'home_map_load_label'   => 'Load interactive map',
 				'home_map_card_title'   => 'BDYCULTURE',
-				'home_map_card_text'    => 'Rehab &amp; Performance Clinic<br>671 Gympie Road, Suite 5, Level 1<br>Chermside QLD 4032',
+				'home_map_card_text'    => 'Rehab &amp; Performance Clinic<br>{address_html}',
 				'home_map_chips_label'  => 'Around the clinic:',
 				'home_map_chips'        => array(
 					array( 'chip_label' => 'Chermside', 'chip_lat' => '-27.3852', 'chip_lng' => '153.0306', 'chip_zoom' => '16' ),

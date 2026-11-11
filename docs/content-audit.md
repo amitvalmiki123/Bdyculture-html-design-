@@ -9,7 +9,9 @@ nothing in the design is missing here, and nothing here is invented.
 * **Fallback** — `defaults.php` stores the same value, so the theme renders the original design before a single field is saved.
 
 Global content (header, drawer, footer, mobile bar) is edited once on the **BDYCULTURE → Theme Settings** options page and
-is reused by every template, so it is never duplicated per page.
+is reused by every template, so it is never duplicated per page. In the table below a value such as
+`Call {phone}` is the token form stored in `defaults.php`; it renders as the phone number from Clinic details,
+so changing the number once updates every button, link, FAQ answer, footer line and the JSON-LD.
 
 ## 1. Global content — edited once, used everywhere
 
@@ -81,7 +83,7 @@ Two-column hero: H1, lead paragraph, three buttons, three trust checks and the s
 | home hero form alt text | Prefer to book yourself? | `home_hero_form_alt_text` | text |
 | home hero form alt link text | Book Online with Nookal → | `home_hero_form_alt_link_text` | text |
 | home hero form success title | Thanks — enquiry received | `home_hero_form_success_title` | text |
-| home hero form success text | We’ll be in touch shortly. To speak to someone now, call {phone_link}. | `home_hero_form_success_text` | textarea |
+| home hero form success text | We’ll be in touch shortly. To speak to someone now, call 07 3073 1616. | `home_hero_form_success_text` | textarea |
 
 ## 3. Marquee band (`.marquee`)
 
@@ -229,7 +231,7 @@ Two equal cards. Card one: home-visit copy plus phone button. Card two: referrer
 | pair 1 btn 2 style | outline-light | `pair_1_btn_2_style` | select |
 | pair 2 tag | For GPs, specialists & case managers | `pair_2_tag` | text |
 | pair 2 title | Ready to get started? Refer a patient. | `pair_2_title` | text |
-| pair 2 text | Whether you’re booking care or referring a patient, we’ll make the next step simple. Email {referrals_email… | `pair_2_text` | textarea |
+| pair 2 text | Whether you’re booking care or referring a patient, we’ll make the next step simple. Email referrals@bdycul… | `pair_2_text` | textarea |
 | pair 2 style | signal | `pair_2_style` | select |
 | pair 2 btn 1 text | Refer a Patient | `pair_2_btn_1_text` | text |
 | pair 2 btn 1 url | /referrers/ | `pair_2_btn_1_url` | text |
@@ -249,7 +251,7 @@ Eight question/answer rows in a native `<details>` accordion, one open at a time
 | --- | --- | --- | --- |
 | home faq tag | FAQs | `home_faq_tag` | text |
 | home faq title | Questions we’re often asked. | `home_faq_title` | textarea |
-| home faq intro | Can’t see yours? Call {phone_link} or send us a message — we’re happy to help. | `home_faq_intro` | textarea |
+| home faq intro | Can’t see yours? Call 07 3073 1616 or send us a message — we’re happy to help. | `home_faq_intro` | textarea |
 | home faq btn text | Ask a question | `home_faq_btn_text` | text |
 | home faq btn url | #contact | `home_faq_btn_url` | text |
 | home faq items (repeater) | 8 row(s) — Do I need a referral to book an appointment? / It depends on the service and how your care is funded. Private appointments can be booked online through No… | `home_faq_items` | repeater |
@@ -267,9 +269,9 @@ Dark band: heading, address/phone/email list with pin marker, the enquiry form c
 | home contact tag | Get in touch | `home_contact_tag` | text |
 | home contact title | Let’s get you moving. | `home_contact_title` | textarea |
 | home contact intro | Book online in minutes, call the clinic, or send us a message and we’ll come back to you. Referrers are wel… | `home_contact_intro` | textarea |
-| home contact list (repeater) | 4 row(s) — Visit us / 671 Gympie Road, Suite 5, Level 1Chermside QLD 4032 / no | `home_contact_list` | repeater |
+| home contact list (repeater) | 4 row(s) — Visit us / 671 Gympie Road, Suite 5, Level 1 / Chermside QLD 4032 / no | `home_contact_list` | repeater |
 | &nbsp;&nbsp;└ contact list label | Visit us | `contact_list_label` | text |
-| &nbsp;&nbsp;└ contact list value | 671 Gympie Road, Suite 5, Level 1Chermside QLD 4032 | `contact_list_value` | textarea |
+| &nbsp;&nbsp;└ contact list value | 671 Gympie Road, Suite 5, Level 1 / Chermside QLD 4032 | `contact_list_value` | textarea |
 | &nbsp;&nbsp;└ contact list placeholder | no | `contact_list_placeholder` | true_false |
 | home contact btn text | Book Online with Nookal | `home_contact_btn_text` | text |
 | home contact btn url | https://book.nookal.com/bookings/book/EA59F8c8-2593-a0ee-Fbca-FEaEb0d0beE6/select | `home_contact_btn_url` | text |
@@ -289,7 +291,7 @@ Dark band: heading, address/phone/email list with pin marker, the enquiry form c
 | &nbsp;&nbsp;└ contact interest option text | Physiotherapy | `contact_interest_option_text` | text |
 | home contact form button | Send message | `home_contact_form_button` | text |
 | home contact form success title | Thanks — message received | `home_contact_form_success_title` | text |
-| home contact form success text | We’ll be in touch shortly. To speak to someone now, call {phone_link}. | `home_contact_form_success_text` | textarea |
+| home contact form success text | We’ll be in touch shortly. To speak to someone now, call 07 3073 1616. | `home_contact_form_success_text` | textarea |
 
 ## 12. Map (`.mapsec`)
 
@@ -306,7 +308,7 @@ Heading + Leaflet map with a lazy "Load interactive map" button, Street/Satellit
 | home map zoom | 16 | `home_map_zoom` | number |
 | home map load label | Load interactive map | `home_map_load_label` | text |
 | home map card title | BDYCULTURE | `home_map_card_title` | text |
-| home map card text | Rehab & Performance Clinic671 Gympie Road, Suite 5, Level 1Chermside QLD 4032 | `home_map_card_text` | textarea |
+| home map card text | Rehab & Performance Clinic671 Gympie Road, Suite 5, Level 1 / Chermside QLD 4032 | `home_map_card_text` | textarea |
 | home map chips label | Around the clinic: | `home_map_chips_label` | text |
 | home map chips (repeater) | 7 row(s) — Chermside / -27.3852 / 153.0306 | `home_map_chips` | repeater |
 | &nbsp;&nbsp;└ chip label | Chermside | `chip_label` | text |

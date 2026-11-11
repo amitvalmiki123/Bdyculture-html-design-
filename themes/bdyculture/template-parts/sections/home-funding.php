@@ -38,10 +38,10 @@ $bdy_pathways = bdy_rows( 'home_funding_pathways', $bdy_d['home_funding_pathways
 				<?php foreach ( $bdy_pathways as $bdy_row ) : ?>
 					<li class="reveal">
 						<?php if ( ! empty( $bdy_row['pathway_title'] ) ) : ?>
-							<b><?php echo esc_html( $bdy_row['pathway_title'] ); ?></b>
+							<b><?php echo bdy_row_text( $bdy_row, 'pathway_title' ); ?></b>
 						<?php endif; ?>
 						<?php if ( ! empty( $bdy_row['pathway_text'] ) ) : ?>
-							<span><?php echo esc_html( $bdy_row['pathway_text'] ); ?></span>
+							<span><?php echo bdy_row_text( $bdy_row, 'pathway_text' ); ?></span>
 						<?php endif; ?>
 					</li>
 				<?php endforeach; ?>

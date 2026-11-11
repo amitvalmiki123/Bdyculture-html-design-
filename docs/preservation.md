@@ -122,6 +122,9 @@ from `wp_localize_script()` (`bdyTheme`), and no jQuery is required.
   those six values and nothing else; a garbage value (`not-a-length`) is rejected by the sanitizer.
 * **CSS validity** — `main.css` and `responsive.css` parse with 0 errors (483 + 19 rule blocks, braces
   balanced).
+* **Single source of truth** — the front page was rendered a second time with the phone, both emails and both
+  address lines swapped in Site Settings: 17 phone labels, 13 `tel:` links, 5/8 email mentions, 6/5 address
+  mentions and the JSON-LD all followed the new values, with **0 stale occurrences** of any old value.
 * **Accessibility** — one `<h1>` per template, skip link, landmarks (`header`/`nav`/`main`/`footer`),
   `aria-current` on the active nav item, labelled tabs/accordion/map, `alt` on every image, focus-visible
   outlines preserved from the design.

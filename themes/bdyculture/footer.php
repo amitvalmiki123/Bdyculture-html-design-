@@ -40,7 +40,7 @@ $bdy_cta_href  = $bdy_cta_url ? $bdy_cta_url : $bdy_book;
 			);
 			?>
 			<?php if ( $bdy_tagline ) : ?>
-				<p><?php echo wp_kses_post( $bdy_tagline ); ?></p>
+				<p><?php echo bdy_tokens( wp_kses_post( $bdy_tagline ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- kses + tokens. ?></p>
 			<?php endif; ?>
 			<?php if ( $bdy_cta_href && $bdy_cta_text ) : ?>
 				<a class="btn btn--signal" href="<?php echo esc_url( $bdy_cta_href ); ?>" target="_blank" rel="noopener"><?php echo esc_html( $bdy_cta_text ); ?></a>
@@ -50,7 +50,7 @@ $bdy_cta_href  = $bdy_cta_url ? $bdy_cta_url : $bdy_book;
 		<?php foreach ( $bdy_cols as $bdy_col ) : ?>
 			<?php
 			$bdy_col_title = isset( $bdy_col['col_title'] ) ? $bdy_col['col_title'] : '';
-			$bdy_col_text  = isset( $bdy_col['col_text'] ) ? wp_kses_post( $bdy_col['col_text'] ) : '';
+			$bdy_col_text  = isset( $bdy_col['col_text'] ) ? bdy_tokens( wp_kses_post( $bdy_col['col_text'] ) ) : '';
 			$bdy_links     = isset( $bdy_col['col_links'] ) && is_array( $bdy_col['col_links'] ) ? $bdy_col['col_links'] : array();
 			$bdy_has_text  = '' !== trim( wp_strip_all_tags( $bdy_col_text ) );
 			$bdy_tag       = $bdy_has_text ? 'div' : 'nav';
@@ -61,13 +61,13 @@ $bdy_cta_href  = $bdy_cta_url ? $bdy_cta_url : $bdy_book;
 				<?php endif; ?>
 
 				<?php if ( $bdy_has_text ) : ?>
-					<address><?php echo wp_kses_post( $bdy_col_text ); ?></address>
+					<address><?php echo $bdy_col_text; // phpcs:ignore WordPress.Security.EscapeOutput -- kses + tokens. ?></address>
 				<?php endif; ?>
 
 				<?php foreach ( $bdy_links as $bdy_link ) : ?>
 					<?php
-					$bdy_label = isset( $bdy_link['link_label'] ) ? $bdy_link['link_label'] : '';
-					$bdy_value = isset( $bdy_link['link_url'] ) ? $bdy_link['link_url'] : '';
+					$bdy_label = isset( $bdy_link['link_label'] ) ? bdy_tokens( esc_html( $bdy_link['link_label'] ), false ) : '';
+					$bdy_value = isset( $bdy_link['link_url'] ) ? bdy_tokens( (string) $bdy_link['link_url'], false ) : '';
 					$bdy_type  = isset( $bdy_link['link_type'] ) ? $bdy_link['link_type'] : 'link';
 
 					if ( '' === trim( (string) $bdy_label ) ) {
@@ -82,7 +82,7 @@ $bdy_cta_href  = $bdy_cta_url ? $bdy_cta_url : $bdy_book;
 						$bdy_href = bdy_link( $bdy_value );
 					}
 					?>
-					<a href="<?php echo esc_url( $bdy_href ); ?>"><?php echo esc_html( $bdy_label ); ?></a>
+					<a href="<?php echo esc_url( $bdy_href ); ?>"><?php echo $bdy_label; // phpcs:ignore WordPress.Security.EscapeOutput -- escaped above, tokens expanded after escaping. ?></a>
 				<?php endforeach; ?>
 			</<?php echo esc_attr( $bdy_tag ); ?>>
 		<?php endforeach; ?>

@@ -57,7 +57,7 @@ $bdy_btn_2   = bdy_string( 'home_map_btn_2_text', $bdy_d['home_map_btn_2_text'] 
 							}
 							$bdy_fly = ( isset( $bdy_row['chip_lat'] ) ? $bdy_row['chip_lat'] : $bdy_lat ) . ',' . ( isset( $bdy_row['chip_lng'] ) ? $bdy_row['chip_lng'] : $bdy_lng ) . ',' . ( ! empty( $bdy_row['chip_zoom'] ) ? $bdy_row['chip_zoom'] : $bdy_zoom );
 							?>
-							<button type="button" class="chip<?php echo 0 === $bdy_i ? ' is-on' : ''; ?>" data-fly="<?php echo esc_attr( $bdy_fly ); ?>"><?php echo esc_html( $bdy_row['chip_label'] ); ?></button>
+							<button type="button" class="chip<?php echo 0 === $bdy_i ? ' is-on' : ''; ?>" data-fly="<?php echo esc_attr( $bdy_fly ); ?>"><?php echo bdy_row_text( $bdy_row, 'chip_label' ); ?></button>
 						<?php endforeach; ?>
 					</div>
 				<?php endif; ?>

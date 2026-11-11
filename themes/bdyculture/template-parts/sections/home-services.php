@@ -75,21 +75,21 @@ if ( ! $bdy_panels ) {
 							);
 							?>
 							<?php if ( ! empty( $bdy_row['panel_chip'] ) ) : ?>
-								<span class="panel__chip"><?php echo esc_html( $bdy_row['panel_chip'] ); ?></span>
+								<span class="panel__chip"><?php echo bdy_row_text( $bdy_row, 'panel_chip' ); ?></span>
 							<?php endif; ?>
 						</div>
 
 						<div class="panel__body">
 							<?php if ( ! empty( $bdy_row['panel_title'] ) ) : ?>
-								<h3><?php echo esc_html( $bdy_row['panel_title'] ); ?></h3>
+								<h3><?php echo bdy_row_text( $bdy_row, 'panel_title' ); ?></h3>
 							<?php endif; ?>
 
 							<?php if ( ! empty( $bdy_row['panel_lead'] ) ) : ?>
-								<p class="panel__lead"><?php echo esc_html( wp_strip_all_tags( $bdy_row['panel_lead'] ) ); ?></p>
+								<p class="panel__lead"><?php echo bdy_row_text( $bdy_row, 'panel_lead' ); ?></p>
 							<?php endif; ?>
 
 							<?php if ( ! empty( $bdy_row['panel_body'] ) ) : ?>
-								<p><?php echo esc_html( wp_strip_all_tags( $bdy_row['panel_body'] ) ); ?></p>
+								<p><?php echo bdy_row_text( $bdy_row, 'panel_body' ); ?></p>
 							<?php endif; ?>
 
 							<?php if ( $bdy_ticks ) : ?>

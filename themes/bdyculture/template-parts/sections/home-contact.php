@@ -134,7 +134,7 @@ $bdy_labels = array(
 							<select id="cf-service" name="service">
 								<?php foreach ( $bdy_types as $bdy_row ) : ?>
 									<?php if ( ! empty( $bdy_row['contact_type_option_text'] ) ) : ?>
-										<option><?php echo esc_html( $bdy_row['contact_type_option_text'] ); ?></option>
+										<option><?php echo bdy_row_text( $bdy_row, 'contact_type_option_text' ); ?></option>
 									<?php endif; ?>
 								<?php endforeach; ?>
 							</select>
@@ -148,7 +148,7 @@ $bdy_labels = array(
 						<select id="cf-interest" name="interest">
 							<?php foreach ( $bdy_interest as $bdy_row ) : ?>
 								<?php if ( ! empty( $bdy_row['contact_interest_option_text'] ) ) : ?>
-									<option><?php echo esc_html( $bdy_row['contact_interest_option_text'] ); ?></option>
+									<option><?php echo bdy_row_text( $bdy_row, 'contact_interest_option_text' ); ?></option>
 								<?php endif; ?>
 							<?php endforeach; ?>
 						</select>

@@ -44,10 +44,10 @@ if ( ! $bdy_items ) {
 				if ( empty( $bdy_row['faq_question'] ) ) {
 					continue;
 				}
-				$bdy_answer = isset( $bdy_row['faq_answer'] ) ? wp_kses_post( $bdy_row['faq_answer'] ) : '';
+				$bdy_answer = isset( $bdy_row['faq_answer'] ) ? bdy_row_html( $bdy_row, 'faq_answer' ) : '';
 				?>
 				<details class="reveal"<?php echo 0 === $bdy_i ? ' open' : ''; ?>>
-					<summary><?php echo esc_html( $bdy_row['faq_question'] ); ?></summary>
+					<summary><?php echo bdy_row_text( $bdy_row, 'faq_question' ); ?></summary>
 					<?php if ( $bdy_answer ) : ?>
 						<div><p><?php echo $bdy_answer; // phpcs:ignore WordPress.Security.EscapeOutput -- wp_kses_post. ?></p></div>
 					<?php endif; ?>

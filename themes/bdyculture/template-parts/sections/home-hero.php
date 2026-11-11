@@ -65,7 +65,7 @@ $bdy_ok_text  = bdy_html( 'home_hero_form_success_text', $bdy_d['home_hero_form_
 				<ul class="hero__checks reveal">
 					<?php foreach ( $bdy_checks as $bdy_row ) : ?>
 						<?php if ( ! empty( $bdy_row['hero_check_text'] ) ) : ?>
-							<li><?php echo esc_html( $bdy_row['hero_check_text'] ); ?></li>
+							<li><?php echo bdy_row_text( $bdy_row, 'hero_check_text' ); ?></li>
 						<?php endif; ?>
 					<?php endforeach; ?>
 				</ul>
@@ -134,7 +134,7 @@ $bdy_ok_text  = bdy_html( 'home_hero_form_success_text', $bdy_d['home_hero_form_
 							<select id="hf-service" name="service">
 								<?php foreach ( $bdy_options as $bdy_row ) : ?>
 									<?php if ( ! empty( $bdy_row['hero_form_option_text'] ) ) : ?>
-										<option><?php echo esc_html( $bdy_row['hero_form_option_text'] ); ?></option>
+										<option><?php echo bdy_row_text( $bdy_row, 'hero_form_option_text' ); ?></option>
 									<?php endif; ?>
 								<?php endforeach; ?>
 							</select>
