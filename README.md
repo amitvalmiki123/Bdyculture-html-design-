@@ -21,7 +21,9 @@ Upload `dist/bdyculture-parent.zip`, then `dist/bdyculture.zip`, activate the ch
 | File | What it covers |
 | --- | --- |
 | [`docs/content-audit.md`](docs/content-audit.md) | Phase-1 content audit: every design element → its ACF field → its PHP fallback |
-| [`docs/acf-fields.md`](docs/acf-fields.md) | All 3 field groups, 260 fields, 20 repeaters, tabs, locations, defaults |
+| [`docs/acf-fields.md`](docs/acf-fields.md) | All 3 field groups, 226 fields, 16 repeaters, tabs, locations, defaults |
+| [`docs/theme-settings-guide.md`](docs/theme-settings-guide.md) | Everything that repeats — phone, address, header, footer and the two shared bands — edited once in BDYCULTURE → Theme Settings |
+| [`docs/inner-pages-guide.md`](docs/inner-pages-guide.md) | How each inner page is built from blocks: ordering, show/hide, the shared bands, images, adding a page |
 | [`docs/install.md`](docs/install.md) | Requirements, installation, first-run checklist, editing guide, theme structure |
 | [`docs/homepage-setup-guide.md`](docs/homepage-setup-guide.md) | Field-by-field walkthrough for filling the Home page by hand — every tab, every field, the exact copy |
 | [`docs/preservation.md`](docs/preservation.md) | Proof the design did not change: DOM parity, CSS-cascade equivalence, runtime checks |
@@ -57,14 +59,15 @@ Everything else in the 19 rules is implemented as written, and the deviation is 
 | Header buttons, footer options, mobile bar, phone / emails / address / hours | **BDYCULTURE → Theme Settings** (one options page) |
 | Header navigation, footer link columns | **Appearance → Menus** (four locations; shipped defaults show until a menu is assigned) |
 | Home page sections (copy, images, links, order, show/hide) | Pages → *Home*, one tab per section |
-| Inner page sections (copy, images, links, order, show/hide) | Pages → *(page)* → **Page sections** tab (a block stack; falls back to the shipped design) |
+| Inner page sections (copy, images, links, order, show/hide) | Pages → *(page)* → **1. Page sections** tab (a block stack — drag to reorder, remove to hide; see [`docs/inner-pages-guide.md`](docs/inner-pages-guide.md)) |
 | Enquiry card beside every hero | Theme Settings → **Enquiry card** |
-| Blog article template (checklist, sidebar, related, CTA, disclaimer) | Theme Settings → **Blog article** |
-| Blog posts | Posts; the posts page lists them, each article uses `single.php` |
+| Contact band + map band (the two closing bands) | Theme Settings → **Contact band** / **Map band** — written once, per-page show/order on the page itself |
+| Blog posts | Posts — standard WordPress; the posts page lists them, each article uses `single.php` |
 | Colours, fonts, sizes, spacing, container width | Appearance → Customize → **Theme Design** |
 
-Clinic details are a single source: buttons, footer links, contact list, FAQ answers, map card, meta description and
-the JSON-LD read them through `{phone}`, `{email}`, `{address}` tokens (full list in `docs/install.md` §5).
+Clinic details are a single source: buttons, footer links, contact list, FAQ answers, map card and the JSON-LD read
+them through `{phone}`, `{email}`, `{address}` tokens (full list in `docs/install.md` §5). Titles and meta descriptions
+are left to the SEO plugin — the theme ships no SEO fields.
 
 ## Open items for the client
 

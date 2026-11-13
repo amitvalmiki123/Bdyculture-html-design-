@@ -50,16 +50,16 @@ add_action( 'wp_enqueue_scripts', 'bdy_enqueue_assets' );
  * @return array
  */
 function bdy_script_data() {
-	$defaults = bdy_section_defaults( 'home', 'map' );
+	$defaults = bdy_defaults( 'global' );
 
 	return array(
 		'map'     => array(
 			'center'   => array(
-				(float) bdy_number( 'home_map_lat', (float) $defaults['home_map_lat'] ),
-				(float) bdy_number( 'home_map_lng', (float) $defaults['home_map_lng'] ),
+				(float) bdy_number( 'map_lat', (float) $defaults['map_lat'], 'option' ),
+				(float) bdy_number( 'map_lng', (float) $defaults['map_lng'], 'option' ),
 			),
-			'zoom'     => (int) bdy_number( 'home_map_zoom', (int) $defaults['home_map_zoom'] ),
-			'title'    => wp_strip_all_tags( bdy_string( 'home_map_card_title', $defaults['home_map_card_title'] ) . ' – ' . bdy_address_1() ),
+			'zoom'     => (int) bdy_number( 'map_zoom', (int) $defaults['map_zoom'], 'option' ),
+			'title'    => wp_strip_all_tags( bdy_string( 'map_card_title', $defaults['map_card_title'], 'option' ) . ' – ' . bdy_address_1() ),
 			'street'   => 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
 			'satellite' => 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
 			'leafletCss' => 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',

@@ -1,6 +1,10 @@
 <?php
 /**
- * Home — Contact (clinic details + message form).
+ * Shared band — Contact ("Get in touch").
+ *
+ * Printed at the end of the homepage, every inner page, the blog index and
+ * single posts. The copy lives in Theme Settings (Contact band tab); pages only
+ * store their own show/order. Rendered by bdy_render_shared_bands().
  *
  * @package BDYCULTURE
  */
@@ -9,27 +13,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$bdy_d        = bdy_section_defaults( 'home', 'contact' );
-$bdy_tag      = bdy_string( 'home_contact_tag', $bdy_d['home_contact_tag'] );
-$bdy_title    = bdy_html( 'home_contact_title', $bdy_d['home_contact_title'] );
-$bdy_intro    = bdy_html( 'home_contact_intro', $bdy_d['home_contact_intro'] );
-$bdy_list     = bdy_rows( 'home_contact_list', $bdy_d['home_contact_list'] );
+$bdy_g        = bdy_defaults( 'global' );
+$bdy_tag      = bdy_string( 'contact_tag', $bdy_g['contact_tag'], 'option' );
+$bdy_title    = bdy_html( 'contact_title', $bdy_g['contact_title'], 'option' );
+$bdy_intro    = bdy_html( 'contact_intro', $bdy_g['contact_intro'], 'option' );
+$bdy_list     = bdy_rows( 'contact_list', $bdy_g['contact_list'], 'option' );
 $bdy_phone    = bdy_phone_display();
-$bdy_sc       = bdy_string( 'home_contact_form_shortcode', $bdy_d['home_contact_form_shortcode'] );
-$bdy_f_title  = bdy_string( 'home_contact_form_title', $bdy_d['home_contact_form_title'] );
-$bdy_f_intro  = bdy_html( 'home_contact_form_intro', $bdy_d['home_contact_form_intro'] );
-$bdy_types    = bdy_rows( 'home_contact_form_types', $bdy_d['home_contact_form_types'] );
-$bdy_interest = bdy_rows( 'home_contact_form_interests', $bdy_d['home_contact_form_interests'] );
-$bdy_ok_title = bdy_string( 'home_contact_form_success_title', $bdy_d['home_contact_form_success_title'] );
-$bdy_ok_text  = bdy_html( 'home_contact_form_success_text', $bdy_d['home_contact_form_success_text'] );
+$bdy_sc       = bdy_string( 'contact_form_shortcode', $bdy_g['contact_form_shortcode'], 'option' );
+$bdy_f_title  = bdy_string( 'contact_form_title', $bdy_g['contact_form_title'], 'option' );
+$bdy_f_intro  = bdy_html( 'contact_form_intro', $bdy_g['contact_form_intro'], 'option' );
+$bdy_types    = bdy_rows( 'contact_form_types', $bdy_g['contact_form_types'], 'option' );
+$bdy_interest = bdy_rows( 'contact_form_interests', $bdy_g['contact_form_interests'], 'option' );
+$bdy_ok_title = bdy_string( 'contact_form_success_title', $bdy_g['contact_form_success_title'], 'option' );
+$bdy_ok_text  = bdy_html( 'contact_form_success_text', $bdy_g['contact_form_success_text'], 'option' );
 
 $bdy_labels = array(
-	'name'     => bdy_string( 'home_contact_form_label_name', $bdy_d['home_contact_form_label_name'] ),
-	'phone'    => bdy_string( 'home_contact_form_label_phone', $bdy_d['home_contact_form_label_phone'] ),
-	'email'    => bdy_string( 'home_contact_form_label_email', $bdy_d['home_contact_form_label_email'] ),
-	'type'     => bdy_string( 'home_contact_form_label_type', $bdy_d['home_contact_form_label_type'] ),
-	'interest' => bdy_string( 'home_contact_form_label_interest', $bdy_d['home_contact_form_label_interest'] ),
-	'message'  => bdy_string( 'home_contact_form_label_message', $bdy_d['home_contact_form_label_message'] ),
+	'name'     => bdy_string( 'contact_form_label_name', $bdy_g['contact_form_label_name'], 'option' ),
+	'phone'    => bdy_string( 'contact_form_label_phone', $bdy_g['contact_form_label_phone'], 'option' ),
+	'email'    => bdy_string( 'contact_form_label_email', $bdy_g['contact_form_label_email'], 'option' ),
+	'type'     => bdy_string( 'contact_form_label_type', $bdy_g['contact_form_label_type'], 'option' ),
+	'interest' => bdy_string( 'contact_form_label_interest', $bdy_g['contact_form_label_interest'], 'option' ),
+	'message'  => bdy_string( 'contact_form_label_message', $bdy_g['contact_form_label_message'], 'option' ),
 );
 ?>
 <section class="section section--dark contact has-arcs" id="contact"<?php echo $bdy_title ? ' aria-labelledby="contact-title"' : ''; ?>>
@@ -76,12 +80,12 @@ $bdy_labels = array(
 
 			<?php
 			echo bdy_button( // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside helper.
-				bdy_string( 'home_contact_btn_text', $bdy_d['home_contact_btn_text'] ),
-				bdy_string( 'home_contact_btn_url', $bdy_d['home_contact_btn_url'] ),
+				bdy_string( 'contact_btn_text', $bdy_g['contact_btn_text'], 'option' ),
+				bdy_string( 'contact_btn_url', $bdy_g['contact_btn_url'], 'option' ),
 				'signal',
 				array(
 					'size'    => 'lg',
-					'icon'    => bdy_string( 'home_contact_btn_icon', $bdy_d['home_contact_btn_icon'] ),
+					'icon'    => bdy_string( 'contact_btn_icon', $bdy_g['contact_btn_icon'], 'option' ),
 					'new_tab' => true,
 				)
 			);
@@ -159,11 +163,11 @@ $bdy_labels = array(
 					<div class="field field--grow"><label for="cf-msg"><?php echo esc_html( $bdy_labels['message'] ); ?></label><textarea id="cf-msg" name="message" rows="4"></textarea></div>
 				<?php endif; ?>
 
-				<?php if ( bdy_string( 'home_contact_form_button', $bdy_d['home_contact_form_button'] ) ) : ?>
-					<button class="btn btn--ink btn--block btn--lg" type="submit"><?php echo esc_html( bdy_string( 'home_contact_form_button', $bdy_d['home_contact_form_button'] ) ); ?></button>
+				<?php if ( bdy_string( 'contact_form_button', $bdy_g['contact_form_button'], 'option' ) ) : ?>
+					<button class="btn btn--ink btn--block btn--lg" type="submit"><?php echo esc_html( bdy_string( 'contact_form_button', $bdy_g['contact_form_button'], 'option' ) ); ?></button>
 				<?php endif; ?>
 
-				<?php $bdy_note = bdy_html( 'home_contact_form_note', $bdy_d['home_contact_form_note'] ); ?>
+				<?php $bdy_note = bdy_html( 'contact_form_note', $bdy_g['contact_form_note'], 'option' ); ?>
 				<?php if ( $bdy_note ) : ?>
 					<p class="form-note"><?php echo $bdy_note; // phpcs:ignore WordPress.Security.EscapeOutput -- wp_kses_post + tokens. ?></p>
 				<?php endif; ?>

@@ -7,11 +7,11 @@ unique.
 
 | Group | Key | Location | Tabs |
 | --- | --- | --- | --- |
-| Site Settings — clinic, header, footer | `group_bdy_global` | `options_page` == `bdyculture-settings` | Clinic details, Header & navigation, Enquiry card, Blog article, Footer, Mobile action bar |
-| Home page — all sections | `group_bdy_home` | `page_type` == `front_page` | 1. Hero, 2. Marquee, 3. Services, 4. More than a consulting room, 5. Photo ribbon, 6. Visit us, 7. What to expect, 8. Funding, 9. Home visits & refer, 10. FAQ, 11. Contact, 12. Map |
-| Page — sections & SEO | `group_bdy_page` | `post_type` == `page` AND `page_type` != `front_page` | Page sections, Fallback hero (pages without blocks), SEO |
+| Site Settings — clinic, shared bands, header & footer | `group_bdy_global` | `options_page` == `bdyculture-settings` | Clinic details, Header & navigation, Enquiry card, Contact band, Map band, Footer, Mobile action bar |
+| Home page — all sections | `group_bdy_home` | `page_type` == `front_page` | 1. Hero, 2. Marquee, 3. Services, 4. More than a consulting room, 5. Photo ribbon, 6. Visit us, 7. What to expect, 8. Funding, 9. Home visits & refer, 10. FAQ, 11. Contact band & map (shared) |
+| Page — sections, shared bands & fallback | `group_bdy_page` | `post_type` == `page` AND `page_type` != `front_page` | 1. Page sections, 2. Shared bands (contact & map), 3. Fallback hero |
 
-## Site Settings — clinic, header, footer
+## Site Settings — clinic, shared bands, header & footer
 
 Group key: `group_bdy_global`  ·  location: `options_page` == `bdyculture-settings`
 
@@ -29,7 +29,6 @@ Group key: `group_bdy_global`  ·  location: `options_page` == `bdyculture-setti
 | Directions URL | `clinic_directions_url` | url | — |
 | Opening hours | `clinic_hours` | text | — |
 | Clinic tagline | `clinic_tagline` | textarea | — |
-| Default meta description | `clinic_meta_description` | textarea | Used when a page has no meta description of its own. |
 | Header logo (dark) | `clinic_logo` | image | returns: array |
 | Footer logo (light) | `clinic_logo_light` | image | returns: array |
 | **Header & navigation** | — | tab | — |
@@ -55,21 +54,55 @@ Group key: `group_bdy_global`  ·  location: `options_page` == `bdyculture-setti
 | Privacy note | `enquiry_note` | textarea | Use {privacy_link} for the linked Privacy Policy. |
 | Success heading | `enquiry_success_title` | text | — |
 | Success message | `enquiry_success_text` | textarea | Use {phone_link} for the clinic phone link. |
-| **Blog article** | — | tab | — |
-| _note_ | `bdy_msg_article` | message | The article template around every blog post. The post title, excerpt, content, category and date come from the post itse |
-| Hero checklist | `article_checks` | repeater | layout: table |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Text | `text` | text | — |
-| Sidebar — contents heading | `article_toc_title` | text | — |
-| Sidebar — services heading | `article_side_services_title` | text | — |
-| Sidebar — booking heading | `article_side_book_title` | text | — |
-| Sidebar — booking text | `article_side_book_text` | text | — |
-| In-article CTA heading | `article_cta_title` | text | — |
-| In-article CTA text | `article_cta_text` | text | — |
-| Related — tag | `article_related_tag` | text | — |
-| Related — heading | `article_related_title` | text | — |
-| Byline | `article_byline` | text | — |
-| Byline note | `article_byline_note` | text | Shown in brackets after the byline. Clear it once the author is confirmed. |
-| Disclaimer | `article_disclaimer` | textarea | — |
+| **Contact band** | — | tab | — |
+| _note_ | `bdy_msg_contact_band` | message | The dark "Get in touch" band. It closes the homepage and every inner page, so edit it once here. Show/order per page is  |
+| Tag | `contact_tag` | text | — |
+| Heading (H2) | `contact_title` | textarea | — |
+| Intro | `contact_intro` | textarea | — |
+| Contact details | `contact_list` | repeater | layout: table |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Label | `contact_list_label` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Value | `contact_list_value` | text | Accepts {phone_link}, {email_link}, {address_html}. |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Placeholder | `contact_list_placeholder` | true_false | — |
+| Button text | `contact_btn_text` | text | — |
+| Button link | `contact_btn_url` | text | — |
+| Button icon | `contact_btn_icon` | select | options: , physiotherapy, exercise-physiology, occupational-therapy, clinical-pilates, search |
+| Form shortcode (Contact Form 7) | `contact_form_shortcode` | text | Leave empty to use the design-identical form. |
+| Form heading (H3) | `contact_form_title` | text | — |
+| Form intro | `contact_form_intro` | text | — |
+| Label — name | `contact_form_label_name` | text | — |
+| Label — phone | `contact_form_label_phone` | text | — |
+| Label — email | `contact_form_label_email` | text | — |
+| Label — enquiry type | `contact_form_label_type` | text | — |
+| Label — interest | `contact_form_label_interest` | text | — |
+| Label — message | `contact_form_label_message` | text | — |
+| Enquiry type options | `contact_form_types` | repeater | layout: table |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Option | `contact_type_option_text` | text | — |
+| Interest options | `contact_form_interests` | repeater | layout: table |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Option | `contact_interest_option_text` | text | — |
+| Privacy note under the button | `contact_form_note` | textarea | Use {privacy_link} for the linked Privacy Policy. |
+| Submit button label | `contact_form_button` | text | — |
+| Success heading | `contact_form_success_title` | text | — |
+| Success message | `contact_form_success_text` | textarea | Use {phone_link} for the clinic phone link. |
+| **Map band** | — | tab | — |
+| _note_ | `bdy_msg_map_band` | message | The "Find the clinic" band with the Leaflet map. Edited once here; each page decides whether it shows. |
+| Tag | `map_tag` | text | — |
+| Heading (H2) | `map_title` | text | — |
+| Latitude | `map_lat` | text | — |
+| Longitude | `map_lng` | text | — |
+| Zoom | `map_zoom` | number | — |
+| "Load map" button label | `map_load_label` | text | — |
+| Map card heading (H3) | `map_card_title` | text | — |
+| Map card address | `map_card_text` | textarea | — |
+| "Around the clinic" label | `map_chips_label` | text | — |
+| Nearby suburbs | `map_chips` | repeater | layout: table |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Suburb | `chip_label` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Latitude | `chip_lat` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Longitude | `chip_lng` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Zoom | `chip_zoom` | text | — |
+| Button 1 — text | `map_btn_1_text` | text | — |
+| Button 1 — link | `map_btn_1_url` | text | — |
+| Button 2 — text | `map_btn_2_text` | text | — |
+| Button 2 — link | `map_btn_2_url` | text | — |
 | **Footer** | — | tab | — |
 | Footer logo | `footer_logo` | image | returns: array |
 | Footer tagline | `footer_tagline` | textarea | — |
@@ -248,75 +281,34 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | Questions | `home_faq_items` | repeater | layout: block |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Question | `faq_question` | text | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Answer | `faq_answer` | textarea | — |
-| **11. Contact** | — | tab | — |
+| **11. Contact band & map (shared)** | — | tab | — |
+| _note_ | `bdy_msg_shared` | message | Both bands are edited once in BDYCULTURE → Theme Settings, then shown here and on every inner page. Set the order below  |
 | Show this section | `home_contact_show` | true_false | — |
 | Order | `home_contact_order` | number | Lower numbers render first. |
-| Eyebrow tag | `home_contact_tag` | text | — |
-| Heading (H2) | `home_contact_title` | textarea | — |
-| Intro | `home_contact_intro` | textarea | — |
-| Contact details list | `home_contact_list` | repeater | layout: block |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Label | `contact_list_label` | text | — |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Value | `contact_list_value` | textarea | Tokens: {phone_link}, {email_link}, {referrals_email_link}. Basic HTML allowed. |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Style as placeholder | `contact_list_placeholder` | true_false | — |
-| Booking button — text | `home_contact_btn_text` | text | — |
-| Booking button — link | `home_contact_btn_url` | text | — |
-| Booking button icon | `home_contact_btn_icon` | select | options: , physiotherapy, exercise-physiology, occupational-therapy, clinical-pilates, search |
-| Contact form shortcode (Contact Form 7) | `home_contact_form_shortcode` | text | Paste a CF7 shortcode. Leave empty to use the built-in designed form. |
-| Form heading (H3) | `home_contact_form_title` | text | — |
-| Form intro | `home_contact_form_intro` | text | — |
-| Label — name | `home_contact_form_label_name` | text | — |
-| Label — phone | `home_contact_form_label_phone` | text | — |
-| Label — email | `home_contact_form_label_email` | text | — |
-| Label — enquiry type | `home_contact_form_label_type` | text | — |
-| Label — interest | `home_contact_form_label_interest` | text | — |
-| Label — message | `home_contact_form_label_message` | text | — |
-| Enquiry type options | `home_contact_form_types` | repeater | layout: table |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Option | `contact_type_option_text` | text | — |
-| Interest options | `home_contact_form_interests` | repeater | layout: table |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Option | `contact_interest_option_text` | text | — |
-| Privacy note under the button | `home_contact_form_note` | textarea | Allows a link, e.g. to the privacy policy. |
-| Submit button label | `home_contact_form_button` | text | — |
-| Success heading | `home_contact_form_success_title` | text | — |
-| Success message | `home_contact_form_success_text` | textarea | Use {phone_link} for the clinic phone link. |
-| **12. Map** | — | tab | — |
 | Show this section | `home_map_show` | true_false | — |
 | Order | `home_map_order` | number | Lower numbers render first. |
-| Eyebrow tag | `home_map_tag` | text | — |
-| Heading (H2) | `home_map_title` | text | — |
-| Latitude | `home_map_lat` | text | — |
-| Longitude | `home_map_lng` | text | — |
-| Zoom | `home_map_zoom` | number | — |
-| "Load map" button label | `home_map_load_label` | text | — |
-| Map card heading (H3) | `home_map_card_title` | text | — |
-| Map card address | `home_map_card_text` | textarea | — |
-| "Around the clinic" label | `home_map_chips_label` | text | — |
-| Nearby suburbs | `home_map_chips` | repeater | layout: table |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Suburb | `chip_label` | text | — |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Latitude | `chip_lat` | text | — |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Longitude | `chip_lng` | text | — |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Zoom | `chip_zoom` | text | — |
-| Button 1 — text | `home_map_btn_1_text` | text | — |
-| Button 1 — link | `home_map_btn_1_url` | text | — |
-| Button 2 — text | `home_map_btn_2_text` | text | — |
-| Button 2 — link | `home_map_btn_2_url` | text | — |
 
-## Page — sections & SEO
+## Page — sections, shared bands & fallback
 
 Group key: `group_bdy_page`  ·  location: `post_type` == `page` AND `page_type` != `front_page`
 
 | Field | Name | Type | Flags |
 | --- | --- | --- | --- |
-| **Page sections** | — | tab | — |
+| **1. Page sections** | — | tab | — |
 | _note_ | `bdy_msg_page_blocks` | message | <strong>This page is built from blocks</strong><br>Add, remove or drag the blocks to change the page. Left empty, the pa |
 | Blocks | `page_sections` | flexible_content | — |
-| **Fallback hero (pages without blocks)** | — | tab | — |
+| **2. Shared bands (contact & map)** | — | tab | — |
+| _note_ | `bdy_msg_page_shared` | message | The "Get in touch" and "Find the clinic" bands are written once in BDYCULTURE → Theme Settings. Here you only choose whe |
+| Show this section | `page_contact_show` | true_false | — |
+| Order | `page_contact_order` | number | Lower numbers render first. |
+| Show this section | `page_map_show` | true_false | — |
+| Order | `page_map_order` | number | Lower numbers render first. |
+| **3. Fallback hero** | — | tab | — |
 | _note_ | `bdy_msg_page_fallback` | message | Only used by a page that has no blocks and no shipped design — the H1 is the page title, then the editor content below. |
 | Eyebrow tag | `page_hero_tag` | text | — |
 | Lead image | `page_hero_image` | image | returns: array |
 | Intro | `page_hero_intro` | textarea | — |
 | Lead image focal point | `page_hero_image_position` | text | CSS object-position, e.g. 40% 60%. |
-| **SEO** | — | tab | — |
-| Meta description | `page_meta_description` | textarea | Leave empty to use the default from Site Settings. |
 
 ### Blocks of `page_sections`
 

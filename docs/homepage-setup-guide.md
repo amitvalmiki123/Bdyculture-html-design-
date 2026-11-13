@@ -17,7 +17,7 @@ Every field of every tab is listed in the order it appears on screen, with the e
 | 3 | Pages → Add New → title **Home** → Publish | The front page is assembled from sections, so the page body stays empty. |
 | 4 | Settings → Reading → *A static page* → Homepage: **Home** | ACF shows the Home field group only once the page is the front page. |
 | 5 | BDYCULTURE → **Theme Settings** | Fill the clinic details first — the phone, email, address and booking URL are reused everywhere through tokens. |
-| 6 | Pages → *Home* → **Edit** | The 12 tabs described below appear under the page title. |
+| 6 | Pages → *Home* → **Edit** | The 11 tabs described below appear under the page title. |
 
 ### How saving works
 
@@ -58,7 +58,7 @@ Every image field is an ACF *Image* field (return format: Image Array). The desi
 
 ---
 
-## 2. The twelve tabs at a glance
+## 2. The eleven tabs at a glance
 
 | Tab | Section | What it renders | Show | Order |
 | --- | --- | --- | --- | --- |
@@ -72,10 +72,10 @@ Every image field is an ACF *Image* field (return format: Image Array). The desi
 | 8 | Funding | Intro panel on the left, six funding cards on the right. | On | 70 |
 | 9 | Home visits & refer | Two equal cards: home visits and referrer pathways. | On | 80 |
 | 10 | FAQ | Eight question/answer rows in an accordion, one open at a time. | On | 90 |
-| 11 | Contact | Dark band: contact list, enquiry form card, privacy note and success state. This band is reused at the bottom of every inner page. | On | 100 |
-| 12 | Map | Heading, the map itself (Leaflet), the suburb chips and the address card. Reused at the bottom of every inner page. | On | 110 |
+| 11 | Contact | Show/order only — copy lives in Theme Settings. | On | 100 |
+| 12 | Map | Show/order only — copy lives in Theme Settings. | On | 110 |
 
-Fill in tab order (1 → 12): each tab is one band of the page, top to bottom.
+Fill in tab order (1 → 11): each tab is one band of the page, top to bottom. Tab 11 is switches only — its copy is edited in Theme Settings.
 
 About **45–60 minutes** for the whole page if you copy the values below, plus 10 minutes to upload the four images once.
 
@@ -690,169 +690,20 @@ Section key: `faq` — fields are prefixed `home_faq_`.
     ```
 
 
-### Tab 11 — Contact
+### Tab 11 — Contact band & map (shared)
 
-Dark band: contact list, enquiry form card, privacy note and success state. This band is reused at the bottom of every inner page.
+**Nothing to type here.** The copy for both bands is written once in **BDYCULTURE → Theme Settings → Contact band** and **Map band**, so it is identical on the homepage and every inner page.
 
-Section key: `contact` — fields are prefixed `home_contact_`.
+This tab only holds two pairs of switches: *Show this section* and *Order* for the band as a whole (fields `home_contact_show` / `home_contact_order` and `home_map_show` / `home_map_order`).
+
+Read it as one list, top to bottom:
 
 - **Show this section** — `home_contact_show` · on/off · **On**
 - **Order** — `home_contact_order` · number · `100`  
   > Lower numbers render first.
-- **Eyebrow tag** — `home_contact_tag` · text · `Get in touch`
-- **Heading (H2)** — `home_contact_title` · text (multi-line) · `Let’s get you moving.`
-- **Intro** — `home_contact_intro` · text (multi-line) · `Book online in minutes, call the clinic, or send us a message and we’ll come back to you. Referrers are welcome to use the form or email the team directly.`
-- **Contact details list** — `home_contact_list` · repeater · **4 rows**
-  Add the rows in this order (top to bottom = left to right on the page):
-
-  **Row 1**
-  - Label (`contact_list_label`): `Visit us`
-  - Value (`contact_list_value`): `{address_html}`
-  - Style as placeholder (`contact_list_placeholder`): **No**
-
-  **Row 2**
-  - Label (`contact_list_label`): `General enquiries`
-  - Value (`contact_list_value`): `{email_link}`
-  - Style as placeholder (`contact_list_placeholder`): **No**
-
-  **Row 3**
-  - Label (`contact_list_label`): `Referrals`
-  - Value (`contact_list_value`): `{referrals_email_link}`
-  - Style as placeholder (`contact_list_placeholder`): **No**
-
-  **Row 4**
-  - Label (`contact_list_label`): `Opening hours`
-  - Value (`contact_list_value`): `Placeholder — client to confirm clinic hours`
-  - Style as placeholder (`contact_list_placeholder`): **Yes**
-
-- **Booking button — text** — `home_contact_btn_text` · text · `Book Online with Nookal`
-- **Booking button — link** — `home_contact_btn_url` · text · `https://book.nookal.com/bookings/book/EA59F8c8-2593-a0ee-Fbca-FEaEb0d0beE6/select`
-- **Booking button icon** — `home_contact_btn_icon` · select · **`arrow`**  (options: physiotherapy, exercise-physiology, occupational-therapy, clinical-pilates, search, heart, trend, clipboard, calendar, location, check, star, mail, arrow)
-- **Contact form shortcode (Contact Form 7)** — `home_contact_form_shortcode` · text · *leave empty*
-- **Form heading (H3)** — `home_contact_form_title` · text · `Send us a message`
-- **Form intro** — `home_contact_form_intro` · text · `We’ll reply during business hours. For urgent medical help, call 000.`
-- **Label — name** — `home_contact_form_label_name` · text · `Full name`
-- **Label — phone** — `home_contact_form_label_phone` · text · `Phone`
-- **Label — email** — `home_contact_form_label_email` · text · `Email`
-- **Label — enquiry type** — `home_contact_form_label_type` · text · `Enquiry type`
-- **Label — interest** — `home_contact_form_label_interest` · text · `I’m interested in`
-- **Label — message** — `home_contact_form_label_message` · text · `Message`
-- **Enquiry type options** — `home_contact_form_types` · repeater · **4 rows**
-  Add the rows in this order (top to bottom = left to right on the page):
-
-  **Row 1**
-  - Option (`contact_type_option_text`): `Book an appointment`
-
-  **Row 2**
-  - Option (`contact_type_option_text`): `Home visit enquiry`
-
-  **Row 3**
-  - Option (`contact_type_option_text`): `Referring a patient`
-
-  **Row 4**
-  - Option (`contact_type_option_text`): `General question`
-
-- **Interest options** — `home_contact_form_interests` · repeater · **5 rows**
-  Add the rows in this order (top to bottom = left to right on the page):
-
-  **Row 1**
-  - Option (`contact_interest_option_text`): `Physiotherapy`
-
-  **Row 2**
-  - Option (`contact_interest_option_text`): `Exercise Physiology`
-
-  **Row 3**
-  - Option (`contact_interest_option_text`): `Occupational Therapy`
-
-  **Row 4**
-  - Option (`contact_interest_option_text`): `Clinical Pilates`
-
-  **Row 5**
-  - Option (`contact_interest_option_text`): `I’m not sure yet`
-
-- **Privacy note under the button** — `home_contact_form_note` · text (multi-line)
-  Fill (paste exactly):
-
-  ```text
-  By submitting this form, you acknowledge the BDYCULTURE <a href="/privacy-policy/">Privacy Policy</a>. Please do not include sensitive medical or health information in this form.
-  ```
-- **Submit button label** — `home_contact_form_button` · text · `Send message`
-- **Success heading** — `home_contact_form_success_title` · text · `Thanks — message received`
-- **Success message** — `home_contact_form_success_text` · text (multi-line) · `We’ll be in touch shortly. To speak to someone now, call {phone_link}.`  
-  > Use {phone_link} for the clinic phone link.
-
-### Tab 12 — Map
-
-Heading, the map itself (Leaflet), the suburb chips and the address card. Reused at the bottom of every inner page.
-
-Section key: `map` — fields are prefixed `home_map_`.
-
 - **Show this section** — `home_map_show` · on/off · **On**
 - **Order** — `home_map_order` · number · `110`  
   > Lower numbers render first.
-- **Eyebrow tag** — `home_map_tag` · text · `Find the clinic`
-- **Heading (H2)** — `home_map_title` · text · `On Gympie Road, Chermside.`
-- **Latitude** — `home_map_lat` · text · `-27.3852`
-- **Longitude** — `home_map_lng` · text · `153.0306`
-- **Zoom** — `home_map_zoom` · number · `16`
-- **"Load map" button label** — `home_map_load_label` · text · `Load interactive map`
-- **Map card heading (H3)** — `home_map_card_title` · text · `BDYCULTURE`
-- **Map card address** — `home_map_card_text` · text (multi-line)
-  Fill (paste exactly):
-
-  ```text
-  Rehab &amp; Performance Clinic<br>{address_html}
-  ```
-- **"Around the clinic" label** — `home_map_chips_label` · text · `Around the clinic:`
-- **Nearby suburbs** — `home_map_chips` · repeater · **7 rows**
-  Add the rows in this order (top to bottom = left to right on the page):
-
-  **Row 1**
-  - Suburb (`chip_label`): `Chermside`
-  - Latitude (`chip_lat`): `-27.3852`
-  - Longitude (`chip_lng`): `153.0306`
-  - Zoom (`chip_zoom`): `16`
-
-  **Row 2**
-  - Suburb (`chip_label`): `Chermside West`
-  - Latitude (`chip_lat`): `-27.3790`
-  - Longitude (`chip_lng`): `153.0120`
-  - Zoom (`chip_zoom`): `14`
-
-  **Row 3**
-  - Suburb (`chip_label`): `Kedron`
-  - Latitude (`chip_lat`): `-27.4060`
-  - Longitude (`chip_lng`): `153.0430`
-  - Zoom (`chip_zoom`): `14`
-
-  **Row 4**
-  - Suburb (`chip_label`): `Wavell Heights`
-  - Latitude (`chip_lat`): `-27.3930`
-  - Longitude (`chip_lng`): `153.0560`
-  - Zoom (`chip_zoom`): `14`
-
-  **Row 5**
-  - Suburb (`chip_label`): `Aspley`
-  - Latitude (`chip_lat`): `-27.3680`
-  - Longitude (`chip_lng`): `153.0170`
-  - Zoom (`chip_zoom`): `14`
-
-  **Row 6**
-  - Suburb (`chip_label`): `Geebung`
-  - Latitude (`chip_lat`): `-27.3680`
-  - Longitude (`chip_lng`): `153.0480`
-  - Zoom (`chip_zoom`): `14`
-
-  **Row 7**
-  - Suburb (`chip_label`): `Stafford`
-  - Latitude (`chip_lat`): `-27.4130`
-  - Longitude (`chip_lng`): `153.0100`
-  - Zoom (`chip_zoom`): `14`
-
-- **Button 1 — text** — `home_map_btn_1_text` · text · `Get directions`
-- **Button 1 — link** — `home_map_btn_1_url` · text · `https://www.google.com/maps/search/?api=1&query=671+Gympie+Road+Suite+5+Level+1+Chermside+QLD+4032`
-- **Button 2 — text** — `home_map_btn_2_text` · text · `Call`
-- **Button 2 — link** — `home_map_btn_2_url` · text · `tel`
 
 ---
 
@@ -864,19 +715,19 @@ These parts of the homepage do **not** live in the Home page tabs — filling th
 | --- | --- |
 | Logo, header row, *Enquire* / *Book Online* buttons | BDYCULTURE → Theme Settings → **Header & navigation** |
 | Header menu + Services dropdown, footer link columns, legal bar | **Appearance → Menus** (four locations) |
-| Phone, emails, address, booking URL, hours, tagline, meta description | Theme Settings → **Clinic details** |
+| Phone, emails, address, booking URL, hours, tagline | Theme Settings → **Clinic details** |
 | Footer logo, tagline, buttons, credit line, disclaimer | Theme Settings → **Footer** |
 | Mobile action bar (Call / Book Online) | Theme Settings → **Mobile action bar** |
 | Enquiry card beside inner-page heroes | Theme Settings → **Enquiry card** |
-| Blog article template copy | Theme Settings → **Blog article** |
-| Inner page sections | Pages → *(page)* → **Page sections** |
+| Contact band + map band copy (the last two bands) | Theme Settings → **Contact band** / **Map band** — one copy for every page |
+| Inner page sections | Pages → *(page)* → **1. Page sections** (see `inner-pages-guide.md`) |
 | Colours, fonts, sizes, spacing, container width | Appearance → Customize → **Theme Design** |
 
 ---
 
 ## 5. After saving — 8-point check
 
-1. **Order** — the front page shows hero → marquee → services → consulting room → ribbon → visit us → what to expect → funding → home visits & refer → FAQ → contact → map. Any band missing means its `Show this section` is off.
+1. **Order** — the front page shows hero → marquee → services → consulting room → ribbon → visit us → what to expect → funding → home visits & refer → FAQ → contact band → map band. Any band missing means its `Show this section` is off; either band copy is edited in Theme Settings, not here.
 2. **Tokens** — search the page for a literal `{`. There should be none: every `{phone}`, `{email}`, `{address}` should have been replaced.
 3. **Services tabs** — clicking a tab on the left swaps the panel on the right; the first tab is open on load.
 4. **Consulting room** — *Read more* expands the extra paragraphs; the badge number sits on the photo.

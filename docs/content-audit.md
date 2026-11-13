@@ -27,7 +27,6 @@ so changing the number once updates every button, link, FAQ answer, footer line 
 | clinic directions url | https://www.google.com/maps/search/?api=1&query=671+Gympie+Road+Suite+5+Level+1+Chermside+QLD+4032 | `clinic_directions_url` | url |
 | clinic hours | Placeholder — client to confirm clinic hours | `clinic_hours` | text |
 | clinic tagline | Allied health and rehabilitation in Chermside, Brisbane. | `clinic_tagline` | textarea |
-| clinic meta description | Physiotherapy, exercise physiology, occupational therapy and clinical Pilates in Chermside, Brisbane. Book… | `clinic_meta_description` | textarea |
 | enquiry tag | Enquire online | `enquiry_tag` | text |
 | enquiry title | Request an appointment or ask a question | `enquiry_title` | text |
 | enquiry intro | Our Chermside team will get back to you. For urgent medical help, call 000. | `enquiry_intro` | textarea |
@@ -45,17 +44,17 @@ so changing the number once updates every button, link, FAQ answer, footer line 
 | &nbsp;&nbsp;└ text | Physiotherapy | `text` | text |
 | article checks (repeater) | 3 row(s) — General information only | `article_checks` | repeater |
 | &nbsp;&nbsp;└ text | General information only | `text` | text |
-| article toc title | In this article | `article_toc_title` | text |
-| article side book title | Book an appointment | `article_side_book_title` | text |
-| article side book text | Choose a time online or speak to our Chermside team. | `article_side_book_text` | text |
-| article side services title | Our services | `article_side_services_title` | text |
-| article related tag | Keep reading | `article_related_tag` | text |
-| article related title | Related articles. | `article_related_title` | text |
-| article cta title | Ready to talk to someone? | `article_cta_title` | text |
-| article cta text | Book an appointment online through Nookal, call the clinic on 07 3073 1616, or send an enquiry. | `article_cta_text` | text |
-| article byline | BDYCULTURE clinical team | `article_byline` | text |
-| article byline note | placeholder — content team to confirm author and reviewer | `article_byline_note` | text |
-| article disclaimer | This article is general information only and is not a substitute for individual health advice. Results vary… | `article_disclaimer` | textarea |
+| article toc title | In this article | `article_toc_title` | — |
+| article side book title | Book an appointment | `article_side_book_title` | — |
+| article side book text | Choose a time online or speak to our Chermside team. | `article_side_book_text` | — |
+| article side services title | Our services | `article_side_services_title` | — |
+| article related tag | Keep reading | `article_related_tag` | — |
+| article related title | Related articles. | `article_related_title` | — |
+| article cta title | Ready to talk to someone? | `article_cta_title` | — |
+| article cta text | Book an appointment online through Nookal, call the clinic on 07 3073 1616, or send an enquiry. | `article_cta_text` | — |
+| article byline | BDYCULTURE clinical team | `article_byline` | — |
+| article byline note | placeholder — content team to confirm author and reviewer | `article_byline_note` | — |
+| article disclaimer | This article is general information only and is not a substitute for individual health advice. Results vary… | `article_disclaimer` | — |
 | header enquire text | Enquire | `header_enquire_text` | text |
 | header drawer enquire text | Send an enquiry | `header_drawer_enquire_text` | text |
 | header book text | Book Online | `header_book_text` | text |
@@ -80,6 +79,51 @@ so changing the number once updates every button, link, FAQ answer, footer line 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ link label | Physiotherapy | `link_label` | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ link url | /physiotherapy/ | `link_url` | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ link type | link | `link_type` | — |
+| contact tag | Get in touch | `contact_tag` | text |
+| contact title | Let’s get you moving. | `contact_title` | textarea |
+| contact intro | Book online in minutes, call the clinic, or send us a message and we’ll come back to you. Referrers are wel… | `contact_intro` | textarea |
+| contact list (repeater) | 4 row(s) — Visit us / 671 Gympie Road, Suite 5, Level 1 / Chermside QLD 4032 / no | `contact_list` | repeater |
+| &nbsp;&nbsp;└ contact list label | Visit us | `contact_list_label` | text |
+| &nbsp;&nbsp;└ contact list value | 671 Gympie Road, Suite 5, Level 1 / Chermside QLD 4032 | `contact_list_value` | text |
+| &nbsp;&nbsp;└ contact list placeholder | no | `contact_list_placeholder` | true_false |
+| contact btn text | Book Online with Nookal | `contact_btn_text` | text |
+| contact btn url | https://book.nookal.com/bookings/book/EA59F8c8-2593-a0ee-Fbca-FEaEb0d0beE6/select | `contact_btn_url` | text |
+| contact btn icon | arrow | `contact_btn_icon` | select |
+| contact form shortcode | — | `contact_form_shortcode` | text |
+| contact form title | Send us a message | `contact_form_title` | text |
+| contact form intro | We’ll reply during business hours. For urgent medical help, call 000. | `contact_form_intro` | text |
+| contact form label name | Full name | `contact_form_label_name` | text |
+| contact form label phone | Phone | `contact_form_label_phone` | text |
+| contact form label email | Email | `contact_form_label_email` | text |
+| contact form label type | Enquiry type | `contact_form_label_type` | text |
+| contact form label interest | I’m interested in | `contact_form_label_interest` | text |
+| contact form label message | Message | `contact_form_label_message` | text |
+| contact form types (repeater) | 4 row(s) — Book an appointment | `contact_form_types` | repeater |
+| &nbsp;&nbsp;└ contact type option text | Book an appointment | `contact_type_option_text` | text |
+| contact form interests (repeater) | 5 row(s) — Physiotherapy | `contact_form_interests` | repeater |
+| &nbsp;&nbsp;└ contact interest option text | Physiotherapy | `contact_interest_option_text` | text |
+| contact form note | By submitting this form, you acknowledge the BDYCULTURE Privacy Policy. Please do not include sensitive med… | `contact_form_note` | textarea |
+| contact form button | Send message | `contact_form_button` | text |
+| contact form success title | Thanks — message received | `contact_form_success_title` | text |
+| contact form success text | We’ll be in touch shortly. To speak to someone now, call 07 3073 1616. | `contact_form_success_text` | textarea |
+| map tag | Find the clinic | `map_tag` | text |
+| map title | On Gympie Road, Chermside. | `map_title` | text |
+| map lat | -27.3852 | `map_lat` | text |
+| map lng | 153.0306 | `map_lng` | text |
+| map zoom | 16 | `map_zoom` | number |
+| map load label | Load interactive map | `map_load_label` | text |
+| map card title | BDYCULTURE | `map_card_title` | text |
+| map card text | Rehab & Performance Clinic671 Gympie Road, Suite 5, Level 1 / Chermside QLD 4032 | `map_card_text` | textarea |
+| map chips label | Around the clinic: | `map_chips_label` | text |
+| map chips (repeater) | 7 row(s) — Chermside / -27.3852 / 153.0306 | `map_chips` | repeater |
+| &nbsp;&nbsp;└ chip label | Chermside | `chip_label` | text |
+| &nbsp;&nbsp;└ chip lat | -27.3852 | `chip_lat` | text |
+| &nbsp;&nbsp;└ chip lng | 153.0306 | `chip_lng` | text |
+| &nbsp;&nbsp;└ chip zoom | 16 | `chip_zoom` | text |
+| map btn 1 text | Get directions | `map_btn_1_text` | text |
+| map btn 1 url | https://www.google.com/maps/search/?api=1&query=671+Gympie+Road+Suite+5+Level+1+Chermside+QLD+4032 | `map_btn_1_url` | text |
+| map btn 2 text | Call | `map_btn_2_text` | text |
+| map btn 2 url | tel | `map_btn_2_url` | text |
 
 ## 2. Hero (`.hero`)
 
@@ -301,64 +345,19 @@ Eight question/answer rows in a native `<details>` accordion, one open at a time
 
 Dark band: heading, address/phone/email list with pin marker, the enquiry form card, the privacy note under the button, and the success state.
 
-- ACF tab: **contact**  ·  toggle `home_contact_show` = `true`  ·  order `home_contact_order` = `100`
+- ACF tab: **shared**  ·  toggle `home_contact_show` = `true`  ·  order `home_contact_order` = `100`
 
 | Element | Design content | ACF field | Type |
 | --- | --- | --- | --- |
-| home contact tag | Get in touch | `home_contact_tag` | text |
-| home contact title | Let’s get you moving. | `home_contact_title` | textarea |
-| home contact intro | Book online in minutes, call the clinic, or send us a message and we’ll come back to you. Referrers are wel… | `home_contact_intro` | textarea |
-| home contact list (repeater) | 4 row(s) — Visit us / 671 Gympie Road, Suite 5, Level 1 / Chermside QLD 4032 / no | `home_contact_list` | repeater |
-| &nbsp;&nbsp;└ contact list label | Visit us | `contact_list_label` | text |
-| &nbsp;&nbsp;└ contact list value | 671 Gympie Road, Suite 5, Level 1 / Chermside QLD 4032 | `contact_list_value` | textarea |
-| &nbsp;&nbsp;└ contact list placeholder | no | `contact_list_placeholder` | true_false |
-| home contact btn text | Book Online with Nookal | `home_contact_btn_text` | text |
-| home contact btn url | https://book.nookal.com/bookings/book/EA59F8c8-2593-a0ee-Fbca-FEaEb0d0beE6/select | `home_contact_btn_url` | text |
-| home contact btn icon | arrow | `home_contact_btn_icon` | select |
-| home contact form shortcode | — | `home_contact_form_shortcode` | text |
-| home contact form title | Send us a message | `home_contact_form_title` | text |
-| home contact form intro | We’ll reply during business hours. For urgent medical help, call 000. | `home_contact_form_intro` | text |
-| home contact form label name | Full name | `home_contact_form_label_name` | text |
-| home contact form label phone | Phone | `home_contact_form_label_phone` | text |
-| home contact form label email | Email | `home_contact_form_label_email` | text |
-| home contact form label type | Enquiry type | `home_contact_form_label_type` | text |
-| home contact form label interest | I’m interested in | `home_contact_form_label_interest` | text |
-| home contact form label message | Message | `home_contact_form_label_message` | text |
-| home contact form types (repeater) | 4 row(s) — Book an appointment | `home_contact_form_types` | repeater |
-| &nbsp;&nbsp;└ contact type option text | Book an appointment | `contact_type_option_text` | text |
-| home contact form interests (repeater) | 5 row(s) — Physiotherapy | `home_contact_form_interests` | repeater |
-| &nbsp;&nbsp;└ contact interest option text | Physiotherapy | `contact_interest_option_text` | text |
-| home contact form note | By submitting this form, you acknowledge the BDYCULTURE Privacy Policy. Please do not include sensitive med… | `home_contact_form_note` | textarea |
-| home contact form button | Send message | `home_contact_form_button` | text |
-| home contact form success title | Thanks — message received | `home_contact_form_success_title` | text |
-| home contact form success text | We’ll be in touch shortly. To speak to someone now, call 07 3073 1616. | `home_contact_form_success_text` | textarea |
 
 ## 13. Map (`.mapsec`)
 
 Heading + Leaflet map with a lazy "Load interactive map" button, Street/Satellite switch, suburb chips (Chermside / Aspley / Stafford / Wavell Heights) and the clinic address card.
 
-- ACF tab: **map**  ·  toggle `home_map_show` = `true`  ·  order `home_map_order` = `110`
+- ACF tab: **shared**  ·  toggle `home_map_show` = `true`  ·  order `home_map_order` = `110`
 
 | Element | Design content | ACF field | Type |
 | --- | --- | --- | --- |
-| home map tag | Find the clinic | `home_map_tag` | text |
-| home map title | On Gympie Road, Chermside. | `home_map_title` | text |
-| home map lat | -27.3852 | `home_map_lat` | text |
-| home map lng | 153.0306 | `home_map_lng` | text |
-| home map zoom | 16 | `home_map_zoom` | number |
-| home map load label | Load interactive map | `home_map_load_label` | text |
-| home map card title | BDYCULTURE | `home_map_card_title` | text |
-| home map card text | Rehab & Performance Clinic671 Gympie Road, Suite 5, Level 1 / Chermside QLD 4032 | `home_map_card_text` | textarea |
-| home map chips label | Around the clinic: | `home_map_chips_label` | text |
-| home map chips (repeater) | 7 row(s) — Chermside / -27.3852 / 153.0306 | `home_map_chips` | repeater |
-| &nbsp;&nbsp;└ chip label | Chermside | `chip_label` | text |
-| &nbsp;&nbsp;└ chip lat | -27.3852 | `chip_lat` | text |
-| &nbsp;&nbsp;└ chip lng | 153.0306 | `chip_lng` | text |
-| &nbsp;&nbsp;└ chip zoom | 16 | `chip_zoom` | text |
-| home map btn 1 text | Get directions | `home_map_btn_1_text` | text |
-| home map btn 1 url | https://www.google.com/maps/search/?api=1&query=671+Gympie+Road+Suite+5+Level+1+Chermside+QLD+4032 | `home_map_btn_1_url` | text |
-| home map btn 2 text | Call | `home_map_btn_2_text` | text |
-| home map btn 2 url | tel | `home_map_btn_2_url` | text |
 
 ## 13. Inner pages — block library
 

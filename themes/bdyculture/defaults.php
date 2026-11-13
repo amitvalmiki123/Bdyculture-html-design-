@@ -50,7 +50,6 @@ function bdy_defaults_all() {
 			'clinic_directions_url'     => 'https://www.google.com/maps/search/?api=1&query=671+Gympie+Road+Suite+5+Level+1+Chermside+QLD+4032',
 			'clinic_hours'              => 'Placeholder — client to confirm clinic hours',
 			'clinic_tagline'            => 'Allied health and rehabilitation in Chermside, Brisbane.',
-			'clinic_meta_description'   => 'Physiotherapy, exercise physiology, occupational therapy and clinical Pilates in Chermside, Brisbane. Book online or call {phone}.',
 
 			/* Enquiry card beside inner-page heroes (one form for every page). */
 			'enquiry_tag'               => 'Enquire online',
@@ -197,6 +196,69 @@ function bdy_defaults_all() {
 					),
 				),
 			),
+			/* ---------------- SHARED BANDS (contact & map, every page) --------------- */
+			'contact_tag'       => 'Get in touch',
+			'contact_title'     => 'Let’s get you moving.',
+			'contact_intro'     => 'Book online in minutes, call the clinic, or send us a message and we’ll come back to you. Referrers are welcome to use the form or email the team directly.',
+			'contact_list'      => array(
+				array( 'contact_list_label' => 'Visit us', 'contact_list_value' => '{address_html}', 'contact_list_placeholder' => false ),
+				array( 'contact_list_label' => 'General enquiries', 'contact_list_value' => '{email_link}', 'contact_list_placeholder' => false ),
+				array( 'contact_list_label' => 'Referrals', 'contact_list_value' => '{referrals_email_link}', 'contact_list_placeholder' => false ),
+				array( 'contact_list_label' => 'Opening hours', 'contact_list_value' => 'Placeholder — client to confirm clinic hours', 'contact_list_placeholder' => true ),
+			),
+			'contact_btn_text'  => 'Book Online with Nookal',
+			'contact_btn_url'   => 'https://book.nookal.com/bookings/book/EA59F8c8-2593-a0ee-Fbca-FEaEb0d0beE6/select',
+			'contact_btn_icon'  => 'arrow',
+
+			'contact_form_shortcode'      => '',
+			'contact_form_title'          => 'Send us a message',
+			'contact_form_intro'          => 'We’ll reply during business hours. For urgent medical help, call 000.',
+			'contact_form_label_name'     => 'Full name',
+			'contact_form_label_phone'    => 'Phone',
+			'contact_form_label_email'    => 'Email',
+			'contact_form_label_type'     => 'Enquiry type',
+			'contact_form_label_interest' => 'I’m interested in',
+			'contact_form_label_message'  => 'Message',
+			'contact_form_types'          => array(
+				array( 'contact_type_option_text' => 'Book an appointment' ),
+				array( 'contact_type_option_text' => 'Home visit enquiry' ),
+				array( 'contact_type_option_text' => 'Referring a patient' ),
+				array( 'contact_type_option_text' => 'General question' ),
+			),
+			'contact_form_interests'      => array(
+				array( 'contact_interest_option_text' => 'Physiotherapy' ),
+				array( 'contact_interest_option_text' => 'Exercise Physiology' ),
+				array( 'contact_interest_option_text' => 'Occupational Therapy' ),
+				array( 'contact_interest_option_text' => 'Clinical Pilates' ),
+				array( 'contact_interest_option_text' => 'I’m not sure yet' ),
+			),
+			'contact_form_note'           => 'By submitting this form, you acknowledge the BDYCULTURE <a href="/privacy-policy/">Privacy Policy</a>. Please do not include sensitive medical or health information in this form.',
+			'contact_form_button'         => 'Send message',
+			'contact_form_success_title'  => 'Thanks — message received',
+			'contact_form_success_text'   => 'We’ll be in touch shortly. To speak to someone now, call {phone_link}.',
+
+			'map_tag'         => 'Find the clinic',
+			'map_title'       => 'On Gympie Road, Chermside.',
+			'map_lat'         => '-27.3852',
+			'map_lng'         => '153.0306',
+			'map_zoom'        => '16',
+			'map_load_label'  => 'Load interactive map',
+			'map_card_title'  => 'BDYCULTURE',
+			'map_card_text'   => 'Rehab &amp; Performance Clinic<br>{address_html}',
+			'map_chips_label' => 'Around the clinic:',
+			'map_chips'       => array(
+				array( 'chip_label' => 'Chermside', 'chip_lat' => '-27.3852', 'chip_lng' => '153.0306', 'chip_zoom' => '16' ),
+				array( 'chip_label' => 'Chermside West', 'chip_lat' => '-27.3790', 'chip_lng' => '153.0120', 'chip_zoom' => '14' ),
+				array( 'chip_label' => 'Kedron', 'chip_lat' => '-27.4060', 'chip_lng' => '153.0430', 'chip_zoom' => '14' ),
+				array( 'chip_label' => 'Wavell Heights', 'chip_lat' => '-27.3930', 'chip_lng' => '153.0560', 'chip_zoom' => '14' ),
+				array( 'chip_label' => 'Aspley', 'chip_lat' => '-27.3680', 'chip_lng' => '153.0170', 'chip_zoom' => '14' ),
+				array( 'chip_label' => 'Geebung', 'chip_lat' => '-27.3680', 'chip_lng' => '153.0480', 'chip_zoom' => '14' ),
+				array( 'chip_label' => 'Stafford', 'chip_lat' => '-27.4130', 'chip_lng' => '153.0100', 'chip_zoom' => '14' ),
+			),
+			'map_btn_1_text'  => 'Get directions',
+			'map_btn_1_url'   => 'https://www.google.com/maps/search/?api=1&query=671+Gympie+Road+Suite+5+Level+1+Chermside+QLD+4032',
+			'map_btn_2_text'  => 'Call',
+			'map_btn_2_url'   => 'tel',
 		),
 
 		/* =================================================================
@@ -566,75 +628,14 @@ function bdy_defaults_all() {
 
 			/* ---------------- CONTACT ---------------- */
 			'contact' => array(
-				'show'                   => true,
-				'order'                  => 100,
-				'home_contact_tag'       => 'Get in touch',
-				'home_contact_title'     => 'Let’s get you moving.',
-				'home_contact_intro'     => 'Book online in minutes, call the clinic, or send us a message and we’ll come back to you. Referrers are welcome to use the form or email the team directly.',
-				'home_contact_list'      => array(
-					array( 'contact_list_label' => 'Visit us', 'contact_list_value' => '{address_html}', 'contact_list_placeholder' => false ),
-					array( 'contact_list_label' => 'General enquiries', 'contact_list_value' => '{email_link}', 'contact_list_placeholder' => false ),
-					array( 'contact_list_label' => 'Referrals', 'contact_list_value' => '{referrals_email_link}', 'contact_list_placeholder' => false ),
-					array( 'contact_list_label' => 'Opening hours', 'contact_list_value' => 'Placeholder — client to confirm clinic hours', 'contact_list_placeholder' => true ),
-				),
-				'home_contact_btn_text'  => 'Book Online with Nookal',
-				'home_contact_btn_url'   => 'https://book.nookal.com/bookings/book/EA59F8c8-2593-a0ee-Fbca-FEaEb0d0beE6/select',
-				'home_contact_btn_icon'  => 'arrow',
-
-				'home_contact_form_shortcode'   => '',
-				'home_contact_form_title'       => 'Send us a message',
-				'home_contact_form_intro'       => 'We’ll reply during business hours. For urgent medical help, call 000.',
-				'home_contact_form_label_name'  => 'Full name',
-				'home_contact_form_label_phone' => 'Phone',
-				'home_contact_form_label_email' => 'Email',
-				'home_contact_form_label_type'  => 'Enquiry type',
-				'home_contact_form_label_interest' => 'I’m interested in',
-				'home_contact_form_label_message'  => 'Message',
-				'home_contact_form_types'       => array(
-					array( 'contact_type_option_text' => 'Book an appointment' ),
-					array( 'contact_type_option_text' => 'Home visit enquiry' ),
-					array( 'contact_type_option_text' => 'Referring a patient' ),
-					array( 'contact_type_option_text' => 'General question' ),
-				),
-				'home_contact_form_interests'   => array(
-					array( 'contact_interest_option_text' => 'Physiotherapy' ),
-					array( 'contact_interest_option_text' => 'Exercise Physiology' ),
-					array( 'contact_interest_option_text' => 'Occupational Therapy' ),
-					array( 'contact_interest_option_text' => 'Clinical Pilates' ),
-					array( 'contact_interest_option_text' => 'I’m not sure yet' ),
-				),
-				'home_contact_form_note'         => 'By submitting this form, you acknowledge the BDYCULTURE <a href="/privacy-policy/">Privacy Policy</a>. Please do not include sensitive medical or health information in this form.',
-				'home_contact_form_button'        => 'Send message',
-				'home_contact_form_success_title' => 'Thanks — message received',
-				'home_contact_form_success_text'  => 'We’ll be in touch shortly. To speak to someone now, call {phone_link}.',
+				'show'                    => true,
+				'order'                   => 100,
 			),
 
 			/* ---------------- MAP ---------------- */
 			'map' => array(
-				'show'                  => true,
-				'order'                 => 110,
-				'home_map_tag'          => 'Find the clinic',
-				'home_map_title'        => 'On Gympie Road, Chermside.',
-				'home_map_lat'          => '-27.3852',
-				'home_map_lng'          => '153.0306',
-				'home_map_zoom'         => '16',
-				'home_map_load_label'   => 'Load interactive map',
-				'home_map_card_title'   => 'BDYCULTURE',
-				'home_map_card_text'    => 'Rehab &amp; Performance Clinic<br>{address_html}',
-				'home_map_chips_label'  => 'Around the clinic:',
-				'home_map_chips'        => array(
-					array( 'chip_label' => 'Chermside', 'chip_lat' => '-27.3852', 'chip_lng' => '153.0306', 'chip_zoom' => '16' ),
-					array( 'chip_label' => 'Chermside West', 'chip_lat' => '-27.3790', 'chip_lng' => '153.0120', 'chip_zoom' => '14' ),
-					array( 'chip_label' => 'Kedron', 'chip_lat' => '-27.4060', 'chip_lng' => '153.0430', 'chip_zoom' => '14' ),
-					array( 'chip_label' => 'Wavell Heights', 'chip_lat' => '-27.3930', 'chip_lng' => '153.0560', 'chip_zoom' => '14' ),
-					array( 'chip_label' => 'Aspley', 'chip_lat' => '-27.3680', 'chip_lng' => '153.0170', 'chip_zoom' => '14' ),
-					array( 'chip_label' => 'Geebung', 'chip_lat' => '-27.3680', 'chip_lng' => '153.0480', 'chip_zoom' => '14' ),
-					array( 'chip_label' => 'Stafford', 'chip_lat' => '-27.4130', 'chip_lng' => '153.0100', 'chip_zoom' => '14' ),
-				),
-				'home_map_btn_1_text'   => 'Get directions',
-				'home_map_btn_1_url'    => 'https://www.google.com/maps/search/?api=1&query=671+Gympie+Road+Suite+5+Level+1+Chermside+QLD+4032',
-				'home_map_btn_2_text'   => 'Call',
-				'home_map_btn_2_url'    => 'tel',
+				'show'                    => true,
+				'order'                   => 110,
 			),
 		),
 
@@ -645,6 +646,7 @@ function bdy_defaults_all() {
 		/* =================================================================
 		   INNER PAGES — one block list per page (defaults-pages.php).
 		   ================================================================= */
+
 		'pages' => bdy_page_defaults(),
 
 		'page' => array(
@@ -655,6 +657,14 @@ function bdy_defaults_all() {
 				'page_hero_intro'         => '',
 				'page_hero_image'         => '',
 				'page_hero_image_position' => '50% 50%',
+			),
+			'contact' => array(
+				'show'  => true,
+				'order' => 900,
+			),
+			'map'     => array(
+				'show'  => true,
+				'order' => 910,
 			),
 		),
 	);

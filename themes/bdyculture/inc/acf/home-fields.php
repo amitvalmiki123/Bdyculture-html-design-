@@ -372,111 +372,14 @@ function bdy_acf_home_fields() {
 		)
 	);
 
-	/* =========================== CONTACT ========================== */
-	$fields[] = bdy_acf_tab( 'contact', __( '11. Contact', 'bdyculture' ) );
+	/* ======================= SHARED BANDS ========================= */
+	$fields[] = bdy_acf_tab( 'shared', __( '11. Contact band & map (shared)', 'bdyculture' ) );
+	$fields[] = bdy_acf_message(
+		'shared',
+		__( 'Both bands are edited once in BDYCULTURE → Theme Settings, then shown here and on every inner page. Set the order below and switch either band off on this page.', 'bdyculture' )
+	);
 	$fields   = array_merge( $fields, bdy_acf_layout_fields( 'home', 'contact', 100 ) );
-	$fields[] = bdy_acf_field( 'home_contact_tag', __( 'Eyebrow tag', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
-	$fields[] = bdy_acf_textarea( 'home_contact_title', __( 'Heading (H2)', 'bdyculture' ), array( 'rows' => 2 ) );
-	$fields[] = bdy_acf_textarea( 'home_contact_intro', __( 'Intro', 'bdyculture' ), array( 'rows' => 3 ) );
-	$fields[] = bdy_acf_field(
-		'home_contact_list',
-		__( 'Contact details list', 'bdyculture' ),
-		'repeater',
-		array(
-			'layout'       => 'block',
-			'button_label' => __( 'Add detail', 'bdyculture' ),
-			'sub_fields'   => array(
-				bdy_acf_field( 'contact_list_label', __( 'Label', 'bdyculture' ) ),
-				bdy_acf_textarea(
-					'contact_list_value',
-					__( 'Value', 'bdyculture' ),
-					array( 'rows' => 2, 'instructions' => __( 'Tokens: {phone_link}, {email_link}, {referrals_email_link}. Basic HTML allowed.', 'bdyculture' ) )
-				),
-				bdy_acf_field( 'contact_list_placeholder', __( 'Style as placeholder', 'bdyculture' ), 'true_false', array( 'ui' => 1 ) ),
-			),
-		)
-	);
-	$fields[] = bdy_acf_field( 'home_contact_btn_text', __( 'Booking button — text', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
-	$fields[] = bdy_acf_field( 'home_contact_btn_url', __( 'Booking button — link', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
-	$fields[] = bdy_acf_icon( 'home_contact_btn_icon', __( 'Booking button icon', 'bdyculture' ), array( 'wrapper' => array( 'width' => '50' ) ) );
-	$fields[] = bdy_acf_field(
-		'home_contact_form_shortcode',
-		__( 'Contact form shortcode (Contact Form 7)', 'bdyculture' ),
-		'text',
-		array( 'instructions' => __( 'Paste a CF7 shortcode. Leave empty to use the built-in designed form.', 'bdyculture' ) )
-	);
-	$fields[] = bdy_acf_field( 'home_contact_form_title', __( 'Form heading (H3)', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
-	$fields[] = bdy_acf_field( 'home_contact_form_intro', __( 'Form intro', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
-	$fields[] = bdy_acf_field( 'home_contact_form_label_name', __( 'Label — name', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '25' ) ) );
-	$fields[] = bdy_acf_field( 'home_contact_form_label_phone', __( 'Label — phone', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '25' ) ) );
-	$fields[] = bdy_acf_field( 'home_contact_form_label_email', __( 'Label — email', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '25' ) ) );
-	$fields[] = bdy_acf_field( 'home_contact_form_label_type', __( 'Label — enquiry type', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '25' ) ) );
-	$fields[] = bdy_acf_field( 'home_contact_form_label_interest', __( 'Label — interest', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
-	$fields[] = bdy_acf_field( 'home_contact_form_label_message', __( 'Label — message', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
-	$fields[] = bdy_acf_field(
-		'home_contact_form_types',
-		__( 'Enquiry type options', 'bdyculture' ),
-		'repeater',
-		array(
-			'layout'       => 'table',
-			'button_label' => __( 'Add option', 'bdyculture' ),
-			'sub_fields'   => array(
-				bdy_acf_field( 'contact_type_option_text', __( 'Option', 'bdyculture' ) ),
-			),
-		)
-	);
-	$fields[] = bdy_acf_field(
-		'home_contact_form_interests',
-		__( 'Interest options', 'bdyculture' ),
-		'repeater',
-		array(
-			'layout'       => 'table',
-			'button_label' => __( 'Add option', 'bdyculture' ),
-			'sub_fields'   => array(
-				bdy_acf_field( 'contact_interest_option_text', __( 'Option', 'bdyculture' ) ),
-			),
-		)
-	);
-	$fields[] = bdy_acf_textarea(
-		'home_contact_form_note',
-		__( 'Privacy note under the button', 'bdyculture' ),
-		array( 'rows' => 2, 'instructions' => __( 'Allows a link, e.g. to the privacy policy.', 'bdyculture' ) )
-	);
-	$fields[] = bdy_acf_field( 'home_contact_form_button', __( 'Submit button label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
-	$fields[] = bdy_acf_field( 'home_contact_form_success_title', __( 'Success heading', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
-	$fields[] = bdy_acf_textarea( 'home_contact_form_success_text', __( 'Success message', 'bdyculture' ), array( 'rows' => 2, 'instructions' => __( 'Use {phone_link} for the clinic phone link.', 'bdyculture' ) ) );
-
-	/* ============================ MAP ============================= */
-	$fields[] = bdy_acf_tab( 'map', __( '12. Map', 'bdyculture' ) );
 	$fields   = array_merge( $fields, bdy_acf_layout_fields( 'home', 'map', 110 ) );
-	$fields[] = bdy_acf_field( 'home_map_tag', __( 'Eyebrow tag', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
-	$fields[] = bdy_acf_field( 'home_map_title', __( 'Heading (H2)', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
-	$fields[] = bdy_acf_field( 'home_map_lat', __( 'Latitude', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '20' ) ) );
-	$fields[] = bdy_acf_field( 'home_map_lng', __( 'Longitude', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '20' ) ) );
-	$fields[] = bdy_acf_field( 'home_map_zoom', __( 'Zoom', 'bdyculture' ), 'number', array( 'wrapper' => array( 'width' => '20' ), 'min' => 10, 'max' => 19 ) );
-	$fields[] = bdy_acf_field( 'home_map_load_label', __( '"Load map" button label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '40' ) ) );
-	$fields[] = bdy_acf_field( 'home_map_card_title', __( 'Map card heading (H3)', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
-	$fields[] = bdy_acf_textarea( 'home_map_card_text', __( 'Map card address', 'bdyculture' ), array( 'rows' => 3 ) );
-	$fields[] = bdy_acf_field( 'home_map_chips_label', __( '"Around the clinic" label', 'bdyculture' ), 'text' );
-	$fields[] = bdy_acf_field(
-		'home_map_chips',
-		__( 'Nearby suburbs', 'bdyculture' ),
-		'repeater',
-		array(
-			'layout'       => 'table',
-			'button_label' => __( 'Add suburb', 'bdyculture' ),
-			'sub_fields'   => array(
-				bdy_acf_field( 'chip_label', __( 'Suburb', 'bdyculture' ) ),
-				bdy_acf_field( 'chip_lat', __( 'Latitude', 'bdyculture' ) ),
-				bdy_acf_field( 'chip_lng', __( 'Longitude', 'bdyculture' ) ),
-				bdy_acf_field( 'chip_zoom', __( 'Zoom', 'bdyculture' ) ),
-			),
-		)
-	);
-	$fields[] = bdy_acf_field( 'home_map_btn_1_text', __( 'Button 1 — text', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '30' ) ) );
-	$fields[] = bdy_acf_field( 'home_map_btn_1_url', __( 'Button 1 — link', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '70' ) ) );
-	$fields[] = bdy_acf_field( 'home_map_btn_2_text', __( 'Button 2 — text', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '30' ) ) );
-	$fields[] = bdy_acf_field( 'home_map_btn_2_url', __( 'Button 2 — link', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '70' ) ) );
 
 	acf_add_local_field_group(
 		array(

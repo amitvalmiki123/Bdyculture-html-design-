@@ -219,8 +219,8 @@ while ( have_posts() ) :
 	<?php endif; ?>
 
 	<?php
-	get_template_part( 'template-parts/sections/home', 'contact' );
-	get_template_part( 'template-parts/sections/home', 'map' );
+	get_template_part( 'template-parts/sections/contact' );
+	get_template_part( 'template-parts/sections/map' );
 endwhile;
 
 get_footer();

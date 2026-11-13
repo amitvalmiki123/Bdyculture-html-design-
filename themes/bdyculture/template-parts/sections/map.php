@@ -1,6 +1,10 @@
 <?php
 /**
- * Home — Interactive map (Leaflet, lazy-loaded by main.js).
+ * Shared band — Map ("Find the clinic", Leaflet, lazy-loaded by main.js).
+ *
+ * Printed at the end of the homepage, every inner page, the blog index and
+ * single posts. The copy lives in Theme Settings (Map band tab); pages only
+ * store their own show/order. Rendered by bdy_render_shared_bands().
  *
  * @package BDYCULTURE
  */
@@ -9,16 +13,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$bdy_d       = bdy_section_defaults( 'home', 'map' );
-$bdy_tag     = bdy_string( 'home_map_tag', $bdy_d['home_map_tag'] );
-$bdy_title   = bdy_string( 'home_map_title', $bdy_d['home_map_title'] );
-$bdy_chips   = bdy_rows( 'home_map_chips', $bdy_d['home_map_chips'] );
-$bdy_card    = bdy_html( 'home_map_card_text', $bdy_d['home_map_card_text'] );
-$bdy_lat     = bdy_string( 'home_map_lat', $bdy_d['home_map_lat'] );
-$bdy_lng     = bdy_string( 'home_map_lng', $bdy_d['home_map_lng'] );
-$bdy_zoom    = bdy_string( 'home_map_zoom', $bdy_d['home_map_zoom'] );
-$bdy_btn_1   = bdy_string( 'home_map_btn_1_text', $bdy_d['home_map_btn_1_text'] );
-$bdy_btn_2   = bdy_string( 'home_map_btn_2_text', $bdy_d['home_map_btn_2_text'] );
+$bdy_g       = bdy_defaults( 'global' );
+$bdy_tag     = bdy_string( 'map_tag', $bdy_g['map_tag'], 'option' );
+$bdy_title   = bdy_string( 'map_title', $bdy_g['map_title'], 'option' );
+$bdy_chips   = bdy_rows( 'map_chips', $bdy_g['map_chips'], 'option' );
+$bdy_card    = bdy_html( 'map_card_text', $bdy_g['map_card_text'], 'option' );
+$bdy_lat     = bdy_string( 'map_lat', $bdy_g['map_lat'], 'option' );
+$bdy_lng     = bdy_string( 'map_lng', $bdy_g['map_lng'], 'option' );
+$bdy_zoom    = bdy_string( 'map_zoom', $bdy_g['map_zoom'], 'option' );
+$bdy_btn_1   = bdy_string( 'map_btn_1_text', $bdy_g['map_btn_1_text'], 'option' );
+$bdy_btn_2   = bdy_string( 'map_btn_2_text', $bdy_g['map_btn_2_text'], 'option' );
 ?>
 <section class="mapsec" id="map"<?php echo $bdy_title ? ' aria-labelledby="map-title"' : ''; ?>>
 	<div class="container">
@@ -33,13 +37,13 @@ $bdy_btn_2   = bdy_string( 'home_map_btn_2_text', $bdy_d['home_map_btn_2_text'] 
 
 		<div class="mapbox reveal">
 			<div class="mapbox__map" id="clinic-map" role="region" aria-label="<?php esc_attr_e( 'Interactive map of BDYCULTURE, Chermside', 'bdyculture' ); ?>" data-lat="<?php echo esc_attr( $bdy_lat ); ?>" data-lng="<?php echo esc_attr( $bdy_lng ); ?>" data-zoom="<?php echo esc_attr( $bdy_zoom ); ?>">
-				<button class="mapbox__load" type="button" data-load-map><?php echo esc_html( bdy_string( 'home_map_load_label', $bdy_d['home_map_load_label'] ) ); ?></button>
+				<button class="mapbox__load" type="button" data-load-map><?php echo esc_html( bdy_string( 'map_load_label', $bdy_g['map_load_label'], 'option' ) ); ?></button>
 			</div>
 
 			<div class="mapbox__card">
 				<span class="mapbox__pin" aria-hidden="true"></span>
-				<?php if ( bdy_string( 'home_map_card_title', $bdy_d['home_map_card_title'] ) ) : ?>
-					<h3><?php echo esc_html( bdy_string( 'home_map_card_title', $bdy_d['home_map_card_title'] ) ); ?></h3>
+				<?php if ( bdy_string( 'map_card_title', $bdy_g['map_card_title'], 'option' ) ) : ?>
+					<h3><?php echo esc_html( bdy_string( 'map_card_title', $bdy_g['map_card_title'], 'option' ) ); ?></h3>
 				<?php endif; ?>
 				<?php if ( $bdy_card ) : ?>
 					<p><?php echo $bdy_card; // phpcs:ignore WordPress.Security.EscapeOutput -- wp_kses_post. ?></p>
@@ -47,8 +51,8 @@ $bdy_btn_2   = bdy_string( 'home_map_btn_2_text', $bdy_d['home_map_btn_2_text'] 
 
 				<?php if ( $bdy_chips ) : ?>
 					<div class="chips" role="group" aria-label="<?php esc_attr_e( 'Explore the area around the clinic', 'bdyculture' ); ?>">
-						<?php if ( bdy_string( 'home_map_chips_label', $bdy_d['home_map_chips_label'] ) ) : ?>
-							<span class="chips__label"><?php echo esc_html( bdy_string( 'home_map_chips_label', $bdy_d['home_map_chips_label'] ) ); ?></span>
+						<?php if ( bdy_string( 'map_chips_label', $bdy_g['map_chips_label'], 'option' ) ) : ?>
+							<span class="chips__label"><?php echo esc_html( bdy_string( 'map_chips_label', $bdy_g['map_chips_label'], 'option' ) ); ?></span>
 						<?php endif; ?>
 						<?php foreach ( $bdy_chips as $bdy_i => $bdy_row ) : ?>
 							<?php
@@ -65,10 +69,10 @@ $bdy_btn_2   = bdy_string( 'home_map_btn_2_text', $bdy_d['home_map_btn_2_text'] 
 				<div class="mapbox__btns">
 					<?php
 					if ( $bdy_btn_1 ) {
-						echo bdy_button( $bdy_btn_1, bdy_string( 'home_map_btn_1_url', $bdy_d['home_map_btn_1_url'] ), 'ink', array( 'new_tab' => true ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside helper.
+						echo bdy_button( $bdy_btn_1, bdy_string( 'map_btn_1_url', $bdy_g['map_btn_1_url'], 'option' ), 'ink', array( 'new_tab' => true ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside helper.
 					}
 					if ( $bdy_btn_2 ) {
-						echo bdy_button( $bdy_btn_2, bdy_string( 'home_map_btn_2_url', $bdy_d['home_map_btn_2_url'] ), 'ghost' ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside helper.
+						echo bdy_button( $bdy_btn_2, bdy_string( 'map_btn_2_url', $bdy_g['map_btn_2_url'], 'option' ), 'ghost' ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside helper.
 					}
 					?>
 				</div>

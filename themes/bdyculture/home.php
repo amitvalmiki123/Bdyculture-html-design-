@@ -17,7 +17,7 @@ get_header();
 
 bdy_render_page_blocks( 'blog' );
 
-get_template_part( 'template-parts/sections/home', 'contact' );
-get_template_part( 'template-parts/sections/home', 'map' );
+get_template_part( 'template-parts/sections/contact' );
+get_template_part( 'template-parts/sections/map' );
 
 get_footer();

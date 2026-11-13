@@ -51,7 +51,7 @@ in its `style.css` header.
 | Create inner pages | Pages → Add New | Services, Physiotherapy, Exercise Physiology, Occupational Therapy, Clinical Pilates, Referrers, Contact, Location — Chermside, Practice from BDYCULTURE, Privacy Policy. Use the page slug as the title's permalink (`/physiotherapy/`), so the design's links and the shipped fallbacks line up. Each page fills itself from its own section stack — nothing to paste |
 | Create the blog | Pages → Add New → *Posts page* | a page called *Blog*, then Settings → Reading → *Posts page* → Blog. `home.php` lists your posts, `single.php` renders each article |
 | Point the nav links at those pages | Appearance → Menus → *Header — primary navigation* | the design shipped links to pages whose designs weren't included; add the pages as menu items and edit their labels there |
-| Add forms (optional) | Home → **Contact** tab | paste a CF7 shortcode into the *Form shortcode* field |
+| Add forms (optional) | **Theme Settings → Contact band** | paste a CF7 shortcode into the *Form shortcode* field — the form appears on every page's contact band |
 
 Nothing else is required: every section is already populated from `defaults.php` with the approved copy.
 
@@ -67,11 +67,12 @@ Nothing else is required: every section is already populated from `defaults.php`
 | Footer link columns | **Appearance → Menus** → *Footer — services column* / *Footer — quick links column* | the column heading is the menu name; items can be pages, `tel:` or `mailto:` links. The third column is the clinic address block (Clinic details) |
 | Footer logo, tagline, buttons, credit, legal bar | Theme Settings → **Footer** | the credit line uses `{credit_link}` for the linked agency name |
 | Phone, emails, address, booking URL, hours | Theme Settings → **Clinic details** | see §5 — one change updates the whole site |
+| Contact band ("Get in touch") | Theme Settings → **Contact band** | written once, printed on the homepage, every inner page, the blog and posts. Each page keeps its own show/order switch |
+| Map band ("Find the clinic") | Theme Settings → **Map band** | same rule as the contact band — one copy, per-page show/order |
 | Home page sections | Pages → *Home* → tab per section | show toggle + order per section |
 | Inner pages | Pages → *(page)* → **Page sections** tab | a stack of blocks (hero, services, split, features, steps, funding, FAQ, CTA, ways, suburbs, prose, posts) that can be reordered, duplicated or removed. Each block falls back to the approved design copy |
 | Inner page closing band + map | page **Contact** block / Home → **12. Map** | the dark contact band and the map are appended to every inner page from one place |
 | Enquiry card beside every hero | Theme Settings → **Enquiry card** | one form for the whole site; the Practice page uses its own licence card via the hero's *Card — …* fields |
-| Blog article template | Theme Settings → **Blog article** | the checklist, sidebar headings, related-articles heading, CTA, byline and disclaimer around every post. The post's own title, excerpt, content, category and date come from the post |
 | Colours, fonts, sizes, spacing, container | Appearance → Customize → **Theme Design** | live preview, only changed values printed |
 
 Navigation is a **normal WordPress menu** (`Appearance → Menus`), so the client uses the screen they already know:
@@ -99,7 +100,7 @@ The phone number, both email addresses and the address exist **once**, in Theme 
 | `{address_html}` | the same address with a `<br>` between the two lines | textarea / repeater fields |
 
 The shipped copy already uses these tokens (hero/continuum/home-visit buttons, footer *Visit us* column, contact
-list, FAQ intro and answers, expect step, map card, meta description, JSON-LD). So:
+list, FAQ intro and answers, expect step, map card, JSON-LD). So:
 
 * change the phone once → 17 visible mentions, 13 `tel:` links and the schema update;
 * change an email once → footer, contact section, referral copy and the FAQ answer follow;
@@ -111,16 +112,19 @@ Text is only rewritten if it uses a token — free-form prose you type yourself 
 ## 6. Editing content
 
 * **Home page** — Pages → *Home*. The field group is split into tabs, one per section
-  (`1. Hero` … `12. Map`). Each tab starts with `Show this section` and `Order`.
+  (`1. Hero` … `11. Contact band & map (shared)`). Each tab starts with `Show this section` and `Order`.
+  Tab 11 holds switches only — the contact and map copy lives in Theme Settings.
   **Filling it by hand?** Follow [`homepage-setup-guide.md`](homepage-setup-guide.md) — it lists every
   field of every tab with the exact content, in the order the fields appear.
 * **Global content** (header, drawer, footer, mobile bar, phone/email/address) — **BDYCULTURE → Theme
   Settings**. Edited once, used on every page.
-* **Inner pages** — Pages → *(page)* → *Page sections*. The page is a list of blocks; open a block to edit
+* **Inner pages** — Pages → *(page)* → **1. Page sections**. The page is a list of blocks; open a block to edit
   its tag, heading, copy, buttons, media, panel, checklist or question rows. Blocks can be dragged into a new
-  order, duplicated or removed, and *Add section* offers every design section. Below the list: *Fallback hero*
-  (for a page built with the classic editor instead of blocks) and *SEO*. A page with no blocks at all renders
-  the block set shipped for its slug in `defaults-pages.php`, so the site is never blank.
+  order, duplicated or removed, and *Add section* offers every design section. Tab **2. Shared bands** holds the
+  show/order switches for the contact and map bands, whose copy is written once in Theme Settings; tab
+  **3. Fallback hero** is only used by a page with no blocks and no shipped design. A page with no blocks at all
+  renders the block set shipped for its slug in `defaults-pages.php`, so the site is never blank. Full walkthrough:
+  [`inner-pages-guide.md`](inner-pages-guide.md).
 * **Blog** — the posts page lists your published articles (`home.php`); each article renders through
   `single.php` with meta (date, reading time, category), sidebar cards and the article CTA. Publish a post and
   it appears in the grid automatically — the shipped articles are the fallback used until then.

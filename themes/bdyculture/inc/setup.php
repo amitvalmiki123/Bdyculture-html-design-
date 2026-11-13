@@ -82,28 +82,3 @@ function bdy_no_js_class() {
 }
 add_action( 'wp_head', 'bdy_no_js_class', 1 );
 
-/**
- * Meta description (Rule 2 + SEO parity with the original HTML).
- *
- * @return void
- */
-function bdy_meta_description() {
-	$description = '';
-
-	if ( is_front_page() ) {
-		$defaults    = bdy_defaults( 'global' );
-		$description = bdy_option( 'clinic_meta_description', $defaults['clinic_meta_description'] );
-	} elseif ( is_singular() ) {
-		$global   = bdy_defaults( 'global' );
-		$fallback = bdy_option( 'clinic_meta_description', $global['clinic_meta_description'] );
-		$custom   = bdy_get( 'page_meta_description', '', get_queried_object_id() );
-		$description = $custom ? $custom : $fallback;
-	}
-
-	if ( ! $description ) {
-		return;
-	}
-
-	echo '<meta name="description" content="' . esc_attr( wp_strip_all_tags( bdy_tokens( (string) $description, false ) ) ) . '">' . "\n";
-}
-add_action( 'wp_head', 'bdy_meta_description', 2 );

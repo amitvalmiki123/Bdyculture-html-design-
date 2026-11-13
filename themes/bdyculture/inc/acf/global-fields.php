@@ -25,7 +25,7 @@ function bdy_acf_global_fields() {
 	acf_add_local_field_group(
 		array(
 			'key'                   => 'group_bdy_global',
-			'title'                 => __( 'Site Settings — clinic, header, footer', 'bdyculture' ),
+			'title'                 => __( 'Site Settings — clinic, shared bands, header & footer', 'bdyculture' ),
 			'fields'                => array(
 
 				bdy_acf_tab( 'clinic', __( 'Clinic details', 'bdyculture' ) ),
@@ -51,15 +51,6 @@ function bdy_acf_global_fields() {
 				bdy_acf_field( 'clinic_directions_url', __( 'Directions URL', 'bdyculture' ), 'url' ),
 				bdy_acf_field( 'clinic_hours', __( 'Opening hours', 'bdyculture' ), 'text' ),
 				bdy_acf_textarea( 'clinic_tagline', __( 'Clinic tagline', 'bdyculture' ) ),
-				bdy_acf_textarea(
-					'clinic_meta_description',
-					__( 'Default meta description', 'bdyculture' ),
-					array(
-						'rows'         => 2,
-						'maxlength'    => 180,
-						'instructions' => __( 'Used when a page has no meta description of its own.', 'bdyculture' ),
-					)
-				),
 				bdy_acf_image( 'clinic_logo', __( 'Header logo (dark)', 'bdyculture' ), array( 'wrapper' => array( 'width' => '50' ) ) ),
 				bdy_acf_image( 'clinic_logo_light', __( 'Footer logo (light)', 'bdyculture' ), array( 'wrapper' => array( 'width' => '50' ) ) ),
 
@@ -104,34 +95,103 @@ function bdy_acf_global_fields() {
 				bdy_acf_field( 'enquiry_success_title', __( 'Success heading', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
 				bdy_acf_textarea( 'enquiry_success_text', __( 'Success message', 'bdyculture' ), array( 'rows' => 2, 'instructions' => __( 'Use {phone_link} for the clinic phone link.', 'bdyculture' ) ) ),
 
-				bdy_acf_tab( 'article', __( 'Blog article', 'bdyculture' ) ),
+				bdy_acf_tab( 'contact_band', __( 'Contact band', 'bdyculture' ) ),
 				bdy_acf_message(
-					'article',
-					__( 'The article template around every blog post. The post title, excerpt, content, category and date come from the post itself.', 'bdyculture' )
+					'contact_band',
+					__( 'The dark "Get in touch" band. It closes the homepage and every inner page, so edit it once here. Show/order per page is set on the page itself.', 'bdyculture' )
 				),
+				bdy_acf_field( 'contact_tag', __( 'Tag', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_textarea( 'contact_title', __( 'Heading (H2)', 'bdyculture' ), array( 'rows' => 2 ) ),
+				bdy_acf_textarea( 'contact_intro', __( 'Intro', 'bdyculture' ), array( 'rows' => 2 ) ),
 				bdy_acf_field(
-					'article_checks',
-					__( 'Hero checklist', 'bdyculture' ),
+					'contact_list',
+					__( 'Contact details', 'bdyculture' ),
 					'repeater',
 					array(
 						'layout'       => 'table',
-						'button_label' => __( 'Add point', 'bdyculture' ),
+						'button_label' => __( 'Add row', 'bdyculture' ),
 						'sub_fields'   => array(
-							bdy_acf_field( 'text', __( 'Text', 'bdyculture' ), 'text' ),
+							bdy_acf_field( 'contact_list_label', __( 'Label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '30' ) ) ),
+							bdy_acf_field( 'contact_list_value', __( 'Value', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ), 'instructions' => __( 'Accepts {phone_link}, {email_link}, {address_html}.', 'bdyculture' ) ) ),
+							bdy_acf_field( 'contact_list_placeholder', __( 'Placeholder', 'bdyculture' ), 'true_false', array( 'ui' => 1, 'wrapper' => array( 'width' => '20' ) ) ),
 						),
 					)
 				),
-				bdy_acf_field( 'article_toc_title', __( 'Sidebar — contents heading', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
-				bdy_acf_field( 'article_side_services_title', __( 'Sidebar — services heading', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
-				bdy_acf_field( 'article_side_book_title', __( 'Sidebar — booking heading', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
-				bdy_acf_field( 'article_side_book_text', __( 'Sidebar — booking text', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
-				bdy_acf_field( 'article_cta_title', __( 'In-article CTA heading', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
-				bdy_acf_field( 'article_cta_text', __( 'In-article CTA text', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
-				bdy_acf_field( 'article_related_tag', __( 'Related — tag', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '30' ) ) ),
-				bdy_acf_field( 'article_related_title', __( 'Related — heading', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '70' ) ) ),
-				bdy_acf_field( 'article_byline', __( 'Byline', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
-				bdy_acf_field( 'article_byline_note', __( 'Byline note', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ), 'instructions' => __( 'Shown in brackets after the byline. Clear it once the author is confirmed.', 'bdyculture' ) ) ),
-				bdy_acf_textarea( 'article_disclaimer', __( 'Disclaimer', 'bdyculture' ), array( 'rows' => 2 ) ),
+				bdy_acf_field( 'contact_btn_text', __( 'Button text', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '40' ) ) ),
+				bdy_acf_field( 'contact_btn_url', __( 'Button link', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '40' ) ) ),
+				bdy_acf_field(
+					'contact_btn_icon',
+					__( 'Button icon', 'bdyculture' ),
+					'select',
+					array( 'wrapper' => array( 'width' => '20' ), 'choices' => bdy_icon_choices(), 'allow_null' => 1 )
+				),
+				bdy_acf_field( 'contact_form_shortcode', __( 'Form shortcode (Contact Form 7)', 'bdyculture' ), 'text', array( 'instructions' => __( 'Leave empty to use the design-identical form.', 'bdyculture' ) ) ),
+				bdy_acf_field( 'contact_form_title', __( 'Form heading (H3)', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_field( 'contact_form_intro', __( 'Form intro', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_field( 'contact_form_label_name', __( 'Label — name', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '33' ) ) ),
+				bdy_acf_field( 'contact_form_label_phone', __( 'Label — phone', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '33' ) ) ),
+				bdy_acf_field( 'contact_form_label_email', __( 'Label — email', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '33' ) ) ),
+				bdy_acf_field( 'contact_form_label_type', __( 'Label — enquiry type', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '33' ) ) ),
+				bdy_acf_field( 'contact_form_label_interest', __( 'Label — interest', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '33' ) ) ),
+				bdy_acf_field( 'contact_form_label_message', __( 'Label — message', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '33' ) ) ),
+				bdy_acf_field(
+					'contact_form_types',
+					__( 'Enquiry type options', 'bdyculture' ),
+					'repeater',
+					array(
+						'layout'       => 'table',
+						'button_label' => __( 'Add option', 'bdyculture' ),
+						'sub_fields'   => array( bdy_acf_field( 'contact_type_option_text', __( 'Option', 'bdyculture' ), 'text' ) ),
+					)
+				),
+				bdy_acf_field(
+					'contact_form_interests',
+					__( 'Interest options', 'bdyculture' ),
+					'repeater',
+					array(
+						'layout'       => 'table',
+						'button_label' => __( 'Add option', 'bdyculture' ),
+						'sub_fields'   => array( bdy_acf_field( 'contact_interest_option_text', __( 'Option', 'bdyculture' ), 'text' ) ),
+					)
+				),
+				bdy_acf_textarea( 'contact_form_note', __( 'Privacy note under the button', 'bdyculture' ), array( 'rows' => 2, 'instructions' => __( 'Use {privacy_link} for the linked Privacy Policy.', 'bdyculture' ) ) ),
+				bdy_acf_field( 'contact_form_button', __( 'Submit button label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_field( 'contact_form_success_title', __( 'Success heading', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_textarea( 'contact_form_success_text', __( 'Success message', 'bdyculture' ), array( 'rows' => 2, 'instructions' => __( 'Use {phone_link} for the clinic phone link.', 'bdyculture' ) ) ),
+
+				bdy_acf_tab( 'map_band', __( 'Map band', 'bdyculture' ) ),
+				bdy_acf_message(
+					'map_band',
+					__( 'The "Find the clinic" band with the Leaflet map. Edited once here; each page decides whether it shows.', 'bdyculture' )
+				),
+				bdy_acf_field( 'map_tag', __( 'Tag', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_field( 'map_title', __( 'Heading (H2)', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_field( 'map_lat', __( 'Latitude', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '20' ) ) ),
+				bdy_acf_field( 'map_lng', __( 'Longitude', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '20' ) ) ),
+				bdy_acf_field( 'map_zoom', __( 'Zoom', 'bdyculture' ), 'number', array( 'wrapper' => array( 'width' => '20' ), 'min' => 10, 'max' => 19 ) ),
+				bdy_acf_field( 'map_load_label', __( '"Load map" button label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '40' ) ) ),
+				bdy_acf_field( 'map_card_title', __( 'Map card heading (H3)', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_textarea( 'map_card_text', __( 'Map card address', 'bdyculture' ), array( 'rows' => 3 ) ),
+				bdy_acf_field( 'map_chips_label', __( '"Around the clinic" label', 'bdyculture' ), 'text' ),
+				bdy_acf_field(
+					'map_chips',
+					__( 'Nearby suburbs', 'bdyculture' ),
+					'repeater',
+					array(
+						'layout'       => 'table',
+						'button_label' => __( 'Add suburb', 'bdyculture' ),
+						'sub_fields'   => array(
+							bdy_acf_field( 'chip_label', __( 'Suburb', 'bdyculture' ) ),
+							bdy_acf_field( 'chip_lat', __( 'Latitude', 'bdyculture' ) ),
+							bdy_acf_field( 'chip_lng', __( 'Longitude', 'bdyculture' ) ),
+							bdy_acf_field( 'chip_zoom', __( 'Zoom', 'bdyculture' ) ),
+						),
+					)
+				),
+				bdy_acf_field( 'map_btn_1_text', __( 'Button 1 — text', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '30' ) ) ),
+				bdy_acf_field( 'map_btn_1_url', __( 'Button 1 — link', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '70' ) ) ),
+				bdy_acf_field( 'map_btn_2_text', __( 'Button 2 — text', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '30' ) ) ),
+				bdy_acf_field( 'map_btn_2_url', __( 'Button 2 — link', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '70' ) ) ),
 
 				bdy_acf_tab( 'footer', __( 'Footer', 'bdyculture' ) ),
 				bdy_acf_image( 'footer_logo', __( 'Footer logo', 'bdyculture' ) ),

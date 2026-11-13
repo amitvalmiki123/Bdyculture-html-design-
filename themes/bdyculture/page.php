@@ -1,6 +1,6 @@
 <?php
 /**
- * Inner page — hero + design blocks + contact band + map.
+ * Inner page — design blocks + the two shared bands.
  *
  * The block list comes from the ACF flexible-content field `page_sections`;
  * without it, `defaults-pages.php` supplies the approved design for each known
@@ -22,9 +22,6 @@ while ( have_posts() ) :
 
 	if ( $bdy_blocks ) {
 		bdy_render_page_blocks();
-
-		get_template_part( 'template-parts/sections/home', 'contact' );
-		get_template_part( 'template-parts/sections/home', 'map' );
 	} else {
 		$bdy_global = bdy_defaults( 'page' );
 		$bdy_tag    = bdy_string( 'page_hero_tag', $bdy_global['hero']['page_hero_tag'] );
@@ -64,6 +61,9 @@ while ( have_posts() ) :
 			</section>
 		<?php
 	}
+
+	// Shared bands: content lives in Theme Settings, show/order per page.
+	bdy_render_shared_bands( 'page' );
 endwhile;
 
 get_footer();

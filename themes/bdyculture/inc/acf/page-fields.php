@@ -430,7 +430,7 @@ function bdy_acf_page_fields() {
 	}
 
 	$fields   = array();
-	$fields[] = bdy_acf_tab( 'page_blocks', __( 'Page sections', 'bdyculture' ) );
+	$fields[] = bdy_acf_tab( 'page_blocks', __( '1. Page sections', 'bdyculture' ) );
 	$fields[] = bdy_acf_message(
 		'page_blocks',
 		'<strong>' . __( 'This page is built from blocks', 'bdyculture' ) . '</strong><br>'
@@ -446,7 +446,15 @@ function bdy_acf_page_fields() {
 		)
 	);
 
-	$fields[] = bdy_acf_tab( 'page_fallback', __( 'Fallback hero (pages without blocks)', 'bdyculture' ) );
+	$fields[] = bdy_acf_tab( 'page_shared', __( '2. Shared bands (contact & map)', 'bdyculture' ) );
+	$fields[] = bdy_acf_message(
+		'page_shared',
+		__( 'The "Get in touch" and "Find the clinic" bands are written once in BDYCULTURE → Theme Settings. Here you only choose whether this page shows them and where they sit in the stack. Lower order renders first.', 'bdyculture' )
+	);
+	$fields   = array_merge( $fields, bdy_acf_layout_fields( 'page', 'contact', 900 ) );
+	$fields   = array_merge( $fields, bdy_acf_layout_fields( 'page', 'map', 910 ) );
+
+	$fields[] = bdy_acf_tab( 'page_fallback', __( '3. Fallback hero', 'bdyculture' ) );
 	$fields[] = bdy_acf_message(
 		'page_fallback',
 		__( 'Only used by a page that has no blocks and no shipped design — the H1 is the page title, then the editor content below.', 'bdyculture' )
@@ -465,21 +473,10 @@ function bdy_acf_page_fields() {
 		)
 	);
 
-	$fields[] = bdy_acf_tab( 'page_seo', __( 'SEO', 'bdyculture' ) );
-	$fields[] = bdy_acf_textarea(
-		'page_meta_description',
-		__( 'Meta description', 'bdyculture' ),
-		array(
-			'rows'         => 2,
-			'maxlength'    => 180,
-			'instructions' => __( 'Leave empty to use the default from Site Settings.', 'bdyculture' ),
-		)
-	);
-
 	acf_add_local_field_group(
 		array(
 			'key'                   => 'group_bdy_page',
-			'title'                 => __( 'Page — sections & SEO', 'bdyculture' ),
+			'title'                 => __( 'Page — sections, shared bands & fallback', 'bdyculture' ),
 			'fields'                => $fields,
 			'location'              => array(
 				array(
