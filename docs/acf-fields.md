@@ -315,6 +315,9 @@ Each layout below is one block in the page stack: pick it under *Add section*, t
 | Small checklist | `checks` | repeater | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Text | `text` | text | — |
 | Breadcrumb — this page | `crumb_current` | text | Leave empty to use the page title. "Home" is always added. |
+| Breadcrumb — trail | `crumbs` | repeater | The pages before this one, e.g. Home → /, Services → /services/. Leave empty for Home only |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Label | `label` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Link | `url` | text | — |
 | Show the enquiry card | `form` | true_false | The card itself is edited once in Site Settings → Enquiry card. |
 | Card — tag | `form_tag` | text | Only needed for a card that differs from Site Settings. |
 | Card — heading | `form_title` | text | — |

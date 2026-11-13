@@ -44,6 +44,7 @@ in its `style.css` header.
 | --- | --- | --- |
 | Create a page called *Home* | Pages → Add New | leave it empty; the front page is assembled from sections |
 | Set the static front page | Settings → Reading → *A static page* → Home | ACF home fields appear once the page is the front page |
+| Fill the fields with the design | **BDYCULTURE → Fill with design content** | optional, one click: copies the shipped design copy into Site Settings, the front page and every inner page so nothing has to be retyped. See [`fill-with-design.md`](fill-with-design.md) |
 | Fill the clinic details | **BDYCULTURE → Theme Settings → Clinic details** | phone, emails, address, booking URL, hours — field-by-field help in [`theme-settings-guide.md`](theme-settings-guide.md) |
 | Confirm opening hours | same screen | shipped as *“Placeholder — client to confirm clinic hours”* |
 | Build the menus | **Appearance → Menus** | four locations: *Header — primary navigation*, *Footer — services column*, *Footer — quick links column*, *Footer — legal bar*. Until a menu is assigned the shipped default links are used, so the site looks complete immediately |

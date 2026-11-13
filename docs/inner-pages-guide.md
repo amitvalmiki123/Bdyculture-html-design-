@@ -14,6 +14,8 @@ reordering blocks on that page.
 
 There are no SEO fields in the page group — the SEO plugin manages titles and descriptions.
 
+> **Fields look empty on a fresh install?** That is the fallback design, not missing content. Run **BDYCULTURE → Fill with design content** once to copy the shipped copy into the blocks — [`fill-with-design.md`](fill-with-design.md).
+
 ---
 
 ## 1. The eleven shipped pages

@@ -37,7 +37,7 @@ Have these ready — you will be asked for them in the first three tabs:
 | 7 | Footer | 3 min | Logo, tagline, button, bottom bar, credit, disclaimer; assign the two footer menus. | The footer closes every page and carries the legal lines. |
 | 8 | Mobile action bar | 1 min | Two short labels. | Shown on phones only, but on every page of them. |
 
-Nothing is mandatory except Clinic details — a fresh install already shows the full approved design copy.
+Nothing is mandatory except Clinic details — a fresh install already shows the full approved design copy. Want that copy visible in the fields so it can be edited? Run **BDYCULTURE → Fill with design content** once: [`fill-with-design.md`](fill-with-design.md).
 
 ---
 

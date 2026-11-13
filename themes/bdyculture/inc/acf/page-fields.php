@@ -141,6 +141,16 @@ function bdy_pf_layouts( $sets ) {
 				bdy_pf_rep( 'hero', 'buttons', __( 'Buttons', 'bdyculture' ), $sets['buttons'] ),
 				bdy_pf_rep( 'hero', 'checks', __( 'Small checklist', 'bdyculture' ), array( array( 'text', __( 'Text', 'bdyculture' ) ) ) ),
 				bdy_pf( 'hero', 'crumb_current', __( 'Breadcrumb — this page', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '40' ), 'instructions' => __( 'Leave empty to use the page title. "Home" is always added.', 'bdyculture' ) ) ),
+				bdy_pf_rep(
+					'hero',
+					'crumbs',
+					__( 'Breadcrumb — trail', 'bdyculture' ),
+					array(
+						array( 'label', __( 'Label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+						array( 'url', __( 'Link', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+					),
+					array( 'instructions' => __( 'The pages before this one, e.g. Home → /, Services → /services/. Leave empty for Home only.', 'bdyculture' ) )
+				),
 				bdy_pf( 'hero', 'form', __( 'Show the enquiry card', 'bdyculture' ), 'true_false', array( 'ui' => 1, 'default_value' => 1, 'instructions' => __( 'The card itself is edited once in Site Settings → Enquiry card.', 'bdyculture' ) ) ),
 				bdy_pf( 'hero', 'form_tag', __( 'Card — tag', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '30' ), 'instructions' => __( 'Only needed for a card that differs from Site Settings.', 'bdyculture' ) ) ),
 				bdy_pf( 'hero', 'form_title', __( 'Card — heading', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '70' ) ) ),

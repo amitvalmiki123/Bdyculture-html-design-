@@ -22,6 +22,7 @@ Upload `dist/bdyculture-parent.zip`, then `dist/bdyculture.zip`, activate the ch
 | --- | --- |
 | [`docs/content-audit.md`](docs/content-audit.md) | Phase-1 content audit: every design element → its ACF field → its PHP fallback |
 | [`docs/acf-fields.md`](docs/acf-fields.md) | All 3 field groups, 226 fields, 16 repeaters, tabs, locations, defaults |
+| [`docs/fill-with-design.md`](docs/fill-with-design.md) | **Fill with design content** — one click copies the shipped design copy into Site Settings, the front page and all inner pages so every field is editable |
 | [`docs/theme-settings-guide.md`](docs/theme-settings-guide.md) | Site Settings setup guide — every tab in order, what to type in each field, what it affects, plus a 25-minute first-run checklist |
 | [`docs/inner-pages-guide.md`](docs/inner-pages-guide.md) | How each inner page is built from blocks: ordering, show/hide, the shared bands, images, adding a page |
 | [`docs/cf7-paste-forms.md`](docs/cf7-paste-forms.md) | **Copy-paste page** — both Contact Form 7 forms (Get in touch band + hero enquiry card) with the Mail and Messages tab values in one place |
