@@ -23,7 +23,11 @@ $bdy_main = bdy_image(
 		'class'    => 'visit__photo',
 		'sizes'    => '(min-width: 1100px) 46vw, 100vw',
 		'attr'     => array(
-			'style' => 'object-position:' . ( bdy_string( 'home_visit_main_position', $bdy_d['home_visit_main_position'] ) ? bdy_string( 'home_visit_main_position', $bdy_d['home_visit_main_position'] ) : '50% 50%' ),
+			'style' => bdy_focus_style(
+				bdy_string( 'home_visit_main_x', $bdy_d['home_visit_main_x'] ),
+				bdy_string( 'home_visit_main_y', $bdy_d['home_visit_main_y'] ),
+				bdy_string( 'home_visit_main_scale', $bdy_d['home_visit_main_scale'] )
+			),
 		),
 	)
 );

@@ -57,9 +57,11 @@ if ( ! $bdy_panels ) {
 					<?php
 					$bdy_n     = $bdy_i + 1;
 					$bdy_ticks = isset( $bdy_row['panel_ticks'] ) && is_array( $bdy_row['panel_ticks'] ) ? $bdy_row['panel_ticks'] : array();
-					$bdy_crop  = '--x:' . ( isset( $bdy_row['panel_img_x'] ) && $bdy_row['panel_img_x'] ? $bdy_row['panel_img_x'] : '50%' )
-						. ';--y:' . ( isset( $bdy_row['panel_img_y'] ) && $bdy_row['panel_img_y'] ? $bdy_row['panel_img_y'] : '50%' )
-						. ';--s:' . ( isset( $bdy_row['panel_img_scale'] ) && $bdy_row['panel_img_scale'] ? $bdy_row['panel_img_scale'] : '1' );
+					$bdy_crop  = bdy_crop_style(
+						isset( $bdy_row['panel_img_x'] ) ? $bdy_row['panel_img_x'] : '',
+						isset( $bdy_row['panel_img_y'] ) ? $bdy_row['panel_img_y'] : '',
+						isset( $bdy_row['panel_img_scale'] ) ? $bdy_row['panel_img_scale'] : ''
+					);
 					?>
 					<article class="panel" role="tabpanel" id="panel-<?php echo (int) $bdy_n; ?>" aria-labelledby="tab-<?php echo (int) $bdy_n; ?>"<?php echo 0 === $bdy_i ? '' : ' hidden'; ?>>
 						<div class="panel__media" aria-hidden="true">

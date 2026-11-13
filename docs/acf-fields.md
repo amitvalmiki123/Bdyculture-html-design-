@@ -155,9 +155,9 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Tab icon | `panel_icon` | select | options: , physiotherapy, exercise-physiology, occupational-therapy, clinical-pilates, search |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Image chip label | `panel_chip` | text | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Panel photo | `panel_image` | image | returns: array |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Photo focus — X | `panel_img_x` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Photo focus — X | `panel_img_x` | text | 70 or 70% — left ↔ right. |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Photo focus — Y | `panel_img_y` | text | — |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Photo zoom | `panel_img_scale` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Photo zoom | `panel_img_scale` | text | 1 = no zoom, 1.5 = 50% bigger, up to 4. |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Panel heading (H3) | `panel_title` | text | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Panel lead | `panel_lead` | textarea | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Panel body | `panel_body` | textarea | — |
@@ -178,6 +178,9 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | Main photo | `home_continuum_photo` | image | returns: array |
 | Main photo alt text | `home_continuum_photo_alt` | text | Used only when the Media Library has no alt text. |
 | Photo caption | `home_continuum_caption` | text | — |
+| Main photo focus — X | `home_continuum_photo_x` | text | 38 or 38%. |
+| Main photo focus — Y | `home_continuum_photo_y` | text | 50 or 50%. |
+| Main photo zoom | `home_continuum_photo_scale` | text | 1 = no zoom, up to 4. |
 | Inset photo | `home_continuum_inset` | image | returns: array |
 | Inset focus — X | `home_continuum_inset_x` | text | — |
 | Inset focus — Y | `home_continuum_inset_y` | text | — |
@@ -201,9 +204,9 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | Order | `home_ribbon_order` | number | Lower numbers render first. |
 | Ribbon photos | `home_ribbon_images` | repeater | layout: block |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Photo | `ribbon_image` | image | returns: array |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Focus — X | `ribbon_x` | text | — |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Focus — Y | `ribbon_y` | text | — |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Zoom | `ribbon_scale` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Focus — X | `ribbon_x` | text | 70 or 70%. |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Focus — Y | `ribbon_y` | text | 60 or 60%. |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Zoom | `ribbon_scale` | text | 1 = no zoom, up to 4. |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Swept corner | `ribbon_swept` | true_false | — |
 | **6. Visit us** | — | tab | — |
 | Show this section | `home_visit_show` | true_false | — |
@@ -213,7 +216,9 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | Paragraph 1 | `home_visit_text_1` | textarea | — |
 | Paragraph 2 | `home_visit_text_2` | textarea | — |
 | Photo — window signage | `home_visit_main_image` | image | Portrait crop (4:5). Leave empty to use the bundled photo.; returns: array |
-| Photo crop position | `home_visit_main_position` | text | object-position, e.g. 50% 40%. |
+| Photo focus — X | `home_visit_main_x` | text | 50 or 50%. |
+| Photo focus — Y | `home_visit_main_y` | text | 40 or 40%. |
+| Photo zoom | `home_visit_main_scale` | text | 1 = no zoom, up to 4. |
 | Alt text — window signage | `home_visit_main_alt` | text | — |
 | Photo — door signage | `home_visit_door_image` | image | Small overlapping card. Leave empty to use the bundled photo.; returns: array |
 | Alt text — door signage | `home_visit_door_alt` | text | — |

@@ -26,9 +26,11 @@ if ( ! $bdy_images ) {
 			foreach ( $bdy_images as $bdy_row ) :
 				?>
 			<?php
-			$bdy_crop = '--x:' . ( ! empty( $bdy_row['ribbon_x'] ) ? $bdy_row['ribbon_x'] : '50%' )
-				. ';--y:' . ( ! empty( $bdy_row['ribbon_y'] ) ? $bdy_row['ribbon_y'] : '50%' )
-				. ';--s:' . ( ! empty( $bdy_row['ribbon_scale'] ) ? $bdy_row['ribbon_scale'] : '1' );
+			$bdy_crop = bdy_crop_style(
+				isset( $bdy_row['ribbon_x'] ) ? $bdy_row['ribbon_x'] : '',
+				isset( $bdy_row['ribbon_y'] ) ? $bdy_row['ribbon_y'] : '',
+				isset( $bdy_row['ribbon_scale'] ) ? $bdy_row['ribbon_scale'] : ''
+			);
 			$bdy_class = empty( $bdy_row['ribbon_swept'] ) ? '' : ' class="media-frame--swept"';
 			?>
 			<figure<?php echo $bdy_class; // phpcs:ignore WordPress.Security.EscapeOutput -- static class string. ?>>

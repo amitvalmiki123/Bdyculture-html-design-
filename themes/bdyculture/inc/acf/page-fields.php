@@ -246,7 +246,7 @@ function bdy_pf_layouts( $sets ) {
 						'sub_fields' => array(
 							bdy_acf_field( 'image', __( 'Image', 'bdyculture' ), 'image', array( 'key' => 'field_split_media_image', 'return_format' => 'array', 'preview_size' => 'medium' ) ),
 							bdy_acf_field( 'alt', __( 'Alt text', 'bdyculture' ), 'text', array( 'key' => 'field_split_media_alt' ) ),
-							bdy_acf_field( 'crop', __( 'Crop position', 'bdyculture' ), 'text', array( 'key' => 'field_split_media_crop', 'placeholder' => '--x:50%;--y:50%;--s:1.2', 'instructions' => __( 'Optional CSS variables that position the crop.', 'bdyculture' ) ) ),
+							bdy_acf_field( 'crop', __( 'Focus & zoom', 'bdyculture' ), 'text', array( 'key' => 'field_split_media_crop', 'placeholder' => '70% 60% 1.4', 'instructions' => __( 'Three numbers: focus X, focus Y, zoom — e.g. 70% 60% 1.4. Leave empty for the centre at 100%.', 'bdyculture' ) ) ),
 						),
 					)
 				),

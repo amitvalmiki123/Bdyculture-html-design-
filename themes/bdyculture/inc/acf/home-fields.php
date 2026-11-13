@@ -127,9 +127,9 @@ function bdy_acf_home_fields() {
 				bdy_acf_icon( 'panel_icon', __( 'Tab icon', 'bdyculture' ), array( 'wrapper' => array( 'width' => '30' ) ) ),
 				bdy_acf_field( 'panel_chip', __( 'Image chip label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '30' ) ) ),
 				bdy_acf_image( 'panel_image', __( 'Panel photo', 'bdyculture' ) ),
-				bdy_acf_field( 'panel_img_x', __( 'Photo focus — X', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '33' ), 'placeholder' => '50%' ) ),
+				bdy_acf_field( 'panel_img_x', __( 'Photo focus — X', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '33' ), 'placeholder' => '50%', 'instructions' => __( '70 or 70% — left ↔ right.', 'bdyculture' ) ) ),
 				bdy_acf_field( 'panel_img_y', __( 'Photo focus — Y', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '33' ), 'placeholder' => '50%' ) ),
-				bdy_acf_field( 'panel_img_scale', __( 'Photo zoom', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '33' ), 'placeholder' => '1' ) ),
+				bdy_acf_field( 'panel_img_scale', __( 'Photo zoom', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '33' ), 'placeholder' => '1', 'instructions' => __( '1 = no zoom, 1.5 = 50% bigger, up to 4.', 'bdyculture' ) ) ),
 				bdy_acf_field( 'panel_title', __( 'Panel heading (H3)', 'bdyculture' ), 'text' ),
 				bdy_acf_textarea( 'panel_lead', __( 'Panel lead', 'bdyculture' ), array( 'rows' => 2 ) ),
 				bdy_acf_textarea( 'panel_body', __( 'Panel body', 'bdyculture' ), array( 'rows' => 4 ) ),
@@ -164,6 +164,9 @@ function bdy_acf_home_fields() {
 	$fields[] = bdy_acf_image( 'home_continuum_photo', __( 'Main photo', 'bdyculture' ), array( 'wrapper' => array( 'width' => '50' ) ) );
 	$fields[] = bdy_acf_field( 'home_continuum_photo_alt', __( 'Main photo alt text', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ), 'instructions' => __( 'Used only when the Media Library has no alt text.', 'bdyculture' ) ) );
 	$fields[] = bdy_acf_field( 'home_continuum_caption', __( 'Photo caption', 'bdyculture' ), 'text' );
+	$fields[] = bdy_acf_field( 'home_continuum_photo_x', __( 'Main photo focus — X', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '16' ), 'placeholder' => '38%', 'instructions' => __( '38 or 38%.', 'bdyculture' ) ) );
+	$fields[] = bdy_acf_field( 'home_continuum_photo_y', __( 'Main photo focus — Y', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '17' ), 'placeholder' => '50%', 'instructions' => __( '50 or 50%.', 'bdyculture' ) ) );
+	$fields[] = bdy_acf_field( 'home_continuum_photo_scale', __( 'Main photo zoom', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '17' ), 'placeholder' => '1', 'instructions' => __( '1 = no zoom, up to 4.', 'bdyculture' ) ) );
 	$fields[] = bdy_acf_image( 'home_continuum_inset', __( 'Inset photo', 'bdyculture' ), array( 'wrapper' => array( 'width' => '50' ) ) );
 	$fields[] = bdy_acf_field( 'home_continuum_inset_x', __( 'Inset focus — X', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '16' ) ) );
 	$fields[] = bdy_acf_field( 'home_continuum_inset_y', __( 'Inset focus — Y', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '17' ) ) );
@@ -215,9 +218,9 @@ function bdy_acf_home_fields() {
 			'button_label' => __( 'Add photo', 'bdyculture' ),
 			'sub_fields'   => array(
 				bdy_acf_image( 'ribbon_image', __( 'Photo', 'bdyculture' ) ),
-				bdy_acf_field( 'ribbon_x', __( 'Focus — X', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '25' ) ) ),
-				bdy_acf_field( 'ribbon_y', __( 'Focus — Y', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '25' ) ) ),
-				bdy_acf_field( 'ribbon_scale', __( 'Zoom', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '25' ) ) ),
+				bdy_acf_field( 'ribbon_x', __( 'Focus — X', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '25' ), 'placeholder' => '50%', 'instructions' => __( '70 or 70%.', 'bdyculture' ) ) ),
+				bdy_acf_field( 'ribbon_y', __( 'Focus — Y', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '25' ), 'placeholder' => '50%', 'instructions' => __( '60 or 60%.', 'bdyculture' ) ) ),
+				bdy_acf_field( 'ribbon_scale', __( 'Zoom', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '25' ), 'placeholder' => '1', 'instructions' => __( '1 = no zoom, up to 4.', 'bdyculture' ) ) ),
 				bdy_acf_field( 'ribbon_swept', __( 'Swept corner', 'bdyculture' ), 'true_false', array( 'ui' => 1, 'wrapper' => array( 'width' => '25' ) ) ),
 			),
 		)
@@ -241,7 +244,9 @@ function bdy_acf_home_fields() {
 			'instructions'  => __( 'Portrait crop (4:5). Leave empty to use the bundled photo.', 'bdyculture' ),
 		)
 	);
-	$fields[] = bdy_acf_field( 'home_visit_main_position', __( 'Photo crop position', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ), 'default_value' => '50% 50%', 'instructions' => __( 'object-position, e.g. 50% 40%.', 'bdyculture' ) ) );
+	$fields[] = bdy_acf_field( 'home_visit_main_x', __( 'Photo focus — X', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '16' ), 'placeholder' => '50%', 'instructions' => __( '50 or 50%.', 'bdyculture' ) ) );
+	$fields[] = bdy_acf_field( 'home_visit_main_y', __( 'Photo focus — Y', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '17' ), 'placeholder' => '50%', 'instructions' => __( '40 or 40%.', 'bdyculture' ) ) );
+	$fields[] = bdy_acf_field( 'home_visit_main_scale', __( 'Photo zoom', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '17' ), 'placeholder' => '1', 'instructions' => __( '1 = no zoom, up to 4.', 'bdyculture' ) ) );
 	$fields[] = bdy_acf_field( 'home_visit_main_alt', __( 'Alt text — window signage', 'bdyculture' ), 'text' );
 	$fields[] = bdy_acf_field(
 		'home_visit_door_image',

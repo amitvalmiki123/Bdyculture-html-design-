@@ -199,6 +199,9 @@ Split band: heading + four numbered steps on the left, clinic photo with badge a
 | home continuum intro | Our Chermside clinic combines clinical allied health care with a dedicated rehabilitation and exercise envi… | `home_continuum_intro` | textarea |
 | home continuum photo | gym-chermside-1920.jpg | `home_continuum_photo` | image |
 | home continuum photo alt | BDYCULTURE rehabilitation gym in Chermside, Brisbane, with strength equipment, cable machines, free weights… | `home_continuum_photo_alt` | text |
+| home continuum photo x | 38% | `home_continuum_photo_x` | text |
+| home continuum photo y | 50% | `home_continuum_photo_y` | text |
+| home continuum photo scale | 1 | `home_continuum_photo_scale` | text |
 | home continuum caption | Our rehab & exercise space · Level 1, Chermside | `home_continuum_caption` | text |
 | home continuum inset | hero-gym-bright.webp | `home_continuum_inset` | image |
 | home continuum inset x | 70% | `home_continuum_inset_x` | text |
@@ -247,7 +250,9 @@ Clinic signage: a portrait window-signage photo with a small door-signage card o
 | home visit text 1 | BDYCULTURE is located at Suite 5, Level 1, 671 Gympie Road, Chermside QLD 4032, with lift access available.… | `home_visit_text_1` | textarea |
 | home visit text 2 | Enter 671 Gympie Road, Chermside QLD 4032 into your GPS or maps app. Visitor parking is available at the re… | `home_visit_text_2` | textarea |
 | home visit main image | — | `home_visit_main_image` | image |
-| home visit main position | 50% 50% | `home_visit_main_position` | text |
+| home visit main x | 50% | `home_visit_main_x` | text |
+| home visit main y | 50% | `home_visit_main_y` | text |
+| home visit main scale | 1 | `home_visit_main_scale` | text |
 | home visit main alt | BDYCULTURE window signage at the Chermside clinic listing Physiotherapy, Exercise Physiology, Occupational… | `home_visit_main_alt` | text |
 | home visit door image | — | `home_visit_door_image` | image |
 | home visit door alt | BDYCULTURE clinic door signage, Suite 5, Level 1, Chermside | `home_visit_door_alt` | text |

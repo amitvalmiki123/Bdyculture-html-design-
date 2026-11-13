@@ -209,6 +209,22 @@ function bdy_image_html( $image, $args ) {
 		$attr['srcset'] = $srcset;
 	}
 
+	// Extra attributes (crop/zoom CSS variables, object-position…) must be set
+	// before either branch below, otherwise a Media Library image would lose
+	// them — the reason focus/zoom fields appeared to do nothing.
+	if ( is_array( $args['attr'] ) ) {
+		foreach ( $args['attr'] as $bdy_name => $bdy_value ) {
+			if ( '' === $bdy_value || null === $bdy_value ) {
+				continue;
+			}
+			if ( 'class' === $bdy_name && ! empty( $attr['class'] ) ) {
+				$attr['class'] = trim( $attr['class'] . ' ' . $bdy_value );
+				continue;
+			}
+			$attr[ $bdy_name ] = $bdy_value;
+		}
+	}
+
 	// Use core's image markup when we have a real attachment, so WordPress
 	// can add responsive srcset/sizes and its own performance filters.
 	if ( $attachment_id ) {
@@ -217,10 +233,6 @@ function bdy_image_html( $image, $args ) {
 			$attr['fetchpriority'] = $fetchpriority;
 		}
 		return wp_get_attachment_image( $attachment_id, 'full', false, $attr );
-	}
-
-	if ( is_array( $args['attr'] ) ) {
-		$attr = array_merge( $attr, $args['attr'] );
 	}
 
 	$output = '<img src="' . esc_url( $url ) . '" alt="' . esc_attr( $alt ) . '"';
@@ -237,6 +249,116 @@ function bdy_image_html( $image, $args ) {
 	$output .= '>';
 
 	return $output;
+}
+
+/**
+ * CSS variables that drive the `.img-crop` focus/zoom.
+ *
+ * Accepts what a client is likely to type: `70`, `70%`, `1.9`. Numbers without
+ * a unit become percentages for X/Y; the zoom is kept between 1 and 4 so a
+ * typo can never make the photo disappear or turn into a gap.
+ *
+ * @param string|int $x     object-position X / transform-origin X.
+ * @param string|int $y     object-position Y / transform-origin Y.
+ * @param string|int $scale Zoom factor.
+ * @return string e.g. "--x:70%;--y:60%;--s:1.9"
+ */
+function bdy_crop_style( $x = '', $y = '', $scale = '' ) {
+	$length = static function ( $value, $fallback ) {
+		$value = trim( (string) $value );
+		if ( '' === $value ) {
+			return $fallback;
+		}
+		if ( is_numeric( $value ) ) {
+			return (float) $value . '%';
+		}
+		return $value;
+	};
+
+	$zoom = trim( (string) $scale );
+	if ( '' === $zoom || ! is_numeric( $zoom ) ) {
+		$zoom = 1;
+	}
+	$zoom = max( 1, min( 4, (float) $zoom ) );
+
+	return '--x:' . $length( $x, '50%' )
+		. ';--y:' . $length( $y, '50%' )
+		. ';--s:' . $zoom;
+}
+
+/**
+ * Crop style from a single free-text field.
+ *
+ * Accepts either ready-made CSS variables ("--x:70%;--y:60%;--s:1.9") or the
+ * short form the field placeholder shows ("70% 60% 1.9", "70 60 1.9", commas
+ * allowed), so both ways of typing work.
+ *
+ * @param string $value Raw field value.
+ * @return string
+ */
+function bdy_crop_style_from( $value ) {
+	$value = trim( (string) $value );
+
+	if ( '' === $value ) {
+		return '';
+	}
+	if ( false !== strpos( $value, '--' ) ) {
+		return $value;
+	}
+
+	$bits = preg_split( '/[\s,]+/', $value, -1, PREG_SPLIT_NO_EMPTY );
+	if ( ! $bits ) {
+		return '';
+	}
+
+	return bdy_crop_style( $bits[0], isset( $bits[1] ) ? $bits[1] : '', isset( $bits[2] ) ? $bits[2] : '' );
+}
+
+/**
+ * Inline focus/zoom for a plain <img> inside a fixed frame (no .img-crop).
+ *
+ * The design paints these photos with `object-fit: cover`; focus/zoom is
+ * expressed as object-position plus a transform, so the client can re-frame a
+ * Media Library photo without touching CSS.
+ *
+ * @param string|int $x     Focus X.
+ * @param string|int $y     Focus Y.
+ * @param string|int $scale Zoom factor (1 = none).
+ * @return string
+ */
+function bdy_focus_style( $x = '', $y = '', $scale = '' ) {
+	$position = bdy_position( trim( (string) $x . ' ' . (string) $y ) );
+
+	$zoom = trim( (string) $scale );
+	$zoom = ( '' !== $zoom && is_numeric( $zoom ) ) ? max( 1, min( 4, (float) $zoom ) ) : 1;
+
+	$style = 'object-position:' . $position;
+
+	if ( $zoom > 1 ) {
+		$style .= ';transform:scale(' . $zoom . ');transform-origin:' . $position;
+	}
+
+	return $style;
+}
+
+/** ("50% 40%", "60 40").
+ *
+ * @param string $value Raw field value.
+ * @return string
+ */
+function bdy_position( $value ) {
+	$value = trim( (string) $value );
+	if ( '' === $value ) {
+		return '50% 50%';
+	}
+
+	$bits = preg_split( '/[\s,]+/', $value, -1, PREG_SPLIT_NO_EMPTY );
+	$out  = array();
+	foreach ( array_slice( (array) $bits, 0, 2 ) as $bit ) {
+		$out[] = is_numeric( $bit ) ? (float) $bit . '%' : $bit;
+	}
+
+	return implode( ' ', $out );
 }
 
 /**

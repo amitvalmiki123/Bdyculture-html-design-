@@ -322,6 +322,12 @@ Section key: `continuum` — fields are prefixed `home_continuum_`.
 - **Main photo alt text** — `home_continuum_photo_alt` · text · `BDYCULTURE rehabilitation gym in Chermside, Brisbane, with strength equipment, cable machines, free weights and open functional exercise space`  
   > Used only when the Media Library has no alt text.
 - **Photo caption** — `home_continuum_caption` · text · `Our rehab &amp; exercise space · Level 1, Chermside`
+- **Main photo focus — X** — `home_continuum_photo_x` · text · `38%`  
+  > 38 or 38%.
+- **Main photo focus — Y** — `home_continuum_photo_y` · text · `50%`  
+  > 50 or 50%.
+- **Main photo zoom** — `home_continuum_photo_scale` · text · `1`  
+  > 1 = no zoom, up to 4.
 - **Inset photo** — `home_continuum_inset` · image
   Upload `themes/bdyculture/assets/images/hero-gym-bright.webp` (used in: inset card), then type the same description into the next field.
 - **Inset focus — X** — `home_continuum_inset_x` · text · `70%`
@@ -467,8 +473,12 @@ Section key: `visit` — fields are prefixed `home_visit_`.
   Enter 671 Gympie Road, Chermside QLD 4032 into your GPS or maps app. Visitor parking is available at the rear of the building, with additional 3-hour parking within the adjacent precinct.
   ```
 - **Photo — window signage** — `home_visit_main_image` · image · *leave empty*
-- **Photo crop position** — `home_visit_main_position` · text · `50% 50%`  
-  > object-position, e.g. 50% 40%.
+- **Photo focus — X** — `home_visit_main_x` · text · `50%`  
+  > 50 or 50%.
+- **Photo focus — Y** — `home_visit_main_y` · text · `50%`  
+  > 40 or 40%.
+- **Photo zoom** — `home_visit_main_scale` · text · `1`  
+  > 1 = no zoom, up to 4.
 - **Alt text — window signage** — `home_visit_main_alt` · text · `BDYCULTURE window signage at the Chermside clinic listing Physiotherapy, Exercise Physiology, Occupational Therapy and Clinical Pilates`
 - **Photo — door signage** — `home_visit_door_image` · image · *leave empty*
 - **Alt text — door signage** — `home_visit_door_alt` · text · `BDYCULTURE clinic door signage, Suite 5, Level 1, Chermside`

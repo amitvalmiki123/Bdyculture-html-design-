@@ -68,7 +68,7 @@ if ( ! $bdy_head ) {
 						'class'      => 'img-crop',
 						'fallback'   => 'gym-chermside-1920.jpg',
 						'decorative' => true,
-						'attr'       => array( 'style' => $bdy_crop ),
+						'attr'       => array( 'style' => bdy_crop_style_from( $bdy_crop ) ),
 					)
 				);
 				?>

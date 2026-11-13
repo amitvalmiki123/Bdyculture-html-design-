@@ -113,11 +113,30 @@ Contact band / Map band**. One edit, every page.
 | Where | Suggested size | Notes |
 | --- | --- | --- |
 | Hero lead image (tab 3) | 1600 × 1000 | Only for the fallback hero. |
-| Split block image | 1200 × 900 | Portrait-ish crops survive best; set *Focal point* if the subject is off-centre. |
+| Split block image | 1200 × 900 | Portrait-ish crops survive best; set *Focus & zoom* if the subject is off-centre. |
+| Homepage — consulting-room photo & map inset, ribbon, cards, Visit us photo | as shipped | Each has its own *Photo focus — X / Y* + *Photo zoom*, so an upload re-frames exactly like the design photo. |
 | Suburb / feature icons | — | Chosen from the icon dropdown, no upload. |
 | Featured post image | 1200 × 800 | Post featured image, not a page field. |
 
 Every image field falls back to the design's own photo, so an empty field never leaves a hole.
+
+### Focus & zoom (crop position)
+
+Every photo that sits in a fixed frame accepts the same three numbers — **focus X**, **focus Y**,
+**zoom** — in the split block's *Focus & zoom* field or the separate *Photo focus — X / Y* and
+*Photo zoom* fields on the homepage blocks:
+
+| You type | You get |
+| --- | --- |
+| `70% 60% 1.9` | focus 70 % across, 60 % down, zoomed to 190 % |
+| `70 60 1.9` | same — a number without a unit is read as a percentage |
+| `1.4` | zoom only, focus stays centred |
+| *(empty)* | centre, no zoom |
+| `--x:70%;--y:60%;--s:1.9` | also accepted verbatim if you prefer raw CSS |
+
+Zoom is clamped between **1** (no zoom) and **4**, so a stray `0` can never blank an image. The
+framed photo uses `object-fit: cover`, so zooming in is how you remove unwanted edges — the frame
+itself never resizes.
 
 ---
 
@@ -164,4 +183,5 @@ copied stack. The shipped stack for the old slug is never modified.
 | Contact band appears twice | The page stack is old and contains a `contact` block from an earlier version | Remove that block; bands are rendered once from tab 2. |
 | Band missing on one page only | `page_contact_show` / `page_map_show` is off | Tab 2 → switch it back on. |
 | Band order wrong | Both bands sit after the blocks; the numbers only sort them against each other | Set `900` / `910`. |
+| Focus / zoom appears to do nothing | The value is not a length or the image is already at its frame ratio | Type numbers with or without `%` (`70 60 1.9`), not words. Zoom below `1` is ignored. |
 | New page has a plain hero and body text | Its slug has no shipped design | That is the intended fallback — build it with blocks from tab 1. |

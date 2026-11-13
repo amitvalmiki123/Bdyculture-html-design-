@@ -36,7 +36,7 @@ $bdy_has_panel = ! empty( $bdy_panel['title'] ) || ! empty( $bdy_panel['body'] )
 						'class'    => 'img-crop',
 						'fallback' => $bdy_media['image'],
 						'alt'      => isset( $bdy_media['alt'] ) ? $bdy_media['alt'] : '',
-						'attr'     => array( 'style' => isset( $bdy_media['crop'] ) ? $bdy_media['crop'] : '' ),
+						'attr'     => array( 'style' => bdy_crop_style_from( isset( $bdy_media['crop'] ) ? $bdy_media['crop'] : '' ) ),
 					)
 				);
 				?>
@@ -70,7 +70,7 @@ $bdy_has_panel = ! empty( $bdy_panel['title'] ) || ! empty( $bdy_panel['body'] )
 						'class'    => 'img-crop',
 						'fallback' => $bdy_media['image'],
 						'alt'      => isset( $bdy_media['alt'] ) ? $bdy_media['alt'] : '',
-						'attr'     => array( 'style' => isset( $bdy_media['crop'] ) ? $bdy_media['crop'] : '' ),
+						'attr'     => array( 'style' => bdy_crop_style_from( isset( $bdy_media['crop'] ) ? $bdy_media['crop'] : '' ) ),
 					)
 				);
 				?>

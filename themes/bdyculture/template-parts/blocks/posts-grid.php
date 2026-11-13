@@ -110,7 +110,7 @@ $bdy_topics = get_terms(
 								'class'      => 'img-crop',
 								'fallback'   => 'hero-gym-bright.webp',
 								'decorative' => true,
-								'attr'       => array( 'style' => isset( $bdy_card['crop'] ) ? $bdy_card['crop'] : '' ),
+								'attr'       => array( 'style' => bdy_crop_style_from( isset( $bdy_card['crop'] ) ? $bdy_card['crop'] : '' ) ),
 							)
 						);
 						?>

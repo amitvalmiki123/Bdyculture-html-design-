@@ -19,9 +19,11 @@ $bdy_paras    = bdy_rows( 'home_continuum_paragraphs', $bdy_d['home_continuum_pa
 $bdy_badge_n  = bdy_string( 'home_continuum_badge_number', $bdy_d['home_continuum_badge_number'] );
 $bdy_badge_t  = bdy_html( 'home_continuum_badge_text', $bdy_d['home_continuum_badge_text'] );
 $bdy_alt      = bdy_string( 'home_continuum_photo_alt', $bdy_d['home_continuum_photo_alt'] );
-$bdy_inset    = '--x:' . bdy_string( 'home_continuum_inset_x', $bdy_d['home_continuum_inset_x'] )
-	. ';--y:' . bdy_string( 'home_continuum_inset_y', $bdy_d['home_continuum_inset_y'] )
-	. ';--s:' . bdy_string( 'home_continuum_inset_scale', $bdy_d['home_continuum_inset_scale'] );
+$bdy_inset    = bdy_crop_style(
+	bdy_string( 'home_continuum_inset_x', $bdy_d['home_continuum_inset_x'] ),
+	bdy_string( 'home_continuum_inset_y', $bdy_d['home_continuum_inset_y'] ),
+	bdy_string( 'home_continuum_inset_scale', $bdy_d['home_continuum_inset_scale'] )
+);
 ?>
 <section class="section continuum" id="clinic"<?php echo $bdy_title ? ' aria-labelledby="cont-title"' : ''; ?>>
 	<div class="container continuum__grid">
@@ -34,6 +36,13 @@ $bdy_inset    = '--x:' . bdy_string( 'home_continuum_inset_x', $bdy_d['home_cont
 					'alt'      => $bdy_alt,
 					'sizes'    => '(min-width: 1100px) 46vw, 100vw',
 					'srcset'   => 'gym-chermside-960.jpg 960w, gym-chermside-1920.jpg 1920w',
+					'attr'     => array(
+						'style' => bdy_focus_style(
+							bdy_string( 'home_continuum_photo_x', $bdy_d['home_continuum_photo_x'] ),
+							bdy_string( 'home_continuum_photo_y', $bdy_d['home_continuum_photo_y'] ),
+							bdy_string( 'home_continuum_photo_scale', $bdy_d['home_continuum_photo_scale'] )
+						),
+					),
 				)
 			);
 			?>
