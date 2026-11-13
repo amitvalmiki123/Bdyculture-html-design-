@@ -125,39 +125,13 @@ function bdy_acf_global_fields() {
 					'select',
 					array( 'wrapper' => array( 'width' => '20' ), 'choices' => bdy_icon_choices(), 'allow_null' => 1 )
 				),
-				bdy_acf_field( 'contact_form_shortcode', __( 'Form shortcode (Contact Form 7)', 'bdyculture' ), 'text', array( 'instructions' => __( 'Leave empty to use the design-identical form.', 'bdyculture' ) ) ),
-				bdy_acf_field( 'contact_form_title', __( 'Form heading (H3)', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
-				bdy_acf_field( 'contact_form_intro', __( 'Form intro', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
-				bdy_acf_field( 'contact_form_label_name', __( 'Label — name', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '33' ) ) ),
-				bdy_acf_field( 'contact_form_label_phone', __( 'Label — phone', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '33' ) ) ),
-				bdy_acf_field( 'contact_form_label_email', __( 'Label — email', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '33' ) ) ),
-				bdy_acf_field( 'contact_form_label_type', __( 'Label — enquiry type', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '33' ) ) ),
-				bdy_acf_field( 'contact_form_label_interest', __( 'Label — interest', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '33' ) ) ),
-				bdy_acf_field( 'contact_form_label_message', __( 'Label — message', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '33' ) ) ),
-				bdy_acf_field(
-					'contact_form_types',
-					__( 'Enquiry type options', 'bdyculture' ),
-					'repeater',
-					array(
-						'layout'       => 'table',
-						'button_label' => __( 'Add option', 'bdyculture' ),
-						'sub_fields'   => array( bdy_acf_field( 'contact_type_option_text', __( 'Option', 'bdyculture' ), 'text' ) ),
-					)
+				bdy_acf_message(
+					'contact_form',
+					__( 'The form itself is built in Contact Form 7 (or any form plugin). Paste its shortcode below. Only this heading and the note under the form are editable here — labels, fields, options, the button and the validation all live in the form plugin. Ready-made form code for the design: docs/cf7-contact-form.txt.', 'bdyculture' )
 				),
-				bdy_acf_field(
-					'contact_form_interests',
-					__( 'Interest options', 'bdyculture' ),
-					'repeater',
-					array(
-						'layout'       => 'table',
-						'button_label' => __( 'Add option', 'bdyculture' ),
-						'sub_fields'   => array( bdy_acf_field( 'contact_interest_option_text', __( 'Option', 'bdyculture' ), 'text' ) ),
-					)
-				),
-				bdy_acf_textarea( 'contact_form_note', __( 'Privacy note under the button', 'bdyculture' ), array( 'rows' => 2, 'instructions' => __( 'Use {privacy_link} for the linked Privacy Policy.', 'bdyculture' ) ) ),
-				bdy_acf_field( 'contact_form_button', __( 'Submit button label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
-				bdy_acf_field( 'contact_form_success_title', __( 'Success heading', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
-				bdy_acf_textarea( 'contact_form_success_text', __( 'Success message', 'bdyculture' ), array( 'rows' => 2, 'instructions' => __( 'Use {phone_link} for the clinic phone link.', 'bdyculture' ) ) ),
+				bdy_acf_field( 'contact_form_shortcode', __( 'Form shortcode', 'bdyculture' ), 'text', array( 'placeholder' => '[contact-form-7 id="123" title="Contact form"]', 'instructions' => __( 'Paste the shortcode from Contact Form 7 → Forms. Leave empty and the design\'s own form is shown (it does not send anything until the plugin is connected).', 'bdyculture' ) ) ),
+				bdy_acf_field( 'contact_form_title', __( 'Form heading (H3)', 'bdyculture' ), 'text' ),
+				bdy_acf_textarea( 'contact_form_note', __( 'Line under the form', 'bdyculture' ), array( 'rows' => 2, 'instructions' => __( 'Privacy line shown under the submit button. Use {privacy_link} for the linked Privacy Policy.', 'bdyculture' ) ) ),
 
 				bdy_acf_tab( 'map_band', __( 'Map band', 'bdyculture' ) ),
 				bdy_acf_message(

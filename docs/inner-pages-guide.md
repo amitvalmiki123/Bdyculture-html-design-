@@ -106,6 +106,10 @@ Theme Settings.
 To change the words, the form or the map coordinates, go to **BDYCULTURE → Theme Settings →
 Contact band / Map band**. One edit, every page.
 
+The contact form itself is a **Contact Form 7** form: the theme stores only its heading, the line
+under it and the shortcode. Ready-made form code that matches the design:
+[`cf7-contact-form.txt`](cf7-contact-form.txt), walkthrough in [`contact-form-7.md`](contact-form-7.md).
+
 ---
 
 ## 5. Images

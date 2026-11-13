@@ -19,21 +19,25 @@ $bdy_title    = bdy_html( 'contact_title', $bdy_g['contact_title'], 'option' );
 $bdy_intro    = bdy_html( 'contact_intro', $bdy_g['contact_intro'], 'option' );
 $bdy_list     = bdy_rows( 'contact_list', $bdy_g['contact_list'], 'option' );
 $bdy_phone    = bdy_phone_display();
+// The form itself is built in Contact Form 7 (or another form plugin) — only
+// the heading, the note and the shortcode are stored here. Everything below
+// them is the design's own markup, used as a fallback until a shortcode exists.
 $bdy_sc       = bdy_string( 'contact_form_shortcode', $bdy_g['contact_form_shortcode'], 'option' );
 $bdy_f_title  = bdy_string( 'contact_form_title', $bdy_g['contact_form_title'], 'option' );
-$bdy_f_intro  = bdy_html( 'contact_form_intro', $bdy_g['contact_form_intro'], 'option' );
-$bdy_types    = bdy_rows( 'contact_form_types', $bdy_g['contact_form_types'], 'option' );
-$bdy_interest = bdy_rows( 'contact_form_interests', $bdy_g['contact_form_interests'], 'option' );
-$bdy_ok_title = bdy_string( 'contact_form_success_title', $bdy_g['contact_form_success_title'], 'option' );
-$bdy_ok_text  = bdy_html( 'contact_form_success_text', $bdy_g['contact_form_success_text'], 'option' );
+$bdy_f_intro  = bdy_tokens( wp_kses_post( $bdy_g['contact_form_intro'] ) );
+$bdy_types    = $bdy_g['contact_form_types'];
+$bdy_interest = $bdy_g['contact_form_interests'];
+$bdy_ok_title = $bdy_g['contact_form_success_title'];
+$bdy_ok_text  = bdy_tokens( wp_kses_post( $bdy_g['contact_form_success_text'] ) );
+$bdy_note     = bdy_html( 'contact_form_note', $bdy_g['contact_form_note'], 'option' );
 
 $bdy_labels = array(
-	'name'     => bdy_string( 'contact_form_label_name', $bdy_g['contact_form_label_name'], 'option' ),
-	'phone'    => bdy_string( 'contact_form_label_phone', $bdy_g['contact_form_label_phone'], 'option' ),
-	'email'    => bdy_string( 'contact_form_label_email', $bdy_g['contact_form_label_email'], 'option' ),
-	'type'     => bdy_string( 'contact_form_label_type', $bdy_g['contact_form_label_type'], 'option' ),
-	'interest' => bdy_string( 'contact_form_label_interest', $bdy_g['contact_form_label_interest'], 'option' ),
-	'message'  => bdy_string( 'contact_form_label_message', $bdy_g['contact_form_label_message'], 'option' ),
+	'name'     => $bdy_g['contact_form_label_name'],
+	'phone'    => $bdy_g['contact_form_label_phone'],
+	'email'    => $bdy_g['contact_form_label_email'],
+	'type'     => $bdy_g['contact_form_label_type'],
+	'interest' => $bdy_g['contact_form_label_interest'],
+	'message'  => $bdy_g['contact_form_label_message'],
 );
 ?>
 <section class="section section--dark contact has-arcs" id="contact"<?php echo $bdy_title ? ' aria-labelledby="contact-title"' : ''; ?>>
@@ -94,17 +98,15 @@ $bdy_labels = array(
 
 		<?php if ( $bdy_sc ) : ?>
 			<div class="card-form card-form--light reveal">
-				<?php if ( $bdy_f_title || $bdy_f_intro ) : ?>
+				<?php if ( $bdy_f_title ) : ?>
 					<div class="card-form__head">
-						<?php if ( $bdy_f_title ) : ?>
-							<h3><?php echo esc_html( $bdy_f_title ); ?></h3>
-						<?php endif; ?>
-						<?php if ( $bdy_f_intro ) : ?>
-							<p><?php echo $bdy_f_intro; // phpcs:ignore WordPress.Security.EscapeOutput -- wp_kses_post. ?></p>
-						<?php endif; ?>
+						<h3><?php echo esc_html( $bdy_f_title ); ?></h3>
 					</div>
 				<?php endif; ?>
 				<?php bdy_form( $bdy_sc, '__return_false' ); ?>
+				<?php if ( $bdy_note ) : ?>
+					<p class="form-note"><?php echo $bdy_note; // phpcs:ignore WordPress.Security.EscapeOutput -- wp_kses_post. ?></p>
+				<?php endif; ?>
 			</div>
 		<?php else : ?>
 			<form class="card-form card-form--light reveal" data-form novalidate>
@@ -163,11 +165,10 @@ $bdy_labels = array(
 					<div class="field field--grow"><label for="cf-msg"><?php echo esc_html( $bdy_labels['message'] ); ?></label><textarea id="cf-msg" name="message" rows="4"></textarea></div>
 				<?php endif; ?>
 
-				<?php if ( bdy_string( 'contact_form_button', $bdy_g['contact_form_button'], 'option' ) ) : ?>
-					<button class="btn btn--ink btn--block btn--lg" type="submit"><?php echo esc_html( bdy_string( 'contact_form_button', $bdy_g['contact_form_button'], 'option' ) ); ?></button>
+				<?php if ( $bdy_g['contact_form_button'] ) : ?>
+					<button class="btn btn--ink btn--block btn--lg" type="submit"><?php echo esc_html( $bdy_g['contact_form_button'] ); ?></button>
 				<?php endif; ?>
 
-				<?php $bdy_note = bdy_html( 'contact_form_note', $bdy_g['contact_form_note'], 'option' ); ?>
 				<?php if ( $bdy_note ) : ?>
 					<p class="form-note"><?php echo $bdy_note; // phpcs:ignore WordPress.Security.EscapeOutput -- wp_kses_post + tokens. ?></p>
 				<?php endif; ?>

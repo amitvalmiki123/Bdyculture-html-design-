@@ -66,23 +66,10 @@ Group key: `group_bdy_global`  ·  location: `options_page` == `bdyculture-setti
 | Button text | `contact_btn_text` | text | — |
 | Button link | `contact_btn_url` | text | — |
 | Button icon | `contact_btn_icon` | select | options: , physiotherapy, exercise-physiology, occupational-therapy, clinical-pilates, search |
-| Form shortcode (Contact Form 7) | `contact_form_shortcode` | text | Leave empty to use the design-identical form. |
+| _note_ | `bdy_msg_contact_form` | message | The form itself is built in Contact Form 7 (or any form plugin). Paste its shortcode below. Only this heading and the no |
+| Form shortcode | `contact_form_shortcode` | text | Paste the shortcode from Contact Form 7 → Forms. Leave empty and the design's own form is  |
 | Form heading (H3) | `contact_form_title` | text | — |
-| Form intro | `contact_form_intro` | text | — |
-| Label — name | `contact_form_label_name` | text | — |
-| Label — phone | `contact_form_label_phone` | text | — |
-| Label — email | `contact_form_label_email` | text | — |
-| Label — enquiry type | `contact_form_label_type` | text | — |
-| Label — interest | `contact_form_label_interest` | text | — |
-| Label — message | `contact_form_label_message` | text | — |
-| Enquiry type options | `contact_form_types` | repeater | layout: table |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Option | `contact_type_option_text` | text | — |
-| Interest options | `contact_form_interests` | repeater | layout: table |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Option | `contact_interest_option_text` | text | — |
-| Privacy note under the button | `contact_form_note` | textarea | Use {privacy_link} for the linked Privacy Policy. |
-| Submit button label | `contact_form_button` | text | — |
-| Success heading | `contact_form_success_title` | text | — |
-| Success message | `contact_form_success_text` | textarea | Use {phone_link} for the clinic phone link. |
+| Line under the form | `contact_form_note` | textarea | Privacy line shown under the submit button. Use {privacy_link} for the linked Privacy Poli |
 | **Map band** | — | tab | — |
 | _note_ | `bdy_msg_map_band` | message | The "Find the clinic" band with the Leaflet map. Edited once here; each page decides whether it shows. |
 | Tag | `map_tag` | text | — |

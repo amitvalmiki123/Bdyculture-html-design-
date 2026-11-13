@@ -91,21 +91,19 @@ so changing the number once updates every button, link, FAQ answer, footer line 
 | contact btn icon | arrow | `contact_btn_icon` | select |
 | contact form shortcode | — | `contact_form_shortcode` | text |
 | contact form title | Send us a message | `contact_form_title` | text |
-| contact form intro | We’ll reply during business hours. For urgent medical help, call 000. | `contact_form_intro` | text |
-| contact form label name | Full name | `contact_form_label_name` | text |
-| contact form label phone | Phone | `contact_form_label_phone` | text |
-| contact form label email | Email | `contact_form_label_email` | text |
-| contact form label type | Enquiry type | `contact_form_label_type` | text |
-| contact form label interest | I’m interested in | `contact_form_label_interest` | text |
-| contact form label message | Message | `contact_form_label_message` | text |
-| contact form types (repeater) | 4 row(s) — Book an appointment | `contact_form_types` | repeater |
-| &nbsp;&nbsp;└ contact type option text | Book an appointment | `contact_type_option_text` | text |
-| contact form interests (repeater) | 5 row(s) — Physiotherapy | `contact_form_interests` | repeater |
-| &nbsp;&nbsp;└ contact interest option text | Physiotherapy | `contact_interest_option_text` | text |
+| contact form intro | We’ll reply during business hours. For urgent medical help, call 000. | — | Contact Form 7 |
+| contact form label name | Full name | — | Contact Form 7 |
+| contact form label phone | Phone | — | Contact Form 7 |
+| contact form label email | Email | — | Contact Form 7 |
+| contact form label type | Enquiry type | — | Contact Form 7 |
+| contact form label interest | I’m interested in | — | Contact Form 7 |
+| contact form label message | Message | — | Contact Form 7 |
+| contact form types (repeater) | 4 row(s) — Book an appointment | — | Contact Form 7 |
+| contact form interests (repeater) | 5 row(s) — Physiotherapy | — | Contact Form 7 |
 | contact form note | By submitting this form, you acknowledge the BDYCULTURE Privacy Policy. Please do not include sensitive med… | `contact_form_note` | textarea |
-| contact form button | Send message | `contact_form_button` | text |
-| contact form success title | Thanks — message received | `contact_form_success_title` | text |
-| contact form success text | We’ll be in touch shortly. To speak to someone now, call 07 3073 1616. | `contact_form_success_text` | textarea |
+| contact form button | Send message | — | Contact Form 7 |
+| contact form success title | Thanks — message received | — | Contact Form 7 |
+| contact form success text | We’ll be in touch shortly. To speak to someone now, call 07 3073 1616. | — | Contact Form 7 |
 | map tag | Find the clinic | `map_tag` | text |
 | map title | On Gympie Road, Chermside. | `map_title` | text |
 | map lat | -27.3852 | `map_lat` | text |

@@ -15,7 +15,7 @@ Changes are live as soon as you press **Update**. Nothing here can break a page:
 | 1 | Clinic details | The single source of truth for the practice. Every phone number, email, address, booking link and hours shown anywhere on the site comes from here. | Header (top bar, drawer, book button), Footer contact column, Contact band, Map card, Enquiry card, Every `{phone}`, `{email}`, `{address}` token in body copy |
 | 2 | Header & navigation | Button labels in the sticky header and the mobile drawer. The menu itself is a normal WordPress menu (Appearance → Menus). | Sticky header, Mobile drawer |
 | 3 | Enquiry card | The short "Request a call back" card inside the homepage and inner-page hero. Requires a form plugin shortcode to actually collect entries. | Hero card on the homepage, Hero card on inner pages |
-| 4 | Contact band | The dark "Get in touch" band. Written **once** here and printed at the end of the homepage, every inner page, the blog index and single posts. Each page only decides *whether* it shows and in what order. | Homepage, All inner pages, Blog index, Single post |
+| 4 | Contact band | The dark "Get in touch" band. Written **once** here and printed at the end of the homepage, every inner page, the blog index and single posts. Each page only decides *whether* it shows and in what order. The form inside it is a Contact Form 7 form — only its shortcode, heading and the line under it are stored here. | Homepage, All inner pages, Blog index, Single post |
 | 5 | Map band | The "Find the clinic" band with the Leaflet map, suburb chips and address card. Same rule as the contact band: one copy, shown everywhere unless a page switches it off. | Homepage, All inner pages, Blog index, Single post |
 | 6 | Footer | Footer tagline, copyright line, privacy link, the three link columns and the credit line. | Site footer |
 | 7 | Mobile action bar | The two sticky buttons at the bottom of the screen on phones. | Mobile viewport only |
@@ -77,7 +77,7 @@ The short "Request a call back" card inside the homepage and inner-page hero. Re
 | Success message | `enquiry_success_text` | text (multi-line) | We’ll be in touch shortly. To speak to someone now, call {phone… |
 ### 4. Contact band
 
-The dark "Get in touch" band. Written **once** here and printed at the end of the homepage, every inner page, the blog index and single posts. Each page only decides *whether* it shows and in what order.
+The dark "Get in touch" band. Written **once** here and printed at the end of the homepage, every inner page, the blog index and single posts. Each page only decides *whether* it shows and in what order. The form inside it is a Contact Form 7 form — only its shortcode, heading and the line under it are stored here.
 
 > Per-page control: each page has **Show this section** and **Order** for this band on its own edit screen. Hit *Hide* on one page and the band disappears there only — the copy stays here.
 
@@ -93,23 +93,9 @@ The dark "Get in touch" band. Written **once** here and printed at the end of th
 | Button text | `contact_btn_text` | text | Book Online with Nookal |
 | Button link | `contact_btn_url` | text | https://book.nookal.com/bookings/book/EA59F8c8-2593-a0ee-Fbca-F… |
 | Button icon | `contact_btn_icon` | dropdown | arrow |
-| Form shortcode (Contact Form 7) | `contact_form_shortcode` | text | (empty) |
+| Form shortcode | `contact_form_shortcode` | text | (empty) |
 | Form heading (H3) | `contact_form_title` | text | Send us a message |
-| Form intro | `contact_form_intro` | text | We’ll reply during business hours. For urgent medical help, cal… |
-| Label — name | `contact_form_label_name` | text | Full name |
-| Label — phone | `contact_form_label_phone` | text | Phone |
-| Label — email | `contact_form_label_email` | text | Email |
-| Label — enquiry type | `contact_form_label_type` | text | Enquiry type |
-| Label — interest | `contact_form_label_interest` | text | I’m interested in |
-| Label — message | `contact_form_label_message` | text | Message |
-| Enquiry type options | `contact_form_types` | repeater (rows) | 4 row(s) |
-| ↳ Option | `contact_form_types_contact_type_option_text` | text | Book an appointment |
-| Interest options | `contact_form_interests` | repeater (rows) | 5 row(s) |
-| ↳ Option | `contact_form_interests_contact_interest_option_text` | text | Physiotherapy |
-| Privacy note under the button | `contact_form_note` | text (multi-line) | By submitting this form, you acknowledge the BDYCULTURE <a href… |
-| Submit button label | `contact_form_button` | text | Send message |
-| Success heading | `contact_form_success_title` | text | Thanks — message received |
-| Success message | `contact_form_success_text` | text (multi-line) | We’ll be in touch shortly. To speak to someone now, call {phone… |
+| Line under the form | `contact_form_note` | text (multi-line) | By submitting this form, you acknowledge the BDYCULTURE <a href… |
 ### 5. Map band
 
 The "Find the clinic" band with the Leaflet map, suburb chips and address card. Same rule as the contact band: one copy, shown everywhere unless a page switches it off.

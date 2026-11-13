@@ -82,3 +82,16 @@ function bdy_no_js_class() {
 }
 add_action( 'wp_head', 'bdy_no_js_class', 1 );
 
+/**
+ * Contact Form 7 — keep the form template exactly as typed.
+ *
+ * The form code shipped in docs/cf7-contact-form.txt is written with the
+ * design's own classes and markup. CF7's automatic <p>/<br> insertion would
+ * break that layout, so it is switched off (it only affects the theme's forms).
+ *
+ * @return bool
+ */
+function bdy_cf7_autop() {
+	return false;
+}
+add_filter( 'wpcf7_autop_or_not', 'bdy_cf7_autop' );
