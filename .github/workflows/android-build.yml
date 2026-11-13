@@ -4,7 +4,7 @@ on:
     branches: ["arena/1580de29-bdyculture-html-design"]
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -44,3 +44,15 @@ jobs:
           name: ios-style-launcher-debug-apk
           path: ios-launcher/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+      - name: Package source and publish downloadable build
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          zip -qr ios-style-launcher-source.zip ios-launcher -x '*/build/*' '*/.gradle/*'
+          tag="ios-launcher-build-${GITHUB_RUN_NUMBER}"
+          gh release create "$tag" \
+            ios-launcher/app/build/outputs/apk/debug/app-debug.apk \
+            ios-style-launcher-source.zip \
+            --title "iOS Style Launcher build ${GITHUB_RUN_NUMBER}" \
+            --notes "Install the APK on your Android phone, then press Home and select iOS Style Launcher. Includes the Kotlin source ZIP."
