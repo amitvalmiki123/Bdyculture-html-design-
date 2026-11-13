@@ -42,15 +42,13 @@ in its `style.css` header.
 
 | Step | Where | Notes |
 | --- | --- | --- |
-| Create a page called *Home* | Pages → Add New | leave it empty; the front page is assembled from sections |
-| Set the static front page | Settings → Reading → *A static page* → Home | ACF home fields appear once the page is the front page |
-| Fill the fields with the design | **BDYCULTURE → Fill with design content** | optional, one click: copies the shipped design copy into Site Settings, the front page and every inner page so nothing has to be retyped. See [`fill-with-design.md`](fill-with-design.md) |
+| Fill the fields with the design | **BDYCULTURE → Fill with design content** | one click: copies the shipped design copy into Site Settings, the front page and every inner page, creates the pages and sets the front page. Nothing has to be retyped. See [`fill-with-design.md`](fill-with-design.md) |
 | Fill the clinic details | **BDYCULTURE → Theme Settings → Clinic details** | phone, emails, address, booking URL, hours — field-by-field help in [`theme-settings-guide.md`](theme-settings-guide.md) |
 | Confirm opening hours | same screen | shipped as *“Placeholder — client to confirm clinic hours”* |
 | Build the menus | **Appearance → Menus** | four locations: *Header — primary navigation*, *Footer — services column*, *Footer — quick links column*, *Footer — legal bar*. Until a menu is assigned the shipped default links are used, so the site looks complete immediately |
 | Review footer options | Theme Settings → Footer | logo, tagline, buttons, credit line and disclaimer (the link columns come from the menus) |
-| Create inner pages | Pages → Add New | Services, Physiotherapy, Exercise Physiology, Occupational Therapy, Clinical Pilates, Referrers, Contact, Location — Chermside, Practice from BDYCULTURE, Privacy Policy. Use the page slug as the title's permalink (`/physiotherapy/`), so the design's links and the shipped fallbacks line up. Each page fills itself from its own section stack — nothing to paste |
-| Create the blog | Pages → Add New → *Posts page* | a page called *Blog*, then Settings → Reading → *Posts page* → Blog. `home.php` lists your posts, `single.php` renders each article |
+| Inner pages | nothing to do | **Fill with design content** creates Services, Physiotherapy, Exercise Physiology, Occupational Therapy, Clinical Pilates, Referrers, Contact, Location — Chermside, Practice from BDYCULTURE and Privacy Policy, with the design blocks already in them. Building them by hand? Use the slug as the permalink (`/physiotherapy/`) so the shipped links line up |
+| The blog | nothing to do | **Fill with design content** creates a *Blog* page and assigns it as the posts page. `home.php` lists your posts, `single.php` renders each article |
 | Point the nav links at those pages | Appearance → Menus → *Header — primary navigation* | the design shipped links to pages whose designs weren't included; add the pages as menu items and edit their labels there |
 | Add the contact form | **Theme Settings → Contact band** | install Contact Form 7, paste the form code from [`cf7-contact-form.txt`](cf7-contact-form.txt) into the form, then paste its shortcode into *Form shortcode*. Do the same for the **Enquiry card** using [`cf7-enquiry-form.txt`](cf7-enquiry-form.txt). Step by step: [`contact-form-7.md`](contact-form-7.md) — or the one-page copy-paste version: [`cf7-paste-forms.md`](cf7-paste-forms.md) |
 
