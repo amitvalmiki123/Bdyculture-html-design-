@@ -269,6 +269,8 @@ Both website forms are **Contact Form 7** forms. The theme stores only the short
 | Contact band | Contact band → **Form shortcode** | [`cf7-contact-form.txt`](cf7-contact-form.txt) |
 | Enquiry card | Enquiry card → **Form shortcode** | [`cf7-enquiry-form.txt`](cf7-enquiry-form.txt) |
 
+**One form covers every page.** The theme adds the page name to the email and pre-selects a dropdown option that matches the page, so you never build a form per page. Details: [`cf7-paste-forms.md`](cf7-paste-forms.md).
+
 Copy-paste page with both codes and their Mail/Messages values: [`cf7-paste-forms.md`](cf7-paste-forms.md). Full walkthrough (spam, troubleshooting): [`contact-form-7.md`](contact-form-7.md).
 
 ---

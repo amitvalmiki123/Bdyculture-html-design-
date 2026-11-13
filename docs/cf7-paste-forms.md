@@ -150,6 +150,34 @@ Thanks — your enquiry is with us. We’ll be in touch shortly.
 
 ---
 
+## One form per site — theme fills in the page name by itself
+
+You **do not** need a separate form per page, and you do not type anything extra: the theme does
+three things automatically to every Contact Form 7 form on the site.
+
+| Automatic behaviour | What you see |
+| --- | --- |
+| Adds a hidden field with the page name | Every enquiry carries the page it came from — no form per page |
+| Writes that line into the email | The Mail tab body ends with `Sent from page: Physiotherapy` on its own |
+| Pre-selects a matching dropdown option | The Physiotherapy page opens with *Physiotherapy* already chosen in "I'm interested in" |
+
+Rules that keep it predictable:
+
+- A page only gets a pre-selected option when its **title exactly matches an option** — `Physiotherapy`,
+  `Exercise Physiology`, `Occupational Therapy`, `Clinical Pilates`. Contact, Referrers, Location and
+  the homepage keep the neutral first option.
+- If a form already sets its own default (`default:…` inside the select), the theme leaves it alone.
+- To put the page name somewhere else in the email, type `[_bdy_source]` where you want it (subject
+  or body) — the theme sees it and does not add its own line.
+- Add a new service page later? Name the page exactly like the dropdown option and the pre-selection
+  starts working with no further setup.
+
+> Want a **completely different form on one page**? Give that page's hero its own card — the hero
+> block's *Card — …* rows — or send that one enquiry to a different address with CF7's own
+> [redirect/conditional settings]. For everything else, one form is enough.
+
+---
+
 ## Copying the shortcodes
 
 Each form's shortcode is shown at the top of its edit screen, e.g.

@@ -144,7 +144,25 @@ The card is dark, so its submit uses `class:btn class:btn--signal` (gold) instea
 > (per-page *Card — …* rows on the hero block), so that card keeps its editable fields and is not
 > replaced by the shortcode.
 
-## 8. Without the plugin
+## 8. Auto-fill — one form, every page
+
+One form covers the whole site. `inc/cf7-autofill.php` hooks Contact Form 7 so that every form gets:
+
+| Hook | Effect |
+| --- | --- |
+| `wpcf7_form_hidden_fields` | A hidden `_bdy_source` field holding the current page title |
+| `wpcf7_mail_components` | `Sent from page: [_bdy_source]` appended to the mail body once (skipped if the body already uses the field) |
+| `wpcf7_form_tag` | A `select` whose option matches the page title arrives pre-selected |
+
+So a *Physiotherapy* enquiry reads *Sent from page: Physiotherapy* in the inbox, and the dropdown on
+that page already says Physiotherapy. Nothing is stored in the theme and nothing needs configuring —
+remove a field in the plugin and the behaviour simply stops applying to it.
+
+Want a different form on one page? Use that page's hero *Card — …* rows for a bespoke card, or use
+CF7's own conditional mail/redirect per form. There is no per-page shortcode field on purpose: one
+form, page name attached, is less to maintain.
+
+## 9. Without the plugin
 
 Leave the shortcode empty and the design's own form is printed — it looks identical but only shows
 the success panel client-side; it does not send anything. That is the safety net so the page never
