@@ -70,6 +70,7 @@ if ( ! $bdy_panels ) {
 								isset( $bdy_row['panel_image'] ) ? $bdy_row['panel_image'] : '',
 								array(
 									'class'      => 'img-crop',
+									'sizes'      => '(min-width: 900px) 42vw, 100vw',
 									'fallback'   => 'hero-gym-bright.webp',
 									'decorative' => true,
 									'attr'       => array( 'style' => $bdy_crop ),

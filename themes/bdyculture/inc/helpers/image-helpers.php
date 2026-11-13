@@ -202,6 +202,21 @@ function bdy_image_html( $image, $args ) {
 	if ( $height ) {
 		$attr['height'] = $height;
 	}
+	// Focus/zoom photos sit in fixed frames and are displayed larger than their
+	// layout box (a CSS transform does not affect layout). A `sizes` value that
+	// only describes the box makes the browser download a file that is barely
+	// big enough, so the photo looks soft once it is scaled — aim ~2× the layout
+	// size, and never less than the zoom factor.
+	$bdy_zoom = bdy_image_zoom( $args['attr'] );
+	$bdy_crop = $bdy_zoom > 1 || ( is_array( $args['attr'] ) && ! empty( $args['attr']['style'] ) );
+
+	if ( $bdy_crop ) {
+		$bdy_factor = max( 2, $bdy_zoom );
+		$sizes      = ( '' === trim( (string) $sizes ) )
+			? ( $width ? min( $width, 1600 ) . 'px' : '1200px' )
+			: bdy_sizes_scale( $sizes, $bdy_factor );
+	}
+
 	if ( $sizes ) {
 		$attr['sizes'] = $sizes;
 	}
@@ -249,6 +264,80 @@ function bdy_image_html( $image, $args ) {
 	$output .= '>';
 
 	return $output;
+}
+
+/**
+ * Zoom factor carried by an image's inline style.
+ *
+ * Reads both shapes the theme emits: the `--s` custom property used by
+ * `.img-crop`, and a plain `transform: scale()` used on photos that are not
+ * cropped through that class.
+ *
+ * @param array $attr Extra attributes passed to bdy_image().
+ * @return float 1 when there is no zoom.
+ */
+function bdy_image_zoom( $attr ) {
+	if ( ! is_array( $attr ) || empty( $attr['style'] ) ) {
+		return 1;
+	}
+
+	$style = (string) $attr['style'];
+
+	if ( preg_match( '/--s\s*:\s*([0-9.]+)/', $style, $m ) ) {
+		return max( 1, (float) $m[1] );
+	}
+	if ( preg_match( '/scale\(\s*([0-9.]+)/', $style, $m ) ) {
+		return max( 1, (float) $m[1] );
+	}
+
+	return 1;
+}
+
+/**
+ * Multiply the layout widths inside a `sizes` attribute.
+ *
+ * Used so a zoomed photo asks for a file with enough real pixels instead of the
+ * smallest one that fits its (untransformed) layout box.
+ *
+ * @param string $sizes  e.g. "(min-width: 1100px) 46vw, 100vw".
+ * @param float  $factor Multiplier.
+ * @return string
+ */
+function bdy_sizes_scale( $sizes, $factor ) {
+	$factor  = max( 1, (float) $factor );
+	$entries = array();
+
+	foreach ( explode( ',', (string) $sizes ) as $entry ) {
+		$depth = 0;
+		$cut   = 0;
+
+		// The width is the last space-separated token outside a media
+		// condition, so "(min-width: 1100px) 46vw" keeps its 1100px intact.
+		for ( $i = 0, $len = strlen( $entry ); $i < $len; $i++ ) {
+			if ( '(' === $entry[ $i ] ) {
+				$depth++;
+			} elseif ( ')' === $entry[ $i ] ) {
+				$depth--;
+			} elseif ( 0 === $depth && ' ' === $entry[ $i ] ) {
+				$cut = $i + 1;
+			}
+		}
+
+		$head = substr( $entry, 0, $cut );
+		$tail = trim( substr( $entry, $cut ) );
+
+		if ( preg_match( '/^([0-9]*\.?[0-9]+)(vw|px)$/', $tail, $m ) ) {
+			$value = (float) $m[1] * $factor;
+			if ( 'vw' === $m[2] ) {
+				$value = min( 100, $value );
+			}
+			$tail = ( floor( $value ) == $value ? (string) (int) $value : (string) round( $value, 1 ) ) . $m[2];
+		}
+
+		$entries[] = $head . $tail;
+	}
+
+	return implode( ',', $entries );
 }
 
 /**

@@ -56,6 +56,7 @@ $bdy_inset    = bdy_crop_style(
 					array(
 						'class'      => 'img-crop',
 						'fallback'   => $bdy_d['home_continuum_inset'],
+						'sizes'      => '300px',
 						'decorative' => true,
 						'attr'       => array( 'style' => $bdy_inset ),
 					)

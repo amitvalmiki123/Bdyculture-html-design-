@@ -40,6 +40,7 @@ if ( ! $bdy_images ) {
 					array(
 						'class'      => 'img-crop',
 						'fallback'   => 'hero-gym-bright.webp',
+						'sizes'      => '420px',
 						'decorative' => true,
 						'attr'       => array( 'style' => $bdy_crop ),
 					)

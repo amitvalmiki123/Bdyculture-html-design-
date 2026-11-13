@@ -138,6 +138,12 @@ Zoom is clamped between **1** (no zoom) and **4**, so a stray `0` can never blan
 framed photo uses `object-fit: cover`, so zooming in is how you remove unwanted edges — the frame
 itself never resizes.
 
+**Clarity:** a CSS zoom does not change the layout box, so the browser would normally download only
+the smallest file that fits the *box* and the photo would look soft once scaled. The theme therefore
+asks for **about twice** the layout size for every framed photo (and never less than the zoom
+factor) — upload the original file (2000 px or more on the long edge) rather than a resized copy, and
+the upload will look exactly like the design photo.
+
 ---
 
 ## 6. Adding a page that is not in the design
@@ -184,4 +190,5 @@ copied stack. The shipped stack for the old slug is never modified.
 | Band missing on one page only | `page_contact_show` / `page_map_show` is off | Tab 2 → switch it back on. |
 | Band order wrong | Both bands sit after the blocks; the numbers only sort them against each other | Set `900` / `910`. |
 | Focus / zoom appears to do nothing | The value is not a length or the image is already at its frame ratio | Type numbers with or without `%` (`70 60 1.9`), not words. Zoom below `1` is ignored. |
+| Uploaded photo looks softer than the design photo | The uploaded file is smaller than the shipped original (e.g. saved from the live site at 960 px) | Re-upload the original: 2000 px+ on the long edge. The theme already requests ~2× the frame size. |
 | New page has a plain hero and body text | Its slug has no shipped design | That is the intended fallback — build it with blocks from tab 1. |
