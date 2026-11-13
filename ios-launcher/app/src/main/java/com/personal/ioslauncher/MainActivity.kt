@@ -3,7 +3,6 @@ package com.personal.ioslauncher
 import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
-import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.Canvas
 import android.graphics.Paint
@@ -11,11 +10,12 @@ import android.graphics.RadialGradient
 import android.graphics.Shader
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.EditText
 import android.widget.FrameLayout
@@ -25,6 +25,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
+import android.text.format.DateFormat
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -38,8 +39,26 @@ class MainActivity : Activity() {
     private lateinit var dots: LinearLayout
     private lateinit var apps: List<AppEntry>
     private val white = 0xFFFFFFFF.toInt()
-    private val mutedWhite = 0xDFFFFFFF.toInt()
     private var pageWidth = 0
+    private lateinit var clockText: TextView
+    private val clockHandler = Handler(Looper.getMainLooper())
+    private val clockTicker = object : Runnable {
+        override fun run() {
+            if (::clockText.isInitialized) clockText.text = DateFormat.getTimeFormat(this@MainActivity).format(Date())
+            clockHandler.postDelayed(this, 30_000L)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        clockHandler.removeCallbacks(clockTicker)
+        clockTicker.run()
+    }
+
+    override fun onPause() {
+        clockHandler.removeCallbacks(clockTicker)
+        super.onPause()
+    }
 
     data class AppEntry(val label: String, val packageName: String, val icon: android.graphics.drawable.Drawable)
 
@@ -81,33 +100,48 @@ class MainActivity : Activity() {
         root.addView(WallpaperView(), FrameLayout.LayoutParams(-1, -1))
         val content = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            setPadding(dp(18), dp(38), dp(18), dp(28))
+            setPadding(dp(18), dp(38), dp(18), dp(22))
         }
         root.addView(content, FrameLayout.LayoutParams(-1, -1))
 
         val header = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             gravity = Gravity.CENTER
-            background = rounded(0x2AFFFFFF, 28)
-            setPadding(dp(18), dp(12), dp(18), dp(12))
+            background = glass(34)
+            elevation = dp(8).toFloat()
+            setPadding(dp(18), dp(13), dp(18), dp(13))
         }
         val date = TextView(this).apply {
-            text = SimpleDateFormat("EEEE, MMMM d", Locale.getDefault()).format(Date())
-            setTextColor(mutedWhite)
-            textSize = 14f
+            text = SimpleDateFormat("EEEE, d MMMM", Locale.getDefault()).format(Date())
+            setTextColor(0xEFFFFFFF.toInt())
+            textSize = 15f
+            letterSpacing = 0.035f
             gravity = Gravity.CENTER
+            setShadowLayer(8f, 0f, dp(2).toFloat(), 0x66000000)
         }
-        val welcome = TextView(this).apply {
-            text = "Your day, at a glance"
+        clockText = TextView(this).apply {
+            text = DateFormat.getTimeFormat(this@MainActivity).format(Date())
             setTextColor(white)
-            textSize = 23f
-            setTypeface(typeface, android.graphics.Typeface.BOLD)
+            textSize = 76f
+            letterSpacing = -0.055f
+            setTypeface(android.graphics.Typeface.create("sans-serif-thin", android.graphics.Typeface.NORMAL))
             gravity = Gravity.CENTER
-            setPadding(0, dp(3), 0, 0)
+            includeFontPadding = false
+            setShadowLayer(16f, 0f, dp(4).toFloat(), 0x55000000)
+        }
+        val focusChip = TextView(this).apply {
+            text = "✦   PERSONAL FOCUS"
+            setTextColor(0xEFFFFFFF.toInt())
+            textSize = 10f
+            letterSpacing = 0.11f
+            gravity = Gravity.CENTER
+            background = glass(50, 0x22FFFFFF)
+            setPadding(dp(14), dp(7), dp(14), dp(7))
         }
         header.addView(date)
-        header.addView(welcome)
-        content.addView(header, LinearLayout.LayoutParams(-1, dp(82)))
+        header.addView(clockText, LinearLayout.LayoutParams(-1, dp(94)))
+        header.addView(focusChip, LinearLayout.LayoutParams(-2, dp(30)).apply { topMargin = dp(3) })
+        content.addView(header, LinearLayout.LayoutParams(-1, dp(194)))
 
         pager = HorizontalScrollView(this).apply {
             isHorizontalScrollBarEnabled = false
@@ -131,7 +165,8 @@ class MainActivity : Activity() {
         val dock = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER
-            background = rounded(0x42FFFFFF, 30)
+            background = glass(30, 0x38FFFFFF)
+            elevation = dp(8).toFloat()
             setPadding(dp(8), dp(8), dp(8), dp(8))
         }
         val dockApps = chooseDockApps()
@@ -250,7 +285,7 @@ class MainActivity : Activity() {
     private fun openDrawer() {
         val dialog = Dialog(this)
         val shell = FrameLayout(this).apply {
-            background = rounded(0xF01A2D4A.toInt(), 32)
+            background = glass(32, 0xF0223554.toInt())
             setPadding(dp(20), dp(18), dp(20), dp(12))
         }
         val layout = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL }
@@ -268,7 +303,7 @@ class MainActivity : Activity() {
             setTextColor(white)
             textSize = 16f
             singleLine = true
-            background = rounded(0x32FFFFFF, 18)
+            background = glass(18, 0x2EFFFFFF)
             setPadding(dp(16), 0, dp(16), 0)
         }
         layout.addView(search, LinearLayout.LayoutParams(-1, dp(48)).apply { topMargin = dp(4); bottomMargin = dp(12) })
@@ -319,6 +354,14 @@ class MainActivity : Activity() {
     private fun rounded(color: Int, radiusDp: Int) = GradientDrawable().apply {
         setColor(color)
         cornerRadius = dp(radiusDp).toFloat()
+    }
+
+    private fun glass(radiusDp: Int, tint: Int = 0x38FFFFFF): GradientDrawable = GradientDrawable(
+        GradientDrawable.Orientation.TOP_BOTTOM,
+        intArrayOf(tint, 0x18FFFFFF)
+    ).apply {
+        cornerRadius = dp(radiusDp).toFloat()
+        setStroke(dp(1), 0x66FFFFFF)
     }
 
     private fun dp(value: Int) = (value * resources.displayMetrics.density).toInt()

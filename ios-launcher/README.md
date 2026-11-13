@@ -1,6 +1,6 @@
 # iOS Style Launcher (Android)
 
-A personal-use Android HOME launcher with an iPhone-inspired home screen: a soft gradient wallpaper, app grid, translucent dock, swipeable pages, and a searchable App Library. It uses installed Android app icons and opens the selected app; long-press an icon to open its Android app settings.
+A personal-use Android HOME launcher with an iOS 16 lock-screen-inspired home screen: a live oversized clock/date card, translucent glass-style panels and dock, soft gradient wallpaper, app grid, swipeable pages, and a searchable App Library. It uses installed Android app icons and opens the selected app; long-press an icon to open its Android app settings. The Android system lock screen itself is not replaced; this look is shown on the launcher home screen.
 
 ## Build
 
