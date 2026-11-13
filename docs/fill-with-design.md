@@ -10,7 +10,13 @@ change.
 
 ---
 
-## What it fills
+## "My blocks are empty but the page looks finished"
+
+That is the whole point of the fallback: the page renders the shipped design while the fields stay blank, so
+nothing has to be copied by hand on day one. A blue notice sits at the top of every page edit screen (and on
+Pages → All Pages) with a **Fill with design content** button — press it once and the blocks stop being empty.
+
+---
 
 | Where | What appears in the fields |
 | --- | --- |

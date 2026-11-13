@@ -120,10 +120,10 @@ Text is only rewritten if it uses a token — free-form prose you type yourself 
 * **Inner pages** — Pages → *(page)* → **1. Page sections**. The page is a list of blocks; open a block to edit
   its tag, heading, copy, buttons, media, panel, checklist or question rows. Blocks can be dragged into a new
   order, duplicated or removed, and *Add section* offers every design section. Tab **2. Shared bands** holds the
-  show/order switches for the contact and map bands, whose copy is written once in Theme Settings; tab
-  **3. Fallback hero** is only used by a page with no blocks and no shipped design. A page with no blocks at all
-  renders the block set shipped for its slug in `defaults-pages.php`, so the site is never blank. Full walkthrough:
-  [`inner-pages-guide.md`](inner-pages-guide.md).
+  show/order switches for the contact and map bands, whose copy is written once in Theme Settings. A page with no
+  blocks at all renders the block set shipped for its slug in `defaults-pages.php`, so the site is never blank —
+  press **BDYCULTURE → Fill with design content** once to copy that design into the fields.
+  Full walkthrough: [`inner-pages-guide.md`](inner-pages-guide.md).
 * **Blog** — the posts page lists your published articles (`home.php`); each article renders through
   `single.php` with meta (date, reading time, category), sidebar cards and the article CTA. Publish a post and
   it appears in the grid automatically — the shipped articles are the fallback used until then.

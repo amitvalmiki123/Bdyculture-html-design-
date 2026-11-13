@@ -420,6 +420,89 @@ function bdy_seed_run( $overwrite = false ) {
 }
 
 /**
+ * URL of the fill screen.
+ *
+ * @return string
+ */
+function bdy_seed_url() {
+	if ( function_exists( 'menu_page_url' ) ) {
+		$url = menu_page_url( 'bdyculture-seed', false );
+
+		if ( $url ) {
+			return $url;
+		}
+	}
+
+	$page = function_exists( 'acf_add_options_page' ) ? 'admin.php' : 'tools.php';
+
+	return admin_url( $page . '?page=bdyculture-seed' );
+}
+
+/**
+ * Point at the fill screen while the fields are still empty.
+ *
+ * A fresh page shows the shipped design, so the block field looks broken
+ * ("empty, but the page renders"). This notice says why and offers the fix,
+ * on the page edit screen and on the Pages list.
+ *
+ * @return void
+ */
+function bdy_seed_notice() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+
+	$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+
+	if ( ! $screen || 'page' !== $screen->post_type ) {
+		return;
+	}
+
+	$message = '';
+	$url     = bdy_seed_url();
+
+	if ( 'post' === $screen->base ) {
+		$post_id = isset( $_GET['post'] ) ? (int) $_GET['post'] : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read only.
+
+		if ( ! $post_id || '' !== (string) get_post_meta( $post_id, 'page_sections', true ) ) {
+			return;
+		}
+
+		$message = __( 'This page is showing the shipped design because its fields are still empty. One click copies the design into the blocks and settings so you can edit it.', 'bdyculture' );
+	} elseif ( 'edit' === $screen->base ) {
+		$empty = false;
+
+		foreach ( bdy_seed_pages() as $slug => $title ) {
+			$page = get_page_by_path( $slug );
+
+			if ( $page && '' === (string) get_post_meta( (int) $page->ID, 'page_sections', true ) ) {
+				$empty = true;
+				break;
+			}
+		}
+
+		if ( ! $empty ) {
+			return;
+		}
+
+		$message = __( 'Some pages are still showing the shipped design from fallback copy, so their blocks look empty. One click fills every page and Site Settings field with that copy.', 'bdyculture' );
+	}
+
+	if ( '' === $message ) {
+		return;
+	}
+	?>
+	<div class="notice notice-info">
+		<p>
+			<?php echo esc_html( $message ); ?>
+			<a class="button button-primary" style="margin-left:8px" href="<?php echo esc_url( $url ); ?>"><?php esc_html_e( 'Fill with design content', 'bdyculture' ); ?></a>
+		</p>
+	</div>
+	<?php
+}
+add_action( 'admin_notices', 'bdy_seed_notice' );
+
+/**
  * Admin screen: BDYCULTURE → Fill with design content.
  *
  * @return void
@@ -436,7 +519,7 @@ function bdy_seed_menu() {
 		'bdy_seed_screen'
 	);
 }
-add_action( 'admin_menu', 'bdy_seed_menu', 20 );
+add_action( 'admin_menu', 'bdy_seed_menu', 99 );
 
 /**
  * Print the screen.

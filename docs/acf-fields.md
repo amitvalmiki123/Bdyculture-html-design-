@@ -9,7 +9,7 @@ unique.
 | --- | --- | --- | --- |
 | Site Settings — clinic, shared bands, header & footer | `group_bdy_global` | `options_page` == `bdyculture-settings` | Clinic details, Header & navigation, Enquiry card, Contact band, Map band, Footer, Mobile action bar |
 | Home page — all sections | `group_bdy_home` | `page_type` == `front_page` | 1. Hero, 2. Marquee, 3. Services, 4. More than a consulting room, 5. Photo ribbon, 6. Visit us, 7. What to expect, 8. Funding, 9. Home visits & refer, 10. FAQ, 11. Contact band & map (shared) |
-| Page — sections, shared bands & fallback | `group_bdy_page` | `post_type` == `page` AND `page_type` != `front_page` | 1. Page sections, 2. Shared bands (contact & map), 3. Fallback hero |
+| Page — design blocks & shared bands | `group_bdy_page` | `post_type` == `page` AND `page_type` != `front_page` | 1. Page sections, 2. Shared bands (contact & map) |
 
 ## Site Settings — clinic, shared bands, header & footer
 
@@ -274,7 +274,7 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | Show this section | `home_map_show` | true_false | — |
 | Order | `home_map_order` | number | Lower numbers render first. |
 
-## Page — sections, shared bands & fallback
+## Page — design blocks & shared bands
 
 Group key: `group_bdy_page`  ·  location: `post_type` == `page` AND `page_type` != `front_page`
 
@@ -289,12 +289,6 @@ Group key: `group_bdy_page`  ·  location: `post_type` == `page` AND `page_type`
 | Order | `page_contact_order` | number | Lower numbers render first. |
 | Show this section | `page_map_show` | true_false | — |
 | Order | `page_map_order` | number | Lower numbers render first. |
-| **3. Fallback hero** | — | tab | — |
-| _note_ | `bdy_msg_page_fallback` | message | Only used by a page that has no blocks and no shipped design — the H1 is the page title, then the editor content below. |
-| Eyebrow tag | `page_hero_tag` | text | — |
-| Lead image | `page_hero_image` | image | returns: array |
-| Intro | `page_hero_intro` | textarea | — |
-| Lead image focal point | `page_hero_image_position` | text | CSS object-position, e.g. 40% 60%. |
 
 ### Blocks of `page_sections`
 

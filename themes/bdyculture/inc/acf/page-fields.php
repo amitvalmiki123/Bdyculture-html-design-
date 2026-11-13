@@ -464,29 +464,10 @@ function bdy_acf_page_fields() {
 	$fields   = array_merge( $fields, bdy_acf_layout_fields( 'page', 'contact', 900 ) );
 	$fields   = array_merge( $fields, bdy_acf_layout_fields( 'page', 'map', 910 ) );
 
-	$fields[] = bdy_acf_tab( 'page_fallback', __( '3. Fallback hero', 'bdyculture' ) );
-	$fields[] = bdy_acf_message(
-		'page_fallback',
-		__( 'Only used by a page that has no blocks and no shipped design — the H1 is the page title, then the editor content below.', 'bdyculture' )
-	);
-	$fields[] = bdy_acf_field( 'page_hero_tag', __( 'Eyebrow tag', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
-	$fields[] = bdy_acf_image( 'page_hero_image', __( 'Lead image', 'bdyculture' ), array( 'wrapper' => array( 'width' => '50' ) ) );
-	$fields[] = bdy_acf_textarea( 'page_hero_intro', __( 'Intro', 'bdyculture' ), array( 'rows' => 3 ) );
-	$fields[] = bdy_acf_field(
-		'page_hero_image_position',
-		__( 'Lead image focal point', 'bdyculture' ),
-		'text',
-		array(
-			'placeholder'  => '50% 50%',
-			'wrapper'      => array( 'width' => '50' ),
-			'instructions' => __( 'CSS object-position, e.g. 40% 60%.', 'bdyculture' ),
-		)
-	);
-
 	acf_add_local_field_group(
 		array(
 			'key'                   => 'group_bdy_page',
-			'title'                 => __( 'Page — sections, shared bands & fallback', 'bdyculture' ),
+			'title'                 => __( 'Page — design blocks & shared bands', 'bdyculture' ),
 			'fields'                => $fields,
 			'location'              => array(
 				array(

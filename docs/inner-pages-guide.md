@@ -10,11 +10,13 @@ reordering blocks on that page.
 | --- | --- |
 | **1. Page sections** | The page's own content. One block per band, top to bottom. |
 | **2. Shared bands (contact & map)** | On/off + order for the two bands whose copy lives in Theme Settings. |
-| **3. Fallback hero** | Only used by a page with no blocks and no shipped design. |
 
 There are no SEO fields in the page group — the SEO plugin manages titles and descriptions.
 
-> **Fields look empty on a fresh install?** That is the fallback design, not missing content. Run **BDYCULTURE → Fill with design content** once to copy the shipped copy into the blocks — [`fill-with-design.md`](fill-with-design.md).
+> **Fields look empty on a fresh install?** That is the fallback design, not missing content: the page renders
+> from `defaults-pages.php` while the blocks stay blank. A notice at the top of the page says so — press
+> **Fill with design content** to copy that copy into the blocks. See
+> [`fill-with-design.md`](fill-with-design.md).
 
 ---
 
