@@ -49,10 +49,28 @@ function bdy_acf_global_fields() {
 				bdy_acf_field( 'clinic_address_2', __( 'Address line 2', 'bdyculture' ), 'text' ),
 				bdy_acf_field( 'clinic_booking_url', __( 'Online booking URL (Nookal)', 'bdyculture' ), 'url' ),
 				bdy_acf_field( 'clinic_directions_url', __( 'Directions URL', 'bdyculture' ), 'url' ),
-				bdy_acf_field( 'clinic_hours', __( 'Opening hours', 'bdyculture' ), 'text' ),
-				bdy_acf_textarea( 'clinic_tagline', __( 'Clinic tagline', 'bdyculture' ) ),
+				bdy_acf_field(
+					'clinic_hours',
+					__( 'Opening hours', 'bdyculture' ),
+					'text',
+					array(
+						'instructions' => __( 'One line, e.g. Mon–Fri 7am–7pm · Sat 7am–1pm. Prints wherever you type {hours}.', 'bdyculture' ),
+					)
+				),
+				bdy_acf_textarea(
+					'clinic_tagline',
+					__( 'Clinic tagline', 'bdyculture' ),
+					array( 'instructions' => __( 'One sentence under the logo. Also used as the footer tagline when that field is empty.', 'bdyculture' ) )
+				),
 				bdy_acf_image( 'clinic_logo', __( 'Header logo (dark)', 'bdyculture' ), array( 'wrapper' => array( 'width' => '50' ) ) ),
-				bdy_acf_image( 'clinic_logo_light', __( 'Footer logo (light)', 'bdyculture' ), array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_image(
+					'clinic_logo_light',
+					__( 'Footer logo (light)', 'bdyculture' ),
+					array(
+						'wrapper'      => array( 'width' => '50' ),
+						'instructions' => __( 'White version of the logo. Used in the footer when no Footer logo is chosen.', 'bdyculture' ),
+					)
+				),
 
 				bdy_acf_tab( 'header', __( 'Header & navigation', 'bdyculture' ) ),
 				bdy_acf_message(
@@ -156,6 +174,14 @@ function bdy_acf_global_fields() {
 				bdy_acf_textarea( 'footer_tagline', __( 'Footer tagline', 'bdyculture' ) ),
 				bdy_acf_field( 'footer_cta_text', __( 'Footer button label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
 				bdy_acf_field( 'footer_cta_url', __( 'Footer button link', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_field(
+					'footer_copyright',
+					__( 'Copyright line', 'bdyculture' ),
+					'text',
+					array( 'instructions' => __( 'Left side of the bottom bar. Write the © year as text — it is not updated automatically.', 'bdyculture' ) )
+				),
+				bdy_acf_field( 'footer_privacy_text', __( 'Privacy link label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_field( 'footer_privacy_url', __( 'Privacy link URL', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
 				bdy_acf_message(
 					'footer_nav_note',
 					'<strong>' . __( 'Footer link columns live in Appearance → Menus', 'bdyculture' ) . '</strong><br>' . __( 'Assign one menu to “Footer — services column” and one to “Footer — quick links column”. The column heading is the menu name; items can be pages, <code>tel:</code> or <code>mailto:</code> links. The “Visit us” column is built from Clinic details.', 'bdyculture' )

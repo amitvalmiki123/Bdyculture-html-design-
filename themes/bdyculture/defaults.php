@@ -205,7 +205,7 @@ function bdy_defaults_all() {
 				array( 'contact_list_label' => 'Visit us', 'contact_list_value' => '{address_html}', 'contact_list_placeholder' => false ),
 				array( 'contact_list_label' => 'General enquiries', 'contact_list_value' => '{email_link}', 'contact_list_placeholder' => false ),
 				array( 'contact_list_label' => 'Referrals', 'contact_list_value' => '{referrals_email_link}', 'contact_list_placeholder' => false ),
-				array( 'contact_list_label' => 'Opening hours', 'contact_list_value' => 'Placeholder — client to confirm clinic hours', 'contact_list_placeholder' => true ),
+				array( 'contact_list_label' => 'Opening hours', 'contact_list_value' => '{hours}', 'contact_list_placeholder' => true ),
 			),
 			'contact_btn_text'  => 'Book Online with Nookal',
 			'contact_btn_url'   => 'https://book.nookal.com/bookings/book/EA59F8c8-2593-a0ee-Fbca-FEaEb0d0beE6/select',

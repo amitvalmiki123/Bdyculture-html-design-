@@ -27,10 +27,10 @@ Group key: `group_bdy_global`  ·  location: `options_page` == `bdyculture-setti
 | Address line 2 | `clinic_address_2` | text | — |
 | Online booking URL (Nookal) | `clinic_booking_url` | url | — |
 | Directions URL | `clinic_directions_url` | url | — |
-| Opening hours | `clinic_hours` | text | — |
-| Clinic tagline | `clinic_tagline` | textarea | — |
+| Opening hours | `clinic_hours` | text | One line, e.g. Mon–Fri 7am–7pm · Sat 7am–1pm. Prints wherever you type {hours}. |
+| Clinic tagline | `clinic_tagline` | textarea | One sentence under the logo. Also used as the footer tagline when that field is empty. |
 | Header logo (dark) | `clinic_logo` | image | returns: array |
-| Footer logo (light) | `clinic_logo_light` | image | returns: array |
+| Footer logo (light) | `clinic_logo_light` | image | White version of the logo. Used in the footer when no Footer logo is chosen.; returns: array |
 | **Header & navigation** | — | tab | — |
 | _note_ | `bdy_msg_header_nav_note` | message | <strong>Navigation lives in Appearance → Menus</strong><br>Assign a menu to “Header — primary navigation”. Sub-items bec |
 | "Enquire" button label | `header_enquire_text` | text | — |
@@ -86,6 +86,9 @@ Group key: `group_bdy_global`  ·  location: `options_page` == `bdyculture-setti
 | Footer tagline | `footer_tagline` | textarea | — |
 | Footer button label | `footer_cta_text` | text | — |
 | Footer button link | `footer_cta_url` | text | — |
+| Copyright line | `footer_copyright` | text | Left side of the bottom bar. Write the © year as text — it is not updated automatically. |
+| Privacy link label | `footer_privacy_text` | text | — |
+| Privacy link URL | `footer_privacy_url` | text | — |
 | _note_ | `bdy_msg_footer_nav_note` | message | <strong>Footer link columns live in Appearance → Menus</strong><br>Assign one menu to “Footer — services column” and one |
 | Credit line | `footer_credit` | text | Use {credit_link} where the linked agency name should appear. |
 | Credit — agency name | `footer_credit_label` | text | — |

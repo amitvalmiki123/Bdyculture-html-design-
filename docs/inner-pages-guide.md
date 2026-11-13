@@ -63,7 +63,7 @@ its own copy, never the header, footer or bands.
 | **Post grid** | Filter chips + article cards. |
 
 All text blocks accept the tokens from
-[`theme-settings-guide.md`](theme-settings-guide.md#3-tokens-you-can-type-into-any-text-field)
+[`theme-settings-guide.md`](theme-settings-guide.md#tokens-you-can-type-into-any-text-field)
 (`{phone_link}`, `{address_html}`, …), so phone numbers and addresses never go stale.
 
 ---

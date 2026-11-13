@@ -13,8 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $bdy_global    = bdy_defaults( 'global' );
 $bdy_cols      = bdy_footer_columns( $bdy_global['footer_columns'] );
-$bdy_logo      = bdy_option( 'footer_logo' );
-$bdy_tagline   = bdy_html( 'footer_tagline', $bdy_global['footer_tagline'], 'option' );
+$bdy_logo      = bdy_option( 'footer_logo', bdy_option( 'clinic_logo_light' ) );
+$bdy_tagline   = bdy_html( 'footer_tagline', bdy_string( 'clinic_tagline', $bdy_global['footer_tagline'], 'option' ), 'option' );
 $bdy_book      = bdy_booking_url();
 $bdy_cta_text  = bdy_string( 'footer_cta_text', bdy_string( 'header_book_text', $bdy_global['header_book_text'], 'option' ), 'option' );
 $bdy_cta_url   = bdy_string( 'footer_cta_url', '', 'option' );

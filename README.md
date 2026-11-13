@@ -22,7 +22,7 @@ Upload `dist/bdyculture-parent.zip`, then `dist/bdyculture.zip`, activate the ch
 | --- | --- |
 | [`docs/content-audit.md`](docs/content-audit.md) | Phase-1 content audit: every design element → its ACF field → its PHP fallback |
 | [`docs/acf-fields.md`](docs/acf-fields.md) | All 3 field groups, 226 fields, 16 repeaters, tabs, locations, defaults |
-| [`docs/theme-settings-guide.md`](docs/theme-settings-guide.md) | Everything that repeats — phone, address, header, footer and the two shared bands — edited once in BDYCULTURE → Theme Settings |
+| [`docs/theme-settings-guide.md`](docs/theme-settings-guide.md) | Site Settings setup guide — every tab in order, what to type in each field, what it affects, plus a 25-minute first-run checklist |
 | [`docs/inner-pages-guide.md`](docs/inner-pages-guide.md) | How each inner page is built from blocks: ordering, show/hide, the shared bands, images, adding a page |
 | [`docs/contact-form-7.md`](docs/contact-form-7.md) | Both forms (contact band + enquiry card) in Contact Form 7 — ready-made code: [`cf7-contact-form.txt`](docs/cf7-contact-form.txt), [`cf7-enquiry-form.txt`](docs/cf7-enquiry-form.txt) |
 | [`docs/install.md`](docs/install.md) | Requirements, installation, first-run checklist, editing guide, theme structure |

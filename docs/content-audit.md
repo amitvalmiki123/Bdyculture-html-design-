@@ -61,9 +61,9 @@ so changing the number once updates every button, link, FAQ answer, footer line 
 | mobile bar call text | Call | `mobile_bar_call_text` | text |
 | mobile bar book text | Book Online | `mobile_bar_book_text` | text |
 | footer tagline | Allied health and rehabilitation in Chermside, Brisbane. | `footer_tagline` | textarea |
-| footer copyright | © 2026 BDYCULTURE. All rights reserved. | `footer_copyright` | — |
-| footer privacy text | Privacy Policy | `footer_privacy_text` | — |
-| footer privacy url | /privacy-policy/ | `footer_privacy_url` | — |
+| footer copyright | © 2026 BDYCULTURE. All rights reserved. | `footer_copyright` | text |
+| footer privacy text | Privacy Policy | `footer_privacy_text` | text |
+| footer privacy url | /privacy-policy/ | `footer_privacy_url` | text |
 | footer credit | Web Design by {credit_link} | `footer_credit` | text |
 | footer credit label | Digital Movement | `footer_credit_label` | text |
 | footer credit url | https://www.digitalmovement.com.au/ | `footer_credit_url` | url |

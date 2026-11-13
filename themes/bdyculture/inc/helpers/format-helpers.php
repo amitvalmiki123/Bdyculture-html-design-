@@ -120,6 +120,17 @@ function bdy_clinic_email() {
 }
 
 /**
+ * Clinic opening hours as plain text.
+ *
+ * @return string
+ */
+function bdy_hours() {
+	$global = bdy_defaults( 'global' );
+
+	return (string) bdy_option( 'clinic_hours', $global['clinic_hours'] );
+}
+
+/**
  * Referrals email.
  *
  * @return string
@@ -197,6 +208,7 @@ function bdy_tokens( $html, $links = true ) {
 			'{phone_tel}'            => esc_attr( bdy_phone_number() ),
 			'{address}'              => esc_html( bdy_address_plain() ),
 			'{address_html}'         => bdy_address_html(),
+			'{hours}'                => esc_html( bdy_hours() ),
 			'{credit_link}'          => esc_html( bdy_credit_label() ),
 			'{privacy}'              => esc_html( bdy_privacy_text() ),
 			'{privacy_link}'         => esc_html( bdy_privacy_text() ),
@@ -215,6 +227,7 @@ function bdy_tokens( $html, $links = true ) {
 		'{phone_tel}'            => esc_attr( bdy_phone_number() ),
 		'{address}'              => esc_html( bdy_address_plain() ),
 		'{address_html}'         => bdy_address_html(),
+		'{hours}'                => esc_html( bdy_hours() ),
 		'{credit_link}'          => bdy_credit_html(),
 		'{privacy}'              => esc_html( bdy_privacy_text() ),
 		'{privacy_link}'         => bdy_privacy_html(),
