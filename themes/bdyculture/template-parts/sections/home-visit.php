@@ -20,10 +20,10 @@ $bdy_main = bdy_image(
 	array(
 		'fallback' => 'shopfront-signage-chermside.jpg',
 		'alt'      => bdy_string( 'home_visit_main_alt', $bdy_d['home_visit_main_alt'] ),
-		'class'    => 'visit__photo',
+		'class'    => 'img-crop',
 		'sizes'    => '(min-width: 1100px) 46vw, 100vw',
 		'attr'     => array(
-			'style' => bdy_focus_style(
+			'style' => bdy_crop_style(
 				bdy_string( 'home_visit_main_x', $bdy_d['home_visit_main_x'] ),
 				bdy_string( 'home_visit_main_y', $bdy_d['home_visit_main_y'] ),
 				bdy_string( 'home_visit_main_scale', $bdy_d['home_visit_main_scale'] )

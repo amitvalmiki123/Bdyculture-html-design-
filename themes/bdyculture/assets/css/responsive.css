@@ -136,7 +136,7 @@
   .split { grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr); gap: clamp(48px, 6vw, 112px); }
   .split--rev { grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); }
   .split__media { aspect-ratio: 4 / 5; }
-  .split__media:hover .img-crop { transform: scale(calc(var(--s, 1) * 1.05)); }
+  .split__media:hover .img-crop { transform: scale(1.05); }
 }
 @media (min-width: 600px) {
   .svc-grid, .feature-grid, .post-grid { grid-template-columns: 1fr 1fr; }

@@ -120,7 +120,6 @@ under it and the shortcode. Ready-made form code that matches the design:
 
 | Where | Suggested size | Notes |
 | --- | --- | --- |
-| Hero lead image (tab 3) | 1600 × 1000 | Only for the fallback hero. |
 | Split block image | 1200 × 900 | Portrait-ish crops survive best; set *Focus & zoom* if the subject is off-centre. |
 | Homepage — consulting-room photo & map inset, ribbon, cards, Visit us photo | as shipped | Each has its own *Photo focus — X / Y* + *Photo zoom*, so an upload re-frames exactly like the design photo. |
 | Suburb / feature icons | — | Chosen from the icon dropdown, no upload. |
@@ -146,11 +145,20 @@ Zoom is clamped between **1** (no zoom) and **4**, so a stray `0` can never blan
 framed photo uses `object-fit: cover`, so zooming in is how you remove unwanted edges — the frame
 itself never resizes.
 
-**Clarity:** a CSS zoom does not change the layout box, so the browser would normally download only
-the smallest file that fits the *box* and the photo would look soft once scaled. The theme therefore
-asks for **about twice** the layout size for every framed photo (and never less than the zoom
-factor) — upload the original file (2000 px or more on the long edge) rather than a resized copy, and
-the upload will look exactly like the design photo.
+**Clarity.** Zoomed photos stay sharp for three reasons:
+
+1. **No CSS `transform` on the photo.** The image is painted at the size it is displayed at, so the
+   browser never upscales a bitmap it rasterised at the smaller layout size. Focus and zoom come from
+   the painted box plus `object-position`, not from `scale()`.
+2. **The browser is told the real displayed size.** `sizes` describes the box *times the zoom*, so a
+   retina screen downloads a file with enough pixels instead of the smallest one that fits the box.
+3. **Uploads keep their full resolution.** WordPress normally shrinks anything wider than 2560 px and
+   stores that as the "full" size — a hard ceiling on sharpness. The theme switches that off, so the
+   original you upload is the file the browser gets.
+
+Upload the original (2000 px or more on the long edge) rather than a resized copy, and a zoomed frame
+looks exactly like the design photo. Only the fixed frames listed above paint this way; photos dropped
+into ordinary rich text keep normal scaling.
 
 ---
 

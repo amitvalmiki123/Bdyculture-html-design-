@@ -34,10 +34,11 @@ $bdy_inset    = bdy_crop_style(
 				array(
 					'fallback' => $bdy_d['home_continuum_photo'],
 					'alt'      => $bdy_alt,
+					'class'    => 'img-crop',
 					'sizes'    => '(min-width: 1100px) 46vw, 100vw',
 					'srcset'   => 'gym-chermside-960.jpg 960w, gym-chermside-1920.jpg 1920w',
 					'attr'     => array(
-						'style' => bdy_focus_style(
+						'style' => bdy_crop_style(
 							bdy_string( 'home_continuum_photo_x', $bdy_d['home_continuum_photo_x'] ),
 							bdy_string( 'home_continuum_photo_y', $bdy_d['home_continuum_photo_y'] ),
 							bdy_string( 'home_continuum_photo_scale', $bdy_d['home_continuum_photo_scale'] )

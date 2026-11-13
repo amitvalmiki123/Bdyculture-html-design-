@@ -95,3 +95,19 @@ function bdy_cf7_autop() {
 	return false;
 }
 add_filter( 'wpcf7_autop_or_not', 'bdy_cf7_autop' );
+
+/**
+ * Keep uploaded photos at full resolution.
+ *
+ * WordPress scales any upload wider than 2560 px down and stores that file as
+ * the "full" size. The design's photo frames zoom into an image (a CSS scale
+ * does not change layout), so a 2560 px cap becomes the sharpness ceiling: the
+ * browser has no bigger file to pick. Returning false keeps the original and
+ * lets the zoomed frame stay sharp on retina screens.
+ *
+ * @return false
+ */
+function bdy_keep_full_uploads() {
+	return false;
+}
+add_filter( 'big_image_size_threshold', 'bdy_keep_full_uploads' );

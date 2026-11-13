@@ -211,9 +211,12 @@ function bdy_image_html( $image, $args ) {
 	$bdy_crop = $bdy_zoom > 1 || ( is_array( $args['attr'] ) && ! empty( $args['attr']['style'] ) );
 
 	if ( $bdy_crop ) {
-		$bdy_factor = max( 2, $bdy_zoom );
+		// `sizes` must describe what is on screen: the layout box times the
+		// zoom the frame applies. The browser multiplies by the device pixel
+		// ratio itself, so a small safety factor is all that is needed.
+		$bdy_factor = max( 1.25, min( 4, $bdy_zoom ) );
 		$sizes      = ( '' === trim( (string) $sizes ) )
-			? ( $width ? min( $width, 1600 ) . 'px' : '1200px' )
+			? ( $width ? min( (int) ceil( $width * $bdy_factor ), 2400 ) . 'px' : '1600px' )
 			: bdy_sizes_scale( $sizes, $bdy_factor );
 	}
 
@@ -329,7 +332,9 @@ function bdy_sizes_scale( $sizes, $factor ) {
 		if ( preg_match( '/^([0-9]*\.?[0-9]+)(vw|px)$/', $tail, $m ) ) {
 			$value = (float) $m[1] * $factor;
 			if ( 'vw' === $m[2] ) {
-				$value = min( 100, $value );
+				// Above 100vw is allowed: it tells the browser the photo is
+				// displayed larger than the viewport share it occupies.
+				$value = min( 200, $value );
 			}
 			$tail = ( floor( $value ) == $value ? (string) (int) $value : (string) round( $value, 1 ) ) . $m[2];
 		}
