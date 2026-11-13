@@ -51,7 +51,7 @@ in its `style.css` header.
 | Create inner pages | Pages → Add New | Services, Physiotherapy, Exercise Physiology, Occupational Therapy, Clinical Pilates, Referrers, Contact, Location — Chermside, Practice from BDYCULTURE, Privacy Policy. Use the page slug as the title's permalink (`/physiotherapy/`), so the design's links and the shipped fallbacks line up. Each page fills itself from its own section stack — nothing to paste |
 | Create the blog | Pages → Add New → *Posts page* | a page called *Blog*, then Settings → Reading → *Posts page* → Blog. `home.php` lists your posts, `single.php` renders each article |
 | Point the nav links at those pages | Appearance → Menus → *Header — primary navigation* | the design shipped links to pages whose designs weren't included; add the pages as menu items and edit their labels there |
-| Add the contact form | **Theme Settings → Contact band** | install Contact Form 7, paste the form code from [`cf7-contact-form.txt`](cf7-contact-form.txt) into the form, then paste its shortcode into *Form shortcode*. Step by step: [`contact-form-7.md`](contact-form-7.md) |
+| Add the contact form | **Theme Settings → Contact band** | install Contact Form 7, paste the form code from [`cf7-contact-form.txt`](cf7-contact-form.txt) into the form, then paste its shortcode into *Form shortcode*. Do the same for the **Enquiry card** using [`cf7-enquiry-form.txt`](cf7-enquiry-form.txt). Step by step: [`contact-form-7.md`](contact-form-7.md) |
 
 Nothing else is required: every section is already populated from `defaults.php` with the approved copy.
 

@@ -29,21 +29,21 @@ so changing the number once updates every button, link, FAQ answer, footer line 
 | clinic tagline | Allied health and rehabilitation in Chermside, Brisbane. | `clinic_tagline` | textarea |
 | enquiry tag | Enquire online | `enquiry_tag` | text |
 | enquiry title | Request an appointment or ask a question | `enquiry_title` | text |
-| enquiry intro | Our Chermside team will get back to you. For urgent medical help, call 000. | `enquiry_intro` | textarea |
-| enquiry label name | Full name | `enquiry_label_name` | text |
-| enquiry label phone | Phone | `enquiry_label_phone` | text |
-| enquiry label email | Email | `enquiry_label_email` | text |
-| enquiry label service | I’m interested in | `enquiry_label_service` | text |
-| enquiry button | Send enquiry | `enquiry_button` | text |
+| enquiry intro | Our Chermside team will get back to you. For urgent medical help, call 000. | — | Contact Form 7 |
+| enquiry shortcode | — | `enquiry_shortcode` | text |
+| enquiry label name | Full name | — | Contact Form 7 |
+| enquiry label phone | Phone | — | Contact Form 7 |
+| enquiry label email | Email | — | Contact Form 7 |
+| enquiry label service | I’m interested in | — | Contact Form 7 |
+| enquiry button | Send enquiry | — | Contact Form 7 |
 | enquiry note | By submitting this form, you acknowledge the BDYCULTURE {privacy_link}. Please do not include sensitive med… | `enquiry_note` | textarea |
 | enquiry alt text | Prefer to book yourself? | `enquiry_alt_text` | text |
 | enquiry alt link text | Book Online with Nookal | `enquiry_alt_link_text` | text |
-| enquiry success title | Thanks — enquiry received | `enquiry_success_title` | text |
-| enquiry success text | We’ll be in touch shortly. To speak to someone now, call 07 3073 1616. | `enquiry_success_text` | textarea |
-| enquiry options (repeater) | 6 row(s) — Physiotherapy | `enquiry_options` | repeater |
-| &nbsp;&nbsp;└ text | Physiotherapy | `text` | text |
+| enquiry success title | Thanks — enquiry received | — | Contact Form 7 |
+| enquiry success text | We’ll be in touch shortly. To speak to someone now, call 07 3073 1616. | — | Contact Form 7 |
+| enquiry options (repeater) | 6 row(s) — Physiotherapy | — | Contact Form 7 |
 | article checks (repeater) | 3 row(s) — General information only | `article_checks` | repeater |
-| &nbsp;&nbsp;└ text | General information only | `text` | text |
+| &nbsp;&nbsp;└ text | General information only | `text` | — |
 | article toc title | In this article | `article_toc_title` | — |
 | article side book title | Book an appointment | `article_side_book_title` | — |
 | article side book text | Choose a time online or speak to our Chermside team. | `article_side_book_text` | — |

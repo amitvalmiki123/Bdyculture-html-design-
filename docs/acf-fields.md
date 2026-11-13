@@ -37,23 +37,14 @@ Group key: `group_bdy_global`  ·  location: `options_page` == `bdyculture-setti
 | "Book Online" button label | `header_book_text` | text | — |
 | Mobile drawer enquiry label | `header_drawer_enquire_text` | text | — |
 | **Enquiry card** | — | tab | — |
-| _note_ | `bdy_msg_enquiry` | message | The short form that sits beside the hero on every inner page. The answer appears in place, so no page reload. |
+| _note_ | `bdy_msg_enquiry` | message | The short form that sits beside the hero on every inner page. It is a Contact Form 7 form — the theme stores the shortco |
 | Tag | `enquiry_tag` | text | — |
 | Heading | `enquiry_title` | text | — |
-| Intro | `enquiry_intro` | textarea | — |
-| Label — name | `enquiry_label_name` | text | — |
-| Label — phone | `enquiry_label_phone` | text | — |
-| Label — email | `enquiry_label_email` | text | — |
-| Label — service select | `enquiry_label_service` | text | — |
-| Service select options | `enquiry_options` | repeater | layout: table |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Option | `text` | text | — |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Selected | `selected` | true_false | — |
-| Submit button | `enquiry_button` | text | — |
+| _note_ | `bdy_msg_enquiry_form` | message | The form itself is built in Contact Form 7 — paste its shortcode below. Only the tag, the heading and the lines under th |
+| Form shortcode | `enquiry_shortcode` | text | Paste the shortcode from Contact Form 7 → Forms. Leave empty and the design's own form is  |
 | Alt action — text | `enquiry_alt_text` | text | — |
 | Alt action — link label | `enquiry_alt_link_text` | text | — |
-| Privacy note | `enquiry_note` | textarea | Use {privacy_link} for the linked Privacy Policy. |
-| Success heading | `enquiry_success_title` | text | — |
-| Success message | `enquiry_success_text` | textarea | Use {phone_link} for the clinic phone link. |
+| Line under the form | `enquiry_note` | textarea | Privacy line under the fields. Use {privacy_link} for the linked Privacy Policy. |
 | **Contact band** | — | tab | — |
 | _note_ | `bdy_msg_contact_band` | message | The dark "Get in touch" band. It closes the homepage and every inner page, so edit it once here. Show/order per page is  |
 | Tag | `contact_tag` | text | — |

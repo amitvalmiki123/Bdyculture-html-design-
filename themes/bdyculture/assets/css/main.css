@@ -689,8 +689,8 @@ body { font-size: var(--body-size, 1.0625rem); }
   font: inherit;
   font-size: 1rem;
   color: var(--ink);
-  background-color: rgb(255 255 255 / .06);
-  border: 1px solid rgb(255 255 255 / .18);
+  background-color: var(--white);
+  border: 2px solid transparent;
   border-radius: var(--r);
   padding: 12px 14px;
 }
@@ -699,7 +699,7 @@ body { font-size: var(--body-size, 1.0625rem); }
 .card-form--light .card-form__embed input[type="email"],
 .card-form--light .card-form__embed select,
 .card-form--light .card-form__embed textarea {
-  background-color: #fff;
+  background-color: var(--paper);
   border-color: var(--line);
 }
 .card-form__embed .wpcf7-submit { width: 100%; }

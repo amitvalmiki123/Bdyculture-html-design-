@@ -1,4 +1,18 @@
-# Contact form — built in Contact Form 7
+# Forms — built in Contact Form 7
+
+Two forms on the site, both owned by Contact Form 7:
+
+| Form | Where it appears | Form code |
+| --- | --- | --- |
+| **Contact band** ("Get in touch") | End of the homepage, every inner page, the blog | [`cf7-contact-form.txt`](cf7-contact-form.txt) |
+| **Enquiry card** (beside each inner-page hero) | Right of the H1 on every inner page | [`cf7-enquiry-form.txt`](cf7-enquiry-form.txt) |
+
+Both follow the same rule: the theme stores the **shortcode**, the **heading** and the **lines under
+the form**; labels, fields, options, the button and validation live in the plugin.
+
+---
+
+## Contact band
 
 The "Get in touch" band keeps **only three editable things** in the theme: the form **heading**, the
 **line under the form**, and the **shortcode** that pulls in the form. Everything inside the form —
@@ -97,7 +111,37 @@ CF7 alone lets spam through. Add one of:
 | Nothing arrives by email | Mail *To/From* not set, or host blocks mail | Set the Mail tab; install an SMTP plugin (WP Mail SMTP) |
 | Static form shows instead of yours | The shortcode field is empty | Paste the shortcode in Theme Settings → Contact band |
 
-## 7. Without the plugin
+## 7. Enquiry card (beside the hero)
+
+Same idea, second form — it sits next to the H1 on Services, Physiotherapy, Exercise Physiology,
+Occupational Therapy, Clinical Pilates, Referrers, Contact, Location, Practice and Privacy Policy.
+
+**Theme Settings → Enquiry card** now holds:
+
+| Field | What it does |
+| --- | --- |
+| Tag | Small label above the heading — "Enquire online". |
+| Heading | The card's H2. |
+| Form shortcode | Paste the enquiry form's shortcode here. |
+| Line under the form | Privacy line under the fields (`{privacy_link}` supported). |
+| Alt action — text / link label | The "Prefer to book yourself? …" line under the note. |
+
+The paragraph under the heading ("Our Chermside team will get back to you…") ships inside the CF7
+code as well — edit it in the **Form** tab, not in the theme.
+
+1. CF7 → **Add New** → title it *Enquiry card*.
+2. **Form** tab → replace everything with [`cf7-enquiry-form.txt`](cf7-enquiry-form.txt).
+3. **Mail** tab → send to `hello@bdyculture.com.au` (Reply-To `[your-email]`), same as the contact form.
+4. **Messages** tab → *"Thanks — enquiry received. We'll be in touch shortly…"*.
+5. Copy the shortcode → **Theme Settings → Enquiry card → Form shortcode** → Update.
+
+The card is dark, so its submit uses `class:btn class:btn--signal` (gold) instead of `btn--ink`.
+
+> The **Practice from BDYCULTURE** page is the one exception: its hero carries its own licence card
+> (per-page *Card — …* rows on the hero block), so that card keeps its editable fields and is not
+> replaced by the shortcode.
+
+## 8. Without the plugin
 
 Leave the shortcode empty and the design's own form is printed — it looks identical but only shows
 the success panel client-side; it does not send anything. That is the safety net so the page never

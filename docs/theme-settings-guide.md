@@ -14,7 +14,7 @@ Changes are live as soon as you press **Update**. Nothing here can break a page:
 | --- | --- | --- | --- |
 | 1 | Clinic details | The single source of truth for the practice. Every phone number, email, address, booking link and hours shown anywhere on the site comes from here. | Header (top bar, drawer, book button), Footer contact column, Contact band, Map card, Enquiry card, Every `{phone}`, `{email}`, `{address}` token in body copy |
 | 2 | Header & navigation | Button labels in the sticky header and the mobile drawer. The menu itself is a normal WordPress menu (Appearance → Menus). | Sticky header, Mobile drawer |
-| 3 | Enquiry card | The short "Request a call back" card inside the homepage and inner-page hero. Requires a form plugin shortcode to actually collect entries. | Hero card on the homepage, Hero card on inner pages |
+| 3 | Enquiry card | The short "Request a call back" card beside every inner-page hero. The form inside it is a Contact Form 7 form — only its shortcode, tag, heading and the lines under it are stored here. | Hero card on the homepage, Hero card on inner pages |
 | 4 | Contact band | The dark "Get in touch" band. Written **once** here and printed at the end of the homepage, every inner page, the blog index and single posts. Each page only decides *whether* it shows and in what order. The form inside it is a Contact Form 7 form — only its shortcode, heading and the line under it are stored here. | Homepage, All inner pages, Blog index, Single post |
 | 5 | Map band | The "Find the clinic" band with the Leaflet map, suburb chips and address card. Same rule as the contact band: one copy, shown everywhere unless a page switches it off. | Homepage, All inner pages, Blog index, Single post |
 | 6 | Footer | Footer tagline, copyright line, privacy link, the three link columns and the credit line. | Site footer |
@@ -55,26 +55,16 @@ Button labels in the sticky header and the mobile drawer. The menu itself is a n
 | Mobile drawer enquiry label | `header_drawer_enquire_text` | text | Send an enquiry |
 ### 3. Enquiry card
 
-The short "Request a call back" card inside the homepage and inner-page hero. Requires a form plugin shortcode to actually collect entries.
+The short "Request a call back" card beside every inner-page hero. The form inside it is a Contact Form 7 form — only its shortcode, tag, heading and the lines under it are stored here.
 
 | Field | Name | Type | Default |
 | --- | --- | --- | --- |
 | Tag | `enquiry_tag` | text | Enquire online |
 | Heading | `enquiry_title` | text | Request an appointment or ask a question |
-| Intro | `enquiry_intro` | text (multi-line) | Our Chermside team will get back to you. For urgent medical hel… |
-| Label — name | `enquiry_label_name` | text | Full name |
-| Label — phone | `enquiry_label_phone` | text | Phone |
-| Label — email | `enquiry_label_email` | text | Email |
-| Label — service select | `enquiry_label_service` | text | I’m interested in |
-| Service select options | `enquiry_options` | repeater (rows) | 6 row(s) |
-| ↳ Option | `enquiry_options_text` | text | Physiotherapy |
-| ↳ Selected | `enquiry_options_selected` | on/off | Yes |
-| Submit button | `enquiry_button` | text | Send enquiry |
+| Form shortcode | `enquiry_shortcode` | text | (empty) |
 | Alt action — text | `enquiry_alt_text` | text | Prefer to book yourself? |
 | Alt action — link label | `enquiry_alt_link_text` | text | Book Online with Nookal |
-| Privacy note | `enquiry_note` | text (multi-line) | By submitting this form, you acknowledge the BDYCULTURE {privac… |
-| Success heading | `enquiry_success_title` | text | Thanks — enquiry received |
-| Success message | `enquiry_success_text` | text (multi-line) | We’ll be in touch shortly. To speak to someone now, call {phone… |
+| Line under the form | `enquiry_note` | text (multi-line) | By submitting this form, you acknowledge the BDYCULTURE {privac… |
 ### 4. Contact band
 
 The dark "Get in touch" band. Written **once** here and printed at the end of the homepage, every inner page, the blog index and single posts. Each page only decides *whether* it shows and in what order. The form inside it is a Contact Form 7 form — only its shortcode, heading and the line under it are stored here.

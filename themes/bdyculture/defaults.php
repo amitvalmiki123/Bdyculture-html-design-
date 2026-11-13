@@ -55,6 +55,7 @@ function bdy_defaults_all() {
 			'enquiry_tag'               => 'Enquire online',
 			'enquiry_title'             => 'Request an appointment or ask a question',
 			'enquiry_intro'             => 'Our Chermside team will get back to you. For urgent medical help, call 000.',
+			'enquiry_shortcode'         => '',
 			'enquiry_label_name'        => 'Full name',
 			'enquiry_label_phone'       => 'Phone',
 			'enquiry_label_email'       => 'Email',

@@ -2,9 +2,11 @@
 /**
  * Global — the enquiry card that sits beside inner-page heroes.
  *
- * Content lives in Site Settings → Enquiry card, so every inner page shares
- * one form. A hero section can carry its own card instead: give the hero
- * section some "Card — fields" rows and that card is used for the page.
+ * The card is a Contact Form 7 form: Site Settings → Enquiry card stores the
+ * tag, the heading, the lines under the form and the shortcode. The design's
+ * own markup stays as a fallback until a shortcode is entered. A hero section
+ * can still carry its own card: give the hero some "Card — fields" rows and
+ * that card is used for the page.
  *
  * @package BDYCULTURE
  */
@@ -34,11 +36,15 @@ $bdy_card = static function ( $key, $def ) use ( $bdy_own ) {
 
 $bdy_tag      = $bdy_card( 'form_tag', bdy_string( 'enquiry_tag', $bdy_g['enquiry_tag'], 'option' ) );
 $bdy_title    = $bdy_card( 'form_title', bdy_string( 'enquiry_title', $bdy_g['enquiry_title'], 'option' ) );
-$bdy_intro    = $bdy_card( 'form_intro', bdy_string( 'enquiry_intro', $bdy_g['enquiry_intro'], 'option' ) );
-$bdy_button   = $bdy_card( 'form_button', bdy_string( 'enquiry_button', $bdy_g['enquiry_button'], 'option' ) );
+$bdy_intro    = $bdy_card( 'form_intro', $bdy_g['enquiry_intro'] );
 $bdy_note     = $bdy_card( 'form_note', bdy_html( 'enquiry_note', $bdy_g['enquiry_note'], 'option' ) );
-$bdy_ok_title = $bdy_card( 'form_success_title', bdy_string( 'enquiry_success_title', $bdy_g['enquiry_success_title'], 'option' ) );
-$bdy_ok_text  = $bdy_card( 'form_success_text', bdy_html( 'enquiry_success_text', $bdy_g['enquiry_success_text'], 'option' ) );
+$bdy_sc       = $bdy_card( 'form_shortcode', bdy_string( 'enquiry_shortcode', $bdy_g['enquiry_shortcode'], 'option' ) );
+
+// The design's own form (used until a shortcode is set, and for a hero that
+// carries its own licence card). These are static defaults, not ACF fields.
+$bdy_button   = $bdy_card( 'form_button', $bdy_g['enquiry_button'] );
+$bdy_ok_title = $bdy_card( 'form_success_title', $bdy_g['enquiry_success_title'] );
+$bdy_ok_text  = $bdy_card( 'form_success_text', $bdy_g['enquiry_success_text'] );
 
 $bdy_book = bdy_booking_url();
 $bdy_alt  = '';
@@ -57,7 +63,12 @@ $bdy_note    = wp_kses_post( bdy_tokens( $bdy_note ) );
 $bdy_ok_text = wp_kses_post( bdy_tokens( $bdy_ok_text ) );
 ?>
 <aside class="hero__form" id="enquire" aria-labelledby="hf-title">
+	<?php $bdy_plugin = ( ! $bdy_own && '' !== trim( (string) $bdy_sc ) && false !== strpos( (string) $bdy_sc, '[' ) ); ?>
+	<?php if ( $bdy_plugin ) : ?>
+	<div class="card-form card-form--plugin">
+	<?php else : ?>
 	<form class="card-form" data-form novalidate>
+	<?php endif; ?>
 		<div class="card-form__head">
 			<?php if ( $bdy_tag ) : ?>
 				<p class="tag tag--light"><?php echo esc_html( $bdy_tag ); ?></p>
@@ -65,12 +76,16 @@ $bdy_ok_text = wp_kses_post( bdy_tokens( $bdy_ok_text ) );
 			<?php if ( $bdy_title ) : ?>
 				<h2 id="hf-title"><?php echo esc_html( $bdy_title ); ?></h2>
 			<?php endif; ?>
-			<?php if ( $bdy_intro ) : ?>
+			<?php if ( $bdy_intro && ! $bdy_plugin ) : ?>
 				<p><?php echo esc_html( $bdy_intro ); ?></p>
 			<?php endif; ?>
 		</div>
 
-		<?php if ( $bdy_own ) : ?>
+		<?php if ( $bdy_plugin ) : ?>
+
+			<?php bdy_form( $bdy_sc, '__return_false' ); ?>
+
+		<?php elseif ( $bdy_own ) : ?>
 
 			<?php
 			$bdy_fields = bdy_b_items( $bdy_own, 'form_fields' );
@@ -140,30 +155,24 @@ $bdy_ok_text = wp_kses_post( bdy_tokens( $bdy_ok_text ) );
 		<?php else : ?>
 
 			<div class="field">
-				<label for="hf-name"><?php echo esc_html( bdy_string( 'enquiry_label_name', $bdy_g['enquiry_label_name'], 'option' ) ); ?></label>
+				<label for="hf-name"><?php echo esc_html( $bdy_g['enquiry_label_name'] ); ?></label>
 				<input id="hf-name" name="name" type="text" autocomplete="name" required>
 			</div>
 
 			<div class="field-row">
 				<div class="field">
-					<label for="hf-phone"><?php echo esc_html( bdy_string( 'enquiry_label_phone', $bdy_g['enquiry_label_phone'], 'option' ) ); ?></label>
+					<label for="hf-phone"><?php echo esc_html( $bdy_g['enquiry_label_phone'] ); ?></label>
 					<input id="hf-phone" name="phone" type="tel" autocomplete="tel" required>
 				</div>
 				<div class="field">
-					<label for="hf-email"><?php echo esc_html( bdy_string( 'enquiry_label_email', $bdy_g['enquiry_label_email'], 'option' ) ); ?></label>
+					<label for="hf-email"><?php echo esc_html( $bdy_g['enquiry_label_email'] ); ?></label>
 					<input id="hf-email" name="email" type="email" autocomplete="email" required>
 				</div>
 			</div>
 
-			<?php
-			$bdy_options = bdy_rows( 'enquiry_options', $bdy_g['enquiry_options'], 'option' );
-
-			if ( ! $bdy_options ) {
-				$bdy_options = $bdy_g['enquiry_options'];
-			}
-			?>
+			<?php $bdy_options = $bdy_g['enquiry_options']; ?>
 			<div class="field">
-				<label for="hf-service"><?php echo esc_html( bdy_string( 'enquiry_label_service', $bdy_g['enquiry_label_service'], 'option' ) ); ?></label>
+				<label for="hf-service"><?php echo esc_html( $bdy_g['enquiry_label_service'] ); ?></label>
 				<select id="hf-service" name="service">
 					<?php foreach ( $bdy_options as $bdy_option ) : ?>
 						<?php
@@ -182,7 +191,9 @@ $bdy_ok_text = wp_kses_post( bdy_tokens( $bdy_ok_text ) );
 
 		<?php endif; ?>
 
-		<button class="btn btn--signal btn--block btn--lg" type="submit"><?php echo esc_html( $bdy_button ); ?></button>
+		<?php if ( ! $bdy_plugin ) : ?>
+			<button class="btn btn--signal btn--block btn--lg" type="submit"><?php echo esc_html( $bdy_button ); ?></button>
+		<?php endif; ?>
 
 		<?php if ( $bdy_note ) : ?>
 			<p class="form-note"><?php echo $bdy_note; // phpcs:ignore WordPress.Security.EscapeOutput -- kses + tokens. ?></p>
@@ -190,10 +201,16 @@ $bdy_ok_text = wp_kses_post( bdy_tokens( $bdy_ok_text ) );
 
 		<?php echo $bdy_alt; // phpcs:ignore WordPress.Security.EscapeOutput -- built above from escaped parts. ?>
 
-		<div class="form-ok" role="status" hidden>
-			<span class="form-ok__dot" aria-hidden="true"></span>
-			<h3><?php echo esc_html( $bdy_ok_title ); ?></h3>
-			<p><?php echo $bdy_ok_text; // phpcs:ignore WordPress.Security.EscapeOutput -- kses + tokens. ?></p>
-		</div>
+		<?php if ( ! $bdy_plugin ) : ?>
+			<div class="form-ok" role="status" hidden>
+				<span class="form-ok__dot" aria-hidden="true"></span>
+				<h3><?php echo esc_html( $bdy_ok_title ); ?></h3>
+				<p><?php echo $bdy_ok_text; // phpcs:ignore WordPress.Security.EscapeOutput -- kses + tokens. ?></p>
+			</div>
+		<?php endif; ?>
+	<?php if ( $bdy_plugin ) : ?>
+	</div>
+	<?php else : ?>
 	</form>
+	<?php endif; ?>
 </aside>

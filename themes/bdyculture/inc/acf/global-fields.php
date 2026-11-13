@@ -66,34 +66,18 @@ function bdy_acf_global_fields() {
 				bdy_acf_tab( 'enquiry', __( 'Enquiry card', 'bdyculture' ) ),
 				bdy_acf_message(
 					'enquiry',
-					__( 'The short form that sits beside the hero on every inner page. The answer appears in place, so no page reload.', 'bdyculture' )
+					__( 'The short form that sits beside the hero on every inner page. It is a Contact Form 7 form — the theme stores the shortcode, the tag, the heading and the lines under it.', 'bdyculture' )
 				),
 				bdy_acf_field( 'enquiry_tag', __( 'Tag', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '30' ) ) ),
 				bdy_acf_field( 'enquiry_title', __( 'Heading', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '70' ) ) ),
-				bdy_acf_textarea( 'enquiry_intro', __( 'Intro', 'bdyculture' ), array( 'rows' => 2 ) ),
-				bdy_acf_field( 'enquiry_label_name', __( 'Label — name', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '25' ) ) ),
-				bdy_acf_field( 'enquiry_label_phone', __( 'Label — phone', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '25' ) ) ),
-				bdy_acf_field( 'enquiry_label_email', __( 'Label — email', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '25' ) ) ),
-				bdy_acf_field( 'enquiry_label_service', __( 'Label — service select', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '25' ) ) ),
-				bdy_acf_field(
-					'enquiry_options',
-					__( 'Service select options', 'bdyculture' ),
-					'repeater',
-					array(
-						'layout'       => 'table',
-						'button_label' => __( 'Add option', 'bdyculture' ),
-						'sub_fields'   => array(
-							bdy_acf_field( 'text', __( 'Option', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '80' ) ) ),
-							bdy_acf_field( 'selected', __( 'Selected', 'bdyculture' ), 'true_false', array( 'ui' => 1, 'wrapper' => array( 'width' => '20' ) ) ),
-						),
-					)
+				bdy_acf_message(
+					'enquiry_form',
+					__( 'The form itself is built in Contact Form 7 — paste its shortcode below. Only the tag, the heading and the lines under the form are editable here; labels, fields, the button and validation live in the plugin (the intro line ships inside the form code). Ready-made form code: docs/cf7-enquiry-form.txt.', 'bdyculture' )
 				),
-				bdy_acf_field( 'enquiry_button', __( 'Submit button', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_field( 'enquiry_shortcode', __( 'Form shortcode', 'bdyculture' ), 'text', array( 'placeholder' => '[contact-form-7 id="123" title="Enquiry card"]', 'instructions' => __( 'Paste the shortcode from Contact Form 7 → Forms. Leave empty and the design\'s own form is shown (it does not send anything until the plugin is connected).', 'bdyculture' ) ) ),
 				bdy_acf_field( 'enquiry_alt_text', __( 'Alt action — text', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
 				bdy_acf_field( 'enquiry_alt_link_text', __( 'Alt action — link label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
-				bdy_acf_textarea( 'enquiry_note', __( 'Privacy note', 'bdyculture' ), array( 'rows' => 2, 'instructions' => __( 'Use {privacy_link} for the linked Privacy Policy.', 'bdyculture' ) ) ),
-				bdy_acf_field( 'enquiry_success_title', __( 'Success heading', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
-				bdy_acf_textarea( 'enquiry_success_text', __( 'Success message', 'bdyculture' ), array( 'rows' => 2, 'instructions' => __( 'Use {phone_link} for the clinic phone link.', 'bdyculture' ) ) ),
+				bdy_acf_textarea( 'enquiry_note', __( 'Line under the form', 'bdyculture' ), array( 'rows' => 2, 'instructions' => __( 'Privacy line under the fields. Use {privacy_link} for the linked Privacy Policy.', 'bdyculture' ) ) ),
 
 				bdy_acf_tab( 'contact_band', __( 'Contact band', 'bdyculture' ) ),
 				bdy_acf_message(
