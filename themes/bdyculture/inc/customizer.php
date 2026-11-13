@@ -69,7 +69,7 @@ function bdy_customizer_settings() {
 	return array(
 		/* -------- Colours (Rule 6) -------- */
 		'bdy_color_primary'      => array(
-			'label'    => __( 'Primary colour (ink)', 'bdyculture' ),
+			'label'    => __( 'Primary colour (ink + body text)', 'bdyculture' ),
 			'section'  => 'bdy_colors',
 			'type'     => 'color',
 			'default'  => '#0b0b0c',
@@ -90,14 +90,6 @@ function bdy_customizer_settings() {
 			'type'     => 'color',
 			'default'  => '#cfff3e',
 			'var'      => '--accent-color',
-			'sanitize' => 'sanitize_hex_color',
-		),
-		'bdy_color_text'         => array(
-			'label'    => __( 'Body text colour', 'bdyculture' ),
-			'section'  => 'bdy_colors',
-			'type'     => 'color',
-			'default'  => '#0b0b0c',
-			'var'      => '--text-color',
 			'sanitize' => 'sanitize_hex_color',
 		),
 		'bdy_color_text_muted'   => array(
@@ -131,7 +123,7 @@ function bdy_customizer_settings() {
 			'section'     => 'bdy_typography',
 			'type'        => 'text',
 			'default'     => '"Neue Haas Grotesk Display Pro", "Host Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif',
-			'var'         => '--font',
+			'var'         => '--font-body',
 			'sanitize'    => 'bdy_sanitize_font_stack',
 			'description' => __( 'CSS font-family list, in priority order.', 'bdyculture' ),
 		),
@@ -140,7 +132,7 @@ function bdy_customizer_settings() {
 			'section'  => 'bdy_typography',
 			'type'     => 'text',
 			'default'  => '"DM Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace',
-			'var'      => '--mono',
+			'var'      => '--font-mono',
 			'sanitize' => 'bdy_sanitize_font_stack',
 		),
 		'bdy_body_size'          => array(
@@ -184,39 +176,6 @@ function bdy_customizer_settings() {
 			'type'     => 'text',
 			'default'  => 'clamp(64px, 5vw + 40px, 136px)',
 			'var'      => '--section-padding',
-			'sanitize' => 'bdy_sanitize_css_length',
-		),
-		'bdy_section_padding_sm' => array(
-			'label'       => __( 'Compact section padding', 'bdyculture' ),
-			'section'     => 'bdy_spacing',
-			'type'        => 'text',
-			'default'     => 'clamp(40px, 5vw, 72px)',
-			'var'         => '--section-padding-sm',
-			'sanitize'    => 'bdy_sanitize_css_length',
-			'description' => __( 'Used by the paired CTA band.', 'bdyculture' ),
-		),
-		'bdy_gap_sm'             => array(
-			'label'    => __( 'Gap — small', 'bdyculture' ),
-			'section'  => 'bdy_spacing',
-			'type'     => 'text',
-			'default'  => '12px',
-			'var'      => '--gap-sm',
-			'sanitize' => 'bdy_sanitize_css_length',
-		),
-		'bdy_gap_md'             => array(
-			'label'    => __( 'Gap — medium', 'bdyculture' ),
-			'section'  => 'bdy_spacing',
-			'type'     => 'text',
-			'default'  => '20px',
-			'var'      => '--gap-md',
-			'sanitize' => 'bdy_sanitize_css_length',
-		),
-		'bdy_gap_lg'             => array(
-			'label'    => __( 'Gap — large', 'bdyculture' ),
-			'section'  => 'bdy_spacing',
-			'type'     => 'text',
-			'default'  => '40px',
-			'var'      => '--gap-lg',
 			'sanitize' => 'bdy_sanitize_css_length',
 		),
 

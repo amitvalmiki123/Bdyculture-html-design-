@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $bdy_global    = bdy_defaults( 'global' );
-$bdy_cols      = bdy_rows( 'footer_columns', $bdy_global['footer_columns'], 'option' );
+$bdy_cols      = bdy_footer_columns( $bdy_global['footer_columns'] );
 $bdy_logo      = bdy_option( 'footer_logo' );
 $bdy_tagline   = bdy_html( 'footer_tagline', $bdy_global['footer_tagline'], 'option' );
 $bdy_book      = bdy_booking_url();
@@ -93,7 +93,7 @@ $bdy_cta_href  = $bdy_cta_url ? $bdy_cta_url : $bdy_book;
 		<?php if ( $bdy_privacy_t && $bdy_privacy_u ) : ?>
 			<p><a href="<?php echo esc_url( bdy_link( $bdy_privacy_u ) ); ?>"><?php echo esc_html( $bdy_privacy_t ); ?></a></p>
 		<?php endif; ?>
-		<p class="footer__credit"><?php echo esc_html( bdy_string( 'footer_credit', $bdy_global['footer_credit'], 'option' ) ); ?></p>
+		<p class="footer__credit"><?php echo bdy_tokens( esc_html( bdy_string( 'footer_credit', $bdy_global['footer_credit'], 'option' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped, then {credit_link} expanded. ?></p>
 		<p class="footer__note"><?php echo esc_html( bdy_string( 'footer_note', $bdy_global['footer_note'], 'option' ) ); ?></p>
 	</div>
 </footer>

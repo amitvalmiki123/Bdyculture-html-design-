@@ -34,26 +34,28 @@ so changing the number once updates every button, link, FAQ answer, footer line 
 | mobile bar call text | Call | `mobile_bar_call_text` | text |
 | mobile bar book text | Book Online | `mobile_bar_book_text` | text |
 | footer tagline | Allied health and rehabilitation in Chermside, Brisbane. | `footer_tagline` | textarea |
-| footer copyright | © 2026 BDYCULTURE. All rights reserved. | `footer_copyright` | text |
-| footer privacy text | Privacy Policy | `footer_privacy_text` | text |
-| footer privacy url | /privacy-policy/ | `footer_privacy_url` | text |
-| footer credit | Web Design by Digital Movement | `footer_credit` | text |
+| footer copyright | © 2026 BDYCULTURE. All rights reserved. | `footer_copyright` | — |
+| footer privacy text | Privacy Policy | `footer_privacy_text` | — |
+| footer privacy url | /privacy-policy/ | `footer_privacy_url` | — |
+| footer credit | Web Design by {credit_link} | `footer_credit` | text |
+| footer credit label | Digital Movement | `footer_credit_label` | text |
+| footer credit url | https://www.digitalmovement.com.au/ | `footer_credit_url` | url |
 | footer note | Information on this website is general in nature and is not a substitute for individual health advice. Resu… | `footer_note` | textarea |
 | header nav (repeater) | 4 row(s) — Home / / | `header_nav` | repeater |
-| &nbsp;&nbsp;└ nav label | Home | `nav_label` | text |
-| &nbsp;&nbsp;└ nav link | / | `nav_link` | text |
+| &nbsp;&nbsp;└ nav label | Home | `nav_label` | — |
+| &nbsp;&nbsp;└ nav link | / | `nav_link` | — |
 | &nbsp;&nbsp;└ nav children | 0 nested row(s) | `nav_children` | repeater |
 | footer columns (repeater) | 3 row(s) — Services / — | `footer_columns` | repeater |
-| &nbsp;&nbsp;└ col title | Services | `col_title` | text |
-| &nbsp;&nbsp;└ col text | — | `col_text` | textarea |
+| &nbsp;&nbsp;└ col title | Services | `col_title` | — |
+| &nbsp;&nbsp;└ col text | — | `col_text` | — |
 | &nbsp;&nbsp;└ col links | 4 nested row(s) | `col_links` | repeater |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ link label | Physiotherapy | `link_label` | text |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ link url | /physiotherapy/ | `link_url` | text |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ link type | link | `link_type` | select |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ link label | Physiotherapy | `link_label` | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ link url | /physiotherapy/ | `link_url` | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ link type | link | `link_type` | — |
 
 ## 2. Hero (`.hero`)
 
-Two-column hero: H1, lead paragraph, three buttons, three trust checks and the sticky enquiry card (tag, heading, short form, success state). Street-photo background with the ROM gauge marker.
+Single-column hero: H1, lead paragraph, three buttons and three trust checks (no enquiry card — the form lives in the Contact band). Full-bleed street-photo background with the ROM gauge marker.
 
 - ACF tab: **hero**  ·  toggle `home_hero_show` = `true`  ·  order `home_hero_order` = `10`
 
@@ -69,25 +71,10 @@ Two-column hero: H1, lead paragraph, three buttons, three trust checks and the s
 | &nbsp;&nbsp;└ hero btn new tab | yes | `hero_btn_new_tab` | true_false |
 | home hero checks (repeater) | 3 row(s) — Online booking via Nookal | `home_hero_checks` | repeater |
 | &nbsp;&nbsp;└ hero check text | Online booking via Nookal | `hero_check_text` | text |
-| home hero form shortcode | — | `home_hero_form_shortcode` | text |
-| home hero form tag | Enquire online | `home_hero_form_tag` | text |
-| home hero form title | Request an appointment or ask a question | `home_hero_form_title` | text |
-| home hero form intro | Our Chermside team will get back to you. For urgent medical help, call 000. | `home_hero_form_intro` | textarea |
-| home hero form label name | Full name | `home_hero_form_label_name` | text |
-| home hero form label phone | Phone | `home_hero_form_label_phone` | text |
-| home hero form label email | Email | `home_hero_form_label_email` | text |
-| home hero form label service | I’m interested in | `home_hero_form_label_service` | text |
-| home hero form options (repeater) | 6 row(s) — Physiotherapy | `home_hero_form_options` | repeater |
-| &nbsp;&nbsp;└ hero form option text | Physiotherapy | `hero_form_option_text` | text |
-| home hero form button | Send enquiry | `home_hero_form_button` | text |
-| home hero form alt text | Prefer to book yourself? | `home_hero_form_alt_text` | text |
-| home hero form alt link text | Book Online with Nookal → | `home_hero_form_alt_link_text` | text |
-| home hero form success title | Thanks — enquiry received | `home_hero_form_success_title` | text |
-| home hero form success text | We’ll be in touch shortly. To speak to someone now, call 07 3073 1616. | `home_hero_form_success_text` | textarea |
 
 ## 3. Marquee band (`.marquee`)
 
-Dark infinite ticker with a duplicated service label and a lime star separator.
+Dark infinite ticker: the four service labels separated by a dot, duplicated once so the loop is seamless.
 
 - ACF tab: **marquee**  ·  toggle `home_marquee_show` = `true`  ·  order `home_marquee_order` = `20`
 
@@ -162,7 +149,7 @@ Split band: heading + four numbered steps on the left, clinic photo with badge a
 
 ## 6. Photo ribbon (`.ribbon`)
 
-Three-viewpoint photo strip (wide / portrait / clinic), each a figure with a crop and caption.
+Six-viewpoint photo strip, alternating heights and swept corners, duplicated once so the marquee loops.
 
 - ACF tab: **ribbon**  ·  toggle `home_ribbon_show` = `true`  ·  order `home_ribbon_order` = `50`
 
@@ -175,9 +162,33 @@ Three-viewpoint photo strip (wide / portrait / clinic), each a figure with a cro
 | &nbsp;&nbsp;└ ribbon scale | 1.6 | `ribbon_scale` | text |
 | &nbsp;&nbsp;└ ribbon swept | yes | `ribbon_swept` | true_false |
 
-## 7. What to expect (`.expect`)
+## 7. Visit us (`.visit`)
 
-Dark band with four numbered cards, each with an icon and a short description.
+Clinic signage: a portrait window-signage photo with a small door-signage card overlapping it, plus the address copy and two buttons (directions / book online).
+
+- ACF tab: **visit**  ·  toggle `home_visit_show` = `true`  ·  order `home_visit_order` = `55`
+
+| Element | Design content | ACF field | Type |
+| --- | --- | --- | --- |
+| home visit tag | Visit us | `home_visit_tag` | text |
+| home visit title | Find us on Gympie Road, Chermside. | `home_visit_title` | text |
+| home visit text 1 | BDYCULTURE is located at Suite 5, Level 1, 671 Gympie Road, Chermside QLD 4032, with lift access available.… | `home_visit_text_1` | textarea |
+| home visit text 2 | Enter 671 Gympie Road, Chermside QLD 4032 into your GPS or maps app. Visitor parking is available at the re… | `home_visit_text_2` | textarea |
+| home visit main image | — | `home_visit_main_image` | image |
+| home visit main position | 50% 50% | `home_visit_main_position` | text |
+| home visit main alt | BDYCULTURE window signage at the Chermside clinic listing Physiotherapy, Exercise Physiology, Occupational… | `home_visit_main_alt` | text |
+| home visit door image | — | `home_visit_door_image` | image |
+| home visit door alt | BDYCULTURE clinic door signage, Suite 5, Level 1, Chermside | `home_visit_door_alt` | text |
+| home visit cta 1 text | Get directions | `home_visit_cta_1_text` | text |
+| home visit cta 1 url | https://www.google.com/maps/search/?api=1&query=671+Gympie+Road+Suite+5+Level+1+Chermside+QLD+4032 | `home_visit_cta_1_url` | text |
+| home visit cta 1 style | ink | `home_visit_cta_1_style` | select |
+| home visit cta 2 text | Book Online | `home_visit_cta_2_text` | text |
+| home visit cta 2 url | https://book.nookal.com/bookings/book/EA59F8c8-2593-a0ee-Fbca-FEaEb0d0beE6/select | `home_visit_cta_2_url` | text |
+| home visit cta 2 style | ghost | `home_visit_cta_2_style` | select |
+
+## 8. What to expect (`.expect`)
+
+Dark band with three numbered cards, each with an icon and a short description.
 
 - ACF tab: **expect**  ·  toggle `home_expect_show` = `true`  ·  order `home_expect_order` = `60`
 
@@ -195,9 +206,9 @@ Dark band with four numbered cards, each with an icon and a short description.
 | home expect btn 2 text | Send an enquiry | `home_expect_btn_2_text` | text |
 | home expect btn 2 url | #contact | `home_expect_btn_2_url` | text |
 
-## 8. Funding (`.funding`)
+## 9. Funding (`.funding`)
 
-Ninety-word intro panel on the left, six funding cards on the right, each with a funding name, note and list of services that accept it.
+Intro panel on the left, six funding cards on the right, each with a funding name, note and the services that accept it.
 
 - ACF tab: **funding**  ·  toggle `home_funding_show` = `true`  ·  order `home_funding_order` = `70`
 
@@ -211,7 +222,7 @@ Ninety-word intro panel on the left, six funding cards on the right, each with a
 | &nbsp;&nbsp;└ pathway title | Private | `pathway_title` | text |
 | &nbsp;&nbsp;└ pathway text | Book directly, no third party required | `pathway_text` | text |
 
-## 9. Home visits & refer (`.pair`)
+## 10. Home visits & refer (`.pair`)
 
 Two equal cards. Card one: home-visit copy plus phone button. Card two: referrer copy plus email button.
 
@@ -219,8 +230,8 @@ Two equal cards. Card one: home-visit copy plus phone button. Card two: referrer
 
 | Element | Design content | ACF field | Type |
 | --- | --- | --- | --- |
-| pair 1 tag | Home visits by arrangement | `pair_1_tag` | text |
-| pair 1 title | Care that can come to you. | `pair_1_title` | text |
+| pair 1 tag | More than a consulting room | `pair_1_tag` | text |
+| pair 1 title | Home Visits Available by Arrangement | `pair_1_title` | text |
 | pair 1 text | Physiotherapy and exercise physiology home visits may be available across Chermside and surrounding suburbs… | `pair_1_text` | textarea |
 | pair 1 style | ink | `pair_1_style` | select |
 | pair 1 btn 1 text | Call 07 3073 1616 | `pair_1_btn_1_text` | text |
@@ -241,7 +252,7 @@ Two equal cards. Card one: home-visit copy plus phone button. Card two: referrer
 | pair 2 btn 2 url | — | `pair_2_btn_2_url` | text |
 | pair 2 btn 2 style | — | `pair_2_btn_2_style` | — |
 
-## 10. FAQ (`.faq`)
+## 11. FAQ (`.faq`)
 
 Eight question/answer rows in a native `<details>` accordion, one open at a time.
 
@@ -258,9 +269,9 @@ Eight question/answer rows in a native `<details>` accordion, one open at a time
 | &nbsp;&nbsp;└ faq question | Do I need a referral to book an appointment? | `faq_question` | text |
 | &nbsp;&nbsp;└ faq answer | It depends on the service and how your care is funded. Private appointments can be booked online through No… | `faq_answer` | textarea |
 
-## 11. Contact (`.contact`)
+## 12. Contact (`.contact`)
 
-Dark band: heading, address/phone/email list with pin marker, the enquiry form card, and the success state.
+Dark band: heading, address/phone/email list with pin marker, the enquiry form card, the privacy note under the button, and the success state.
 
 - ACF tab: **contact**  ·  toggle `home_contact_show` = `true`  ·  order `home_contact_order` = `100`
 
@@ -289,13 +300,14 @@ Dark band: heading, address/phone/email list with pin marker, the enquiry form c
 | &nbsp;&nbsp;└ contact type option text | Book an appointment | `contact_type_option_text` | text |
 | home contact form interests (repeater) | 5 row(s) — Physiotherapy | `home_contact_form_interests` | repeater |
 | &nbsp;&nbsp;└ contact interest option text | Physiotherapy | `contact_interest_option_text` | text |
+| home contact form note | By submitting this form, you acknowledge the BDYCULTURE Privacy Policy. Please do not include sensitive med… | `home_contact_form_note` | textarea |
 | home contact form button | Send message | `home_contact_form_button` | text |
 | home contact form success title | Thanks — message received | `home_contact_form_success_title` | text |
 | home contact form success text | We’ll be in touch shortly. To speak to someone now, call 07 3073 1616. | `home_contact_form_success_text` | textarea |
 
-## 12. Map (`.mapsec`)
+## 13. Map (`.mapsec`)
 
-Heading + Leaflet map with a lazy "Load interactive map" button, Street/Satellite switch, suburb chips and the clinic address card.
+Heading + Leaflet map with a lazy "Load interactive map" button, Street/Satellite switch, suburb chips (Chermside / Aspley / Stafford / Wavell Heights) and the clinic address card.
 
 - ACF tab: **map**  ·  toggle `home_map_show` = `true`  ·  order `home_map_order` = `110`
 

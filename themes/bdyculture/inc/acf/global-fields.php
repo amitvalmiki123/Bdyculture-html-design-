@@ -64,51 +64,9 @@ function bdy_acf_global_fields() {
 				bdy_acf_image( 'clinic_logo_light', __( 'Footer logo (light)', 'bdyculture' ), array( 'wrapper' => array( 'width' => '50' ) ) ),
 
 				bdy_acf_tab( 'header', __( 'Header & navigation', 'bdyculture' ) ),
-				bdy_acf_field(
-					'header_nav',
-					__( 'Primary navigation', 'bdyculture' ),
-					'repeater',
-					array(
-						'layout'        => 'block',
-						'button_label'  => __( 'Add menu item', 'bdyculture' ),
-						'min'           => 1,
-						'instructions'  => __( 'Drop-down menus use the "Sub-menu" rows inside an item.', 'bdyculture' ),
-						'sub_fields'    => array(
-							bdy_acf_field( 'nav_label', __( 'Label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
-							bdy_acf_field(
-								'nav_link',
-								__( 'Link', 'bdyculture' ),
-								'text',
-								array(
-									'wrapper'      => array( 'width' => '50' ),
-									'instructions' => __( 'Use /physiotherapy/ for a page on this site, or a full URL.', 'bdyculture' ),
-								)
-							),
-							bdy_acf_field(
-								'nav_children',
-								__( 'Sub-menu', 'bdyculture' ),
-								'repeater',
-								array(
-									'layout'       => 'block',
-									'button_label' => __( 'Add sub-menu link', 'bdyculture' ),
-									'sub_fields'   => array(
-										bdy_acf_field( 'child_label', __( 'Label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '40' ) ) ),
-										bdy_acf_field( 'child_link', __( 'Link', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '30' ) ) ),
-										bdy_acf_icon( 'child_icon', __( 'Icon', 'bdyculture' ), array( 'wrapper' => array( 'width' => '30' ) ) ),
-										bdy_acf_field(
-											'child_alt',
-											__( 'Secondary link', 'bdyculture' ),
-											'true_false',
-											array(
-												'ui'           => 1,
-												'instructions' => __( 'Shown in the desktop drop-down only (not the mobile drawer).', 'bdyculture' ),
-											)
-										),
-									),
-								)
-							),
-						),
-					)
+				bdy_acf_message(
+					'header_nav_note',
+					'<strong>' . __( 'Navigation lives in Appearance → Menus', 'bdyculture' ) . '</strong><br>' . __( 'Assign a menu to “Header — primary navigation”. Sub-items become the Services drop-down; the icon is picked automatically from the page slug (or add a class like <code>icon-heart</code> to a menu item). The mobile drawer uses the same menu.', 'bdyculture' )
 				),
 				bdy_acf_field( 'header_enquire_text', __( '"Enquire" button label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
 				bdy_acf_field( 'header_book_text', __( '"Book Online" button label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
@@ -119,57 +77,21 @@ function bdy_acf_global_fields() {
 				bdy_acf_textarea( 'footer_tagline', __( 'Footer tagline', 'bdyculture' ) ),
 				bdy_acf_field( 'footer_cta_text', __( 'Footer button label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
 				bdy_acf_field( 'footer_cta_url', __( 'Footer button link', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_message(
+					'footer_nav_note',
+					'<strong>' . __( 'Footer link columns live in Appearance → Menus', 'bdyculture' ) . '</strong><br>' . __( 'Assign one menu to “Footer — services column” and one to “Footer — quick links column”. The column heading is the menu name; items can be pages, <code>tel:</code> or <code>mailto:</code> links. The “Visit us” column is built from Clinic details.', 'bdyculture' )
+				),
 				bdy_acf_field(
-					'footer_columns',
-					__( 'Footer columns', 'bdyculture' ),
-					'repeater',
+					'footer_credit',
+					__( 'Credit line', 'bdyculture' ),
+					'text',
 					array(
-						'layout'       => 'block',
-						'button_label' => __( 'Add footer column', 'bdyculture' ),
-						'sub_fields'   => array(
-							bdy_acf_field( 'col_title', __( 'Column title', 'bdyculture' ), 'text' ),
-							bdy_acf_textarea(
-								'col_text',
-								__( 'Column text', 'bdyculture' ),
-								array(
-									'rows'         => 3,
-									'instructions' => __( 'Optional. Basic HTML allowed, e.g. a postal address with line breaks.', 'bdyculture' ),
-								)
-							),
-							bdy_acf_field(
-								'col_links',
-								__( 'Column links', 'bdyculture' ),
-								'repeater',
-								array(
-									'layout'       => 'block',
-									'button_label' => __( 'Add link', 'bdyculture' ),
-									'sub_fields'   => array(
-										bdy_acf_field( 'link_label', __( 'Label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
-										bdy_acf_field( 'link_url', __( 'Link', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '30' ) ) ),
-										bdy_acf_field(
-											'link_type',
-											__( 'Type', 'bdyculture' ),
-											'select',
-											array(
-												'wrapper'       => array( 'width' => '20' ),
-												'choices'       => array(
-													'link'  => __( 'Page / URL', 'bdyculture' ),
-													'tel'   => __( 'Phone', 'bdyculture' ),
-													'email' => __( 'Email', 'bdyculture' ),
-												),
-												'default_value' => 'link',
-											)
-										),
-									),
-								)
-							),
-						),
+						'wrapper'      => array( 'width' => '100' ),
+						'instructions' => __( 'Use {credit_link} where the linked agency name should appear.', 'bdyculture' ),
 					)
 				),
-				bdy_acf_field( 'footer_copyright', __( 'Copyright line', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
-				bdy_acf_field( 'footer_privacy_text', __( 'Privacy link label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '25' ) ) ),
-				bdy_acf_field( 'footer_privacy_url', __( 'Privacy link URL', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '25' ) ) ),
-				bdy_acf_field( 'footer_credit', __( 'Credit line', 'bdyculture' ), 'text' ),
+				bdy_acf_field( 'footer_credit_label', __( 'Credit — agency name', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_field( 'footer_credit_url', __( 'Credit — link URL', 'bdyculture' ), 'url', array( 'wrapper' => array( 'width' => '50' ) ) ),
 				bdy_acf_textarea( 'footer_note', __( 'Footer disclaimer', 'bdyculture' ) ),
 
 				bdy_acf_tab( 'mobile_bar', __( 'Mobile action bar', 'bdyculture' ) ),

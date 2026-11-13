@@ -197,6 +197,7 @@ function bdy_tokens( $html, $links = true ) {
 			'{phone_tel}'            => esc_attr( bdy_phone_number() ),
 			'{address}'              => esc_html( bdy_address_plain() ),
 			'{address_html}'         => bdy_address_html(),
+			'{credit_link}'          => esc_html( bdy_credit_label() ),
 			'{email_link}'           => $email,
 			'{email}'                => $email,
 			'{referrals_email_link}' => $referrals_email,
@@ -212,6 +213,7 @@ function bdy_tokens( $html, $links = true ) {
 		'{phone_tel}'            => esc_attr( bdy_phone_number() ),
 		'{address}'              => esc_html( bdy_address_plain() ),
 		'{address_html}'         => bdy_address_html(),
+		'{credit_link}'          => bdy_credit_html(),
 		'{email_link}'           => $email ? '<a href="' . esc_url( 'mailto:' . bdy_clinic_email() ) . '">' . $email . '</a>' : '',
 		'{email}'                => $email,
 		'{referrals_email_link}' => $referrals_email ? '<a href="' . esc_url( 'mailto:' . bdy_referrals_email() ) . '">' . $referrals_email . '</a>' : '',
@@ -254,6 +256,38 @@ function bdy_address_html() {
 }
 
 /**
+ * Web-credit label ("Digital Movement").
+ *
+ * @return string
+ */
+function bdy_credit_label() {
+	$global = bdy_defaults( 'global' );
+
+	return bdy_text( 'footer_credit_label', $global['footer_credit_label'], 'option' );
+}
+
+/**
+ * Web-credit link markup, used by the {credit_link} token.
+ *
+ * @return string
+ */
+function bdy_credit_html() {
+	$global = bdy_defaults( 'global' );
+	$label  = bdy_credit_label();
+	$url    = bdy_option( 'footer_credit_url', $global['footer_credit_url'] );
+
+	if ( '' === $label ) {
+		return '';
+	}
+
+	if ( '' === $url ) {
+		return esc_html( $label );
+	}
+
+	return '<a href="' . esc_url( $url ) . '" target="_blank" rel="noopener">' . esc_html( $label ) . '</a>';
+}
+
+/**
  * Build a button.
  *
  * Styles are whitelisted so an ACF select can never emit a stray class
@@ -281,6 +315,7 @@ function bdy_button( $text, $url, $style = 'signal', $args = array() ) {
 			'class'   => '',
 			'attr'    => '',
 			'icon_size' => 18,
+			'icon_pos'  => 'auto',
 		)
 	);
 
@@ -306,9 +341,11 @@ function bdy_button( $text, $url, $style = 'signal', $args = array() ) {
 		$target = ' target="_blank" rel="noopener"';
 	}
 
-	// The design puts the phone icon before the label and the arrow after it.
+	// Icon side: "auto" follows the design (arrow after the label, phone
+	// before it), "right" always puts it after the text, "left" before it.
 	$icon       = $args['icon'] ? bdy_icon( $args['icon'], array( 'size' => (int) $args['icon_size'] ) ) : '';
-	$icon_after = ( 'arrow' === $args['icon'] );
+	$icon_pos   = in_array( $args['icon_pos'], array( 'left', 'right' ), true ) ? $args['icon_pos'] : 'auto';
+	$icon_after = ( 'right' === $icon_pos ) || ( 'auto' === $icon_pos && 'arrow' === $args['icon'] );
 	$label      = bdy_tokens( esc_html( $text ), false );
 
 	if ( $icon_after ) {

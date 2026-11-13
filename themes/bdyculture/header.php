@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $bdy_global   = bdy_defaults( 'global' );
-$bdy_nav      = bdy_rows( 'header_nav', $bdy_global['header_nav'], 'option' );
+$bdy_nav      = bdy_menu_tree( 'primary', $bdy_global['header_nav'] );
 $bdy_book     = bdy_booking_url();
 $bdy_book_txt = bdy_string( 'header_book_text', $bdy_global['header_book_text'], 'option' );
 $bdy_enq_txt  = bdy_string( 'header_enquire_text', $bdy_global['header_enquire_text'], 'option' );
@@ -59,11 +59,12 @@ $bdy_logo     = bdy_option( 'clinic_logo' );
 				}
 				$bdy_children = isset( $bdy_item['nav_children'] ) && is_array( $bdy_item['nav_children'] ) ? $bdy_item['nav_children'] : array();
 				$bdy_href     = isset( $bdy_item['nav_link'] ) ? bdy_link( $bdy_item['nav_link'] ) : '';
-				$bdy_current  = bdy_is_current( isset( $bdy_item['nav_link'] ) ? $bdy_item['nav_link'] : '' );
+				$bdy_current  = ! empty( $bdy_item['nav_current'] ) || bdy_is_current( isset( $bdy_item['nav_link'] ) ? $bdy_item['nav_link'] : '' );
+				$bdy_blank    = ! empty( $bdy_item['nav_new_tab'] ) ? ' target="_blank" rel="noopener"' : '';
 				?>
 				<?php if ( $bdy_children ) : ?>
 					<div class="nav__dd">
-						<a href="<?php echo esc_url( $bdy_href ); ?>" class="nav__dd-trigger" aria-haspopup="true">
+						<a href="<?php echo esc_url( $bdy_href ); ?>" class="nav__dd-trigger" aria-haspopup="true"<?php echo $bdy_blank; // phpcs:ignore WordPress.Security.EscapeOutput -- static attribute string. ?>>
 							<?php echo esc_html( $bdy_label ); ?>
 							<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
 						</a>
@@ -74,10 +75,13 @@ $bdy_logo     = bdy_option( 'clinic_logo' );
 								if ( '' === trim( (string) $bdy_child_label ) ) {
 									continue;
 								}
-								$bdy_child_alt = ! empty( $bdy_child['child_alt'] );
-								$bdy_child_ico = isset( $bdy_child['child_icon'] ) ? $bdy_child['child_icon'] : '';
+								$bdy_child_alt  = ! empty( $bdy_child['child_alt'] );
+								$bdy_child_ico  = isset( $bdy_child['child_icon'] ) ? $bdy_child['child_icon'] : '';
+								$bdy_child_link = bdy_link( isset( $bdy_child['child_link'] ) ? $bdy_child['child_link'] : '' );
+								$bdy_child_cur  = ! empty( $bdy_child['child_current'] );
+								$bdy_child_blank = ! empty( $bdy_child['child_new_tab'] ) ? ' target="_blank" rel="noopener"' : '';
 								?>
-								<a href="<?php echo esc_url( bdy_link( isset( $bdy_child['child_link'] ) ? $bdy_child['child_link'] : '' ) ); ?>"<?php echo $bdy_child_alt ? ' class="nav__menu-alt"' : ''; ?>>
+								<a href="<?php echo esc_url( $bdy_child_link ); ?>"<?php echo $bdy_child_alt ? ' class="nav__menu-alt"' : ''; ?><?php echo $bdy_child_cur ? ' aria-current="page"' : ''; ?><?php echo $bdy_child_blank; // phpcs:ignore WordPress.Security.EscapeOutput -- static attribute strings. ?>>
 									<?php echo bdy_icon( $bdy_child_ico, array( 'class' => 'nav__ico', 'size' => 22, 'stroke' => '1.8' ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- whitelisted SVG. ?>
 									<?php echo esc_html( $bdy_child_label ); ?>
 								</a>
@@ -85,7 +89,7 @@ $bdy_logo     = bdy_option( 'clinic_logo' );
 						</div>
 					</div>
 				<?php else : ?>
-					<a href="<?php echo esc_url( $bdy_href ); ?>"<?php echo $bdy_current ? ' aria-current="page"' : ''; ?>><?php echo esc_html( $bdy_label ); ?></a>
+					<a href="<?php echo esc_url( $bdy_href ); ?>"<?php echo $bdy_current ? ' aria-current="page"' : ''; ?><?php echo $bdy_blank; // phpcs:ignore WordPress.Security.EscapeOutput -- static attribute string. ?>><?php echo esc_html( $bdy_label ); ?></a>
 				<?php endif; ?>
 			<?php endforeach; ?>
 		</nav>

@@ -163,6 +163,11 @@ $bdy_labels = array(
 					<button class="btn btn--ink btn--block btn--lg" type="submit"><?php echo esc_html( bdy_string( 'home_contact_form_button', $bdy_d['home_contact_form_button'] ) ); ?></button>
 				<?php endif; ?>
 
+				<?php $bdy_note = bdy_html( 'home_contact_form_note', $bdy_d['home_contact_form_note'] ); ?>
+				<?php if ( $bdy_note ) : ?>
+					<p class="form-note"><?php echo $bdy_note; // phpcs:ignore WordPress.Security.EscapeOutput -- wp_kses_post + tokens. ?></p>
+				<?php endif; ?>
+
 				<?php if ( $bdy_ok_title || $bdy_ok_text ) : ?>
 					<div class="form-ok" role="status" hidden>
 						<span class="form-ok__dot" aria-hidden="true"></span>

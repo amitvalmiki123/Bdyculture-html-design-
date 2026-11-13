@@ -18,14 +18,20 @@ if ( ! $bdy_images ) {
 ?>
 <section class="ribbon" aria-hidden="true">
 	<div class="ribbon__track">
-		<?php foreach ( $bdy_images as $bdy_row ) : ?>
+		<?php
+		// The marquee needs two identical halves: the CSS animation moves the
+		// track by -50%. Rendering both halves here keeps the images in the
+		// document (no JS clone, no reload, no missing photos).
+		for ( $bdy_pass = 0; $bdy_pass < 2; $bdy_pass++ ) :
+			foreach ( $bdy_images as $bdy_row ) :
+				?>
 			<?php
 			$bdy_crop = '--x:' . ( ! empty( $bdy_row['ribbon_x'] ) ? $bdy_row['ribbon_x'] : '50%' )
 				. ';--y:' . ( ! empty( $bdy_row['ribbon_y'] ) ? $bdy_row['ribbon_y'] : '50%' )
 				. ';--s:' . ( ! empty( $bdy_row['ribbon_scale'] ) ? $bdy_row['ribbon_scale'] : '1' );
-			$bdy_class = empty( $bdy_row['ribbon_swept'] ) ? '' : ' media-frame--swept';
+			$bdy_class = empty( $bdy_row['ribbon_swept'] ) ? '' : ' class="media-frame--swept"';
 			?>
-			<figure class="<?php echo esc_attr( trim( $bdy_class ) ); ?>">
+			<figure<?php echo $bdy_class; // phpcs:ignore WordPress.Security.EscapeOutput -- static class string. ?>>
 				<?php
 				echo bdy_image( // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside helper.
 					isset( $bdy_row['ribbon_image'] ) ? $bdy_row['ribbon_image'] : '',
@@ -38,6 +44,9 @@ if ( ! $bdy_images ) {
 				);
 				?>
 			</figure>
-		<?php endforeach; ?>
+			<?php
+			endforeach;
+		endfor;
+		?>
 	</div>
 </section>

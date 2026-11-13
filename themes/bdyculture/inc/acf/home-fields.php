@@ -61,7 +61,20 @@ function bdy_acf_home_fields() {
 					array( 'instructions' => __( 'Use tel for the phone number, /page/ for a page, or a full URL.', 'bdyculture' ) )
 				),
 				bdy_acf_button_style( 'hero_btn_style', __( 'Style', 'bdyculture' ) ),
-				bdy_acf_icon( 'hero_btn_icon', __( 'After-icon', 'bdyculture' ) ),
+				bdy_acf_icon( 'hero_btn_icon', __( 'Icon', 'bdyculture' ) ),
+				bdy_acf_field(
+					'hero_btn_icon_pos',
+					__( 'Icon side', 'bdyculture' ),
+					'select',
+					array(
+						'choices'    => array(
+							'auto'  => __( 'Auto (design default)', 'bdyculture' ),
+							'right' => __( 'Right of the text', 'bdyculture' ),
+							'left'  => __( 'Left of the text', 'bdyculture' ),
+						),
+						'default_value' => 'auto',
+					)
+				),
 				bdy_acf_field( 'hero_btn_new_tab', __( 'New tab', 'bdyculture' ), 'true_false', array( 'ui' => 1 ) ),
 			),
 		)
@@ -78,43 +91,6 @@ function bdy_acf_home_fields() {
 			),
 		)
 	);
-	$fields[] = bdy_acf_field(
-		'home_hero_form_shortcode',
-		__( 'Enquiry form shortcode (Contact Form 7)', 'bdyculture' ),
-		'text',
-		array(
-			'instructions' => __( 'Paste a CF7 shortcode, e.g. [contact-form-7 id="123"]. Leave empty to use the built-in designed form (visual placeholder until CF7 is connected).', 'bdyculture' ),
-		)
-	);
-	$fields[] = bdy_acf_field( 'home_hero_form_tag', __( 'Form tag', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
-	$fields[] = bdy_acf_field( 'home_hero_form_title', __( 'Form heading (H2)', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
-	$fields[] = bdy_acf_textarea( 'home_hero_form_intro', __( 'Form intro', 'bdyculture' ), array( 'rows' => 2 ) );
-	$fields[] = bdy_acf_field( 'home_hero_form_label_name', __( 'Label — name', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '25' ) ) );
-	$fields[] = bdy_acf_field( 'home_hero_form_label_phone', __( 'Label — phone', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '25' ) ) );
-	$fields[] = bdy_acf_field( 'home_hero_form_label_email', __( 'Label — email', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '25' ) ) );
-	$fields[] = bdy_acf_field( 'home_hero_form_label_service', __( 'Label — service select', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '25' ) ) );
-	$fields[] = bdy_acf_field(
-		'home_hero_form_options',
-		__( 'Service select options', 'bdyculture' ),
-		'repeater',
-		array(
-			'layout'       => 'table',
-			'button_label' => __( 'Add option', 'bdyculture' ),
-			'sub_fields'   => array(
-				bdy_acf_field( 'hero_form_option_text', __( 'Option', 'bdyculture' ) ),
-			),
-		)
-	);
-	$fields[] = bdy_acf_field( 'home_hero_form_button', __( 'Submit button label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
-	$fields[] = bdy_acf_field( 'home_hero_form_alt_text', __( 'Alt action — text', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
-	$fields[] = bdy_acf_field( 'home_hero_form_alt_link_text', __( 'Alt action — link label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
-	$fields[] = bdy_acf_field( 'home_hero_form_success_title', __( 'Success heading', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
-	$fields[] = bdy_acf_textarea(
-		'home_hero_form_success_text',
-		__( 'Success message', 'bdyculture' ),
-		array( 'rows' => 2, 'instructions' => __( 'Use {phone_link} to print the clinic phone link.', 'bdyculture' ) )
-	);
-
 	/* ========================== MARQUEE ========================== */
 	$fields[] = bdy_acf_tab( 'marquee', __( '2. Marquee', 'bdyculture' ) );
 	$fields   = array_merge( $fields, bdy_acf_layout_fields( 'home', 'marquee', 20 ) );
@@ -247,8 +223,47 @@ function bdy_acf_home_fields() {
 		)
 	);
 
+	/* ============================ VISIT ============================ */
+	$fields[] = bdy_acf_tab( 'visit', __( '6. Visit us', 'bdyculture' ) );
+	$fields   = array_merge( $fields, bdy_acf_layout_fields( 'home', 'visit', 55 ) );
+	$fields[] = bdy_acf_field( 'home_visit_tag', __( 'Tag', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '30' ) ) );
+	$fields[] = bdy_acf_field( 'home_visit_title', __( 'Heading (H2)', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '70' ) ) );
+	$fields[] = bdy_acf_textarea( 'home_visit_text_1', __( 'Paragraph 1', 'bdyculture' ), array( 'rows' => 3 ) );
+	$fields[] = bdy_acf_textarea( 'home_visit_text_2', __( 'Paragraph 2', 'bdyculture' ), array( 'rows' => 3 ) );
+	$fields[] = bdy_acf_field(
+		'home_visit_main_image',
+		__( 'Photo — window signage', 'bdyculture' ),
+		'image',
+		array(
+			'return_format' => 'array',
+			'preview_size'  => 'medium',
+			'wrapper'       => array( 'width' => '50' ),
+			'instructions'  => __( 'Portrait crop (4:5). Leave empty to use the bundled photo.', 'bdyculture' ),
+		)
+	);
+	$fields[] = bdy_acf_field( 'home_visit_main_position', __( 'Photo crop position', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ), 'default_value' => '50% 50%', 'instructions' => __( 'object-position, e.g. 50% 40%.', 'bdyculture' ) ) );
+	$fields[] = bdy_acf_field( 'home_visit_main_alt', __( 'Alt text — window signage', 'bdyculture' ), 'text' );
+	$fields[] = bdy_acf_field(
+		'home_visit_door_image',
+		__( 'Photo — door signage', 'bdyculture' ),
+		'image',
+		array(
+			'return_format' => 'array',
+			'preview_size'  => 'thumbnail',
+			'wrapper'       => array( 'width' => '50' ),
+			'instructions'  => __( 'Small overlapping card. Leave empty to use the bundled photo.', 'bdyculture' ),
+		)
+	);
+	$fields[] = bdy_acf_field( 'home_visit_door_alt', __( 'Alt text — door signage', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
+	$fields[] = bdy_acf_field( 'home_visit_cta_1_text', __( 'Button 1 — label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '33' ) ) );
+	$fields[] = bdy_acf_field( 'home_visit_cta_1_url', __( 'Button 1 — link', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '33' ) ) );
+	$fields[] = bdy_acf_button_style( 'home_visit_cta_1_style', __( 'Button 1 — style', 'bdyculture' ) );
+	$fields[] = bdy_acf_field( 'home_visit_cta_2_text', __( 'Button 2 — label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '33' ) ) );
+	$fields[] = bdy_acf_field( 'home_visit_cta_2_url', __( 'Button 2 — link', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '33' ) ) );
+	$fields[] = bdy_acf_button_style( 'home_visit_cta_2_style', __( 'Button 2 — style', 'bdyculture' ) );
+
 	/* =========================== EXPECT =========================== */
-	$fields[] = bdy_acf_tab( 'expect', __( '6. What to expect', 'bdyculture' ) );
+	$fields[] = bdy_acf_tab( 'expect', __( '7. What to expect', 'bdyculture' ) );
 	$fields   = array_merge( $fields, bdy_acf_layout_fields( 'home', 'expect', 60 ) );
 	$fields[] = bdy_acf_field( 'home_expect_tag', __( 'Eyebrow tag', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
 	$fields[] = bdy_acf_textarea( 'home_expect_title', __( 'Heading (H2)', 'bdyculture' ), array( 'rows' => 2 ) );
@@ -273,7 +288,7 @@ function bdy_acf_home_fields() {
 	$fields[] = bdy_acf_field( 'home_expect_btn_2_url', __( 'Button 2 — link', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '70' ) ) );
 
 	/* ========================== FUNDING ========================== */
-	$fields[] = bdy_acf_tab( 'funding', __( '7. Funding', 'bdyculture' ) );
+	$fields[] = bdy_acf_tab( 'funding', __( '8. Funding', 'bdyculture' ) );
 	$fields   = array_merge( $fields, bdy_acf_layout_fields( 'home', 'funding', 70 ) );
 	$fields[] = bdy_acf_field( 'home_funding_tag', __( 'Eyebrow tag', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
 	$fields[] = bdy_acf_textarea( 'home_funding_title', __( 'Heading (H2)', 'bdyculture' ), array( 'rows' => 2 ) );
@@ -294,7 +309,7 @@ function bdy_acf_home_fields() {
 	);
 
 	/* ============================ PAIR ============================ */
-	$fields[] = bdy_acf_tab( 'pair', __( '8. Home visits & refer', 'bdyculture' ) );
+	$fields[] = bdy_acf_tab( 'pair', __( '9. Home visits & refer', 'bdyculture' ) );
 	$fields   = array_merge( $fields, bdy_acf_layout_fields( 'home', 'pair', 80 ) );
 	$fields[] = bdy_acf_field( 'pair_1_tag', __( 'Card 1 — tag', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '70' ) ) );
 	$fields[] = bdy_acf_field(
@@ -336,7 +351,7 @@ function bdy_acf_home_fields() {
 	$fields[] = bdy_acf_field( 'pair_2_btn_2_url', __( 'Card 2 — button 2 link', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '40' ) ) );
 
 	/* ============================= FAQ ============================ */
-	$fields[] = bdy_acf_tab( 'faq', __( '9. FAQ', 'bdyculture' ) );
+	$fields[] = bdy_acf_tab( 'faq', __( '10. FAQ', 'bdyculture' ) );
 	$fields   = array_merge( $fields, bdy_acf_layout_fields( 'home', 'faq', 90 ) );
 	$fields[] = bdy_acf_field( 'home_faq_tag', __( 'Eyebrow tag', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
 	$fields[] = bdy_acf_textarea( 'home_faq_title', __( 'Heading (H2)', 'bdyculture' ), array( 'rows' => 2 ) );
@@ -358,7 +373,7 @@ function bdy_acf_home_fields() {
 	);
 
 	/* =========================== CONTACT ========================== */
-	$fields[] = bdy_acf_tab( 'contact', __( '10. Contact', 'bdyculture' ) );
+	$fields[] = bdy_acf_tab( 'contact', __( '11. Contact', 'bdyculture' ) );
 	$fields   = array_merge( $fields, bdy_acf_layout_fields( 'home', 'contact', 100 ) );
 	$fields[] = bdy_acf_field( 'home_contact_tag', __( 'Eyebrow tag', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
 	$fields[] = bdy_acf_textarea( 'home_contact_title', __( 'Heading (H2)', 'bdyculture' ), array( 'rows' => 2 ) );
@@ -422,12 +437,17 @@ function bdy_acf_home_fields() {
 			),
 		)
 	);
+	$fields[] = bdy_acf_textarea(
+		'home_contact_form_note',
+		__( 'Privacy note under the button', 'bdyculture' ),
+		array( 'rows' => 2, 'instructions' => __( 'Allows a link, e.g. to the privacy policy.', 'bdyculture' ) )
+	);
 	$fields[] = bdy_acf_field( 'home_contact_form_button', __( 'Submit button label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
 	$fields[] = bdy_acf_field( 'home_contact_form_success_title', __( 'Success heading', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
 	$fields[] = bdy_acf_textarea( 'home_contact_form_success_text', __( 'Success message', 'bdyculture' ), array( 'rows' => 2, 'instructions' => __( 'Use {phone_link} for the clinic phone link.', 'bdyculture' ) ) );
 
 	/* ============================ MAP ============================= */
-	$fields[] = bdy_acf_tab( 'map', __( '11. Map', 'bdyculture' ) );
+	$fields[] = bdy_acf_tab( 'map', __( '12. Map', 'bdyculture' ) );
 	$fields   = array_merge( $fields, bdy_acf_layout_fields( 'home', 'map', 110 ) );
 	$fields[] = bdy_acf_field( 'home_map_tag', __( 'Eyebrow tag', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );
 	$fields[] = bdy_acf_field( 'home_map_title', __( 'Heading (H2)', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) );

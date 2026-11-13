@@ -132,19 +132,12 @@
     });
   });
 
-  /* ---------- photo ribbon: duplicate once for a seamless loop ---------- */
-  var track = $('.ribbon__track');
-  if (track) {
-    $$('figure', track).slice().forEach(function (f) {
-      track.appendChild(f.cloneNode(true));
-    });
-  }
-
   /* ---------- interactive map (Leaflet, lazy-loaded) ---------- */
   var mapEl = $('#clinic-map');
   var map = null;
   var mapReady = false;
   var mapConfig = config.map || {};
+  var activePlace = null;
 
   function loadCSS(href) {
     var l = d.createElement('link');
@@ -209,6 +202,12 @@
         title: mapConfig.title || 'BDYCULTURE'
       }).addTo(map);
 
+      // A place chosen before the map existed (chip pressed while the lazy
+      // loader was still sleeping) is applied once Leaflet is up.
+      if (activePlace) {
+        moveToPlace(activePlace, false);
+      }
+
       $$('[data-fly]').forEach(function (chip) {
         var p = chip.getAttribute('data-fly').split(',').map(Number);
         if (!p.length || isNaN(p[0]) || isNaN(p[1])) return;
@@ -230,6 +229,29 @@
     d.head.appendChild(s);
   }
 
+  /** Fly the map to one chip's place and mark it as the active chip. */
+  function moveToPlace(chip, animate) {
+    if (!chip) return;
+
+    var p = chip.getAttribute('data-fly').split(',').map(Number);
+    if (isNaN(p[0]) || isNaN(p[1])) return;
+
+    var zoom = isNaN(p[2]) ? (mapConfig.zoom || 15) : p[2];
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var smooth = animate !== false && !reduce;
+
+    activePlace = chip;
+
+    $$('[data-fly]').forEach(function (c) { c.classList.toggle('is-on', c === chip); });
+
+    // The suburb pins live on the map itself (not on a tile layer), so they
+    // stay put when Street and Satellite swap — no re-drawing needed.
+    if (!map) return;
+
+    if (smooth) map.flyTo([p[0], p[1]], zoom, { duration: 1.1 });
+    else map.setView([p[0], p[1]], zoom);
+  }
+
   if (mapEl) {
     var loadBtn = $('[data-load-map]', mapEl);
     if (loadBtn) loadBtn.addEventListener('click', initMap);
@@ -244,13 +266,15 @@
     }
   }
 
+  /* Place chips: work even before "Load interactive map" was pressed, and the
+     chosen place survives a Street → Satellite switch (the suburb pins are
+     map layers, not tile layers, so swapping the tiles leaves them in place). */
   $$('[data-fly]').forEach(function (chip) {
     chip.addEventListener('click', function () {
-      var p = chip.getAttribute('data-fly').split(',').map(Number);
-      $$('[data-fly]').forEach(function (c) { c.classList.toggle('is-on', c === chip); });
+      moveToPlace(chip, true);
       initMap();
       (function wait() {
-        if (map) map.flyTo([p[0], p[1]], p[2], { duration: reduce ? 0 : 1.2 });
+        if (map) moveToPlace(chip, true);
         else setTimeout(wait, 150);
       })();
     });

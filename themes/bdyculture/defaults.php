@@ -63,7 +63,9 @@ function bdy_defaults_all() {
 			'footer_copyright'          => '© 2026 BDYCULTURE. All rights reserved.',
 			'footer_privacy_text'       => 'Privacy Policy',
 			'footer_privacy_url'        => '/privacy-policy/',
-			'footer_credit'             => 'Web Design by Digital Movement',
+			'footer_credit'             => 'Web Design by {credit_link}',
+			'footer_credit_label'       => 'Digital Movement',
+			'footer_credit_url'         => 'https://www.digitalmovement.com.au/',
 			'footer_note'               => 'Information on this website is general in nature and is not a substitute for individual health advice. Results vary between individuals.',
 
 			/* Primary navigation (repeater). */
@@ -140,6 +142,8 @@ function bdy_defaults_all() {
 						array( 'link_label' => 'All Services', 'link_url' => '/services/', 'link_type' => 'link' ),
 						array( 'link_label' => 'Referrers', 'link_url' => '/referrers/', 'link_type' => 'link' ),
 						array( 'link_label' => 'Contact', 'link_url' => '/contact/', 'link_type' => 'link' ),
+						array( 'link_label' => 'Blog', 'link_url' => '/blog/', 'link_type' => 'link' ),
+						array( 'link_label' => 'Chermside', 'link_url' => '/location-chermside/', 'link_type' => 'link' ),
 						array( 'link_label' => 'Practice from BDYCULTURE', 'link_url' => '/practice-from-bdyculture/', 'link_type' => 'link' ),
 					),
 				),
@@ -195,28 +199,6 @@ function bdy_defaults_all() {
 					array( 'hero_check_text' => 'Home visits by arrangement' ),
 				),
 
-				/* Enquiry card */
-				'home_hero_form_shortcode'      => '',
-				'home_hero_form_tag'            => 'Enquire online',
-				'home_hero_form_title'          => 'Request an appointment or ask a question',
-				'home_hero_form_intro'          => 'Our Chermside team will get back to you. For urgent medical help, call 000.',
-				'home_hero_form_label_name'     => 'Full name',
-				'home_hero_form_label_phone'    => 'Phone',
-				'home_hero_form_label_email'    => 'Email',
-				'home_hero_form_label_service'  => 'I’m interested in',
-				'home_hero_form_options'        => array(
-					array( 'hero_form_option_text' => 'Physiotherapy' ),
-					array( 'hero_form_option_text' => 'Exercise Physiology' ),
-					array( 'hero_form_option_text' => 'Occupational Therapy' ),
-					array( 'hero_form_option_text' => 'Clinical Pilates' ),
-					array( 'hero_form_option_text' => 'Home visit enquiry' ),
-					array( 'hero_form_option_text' => 'I’m not sure yet' ),
-				),
-				'home_hero_form_button'         => 'Send enquiry',
-				'home_hero_form_alt_text'       => 'Prefer to book yourself?',
-				'home_hero_form_alt_link_text'  => 'Book Online with Nookal →',
-				'home_hero_form_success_title'  => 'Thanks — enquiry received',
-				'home_hero_form_success_text'   => 'We’ll be in touch shortly. To speak to someone now, call {phone_link}.',
 			),
 
 			/* ---------------- MARQUEE ---------------- */
@@ -320,7 +302,7 @@ function bdy_defaults_all() {
 						'panel_img_scale'   => '2.2',
 						'panel_chip'        => 'Clinical Pilates',
 						'panel_title'       => 'Clinical Pilates',
-						'panel_lead'        => 'Pilates-based exercise to support rehabilitation, strength, movement and physical capacity.',
+						'panel_lead'        => 'Pilates-based exercise to support rehabilitation, strength, movement and physical capacity, delivered by an Accredited Exercise Physiologist or Physiotherapist.',
 						'panel_body'        => 'Clinical Pilates is delivered by an Accredited Exercise Physiologist or Physiotherapist, so each session is guided by clinical assessment rather than a generic class format. It sits naturally alongside the rest of the clinic’s rehabilitation pathway.',
 						'panel_ticks'       => array(
 							array( 'panel_tick_text' => 'Rehabilitation-focused movement' ),
@@ -403,6 +385,27 @@ function bdy_defaults_all() {
 				),
 			),
 
+			/* ---------------- VISIT US (v2: clinic signage + directions) ---------------- */
+			'visit' => array(
+				'show'                        => true,
+				'order'                       => 55,
+				'home_visit_tag'              => 'Visit us',
+				'home_visit_title'            => 'Find us on Gympie Road, Chermside.',
+				'home_visit_text_1'           => 'BDYCULTURE is located at Suite 5, Level 1, 671 Gympie Road, Chermside QLD 4032, with lift access available. Look for our window signage listing Physiotherapy, Exercise Physiology, Occupational Therapy and Clinical Pilates.',
+				'home_visit_text_2'           => 'Enter 671 Gympie Road, Chermside QLD 4032 into your GPS or maps app. Visitor parking is available at the rear of the building, with additional 3-hour parking within the adjacent precinct.',
+				'home_visit_main_image'       => '',
+				'home_visit_main_position'    => '50% 50%',
+				'home_visit_main_alt'         => 'BDYCULTURE window signage at the Chermside clinic listing Physiotherapy, Exercise Physiology, Occupational Therapy and Clinical Pilates',
+				'home_visit_door_image'       => '',
+				'home_visit_door_alt'         => 'BDYCULTURE clinic door signage, Suite 5, Level 1, Chermside',
+				'home_visit_cta_1_text'       => 'Get directions',
+				'home_visit_cta_1_url'        => 'https://www.google.com/maps/search/?api=1&query=671+Gympie+Road+Suite+5+Level+1+Chermside+QLD+4032',
+				'home_visit_cta_1_style'      => 'ink',
+				'home_visit_cta_2_text'       => 'Book Online',
+				'home_visit_cta_2_url'        => 'https://book.nookal.com/bookings/book/EA59F8c8-2593-a0ee-Fbca-FEaEb0d0beE6/select',
+				'home_visit_cta_2_style'      => 'ghost',
+			),
+
 			/* ---------------- WHAT TO EXPECT ---------------- */
 			'expect' => array(
 				'show'                   => true,
@@ -437,7 +440,7 @@ function bdy_defaults_all() {
 				'order'                 => 70,
 				'home_funding_tag'      => 'Funding &amp; referrals',
 				'home_funding_title'    => 'Funding pathways that fit how you’re covered.',
-				'home_funding_intro'    => 'Our services can be accessed through a range of funding pathways. Eligibility and availability differ by service and by person — for example, Clinical Pilates is not offered under DVA — so check with our team before you book.',
+				'home_funding_intro'    => 'Our services can be accessed through a range of funding pathways. Eligibility and availability differ by service and by person — for example, Clinical Pilates is not a standalone funding category and may form part of an eligible Physiotherapy or Exercise Physiology service — so check with our team before you book.',
 				'home_funding_text'     => 'Each service page sets out the pathways for that discipline, along with what a referral involves and what to bring. If you are working with a case manager, insurer or support coordinator, we are happy to talk through their requirements with you.',
 				'home_funding_pathways' => array(
 					array( 'pathway_title' => 'Private', 'pathway_text' => 'Book directly, no third party required' ),
@@ -453,8 +456,8 @@ function bdy_defaults_all() {
 			'pair' => array(
 				'show'                    => true,
 				'order'                   => 80,
-				'pair_1_tag'              => 'Home visits by arrangement',
-				'pair_1_title'            => 'Care that can come to you.',
+				'pair_1_tag'              => 'More than a consulting room',
+				'pair_1_title'            => 'Home Visits Available by Arrangement',
 				'pair_1_text'             => 'Physiotherapy and exercise physiology home visits may be available across Chermside and surrounding suburbs, subject to location, clinical needs and practitioner availability. Contact our team to enquire.',
 				'pair_1_style'            => 'ink',
 				'pair_1_btn_1_text'       => 'Call {phone}',
@@ -496,7 +499,7 @@ function bdy_defaults_all() {
 					),
 					array(
 						'faq_question' => 'Which funding pathways are available?',
-						'faq_answer'   => 'Our service pages list Private, WorkCover Queensland, Medicare Chronic Condition Management, Queensland CTP, NDIS and DVA Veteran Cards (Gold and White). Availability differs by service. For example, Clinical Pilates is not offered under DVA. Contact us to confirm eligibility before you book.',
+						'faq_answer'   => 'Our service pages list Private, WorkCover Queensland, Medicare Chronic Condition Management, Queensland CTP, NDIS and DVA Veteran Cards (Gold and White). Availability differs by service. For example, Clinical Pilates is not a standalone funding category and may form part of an eligible Physiotherapy or Exercise Physiology service. Contact us to confirm eligibility before you book.',
 					),
 					array(
 						'faq_question' => 'Where is the clinic?',
@@ -560,6 +563,7 @@ function bdy_defaults_all() {
 					array( 'contact_interest_option_text' => 'Clinical Pilates' ),
 					array( 'contact_interest_option_text' => 'I’m not sure yet' ),
 				),
+				'home_contact_form_note'         => 'By submitting this form, you acknowledge the BDYCULTURE <a href="/privacy-policy/">Privacy Policy</a>. Please do not include sensitive medical or health information in this form.',
 				'home_contact_form_button'        => 'Send message',
 				'home_contact_form_success_title' => 'Thanks — message received',
 				'home_contact_form_success_text'  => 'We’ll be in touch shortly. To speak to someone now, call {phone_link}.',

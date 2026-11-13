@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $bdy_global  = bdy_defaults( 'global' );
-$bdy_nav     = bdy_rows( 'header_nav', $bdy_global['header_nav'], 'option' );
+$bdy_nav     = bdy_menu_tree( 'primary', $bdy_global['header_nav'] );
 $bdy_book    = bdy_booking_url();
 $bdy_book_l  = bdy_string( 'header_book_text', $bdy_global['header_book_text'], 'option' );
 $bdy_enq_l   = bdy_string( 'header_drawer_enquire_text', $bdy_global['header_drawer_enquire_text'], 'option' );
@@ -29,8 +29,10 @@ $bdy_phone   = bdy_phone_display();
 			}
 			$bdy_children = isset( $bdy_item['nav_children'] ) && is_array( $bdy_item['nav_children'] ) ? $bdy_item['nav_children'] : array();
 			$bdy_href     = bdy_link( isset( $bdy_item['nav_link'] ) ? $bdy_item['nav_link'] : '' );
+			$bdy_current  = ! empty( $bdy_item['nav_current'] );
+			$bdy_blank    = ! empty( $bdy_item['nav_new_tab'] ) ? ' target="_blank" rel="noopener"' : '';
 			?>
-			<a href="<?php echo esc_url( $bdy_href ); ?>"><?php echo esc_html( $bdy_label ); ?></a>
+			<a href="<?php echo esc_url( $bdy_href ); ?>"<?php echo $bdy_current ? ' aria-current="page"' : ''; ?><?php echo $bdy_blank; // phpcs:ignore WordPress.Security.EscapeOutput -- static attribute string. ?>><?php echo esc_html( $bdy_label ); ?></a>
 
 			<?php
 			$bdy_secondary = array();
@@ -43,7 +45,8 @@ $bdy_phone   = bdy_phone_display();
 			<?php if ( $bdy_secondary ) : ?>
 				<div class="drawer__sub">
 					<?php foreach ( $bdy_secondary as $bdy_child ) : ?>
-						<a href="<?php echo esc_url( bdy_link( isset( $bdy_child['child_link'] ) ? $bdy_child['child_link'] : '' ) ); ?>"><?php echo esc_html( $bdy_child['child_label'] ); ?></a>
+						<?php $bdy_child_blank = ! empty( $bdy_child['child_new_tab'] ) ? ' target="_blank" rel="noopener"' : ''; ?>
+						<a href="<?php echo esc_url( bdy_link( isset( $bdy_child['child_link'] ) ? $bdy_child['child_link'] : '' ) ); ?>"<?php echo $bdy_child_blank; // phpcs:ignore WordPress.Security.EscapeOutput -- static attribute string. ?>><?php echo esc_html( $bdy_child['child_label'] ); ?></a>
 					<?php endforeach; ?>
 				</div>
 			<?php endif; ?>

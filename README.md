@@ -43,15 +43,18 @@ Upload `dist/bdyculture-parent.zip`, then `dist/bdyculture.zip`, activate the ch
 
 The workflow document forbids ACF Pro, repeaters and options pages. The brief from the client explicitly
 asked for **ACF Pro**, **repeater fields wherever content repeats**, and **global sections managed in one
-place**. This build therefore uses ACF Pro, 20 repeaters and one *BDYCULTURE → Theme Settings* options
-page. Everything else in the 19 rules is implemented as written, and the deviation is documented in
+place**. This build therefore uses ACF Pro, 15 repeaters and one *BDYCULTURE → Theme Settings* options
+page. Navigation is the exception: the header dropdown, the mobile drawer and the footer link columns are
+native WordPress menus (*Appearance → Menus*), because that is the screen the client already knows.
+Everything else in the 19 rules is implemented as written, and the deviation is documented in
 `docs/install.md`. Every ACF field has a `defaults.php` fallback, so the theme still renders without ACF.
 
 ## Where content is edited
 
 | Content | Location |
 | --- | --- |
-| Header, navigation, mobile bar, footer, phone / emails / address / hours | **BDYCULTURE → Theme Settings** (one options page) |
+| Header buttons, footer options, mobile bar, phone / emails / address / hours | **BDYCULTURE → Theme Settings** (one options page) |
+| Header navigation, footer link columns | **Appearance → Menus** (four locations; shipped defaults show until a menu is assigned) |
 | Home page sections (copy, images, links, order, show/hide) | Pages → *Home*, one tab per section |
 | Inner pages | Pages → *(page)* → *Page hero* tab |
 | Colours, fonts, sizes, spacing, container width | Appearance → Customize → **Theme Design** |
@@ -62,7 +65,10 @@ the JSON-LD read them through `{phone}`, `{email}`, `{address}` tokens (full lis
 ## Open items for the client
 
 1. **Clinic hours** — currently the design's placeholder text.
-2. **Inner pages** — the package only contained the homepage; `page.php` reuses the existing design
-   language (hero + editor content). Send the inner-page designs and each becomes its own section set.
-3. **Forms** — paste a Contact Form 7 shortcode into the hero/contact *Form shortcode* field to go live;
+2. **Inner pages** — the first package contained only the homepage; `page.php` reuses the design language
+   (hero + editor content). The new upload now ships the inner-page designs too (`contact.html`,
+   `services.html`, the four service pages, `referrers.html`, `blog.html`, `location-chermside.html`,
+   `practice-from-bdyculture.html`, `privacy-policy.html`); porting them section-by-section is the next
+   step and they are not part of this build yet.
+3. **Forms** — paste a Contact Form 7 shortcode into the Contact section's *Form shortcode* field to go live;
    until then the design-identical fallback form is used.

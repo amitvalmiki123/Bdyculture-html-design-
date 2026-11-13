@@ -17,6 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 function bdy_setup() {
 	load_child_theme_textdomain( 'bdyculture', THEME_DIR . '/languages' );
 
+	register_nav_menus( bdy_menu_locations() );
+
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'automatic-feed-links' );

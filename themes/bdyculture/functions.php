@@ -38,6 +38,7 @@ require_once THEME_DIR . '/inc/helpers/format-helpers.php';
 require_once THEME_DIR . '/inc/helpers/icon-helpers.php';
 require_once THEME_DIR . '/inc/helpers/image-helpers.php';
 require_once THEME_DIR . '/inc/helpers/section-helpers.php';
+require_once THEME_DIR . '/inc/helpers/menu-helpers.php';
 
 /**
  * Core theme behaviour.

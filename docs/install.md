@@ -46,11 +46,11 @@ in its `style.css` header.
 | Set the static front page | Settings → Reading → *A static page* → Home | ACF home fields appear once the page is the front page |
 | Fill the clinic details | **BDYCULTURE → Theme Settings → Clinic details** | phone, emails, address, booking URL, hours |
 | Confirm opening hours | same screen | shipped as *“Placeholder — client to confirm clinic hours”* |
-| Review navigation | Theme Settings → Header & navigation | nav is ACF-driven (label + link + optional children + icon); WP menus are intentionally not used so the dropdown icons and drawer stay in sync |
-| Review footer | Theme Settings → Footer | three columns of links + legal bar |
+| Build the menus | **Appearance → Menus** | four locations: *Header — primary navigation*, *Footer — services column*, *Footer — quick links column*, *Footer — legal bar*. Until a menu is assigned the shipped default links are used, so the site looks complete immediately |
+| Review footer options | Theme Settings → Footer | logo, tagline, buttons, credit line and disclaimer (the link columns come from the menus) |
 | Create inner pages | Pages → Add New | Physiotherapy, Exercise Physiology, Occupational Therapy, Clinical Pilates, Referrers, Contact, Practice from BDYCULTURE, Privacy Policy |
-| Point the nav links at those pages | Theme Settings → Header & navigation | the design shipped links to pages whose designs weren't included; they are editable URLs |
-| Add forms (optional) | Theme Settings / Home → Hero & Contact tabs | paste a CF7 shortcode into the *Form shortcode* field |
+| Point the nav links at those pages | Appearance → Menus → *Header — primary navigation* | the design shipped links to pages whose designs weren't included; add the pages as menu items and edit their labels there |
+| Add forms (optional) | Home → **Contact** tab | paste a CF7 shortcode into the *Form shortcode* field |
 
 Nothing else is required: every section is already populated from `defaults.php` with the approved copy.
 
@@ -60,19 +60,24 @@ Nothing else is required: every section is already populated from `defaults.php`
 
 | What you see | Where it is edited | Notes |
 | --- | --- | --- |
-| Logo, header row (Enquire / Book Online) | Theme Settings → **Header & navigation** | phone + booking URL come from Clinic details |
-| Primary navigation + Services dropdown | Theme Settings → **Header & navigation** (repeater: label, link, optional children, optional icon) | one place for desktop nav **and** the mobile drawer |
+| Logo, header row (Enquire / Book Online) | Theme Settings → **Header** | phone + booking URL come from Clinic details |
+| Primary navigation + Services dropdown | **Appearance → Menus** → *Header — primary navigation* | sub-items become the Services dropdown; one menu drives the desktop nav **and** the mobile drawer |
 | Mobile action bar (Call / Book Online) | Theme Settings → **Mobile action bar** | labels editable, numbers/URLs inherited |
-| Footer (tagline, three columns, legal bar) | Theme Settings → **Footer** | columns are repeaters of links (page / tel / email) |
+| Footer link columns | **Appearance → Menus** → *Footer — services column* / *Footer — quick links column* | the column heading is the menu name; items can be pages, `tel:` or `mailto:` links. The third column is the clinic address block (Clinic details) |
+| Footer logo, tagline, buttons, credit, legal bar | Theme Settings → **Footer** | the credit line uses `{credit_link}` for the linked agency name |
 | Phone, emails, address, booking URL, hours | Theme Settings → **Clinic details** | see §5 — one change updates the whole site |
 | Home page sections | Pages → *Home* → tab per section | show toggle + order per section |
 | Inner pages | Pages → *(page)* → **Page hero** tab | then normal editor content |
 | Colours, fonts, sizes, spacing, container | Appearance → Customize → **Theme Design** | live preview, only changed values printed |
 
-Navigation is intentionally **not** a WordPress menu (`Appearance → Menus`) and the footer is not a widget area:
-the design's dropdown carries an icon per service and the drawer mirrors it, which a WP menu cannot express, and a
-single options page keeps header + drawer + footer in one screen. If you would rather use native WP menus, that is a
-small add-on — say the word and it can be wired as an override.
+Navigation is a **normal WordPress menu** (`Appearance → Menus`), so the client uses the screen they already know:
+manage pages, drag items, rename labels and add sub-items. The theme renders that menu with the design's own markup,
+so the dropdown keeps its icons: each sub-item's icon is matched automatically from the page URL, and an item can be
+forced to a specific icon by adding an `icon-*` class (e.g. `icon-heart`) in *Screen Options → CSS Classes*.
+
+The dropdown's small secondary link (Practice from BDYCULTURE) is any sub-item given the class `nav__menu-alt`.
+The footer's two link columns are menus too — the column heading is the menu name, so renaming the menu renames the
+column. Nothing about the header, drawer or footer links is buried in an options page.
 
 ## 5. Single source of truth — clinic details & tokens
 

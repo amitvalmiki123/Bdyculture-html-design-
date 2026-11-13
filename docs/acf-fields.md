@@ -8,7 +8,7 @@ unique.
 | Group | Key | Location | Tabs |
 | --- | --- | --- | --- |
 | Site Settings — clinic, header, footer | `group_bdy_global` | `options_page` == `bdyculture-settings` | Clinic details, Header & navigation, Footer, Mobile action bar |
-| Home page — all sections | `group_bdy_home` | `page_type` == `front_page` | 1. Hero, 2. Marquee, 3. Services, 4. More than a consulting room, 5. Photo ribbon, 6. What to expect, 7. Funding, 8. Home visits & refer, 9. FAQ, 10. Contact, 11. Map |
+| Home page — all sections | `group_bdy_home` | `page_type` == `front_page` | 1. Hero, 2. Marquee, 3. Services, 4. More than a consulting room, 5. Photo ribbon, 6. Visit us, 7. What to expect, 8. Funding, 9. Home visits & refer, 10. FAQ, 11. Contact, 12. Map |
 | Page — hero & SEO | `group_bdy_page` | `post_type` == `page` AND `page_type` != `front_page` | Page hero, SEO |
 
 ## Site Settings — clinic, header, footer
@@ -33,14 +33,7 @@ Group key: `group_bdy_global`  ·  location: `options_page` == `bdyculture-setti
 | Header logo (dark) | `clinic_logo` | image | returns: array |
 | Footer logo (light) | `clinic_logo_light` | image | returns: array |
 | **Header & navigation** | — | tab | — |
-| Primary navigation | `header_nav` | repeater | min 1 / max None; layout: block; Drop-down menus use the "Sub-menu" rows inside an item. |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Label | `nav_label` | text | — |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Link | `nav_link` | text | Use /physiotherapy/ for a page on this site, or a full URL. |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Sub-menu | `nav_children` | repeater | min None / max None; layout: block |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ Label | `child_label` | text | — |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ Link | `child_link` | text | — |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ Icon | `child_icon` | select | options: , physiotherapy, exercise-physiology, occupational-therapy, clinical-pilates, search |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ Secondary link | `child_alt` | true_false | Shown in the desktop drop-down only (not the mobile drawer). |
+| _note_ | `bdy_msg_header_nav_note` | message | <strong>Navigation lives in Appearance → Menus</strong><br>Assign a menu to “Header — primary navigation”. Sub-items bec |
 | "Enquire" button label | `header_enquire_text` | text | — |
 | "Book Online" button label | `header_book_text` | text | — |
 | Mobile drawer enquiry label | `header_drawer_enquire_text` | text | — |
@@ -49,17 +42,10 @@ Group key: `group_bdy_global`  ·  location: `options_page` == `bdyculture-setti
 | Footer tagline | `footer_tagline` | textarea | — |
 | Footer button label | `footer_cta_text` | text | — |
 | Footer button link | `footer_cta_url` | text | — |
-| Footer columns | `footer_columns` | repeater | min None / max None; layout: block |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Column title | `col_title` | text | — |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Column text | `col_text` | textarea | Optional. Basic HTML allowed, e.g. a postal address with line breaks. |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Column links | `col_links` | repeater | min None / max None; layout: block |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ Label | `link_label` | text | — |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ Link | `link_url` | text | — |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ Type | `link_type` | select | options: link, tel, email |
-| Copyright line | `footer_copyright` | text | — |
-| Privacy link label | `footer_privacy_text` | text | — |
-| Privacy link URL | `footer_privacy_url` | text | — |
-| Credit line | `footer_credit` | text | — |
+| _note_ | `bdy_msg_footer_nav_note` | message | <strong>Footer link columns live in Appearance → Menus</strong><br>Assign one menu to “Footer — services column” and one |
+| Credit line | `footer_credit` | text | Use {credit_link} where the linked agency name should appear. |
+| Credit — agency name | `footer_credit_label` | text | — |
+| Credit — link URL | `footer_credit_url` | url | — |
 | Footer disclaimer | `footer_note` | textarea | — |
 | **Mobile action bar** | — | tab | — |
 | _note_ | `bdy_msg_mobile_bar` | message | The sticky Call / Book Online bar shown below 1100px. Phone number and booking URL come from Clinic details. |
@@ -82,25 +68,11 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Text | `hero_btn_text` | text | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Link | `hero_btn_url` | text | Use tel for the phone number, /page/ for a page, or a full URL. |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Style | `hero_btn_style` | select | options: signal, ink, ghost, light, outline-light, call |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ After-icon | `hero_btn_icon` | select | options: , physiotherapy, exercise-physiology, occupational-therapy, clinical-pilates, search |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Icon | `hero_btn_icon` | select | options: , physiotherapy, exercise-physiology, occupational-therapy, clinical-pilates, search |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Icon side | `hero_btn_icon_pos` | select | options: auto, right, left |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ New tab | `hero_btn_new_tab` | true_false | — |
 | Hero checklist | `home_hero_checks` | repeater | min None / max None; layout: table |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Text | `hero_check_text` | text | — |
-| Enquiry form shortcode (Contact Form 7) | `home_hero_form_shortcode` | text | Paste a CF7 shortcode, e.g. [contact-form-7 id="123"]. Leave empty to use the built-in des |
-| Form tag | `home_hero_form_tag` | text | — |
-| Form heading (H2) | `home_hero_form_title` | text | — |
-| Form intro | `home_hero_form_intro` | textarea | — |
-| Label — name | `home_hero_form_label_name` | text | — |
-| Label — phone | `home_hero_form_label_phone` | text | — |
-| Label — email | `home_hero_form_label_email` | text | — |
-| Label — service select | `home_hero_form_label_service` | text | — |
-| Service select options | `home_hero_form_options` | repeater | min None / max None; layout: table |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Option | `hero_form_option_text` | text | — |
-| Submit button label | `home_hero_form_button` | text | — |
-| Alt action — text | `home_hero_form_alt_text` | text | — |
-| Alt action — link label | `home_hero_form_alt_link_text` | text | — |
-| Success heading | `home_hero_form_success_title` | text | — |
-| Success message | `home_hero_form_success_text` | textarea | Use {phone_link} to print the clinic phone link. |
 | **2. Marquee** | — | tab | — |
 | Show this section | `home_marquee_show` | true_false | — |
 | Order | `home_marquee_order` | number | Lower numbers render first. |
@@ -167,7 +139,25 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Focus — Y | `ribbon_y` | text | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Zoom | `ribbon_scale` | text | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Swept corner | `ribbon_swept` | true_false | — |
-| **6. What to expect** | — | tab | — |
+| **6. Visit us** | — | tab | — |
+| Show this section | `home_visit_show` | true_false | — |
+| Order | `home_visit_order` | number | Lower numbers render first. |
+| Tag | `home_visit_tag` | text | — |
+| Heading (H2) | `home_visit_title` | text | — |
+| Paragraph 1 | `home_visit_text_1` | textarea | — |
+| Paragraph 2 | `home_visit_text_2` | textarea | — |
+| Photo — window signage | `home_visit_main_image` | image | Portrait crop (4:5). Leave empty to use the bundled photo.; returns: array |
+| Photo crop position | `home_visit_main_position` | text | object-position, e.g. 50% 40%. |
+| Alt text — window signage | `home_visit_main_alt` | text | — |
+| Photo — door signage | `home_visit_door_image` | image | Small overlapping card. Leave empty to use the bundled photo.; returns: array |
+| Alt text — door signage | `home_visit_door_alt` | text | — |
+| Button 1 — label | `home_visit_cta_1_text` | text | — |
+| Button 1 — link | `home_visit_cta_1_url` | text | — |
+| Button 1 — style | `home_visit_cta_1_style` | select | options: signal, ink, ghost, light, outline-light, call |
+| Button 2 — label | `home_visit_cta_2_text` | text | — |
+| Button 2 — link | `home_visit_cta_2_url` | text | — |
+| Button 2 — style | `home_visit_cta_2_style` | select | options: signal, ink, ghost, light, outline-light, call |
+| **7. What to expect** | — | tab | — |
 | Show this section | `home_expect_show` | true_false | — |
 | Order | `home_expect_order` | number | Lower numbers render first. |
 | Eyebrow tag | `home_expect_tag` | text | — |
@@ -181,7 +171,7 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | Button 1 icon | `home_expect_btn_1_icon` | select | options: , physiotherapy, exercise-physiology, occupational-therapy, clinical-pilates, search |
 | Button 2 — text | `home_expect_btn_2_text` | text | — |
 | Button 2 — link | `home_expect_btn_2_url` | text | — |
-| **7. Funding** | — | tab | — |
+| **8. Funding** | — | tab | — |
 | Show this section | `home_funding_show` | true_false | — |
 | Order | `home_funding_order` | number | Lower numbers render first. |
 | Eyebrow tag | `home_funding_tag` | text | — |
@@ -191,7 +181,7 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | Funding pathways | `home_funding_pathways` | repeater | min None / max None; layout: table |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Title | `pathway_title` | text | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Note | `pathway_text` | text | — |
-| **8. Home visits & refer** | — | tab | — |
+| **9. Home visits & refer** | — | tab | — |
 | Show this section | `home_pair_show` | true_false | — |
 | Order | `home_pair_order` | number | Lower numbers render first. |
 | Card 1 — tag | `pair_1_tag` | text | — |
@@ -214,7 +204,7 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | Card 2 — button 1 icon | `pair_2_btn_1_icon` | select | options: , physiotherapy, exercise-physiology, occupational-therapy, clinical-pilates, search |
 | Card 2 — button 2 text | `pair_2_btn_2_text` | text | — |
 | Card 2 — button 2 link | `pair_2_btn_2_url` | text | — |
-| **9. FAQ** | — | tab | — |
+| **10. FAQ** | — | tab | — |
 | Show this section | `home_faq_show` | true_false | — |
 | Order | `home_faq_order` | number | Lower numbers render first. |
 | Eyebrow tag | `home_faq_tag` | text | — |
@@ -225,7 +215,7 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | Questions | `home_faq_items` | repeater | min None / max None; layout: block |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Question | `faq_question` | text | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Answer | `faq_answer` | textarea | — |
-| **10. Contact** | — | tab | — |
+| **11. Contact** | — | tab | — |
 | Show this section | `home_contact_show` | true_false | — |
 | Order | `home_contact_order` | number | Lower numbers render first. |
 | Eyebrow tag | `home_contact_tag` | text | — |
@@ -251,10 +241,11 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Option | `contact_type_option_text` | text | — |
 | Interest options | `home_contact_form_interests` | repeater | min None / max None; layout: table |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Option | `contact_interest_option_text` | text | — |
+| Privacy note under the button | `home_contact_form_note` | textarea | Allows a link, e.g. to the privacy policy. |
 | Submit button label | `home_contact_form_button` | text | — |
 | Success heading | `home_contact_form_success_title` | text | — |
 | Success message | `home_contact_form_success_text` | textarea | Use {phone_link} for the clinic phone link. |
-| **11. Map** | — | tab | — |
+| **12. Map** | — | tab | — |
 | Show this section | `home_map_show` | true_false | — |
 | Order | `home_map_order` | number | Lower numbers render first. |
 | Eyebrow tag | `home_map_tag` | text | — |

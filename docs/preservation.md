@@ -100,7 +100,7 @@ bare section hooks `expect`, `faq`, `funding`, which the reference also had).
 | Services tabs (click + ←/→/Home/End, `aria-selected`, `hidden`) | ✓ | ✓ |
 | FAQ accordion, one open at a time | ✓ | ✓ |
 | Mock form submit → success state | ✓ | ✓ |
-| Ribbon track duplication for the infinite loop | ✓ | ✓ |
+| Ribbon track duplication for the infinite loop | ✓ (JS clone) | ✓ (rendered twice by PHP, so the strip is never half-empty) |
 | Lazy Leaflet map, Street/Satellite switch, marker, `data-fly` chips | ✓ | ✓ |
 | Google-embed fallback when Leaflet cannot load | ✓ | ✓ |
 
