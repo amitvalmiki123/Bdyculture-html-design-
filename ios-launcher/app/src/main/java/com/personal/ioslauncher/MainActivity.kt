@@ -16,6 +16,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.Gravity
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.EditText
 import android.widget.FrameLayout
@@ -149,7 +150,7 @@ class MainActivity : Activity() {
             isFillViewport = true
         }
         pages = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL }
-        pager.addView(pages, HorizontalScrollView.LayoutParams(-2, -1))
+        pager.addView(pages, ViewGroup.LayoutParams(-2, -1))
         content.addView(pager, LinearLayout.LayoutParams(-1, 0, 1f).apply {
             topMargin = dp(8)
             bottomMargin = dp(1)
@@ -302,14 +303,14 @@ class MainActivity : Activity() {
             setHintTextColor(0xBFFFFFFF.toInt())
             setTextColor(white)
             textSize = 16f
-            singleLine = true
+            isSingleLine = true
             background = glass(18, 0x2EFFFFFF)
             setPadding(dp(16), 0, dp(16), 0)
         }
         layout.addView(search, LinearLayout.LayoutParams(-1, dp(48)).apply { topMargin = dp(4); bottomMargin = dp(12) })
         val scroll = ScrollView(this).apply { isFillViewport = true }
         val grid = GridLayout(this).apply { columnCount = columns; useDefaultMargins = false }
-        scroll.addView(grid, ScrollView.LayoutParams(-1, -2))
+        scroll.addView(grid, ViewGroup.LayoutParams(-1, -2))
         layout.addView(scroll, LinearLayout.LayoutParams(-1, 0, 1f))
         fun fill(query: String) {
             grid.removeAllViews()
