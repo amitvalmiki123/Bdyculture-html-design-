@@ -59,6 +59,12 @@ again — they are generated from the ACF repeater.
 6. **Logo `<img>`** carries `loading="eager" decoding="async" fetchpriority="high"` (Rule 18).
 7. Decorative panel photos have `alt=""`; the content photo has the full description from the design
    brief.
+8. **Inner-page glyph buttons** — where an inner page writes a phone glyph as text
+   (`<a class="btn">☏ 07 3073 1616</a>`, one note-card on *Referrers*), the theme renders the design's
+   own phone SVG plus the number, matching the call buttons used everywhere else. The arrow is the
+   single exception: it stays the text glyph inside `<span aria-hidden="true">`.
+9. **Inline section icons** — the `ways` cards, service cards and feature cards use the design's inline
+   SVG paths through the icon library, so an editor picks an icon name instead of pasting SVG.
 
 ---
 
@@ -109,6 +115,24 @@ from `wp_localize_script()` (`bdyTheme`), and no jQuery is required.
 
 ---
 
+### Inner-page block engine (v2 upload)
+
+`cmp_pages.py` renders all twelve designs through the theme (WordPress stubbed) and diffs the text of
+`<main>` plus the ordered list of `<section>` classes against the source HTML:
+
+* **Ten inner pages** — text identical; section order identical. The only difference is the deliberate
+  `.dark` → `.section--dark` rename.
+* **Blog index** — text identical (`home.php`, block stack + contact band + map).
+* **Blog post** — `single.php` renders the same structure as the design article: hero + checklist,
+  `article-layout`, `article__hero`, `article__cta`, `article__foot`, `article-side` (contents, booking,
+  services) and the related-articles grid. Post-specific copy comes from the post itself, so its text is
+  not expected to match the sample content.
+
+`node render.mjs` also asserts the JSON-LD: every inner page emits `MedicalClinic`, `BreadcrumbList`
+(from the visible breadcrumb) and — where the page has an FAQ block — `FAQPage`.
+
+---
+
 ## 4. Runtime checks
 
 * **PHP lint** — 37 PHP files parsed with `TOKEN_PARSE`, 0 failures.
@@ -144,8 +168,10 @@ from `wp_localize_script()` (`bdyTheme`), and no jQuery is required.
 
 1. **Opening hours** — the reference has a placeholder; ACF ships the same placeholder until the client
    confirms the real hours.
-2. **Inner pages** — the package only contained the homepage. `page.php` reuses the existing design
-   language (hero + editor content) and invents nothing. If designs for the inner pages arrive, each one
-   becomes a new section set + template, exactly like the home page.
+2. **Inner pages** — ported from the v2 upload as a block stack (`defaults-pages.php` + `page.php`,
+   `home.php` for the posts page, `single.php` for articles).
+   Each of the 12 designs was rendered through the theme and compared with the source: text and section
+   order match (`node render.mjs` + `cmp_pages.py`), and the only deliberate difference is the theme's
+   `.section--dark` class where the design writes `.dark`.
 3. **Privacy policy copy** — link only; the page itself is not part of the package.
 4. **Form destination** — the fallback form is client-side only. Paste a CF7 shortcode to make it live.

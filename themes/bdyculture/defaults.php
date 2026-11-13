@@ -52,6 +52,46 @@ function bdy_defaults_all() {
 			'clinic_tagline'            => 'Allied health and rehabilitation in Chermside, Brisbane.',
 			'clinic_meta_description'   => 'Physiotherapy, exercise physiology, occupational therapy and clinical Pilates in Chermside, Brisbane. Book online or call {phone}.',
 
+			/* Enquiry card beside inner-page heroes (one form for every page). */
+			'enquiry_tag'               => 'Enquire online',
+			'enquiry_title'             => 'Request an appointment or ask a question',
+			'enquiry_intro'             => 'Our Chermside team will get back to you. For urgent medical help, call 000.',
+			'enquiry_label_name'        => 'Full name',
+			'enquiry_label_phone'       => 'Phone',
+			'enquiry_label_email'       => 'Email',
+			'enquiry_label_service'     => 'I’m interested in',
+			'enquiry_button'            => 'Send enquiry',
+			'enquiry_note'              => 'By submitting this form, you acknowledge the BDYCULTURE {privacy_link}. Please do not include sensitive medical or health information in this form.',
+			'enquiry_alt_text'          => 'Prefer to book yourself?',
+			'enquiry_alt_link_text'     => 'Book Online with Nookal',
+			'enquiry_success_title'     => 'Thanks — enquiry received',
+			'enquiry_success_text'      => 'We’ll be in touch shortly. To speak to someone now, call {phone_link}.',
+			'enquiry_options'           => array(
+				array( 'text' => 'Physiotherapy' ),
+				array( 'text' => 'Exercise Physiology' ),
+				array( 'text' => 'Occupational Therapy' ),
+				array( 'text' => 'Clinical Pilates' ),
+				array( 'text' => 'Home visit enquiry' ),
+				array( 'text' => 'I’m not sure yet', 'selected' => true ),
+			),
+
+			'article_checks'             => array(
+				array( 'text' => 'General information only' ),
+				array( 'text' => 'Reviewed before publishing' ),
+				array( 'text' => 'Book via Nookal' ),
+			),
+			'article_toc_title'          => 'In this article',
+			'article_side_book_title'    => 'Book an appointment',
+			'article_side_book_text'     => 'Choose a time online or speak to our Chermside team.',
+			'article_side_services_title' => 'Our services',
+			'article_related_tag'        => 'Keep reading',
+			'article_related_title'      => 'Related articles.',
+			'article_cta_title'          => 'Ready to talk to someone?',
+			'article_cta_text'           => 'Book an appointment online through Nookal, call the clinic on {phone}, or send an enquiry.',
+			'article_byline'             => 'BDYCULTURE clinical team',
+			'article_byline_note'        => 'placeholder — content team to confirm author and reviewer',
+			'article_disclaimer'         => 'This article is general information only and is not a substitute for individual health advice. Results vary between individuals.',
+
 			'header_enquire_text'       => 'Enquire',
 			'header_drawer_enquire_text' => 'Send an enquiry',
 			'header_book_text'          => 'Book Online',
@@ -602,6 +642,11 @@ function bdy_defaults_all() {
 		   INNER PAGES — generic page hero (no inner-page design existed in
 		   the supplied HTML package; this reuses the site design language).
 		   ================================================================= */
+		/* =================================================================
+		   INNER PAGES — one block list per page (defaults-pages.php).
+		   ================================================================= */
+		'pages' => bdy_page_defaults(),
+
 		'page' => array(
 			'hero' => array(
 				'show'                    => true,

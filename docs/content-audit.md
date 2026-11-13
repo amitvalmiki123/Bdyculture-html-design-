@@ -28,6 +28,34 @@ so changing the number once updates every button, link, FAQ answer, footer line 
 | clinic hours | Placeholder — client to confirm clinic hours | `clinic_hours` | text |
 | clinic tagline | Allied health and rehabilitation in Chermside, Brisbane. | `clinic_tagline` | textarea |
 | clinic meta description | Physiotherapy, exercise physiology, occupational therapy and clinical Pilates in Chermside, Brisbane. Book… | `clinic_meta_description` | textarea |
+| enquiry tag | Enquire online | `enquiry_tag` | text |
+| enquiry title | Request an appointment or ask a question | `enquiry_title` | text |
+| enquiry intro | Our Chermside team will get back to you. For urgent medical help, call 000. | `enquiry_intro` | textarea |
+| enquiry label name | Full name | `enquiry_label_name` | text |
+| enquiry label phone | Phone | `enquiry_label_phone` | text |
+| enquiry label email | Email | `enquiry_label_email` | text |
+| enquiry label service | I’m interested in | `enquiry_label_service` | text |
+| enquiry button | Send enquiry | `enquiry_button` | text |
+| enquiry note | By submitting this form, you acknowledge the BDYCULTURE {privacy_link}. Please do not include sensitive med… | `enquiry_note` | textarea |
+| enquiry alt text | Prefer to book yourself? | `enquiry_alt_text` | text |
+| enquiry alt link text | Book Online with Nookal | `enquiry_alt_link_text` | text |
+| enquiry success title | Thanks — enquiry received | `enquiry_success_title` | text |
+| enquiry success text | We’ll be in touch shortly. To speak to someone now, call 07 3073 1616. | `enquiry_success_text` | textarea |
+| enquiry options (repeater) | 6 row(s) — Physiotherapy | `enquiry_options` | repeater |
+| &nbsp;&nbsp;└ text | Physiotherapy | `text` | text |
+| article checks (repeater) | 3 row(s) — General information only | `article_checks` | repeater |
+| &nbsp;&nbsp;└ text | General information only | `text` | text |
+| article toc title | In this article | `article_toc_title` | text |
+| article side book title | Book an appointment | `article_side_book_title` | text |
+| article side book text | Choose a time online or speak to our Chermside team. | `article_side_book_text` | text |
+| article side services title | Our services | `article_side_services_title` | text |
+| article related tag | Keep reading | `article_related_tag` | text |
+| article related title | Related articles. | `article_related_title` | text |
+| article cta title | Ready to talk to someone? | `article_cta_title` | text |
+| article cta text | Book an appointment online through Nookal, call the clinic on 07 3073 1616, or send an enquiry. | `article_cta_text` | text |
+| article byline | BDYCULTURE clinical team | `article_byline` | text |
+| article byline note | placeholder — content team to confirm author and reviewer | `article_byline_note` | text |
+| article disclaimer | This article is general information only and is not a substitute for individual health advice. Results vary… | `article_disclaimer` | textarea |
 | header enquire text | Enquire | `header_enquire_text` | text |
 | header drawer enquire text | Send an enquiry | `header_drawer_enquire_text` | text |
 | header book text | Book Online | `header_book_text` | text |
@@ -332,15 +360,57 @@ Heading + Leaflet map with a lazy "Load interactive map" button, Street/Satellit
 | home map btn 2 text | Call | `home_map_btn_2_text` | text |
 | home map btn 2 url | tel | `home_map_btn_2_url` | text |
 
-## 13. Inner pages (`.page-hero` + editor content)
+## 13. Inner pages — block library
 
-No inner-page design was supplied with the package, so inner pages reuse the existing design language:
-an optional hero (tag, H1, intro, optional image) followed by the WordPress editor content inside `.entry-content`.
-The hero fields are edited per page in the **Page — hero & SEO** group; nothing else is invented.
+Every inner page in the v2 design ships as a stack of **blocks**. The whole stack is edited in the
+**Page — sections & SEO** group on the page itself (`page_sections`, a flexible-content field), so the client can
+reorder, duplicate, remove or add a section without touching code. Each block's content falls back to
+`defaults-pages.php`, so the approved design renders before a single field is saved.
 
-| Element | Design content | ACF field | Type |
-| --- | --- | --- | --- |
-| hero | {'show': True, 'order': 10, 'page_hero_tag': '', 'page_hero_intro': '', 'page_hero_image': '', 'page_hero_i… | `hero` | — |
+`contact` (dark band + form) and `map` are appended by `page.php` on every inner page — edit them once in
+**Theme Settings** and **Home page → 12. Map**, and every page follows. The enquiry card beside each hero is edited
+once in **Theme Settings → Enquiry card**; the Practice page carries its own card (licence enquiry) through the
+hero's "Card — …" fields.
+
+| Page | Template | Blocks (in order) |
+| --- | --- | --- |
+
+| Services | `page.php` | Hero, Service cards, Split (copy + media), Funding pathways, Split (copy + media), FAQ |
+| Physiotherapy | `page.php` | Hero, Split (copy + media), Feature cards, Numbered steps, Funding pathways, Split (copy + media), FAQ, CTA band |
+| Exercise Physiology | `page.php` | Hero, Split (copy + media), Feature cards, Numbered steps, Funding pathways, Split (copy + media), FAQ, CTA band |
+| Occupational Therapy | `page.php` | Hero, Split (copy + media), Feature cards, Numbered steps, Funding pathways, Split (copy + media), FAQ, CTA band |
+| Clinical Pilates | `page.php` | Hero, Split (copy + media), Feature cards, Numbered steps, Funding pathways, Split (copy + media), FAQ, CTA band |
+| Referrers | `page.php` | Hero, Split (copy + media), Split (copy + media), Numbered steps, Split (copy + media), Funding pathways, FAQ |
+| Contact | `page.php` | Hero, Ways to book, Split (copy + media) |
+| Location — Chermside | `page.php` | Hero, Split (copy + media), Service links (compact), Split (copy + media), Suburb list, Funding pathways, FAQ |
+| Practice from BDYCULTURE | `page.php` | Hero, Feature cards, Split (copy + media), Feature cards, Feature cards, Numbered steps, FAQ, CTA band |
+| Privacy Policy | `page.php` | Hero, Long copy |
+| Blog index | `home.php` | Hero, Featured post, Post grid, Split (copy + media), FAQ |
+| Blog post | `single.php` | Hero, Article (rendered by `single.php`) |
+
+### Block types
+
+| ACF layout | Design section | What it edits |
+| --- | --- | --- |
+| `hero` | `.hero--inner` | Breadcrumb (auto: Home / page title), H1, lead, buttons, checklist, optional custom enquiry card |
+| `services` | `.svc-grid` | Tag, heading, intro and four service cards (number, icon, title, text, ticks, photo, link) |
+| `svc_mini` | `.svc-grid--compact` | Tag, heading, intro and four compact service links |
+| `features` | `.feature-grid` | Tag, heading, intro and 3–4 feature cards (icon, title, text) |
+| `split` | `.split` | Tag, heading, rich copy, buttons, note, photo and an optional info panel |
+| `steps` | `.steps` | Tag, heading, intro and three numbered steps |
+| `funding` | `.funding` | Tag, heading, intro and the funding cards (name, note, accepted services) |
+| `faq` | `.faq` | Tag, heading, intro, "ask a question" button and the question/answer rows |
+| `cta` | `.cta-band` | Heading, supporting line and the two buttons |
+| `ways` | `.ways` | The four ways-to-book cards (title, text, detail, link) |
+| `suburbs` | `.suburbs` | Tag, heading, intro, the suburb/topic list, copy and the placeholder note |
+| `prose` | `.prose` | Long-form copy (used for the Privacy Policy, variant `legal`) |
+| `posts_featured` | `.post-featured` | Tag, heading and the lead article (falls back to the latest post) |
+| `posts_grid` | `.posts-grid` | Tag, heading and the article grid with topic chips (latest six posts) |
+| — | `single.php` | Post title, meta (date · reading time · category), body, sidebar cards and the article CTA |
+
+Blog content is real WordPress content: the blog index lists your published posts (`home.php`) and each article
+renders through `single.php`. The shipped block copy is the fallback used until posts exist.
+
 
 ## 14. Not content-editable (by design)
 

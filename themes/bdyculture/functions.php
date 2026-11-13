@@ -29,6 +29,7 @@ if ( ! defined( 'THEME_URI' ) ) {
  * Fallback content — every original HTML string and image (Rule 3).
  */
 require_once THEME_DIR . '/defaults.php';
+require_once THEME_DIR . '/defaults-pages.php';
 
 /**
  * Helpers.
@@ -39,6 +40,8 @@ require_once THEME_DIR . '/inc/helpers/icon-helpers.php';
 require_once THEME_DIR . '/inc/helpers/image-helpers.php';
 require_once THEME_DIR . '/inc/helpers/section-helpers.php';
 require_once THEME_DIR . '/inc/helpers/menu-helpers.php';
+require_once THEME_DIR . '/inc/helpers/block-helpers.php';
+require_once THEME_DIR . '/inc/helpers/post-helpers.php';
 
 /**
  * Core theme behaviour.

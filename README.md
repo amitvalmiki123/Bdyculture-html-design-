@@ -56,7 +56,10 @@ Everything else in the 19 rules is implemented as written, and the deviation is 
 | Header buttons, footer options, mobile bar, phone / emails / address / hours | **BDYCULTURE → Theme Settings** (one options page) |
 | Header navigation, footer link columns | **Appearance → Menus** (four locations; shipped defaults show until a menu is assigned) |
 | Home page sections (copy, images, links, order, show/hide) | Pages → *Home*, one tab per section |
-| Inner pages | Pages → *(page)* → *Page hero* tab |
+| Inner page sections (copy, images, links, order, show/hide) | Pages → *(page)* → **Page sections** tab (a block stack; falls back to the shipped design) |
+| Enquiry card beside every hero | Theme Settings → **Enquiry card** |
+| Blog article template (checklist, sidebar, related, CTA, disclaimer) | Theme Settings → **Blog article** |
+| Blog posts | Posts; the posts page lists them, each article uses `single.php` |
 | Colours, fonts, sizes, spacing, container width | Appearance → Customize → **Theme Design** |
 
 Clinic details are a single source: buttons, footer links, contact list, FAQ answers, map card, meta description and
@@ -65,10 +68,9 @@ the JSON-LD read them through `{phone}`, `{email}`, `{address}` tokens (full lis
 ## Open items for the client
 
 1. **Clinic hours** — currently the design's placeholder text.
-2. **Inner pages** — the first package contained only the homepage; `page.php` reuses the design language
-   (hero + editor content). The new upload now ships the inner-page designs too (`contact.html`,
-   `services.html`, the four service pages, `referrers.html`, `blog.html`, `location-chermside.html`,
-   `practice-from-bdyculture.html`, `privacy-policy.html`); porting them section-by-section is the next
-   step and they are not part of this build yet.
+2. **Inner pages** — built 1:1 from the v2 upload as a per-page block stack (`page.php`, `home.php`,
+   `single.php` + `defaults-pages.php`): Services, the four service pages, Referrers, Contact,
+   Location — Chermside, Practice from BDYCULTURE, Privacy Policy, the blog index and the article template.
+   Every page reuses the shared contact band, map, enquiry card and footer, so those are edited once.
 3. **Forms** — paste a Contact Form 7 shortcode into the Contact section's *Form shortcode* field to go live;
    until then the design-identical fallback form is used.

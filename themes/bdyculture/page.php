@@ -1,10 +1,10 @@
 <?php
 /**
- * Inner page template.
+ * Inner page — hero + design blocks + contact band + map.
  *
- * The supplied HTML package only included the homepage, so inner pages reuse
- * the existing design language instead of inventing new sections:
- * hero (tag + H1 + intro), then the page content from the editor.
+ * The block list comes from the ACF flexible-content field `page_sections`;
+ * without it, `defaults-pages.php` supplies the approved design for each known
+ * page. Pages with neither fall back to the classic "hero + editor content".
  *
  * @package BDYCULTURE
  */
@@ -15,34 +15,55 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header();
 
-if ( have_posts() ) :
-	while ( have_posts() ) :
-		the_post();
+while ( have_posts() ) :
+	the_post();
 
-		bdy_render_sections( 'page' );
+	$bdy_blocks = bdy_page_blocks();
+
+	if ( $bdy_blocks ) {
+		bdy_render_page_blocks();
+
+		get_template_part( 'template-parts/sections/home', 'contact' );
+		get_template_part( 'template-parts/sections/home', 'map' );
+	} else {
+		$bdy_global = bdy_defaults( 'page' );
+		$bdy_tag    = bdy_string( 'page_hero_tag', $bdy_global['hero']['page_hero_tag'] );
+		$bdy_intro  = bdy_html( 'page_hero_intro', $bdy_global['hero']['page_hero_intro'] );
 		?>
-		<section class="section section--page">
-			<div class="container">
-				<div class="entry-content">
-					<?php
-					if ( ! bdy_show( 'page', 'hero' ) ) {
-						echo '<h1 class="entry-content__title">' . esc_html( get_the_title() ) . '</h1>';
-					}
-
-					the_content();
-
-					wp_link_pages(
-						array(
-							'before' => '<nav class="entry-content__pages">',
-							'after'  => '</nav>',
-						)
-					);
-					?>
+		<section class="hero hero--inner hero--noform" aria-labelledby="hero-title">
+				<div class="container hero__grid">
+					<div class="hero__copy">
+						<nav class="crumbs" aria-label="<?php esc_attr_e( 'Breadcrumb', 'bdyculture' ); ?>">
+							<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'bdyculture' ); ?></a>
+							<span aria-hidden="true">/</span>
+							<span aria-current="page"><?php the_title(); ?></span>
+						</nav>
+						<h1 id="hero-title"><?php the_title(); ?></h1>
+						<?php if ( $bdy_intro ) : ?>
+							<p class="lead"><?php echo wp_kses_post( $bdy_intro ); ?></p>
+						<?php endif; ?>
+					</div>
 				</div>
-			</div>
-		</section>
+			</section>
+
+			<section class="section">
+				<div class="container">
+					<div class="entry-content">
+						<?php
+						the_content();
+
+						wp_link_pages(
+							array(
+								'before' => '<nav class="entry-content__pages">',
+								'after'  => '</nav>',
+							)
+						);
+						?>
+					</div>
+				</div>
+			</section>
 		<?php
-	endwhile;
-endif;
+	}
+endwhile;
 
 get_footer();

@@ -33,6 +33,8 @@ function bdy_icon_paths() {
 		'location'             => '<path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/>',
 		'check'                => '<path d="M4 12.5l5 5L20 6.5"/>',
 		'star'                 => '<path d="M12 3.5l2.6 5.6 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6L3.4 9.9l6-.8z"/>',
+		'mail'                 => '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',
+		'arrow'                => '<path d="M4 12h15M13 6l6 6-6 6"/>',
 	);
 }
 
@@ -73,9 +75,7 @@ function bdy_icon( $name, $args = array() ) {
 	$html  = '';
 	$class = $args['class'] ? ' class="' . esc_attr( $args['class'] ) . '"' : '';
 
-	if ( 'arrow' === $name ) {
-		$html = '<span aria-hidden="true">→</span>';
-	} elseif ( 'phone' === $name ) {
+	if ( 'phone' === $name ) {
 		$size = (int) $args['size'];
 		$html = '<svg' . $class . ' width="' . $size . '" height="' . $size . '" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2a1 1 0 011-.25 11.4 11.4 0 003.6.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1z"/></svg>';
 	} else {

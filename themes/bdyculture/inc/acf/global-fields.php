@@ -72,6 +72,67 @@ function bdy_acf_global_fields() {
 				bdy_acf_field( 'header_book_text', __( '"Book Online" button label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
 				bdy_acf_field( 'header_drawer_enquire_text', __( 'Mobile drawer enquiry label', 'bdyculture' ), 'text' ),
 
+				bdy_acf_tab( 'enquiry', __( 'Enquiry card', 'bdyculture' ) ),
+				bdy_acf_message(
+					'enquiry',
+					__( 'The short form that sits beside the hero on every inner page. The answer appears in place, so no page reload.', 'bdyculture' )
+				),
+				bdy_acf_field( 'enquiry_tag', __( 'Tag', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '30' ) ) ),
+				bdy_acf_field( 'enquiry_title', __( 'Heading', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '70' ) ) ),
+				bdy_acf_textarea( 'enquiry_intro', __( 'Intro', 'bdyculture' ), array( 'rows' => 2 ) ),
+				bdy_acf_field( 'enquiry_label_name', __( 'Label — name', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '25' ) ) ),
+				bdy_acf_field( 'enquiry_label_phone', __( 'Label — phone', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '25' ) ) ),
+				bdy_acf_field( 'enquiry_label_email', __( 'Label — email', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '25' ) ) ),
+				bdy_acf_field( 'enquiry_label_service', __( 'Label — service select', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '25' ) ) ),
+				bdy_acf_field(
+					'enquiry_options',
+					__( 'Service select options', 'bdyculture' ),
+					'repeater',
+					array(
+						'layout'       => 'table',
+						'button_label' => __( 'Add option', 'bdyculture' ),
+						'sub_fields'   => array(
+							bdy_acf_field( 'text', __( 'Option', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '80' ) ) ),
+							bdy_acf_field( 'selected', __( 'Selected', 'bdyculture' ), 'true_false', array( 'ui' => 1, 'wrapper' => array( 'width' => '20' ) ) ),
+						),
+					)
+				),
+				bdy_acf_field( 'enquiry_button', __( 'Submit button', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_field( 'enquiry_alt_text', __( 'Alt action — text', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_field( 'enquiry_alt_link_text', __( 'Alt action — link label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_textarea( 'enquiry_note', __( 'Privacy note', 'bdyculture' ), array( 'rows' => 2, 'instructions' => __( 'Use {privacy_link} for the linked Privacy Policy.', 'bdyculture' ) ) ),
+				bdy_acf_field( 'enquiry_success_title', __( 'Success heading', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_textarea( 'enquiry_success_text', __( 'Success message', 'bdyculture' ), array( 'rows' => 2, 'instructions' => __( 'Use {phone_link} for the clinic phone link.', 'bdyculture' ) ) ),
+
+				bdy_acf_tab( 'article', __( 'Blog article', 'bdyculture' ) ),
+				bdy_acf_message(
+					'article',
+					__( 'The article template around every blog post. The post title, excerpt, content, category and date come from the post itself.', 'bdyculture' )
+				),
+				bdy_acf_field(
+					'article_checks',
+					__( 'Hero checklist', 'bdyculture' ),
+					'repeater',
+					array(
+						'layout'       => 'table',
+						'button_label' => __( 'Add point', 'bdyculture' ),
+						'sub_fields'   => array(
+							bdy_acf_field( 'text', __( 'Text', 'bdyculture' ), 'text' ),
+						),
+					)
+				),
+				bdy_acf_field( 'article_toc_title', __( 'Sidebar — contents heading', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_field( 'article_side_services_title', __( 'Sidebar — services heading', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_field( 'article_side_book_title', __( 'Sidebar — booking heading', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_field( 'article_side_book_text', __( 'Sidebar — booking text', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_field( 'article_cta_title', __( 'In-article CTA heading', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_field( 'article_cta_text', __( 'In-article CTA text', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_field( 'article_related_tag', __( 'Related — tag', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '30' ) ) ),
+				bdy_acf_field( 'article_related_title', __( 'Related — heading', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '70' ) ) ),
+				bdy_acf_field( 'article_byline', __( 'Byline', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+				bdy_acf_field( 'article_byline_note', __( 'Byline note', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ), 'instructions' => __( 'Shown in brackets after the byline. Clear it once the author is confirmed.', 'bdyculture' ) ) ),
+				bdy_acf_textarea( 'article_disclaimer', __( 'Disclaimer', 'bdyculture' ), array( 'rows' => 2 ) ),
+
 				bdy_acf_tab( 'footer', __( 'Footer', 'bdyculture' ) ),
 				bdy_acf_image( 'footer_logo', __( 'Footer logo', 'bdyculture' ) ),
 				bdy_acf_textarea( 'footer_tagline', __( 'Footer tagline', 'bdyculture' ) ),

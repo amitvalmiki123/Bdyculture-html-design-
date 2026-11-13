@@ -7,9 +7,9 @@ unique.
 
 | Group | Key | Location | Tabs |
 | --- | --- | --- | --- |
-| Site Settings — clinic, header, footer | `group_bdy_global` | `options_page` == `bdyculture-settings` | Clinic details, Header & navigation, Footer, Mobile action bar |
+| Site Settings — clinic, header, footer | `group_bdy_global` | `options_page` == `bdyculture-settings` | Clinic details, Header & navigation, Enquiry card, Blog article, Footer, Mobile action bar |
 | Home page — all sections | `group_bdy_home` | `page_type` == `front_page` | 1. Hero, 2. Marquee, 3. Services, 4. More than a consulting room, 5. Photo ribbon, 6. Visit us, 7. What to expect, 8. Funding, 9. Home visits & refer, 10. FAQ, 11. Contact, 12. Map |
-| Page — hero & SEO | `group_bdy_page` | `post_type` == `page` AND `page_type` != `front_page` | Page hero, SEO |
+| Page — sections & SEO | `group_bdy_page` | `post_type` == `page` AND `page_type` != `front_page` | Page sections, Fallback hero (pages without blocks), SEO |
 
 ## Site Settings — clinic, header, footer
 
@@ -37,6 +37,39 @@ Group key: `group_bdy_global`  ·  location: `options_page` == `bdyculture-setti
 | "Enquire" button label | `header_enquire_text` | text | — |
 | "Book Online" button label | `header_book_text` | text | — |
 | Mobile drawer enquiry label | `header_drawer_enquire_text` | text | — |
+| **Enquiry card** | — | tab | — |
+| _note_ | `bdy_msg_enquiry` | message | The short form that sits beside the hero on every inner page. The answer appears in place, so no page reload. |
+| Tag | `enquiry_tag` | text | — |
+| Heading | `enquiry_title` | text | — |
+| Intro | `enquiry_intro` | textarea | — |
+| Label — name | `enquiry_label_name` | text | — |
+| Label — phone | `enquiry_label_phone` | text | — |
+| Label — email | `enquiry_label_email` | text | — |
+| Label — service select | `enquiry_label_service` | text | — |
+| Service select options | `enquiry_options` | repeater | layout: table |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Option | `text` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Selected | `selected` | true_false | — |
+| Submit button | `enquiry_button` | text | — |
+| Alt action — text | `enquiry_alt_text` | text | — |
+| Alt action — link label | `enquiry_alt_link_text` | text | — |
+| Privacy note | `enquiry_note` | textarea | Use {privacy_link} for the linked Privacy Policy. |
+| Success heading | `enquiry_success_title` | text | — |
+| Success message | `enquiry_success_text` | textarea | Use {phone_link} for the clinic phone link. |
+| **Blog article** | — | tab | — |
+| _note_ | `bdy_msg_article` | message | The article template around every blog post. The post title, excerpt, content, category and date come from the post itse |
+| Hero checklist | `article_checks` | repeater | layout: table |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Text | `text` | text | — |
+| Sidebar — contents heading | `article_toc_title` | text | — |
+| Sidebar — services heading | `article_side_services_title` | text | — |
+| Sidebar — booking heading | `article_side_book_title` | text | — |
+| Sidebar — booking text | `article_side_book_text` | text | — |
+| In-article CTA heading | `article_cta_title` | text | — |
+| In-article CTA text | `article_cta_text` | text | — |
+| Related — tag | `article_related_tag` | text | — |
+| Related — heading | `article_related_title` | text | — |
+| Byline | `article_byline` | text | — |
+| Byline note | `article_byline_note` | text | Shown in brackets after the byline. Clear it once the author is confirmed. |
+| Disclaimer | `article_disclaimer` | textarea | — |
 | **Footer** | — | tab | — |
 | Footer logo | `footer_logo` | image | returns: array |
 | Footer tagline | `footer_tagline` | textarea | — |
@@ -64,19 +97,19 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | Hero background photo | `home_hero_image` | image | Fills the hero behind a dark wash. Leave empty to use the bundled photo.; returns: array |
 | Hero heading (H1) | `home_hero_title` | textarea | Allowed markup: &lt;br&gt;, &lt;span class="amp"&gt; and &lt;span class="hero__highlight"& |
 | Hero lead paragraph | `home_hero_lead` | textarea | — |
-| Hero buttons | `home_hero_buttons` | repeater | min None / max 3; layout: table |
+| Hero buttons | `home_hero_buttons` | repeater | max 3; layout: table |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Text | `hero_btn_text` | text | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Link | `hero_btn_url` | text | Use tel for the phone number, /page/ for a page, or a full URL. |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Style | `hero_btn_style` | select | options: signal, ink, ghost, light, outline-light, call |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Icon | `hero_btn_icon` | select | options: , physiotherapy, exercise-physiology, occupational-therapy, clinical-pilates, search |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Icon side | `hero_btn_icon_pos` | select | options: auto, right, left |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ New tab | `hero_btn_new_tab` | true_false | — |
-| Hero checklist | `home_hero_checks` | repeater | min None / max None; layout: table |
+| Hero checklist | `home_hero_checks` | repeater | layout: table |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Text | `hero_check_text` | text | — |
 | **2. Marquee** | — | tab | — |
 | Show this section | `home_marquee_show` | true_false | — |
 | Order | `home_marquee_order` | number | Lower numbers render first. |
-| Marquee items | `home_marquee_items` | repeater | min 2 / max None; layout: table |
+| Marquee items | `home_marquee_items` | repeater | min 2; layout: table |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Text | `marquee_item_text` | text | — |
 | **3. Services** | — | tab | — |
 | Show this section | `home_services_show` | true_false | — |
@@ -84,7 +117,7 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | Eyebrow tag | `home_services_tag` | text | — |
 | Heading (H2) | `home_services_title` | textarea | Basic HTML allowed, e.g. &lt;br&gt;. |
 | Intro | `home_services_intro` | textarea | — |
-| Service tabs & panels | `home_services_panels` | repeater | min 1 / max None; layout: block |
+| Service tabs & panels | `home_services_panels` | repeater | min 1; layout: block |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Tab label | `panel_tab_label` | text | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Tab icon | `panel_icon` | select | options: , physiotherapy, exercise-physiology, occupational-therapy, clinical-pilates, search |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Image chip label | `panel_chip` | text | — |
@@ -95,7 +128,7 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Panel heading (H3) | `panel_title` | text | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Panel lead | `panel_lead` | textarea | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Panel body | `panel_body` | textarea | — |
-| &nbsp;&nbsp;&nbsp;&nbsp;└ Tick list | `panel_ticks` | repeater | min None / max None; layout: table |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Tick list | `panel_ticks` | repeater | layout: table |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└ Text | `panel_tick_text` | text | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Primary button — text | `panel_btn_1_text` | text | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Primary button — link | `panel_btn_1_url` | text | — |
@@ -118,13 +151,13 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | Inset zoom | `home_continuum_inset_scale` | text | — |
 | Badge number | `home_continuum_badge_number` | text | — |
 | Badge text | `home_continuum_badge_text` | textarea | — |
-| Approach steps | `home_continuum_steps` | repeater | min None / max None; layout: table |
+| Approach steps | `home_continuum_steps` | repeater | layout: table |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Icon | `continuum_step_icon` | select | options: , physiotherapy, exercise-physiology, occupational-therapy, clinical-pilates, search |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Title | `continuum_step_title` | text | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Text | `continuum_step_text` | textarea | — |
 | "Read more" label | `home_continuum_more_closed` | text | — |
 | "Show less" label | `home_continuum_more_open` | text | — |
-| Expandable paragraphs | `home_continuum_paragraphs` | repeater | min None / max None; layout: table |
+| Expandable paragraphs | `home_continuum_paragraphs` | repeater | layout: table |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Paragraph | `continuum_para_text` | textarea | — |
 | Button 1 — text | `home_continuum_btn_1_text` | text | — |
 | Button 1 — link | `home_continuum_btn_1_url` | text | — |
@@ -133,7 +166,7 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | **5. Photo ribbon** | — | tab | — |
 | Show this section | `home_ribbon_show` | true_false | — |
 | Order | `home_ribbon_order` | number | Lower numbers render first. |
-| Ribbon photos | `home_ribbon_images` | repeater | min None / max None; layout: block |
+| Ribbon photos | `home_ribbon_images` | repeater | layout: block |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Photo | `ribbon_image` | image | returns: array |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Focus — X | `ribbon_x` | text | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Focus — Y | `ribbon_y` | text | — |
@@ -163,7 +196,7 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | Eyebrow tag | `home_expect_tag` | text | — |
 | Heading (H2) | `home_expect_title` | textarea | — |
 | Intro | `home_expect_intro` | textarea | — |
-| Steps | `home_expect_steps` | repeater | min None / max None; layout: table |
+| Steps | `home_expect_steps` | repeater | layout: table |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Title | `expect_step_title` | text | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Text | `expect_step_text` | textarea | — |
 | Button 1 — text | `home_expect_btn_1_text` | text | — |
@@ -178,7 +211,7 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | Heading (H2) | `home_funding_title` | textarea | — |
 | Intro | `home_funding_intro` | textarea | — |
 | Second paragraph | `home_funding_text` | textarea | — |
-| Funding pathways | `home_funding_pathways` | repeater | min None / max None; layout: table |
+| Funding pathways | `home_funding_pathways` | repeater | layout: table |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Title | `pathway_title` | text | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Note | `pathway_text` | text | — |
 | **9. Home visits & refer** | — | tab | — |
@@ -212,7 +245,7 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | Intro | `home_faq_intro` | textarea | Use {phone_link} for the clinic phone link. |
 | Button text | `home_faq_btn_text` | text | — |
 | Button link | `home_faq_btn_url` | text | — |
-| Questions | `home_faq_items` | repeater | min None / max None; layout: block |
+| Questions | `home_faq_items` | repeater | layout: block |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Question | `faq_question` | text | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Answer | `faq_answer` | textarea | — |
 | **11. Contact** | — | tab | — |
@@ -221,7 +254,7 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | Eyebrow tag | `home_contact_tag` | text | — |
 | Heading (H2) | `home_contact_title` | textarea | — |
 | Intro | `home_contact_intro` | textarea | — |
-| Contact details list | `home_contact_list` | repeater | min None / max None; layout: block |
+| Contact details list | `home_contact_list` | repeater | layout: block |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Label | `contact_list_label` | text | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Value | `contact_list_value` | textarea | Tokens: {phone_link}, {email_link}, {referrals_email_link}. Basic HTML allowed. |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Style as placeholder | `contact_list_placeholder` | true_false | — |
@@ -237,9 +270,9 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | Label — enquiry type | `home_contact_form_label_type` | text | — |
 | Label — interest | `home_contact_form_label_interest` | text | — |
 | Label — message | `home_contact_form_label_message` | text | — |
-| Enquiry type options | `home_contact_form_types` | repeater | min None / max None; layout: table |
+| Enquiry type options | `home_contact_form_types` | repeater | layout: table |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Option | `contact_type_option_text` | text | — |
-| Interest options | `home_contact_form_interests` | repeater | min None / max None; layout: table |
+| Interest options | `home_contact_form_interests` | repeater | layout: table |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Option | `contact_interest_option_text` | text | — |
 | Privacy note under the button | `home_contact_form_note` | textarea | Allows a link, e.g. to the privacy policy. |
 | Submit button label | `home_contact_form_button` | text | — |
@@ -257,7 +290,7 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | Map card heading (H3) | `home_map_card_title` | text | — |
 | Map card address | `home_map_card_text` | textarea | — |
 | "Around the clinic" label | `home_map_chips_label` | text | — |
-| Nearby suburbs | `home_map_chips` | repeater | min None / max None; layout: table |
+| Nearby suburbs | `home_map_chips` | repeater | layout: table |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Suburb | `chip_label` | text | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Latitude | `chip_lat` | text | — |
 | &nbsp;&nbsp;&nbsp;&nbsp;└ Longitude | `chip_lng` | text | — |
@@ -267,19 +300,230 @@ Group key: `group_bdy_home`  ·  location: `page_type` == `front_page`
 | Button 2 — text | `home_map_btn_2_text` | text | — |
 | Button 2 — link | `home_map_btn_2_url` | text | — |
 
-## Page — hero & SEO
+## Page — sections & SEO
 
 Group key: `group_bdy_page`  ·  location: `post_type` == `page` AND `page_type` != `front_page`
 
 | Field | Name | Type | Flags |
 | --- | --- | --- | --- |
-| **Page hero** | — | tab | — |
-| Show this section | `page_hero_show` | true_false | — |
-| Order | `page_hero_order` | number | Lower numbers render first. |
+| **Page sections** | — | tab | — |
+| _note_ | `bdy_msg_page_blocks` | message | <strong>This page is built from blocks</strong><br>Add, remove or drag the blocks to change the page. Left empty, the pa |
+| Blocks | `page_sections` | flexible_content | — |
+| **Fallback hero (pages without blocks)** | — | tab | — |
+| _note_ | `bdy_msg_page_fallback` | message | Only used by a page that has no blocks and no shipped design — the H1 is the page title, then the editor content below. |
 | Eyebrow tag | `page_hero_tag` | text | — |
 | Lead image | `page_hero_image` | image | returns: array |
 | Intro | `page_hero_intro` | textarea | — |
 | Lead image focal point | `page_hero_image_position` | text | CSS object-position, e.g. 40% 60%. |
 | **SEO** | — | tab | — |
 | Meta description | `page_meta_description` | textarea | Leave empty to use the default from Site Settings. |
+
+### Blocks of `page_sections`
+
+Each layout below is one block in the page stack: pick it under *Add section*, then fill in its fields.
+
+#### 1. Hero (breadcrumbs, H1, lead, buttons)  ·  `hero`
+
+| Field | Name | Type | Flags |
+| --- | --- | --- | --- |
+| Heading (H1) | `title` | text | — |
+| Lead paragraph | `lead` | textarea | — |
+| Buttons | `buttons` | repeater | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Label | `text` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Link | `url` | text | Use /page/ for a page, tel for the phone number, or a full URL. |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Style | `style` | select | options: signal, ink, ghost, light, outline-light, call |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Icon | `icon` | select | options: , arrow, phone, check |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ New tab | `new_tab` | true_false | — |
+| Small checklist | `checks` | repeater | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Text | `text` | text | — |
+| Breadcrumb — this page | `crumb_current` | text | Leave empty to use the page title. "Home" is always added. |
+| Show the enquiry card | `form` | true_false | The card itself is edited once in Site Settings → Enquiry card. |
+| Card — tag | `form_tag` | text | Only needed for a card that differs from Site Settings. |
+| Card — heading | `form_title` | text | — |
+| Card — intro | `form_intro` | textarea | — |
+| Card — fields (replaces the standard name/phone/email/service set) | `form_fields` | repeater | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Label | `label` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Field name | `name` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Type | `type` | select | options: text, email, tel, number |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Autocomplete | `autocomplete` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Half width | `half` | true_false | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Required | `required` | true_false | — |
+| Card — submit button | `form_button` | text | — |
+| Card — success heading | `form_success_title` | text | — |
+| Card — privacy note | `form_note` | textarea | Use {privacy_link} for the linked Privacy Policy. |
+| Card — success message | `form_success_text` | textarea | Use {phone_link} for the clinic phone link. |
+
+#### 2. Service cards  ·  `services`
+
+| Field | Name | Type | Flags |
+| --- | --- | --- | --- |
+| Tag | `tag` | text | — |
+| Heading (H2) | `title` | text | — |
+| Intro | `intro` | textarea | — |
+| Extra copy | `body` | wysiwyg | — |
+| Paper background | `paper` | true_false | — |
+| Cards | `items` | repeater | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Icon | `icon` | select | options: , physiotherapy, exercise-physiology, occupational-therapy, clinical-pilates, search, heart, trend |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Title | `title` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Text | `text` | textarea | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Button label | `btn_text` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Button link | `btn_url` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Extra link label | `link_text` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Extra link URL | `link_url` | text | — |
+
+#### 3. Compact service links  ·  `svc_mini`
+
+| Field | Name | Type | Flags |
+| --- | --- | --- | --- |
+| Tag | `tag` | text | — |
+| Heading (H2) | `title` | text | — |
+| Intro | `intro` | textarea | — |
+| Paper background | `paper` | true_false | — |
+| Links | `items` | repeater | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Title | `title` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Text | `text` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ URL | `url` | text | — |
+
+#### 4. Feature cards  ·  `features`
+
+| Field | Name | Type | Flags |
+| --- | --- | --- | --- |
+| Tag | `tag` | text | — |
+| Heading (H2) | `title` | text | — |
+| Intro | `intro` | textarea | — |
+| Extra copy | `body` | wysiwyg | — |
+| Paper background | `paper` | true_false | — |
+| Columns | `variant` | select | options: , four |
+| Cards | `items` | repeater | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Icon | `icon` | select | options: , physiotherapy, exercise-physiology, occupational-therapy, clinical-pilates, search, heart, trend |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Title | `title` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Text | `text` | textarea | — |
+
+#### 5. Split (text + photo or info card)  ·  `split`
+
+| Field | Name | Type | Flags |
+| --- | --- | --- | --- |
+| Tag | `tag` | text | — |
+| Heading (H2) | `title` | text | — |
+| Body copy | `body` | wysiwyg | — |
+| Small note under the buttons | `note` | wysiwyg | — |
+| Buttons | `buttons` | repeater | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Label | `text` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Link | `url` | text | Use /page/ for a page, tel for the phone number, or a full URL. |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Style | `style` | select | options: signal, ink, ghost, light, outline-light, call |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Icon | `icon` | select | options: , arrow, phone, check |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ New tab | `new_tab` | true_false | — |
+| Photo on the left | `reverse` | true_false | — |
+| Paper background | `paper` | true_false | — |
+| Photo (leave empty to use the info card) | `media` | group | — |
+| Info card | `panel` | group | — |
+
+#### 6. Steps  ·  `steps`
+
+| Field | Name | Type | Flags |
+| --- | --- | --- | --- |
+| Tag | `tag` | text | — |
+| Heading (H2) | `title` | text | — |
+| Intro | `intro` | textarea | — |
+| Dark band | `dark` | true_false | — |
+| Light steps (on paper) | `light` | true_false | — |
+| Paper background | `paper` | true_false | — |
+| Steps | `items` | repeater | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Title | `title` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Text | `text` | textarea | — |
+| Buttons | `buttons` | repeater | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Label | `text` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Link | `url` | text | Use /page/ for a page, tel for the phone number, or a full URL. |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Style | `style` | select | options: signal, ink, ghost, light, outline-light, call |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Icon | `icon` | select | options: , arrow, phone, check |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ New tab | `new_tab` | true_false | — |
+
+#### 7. Funding pathways  ·  `funding`
+
+| Field | Name | Type | Flags |
+| --- | --- | --- | --- |
+| Tag | `tag` | text | — |
+| Heading (H2) | `title` | text | — |
+| Intro | `intro` | textarea | — |
+| Extra copy | `body` | wysiwyg | — |
+| Paper background | `paper` | true_false | — |
+| Pathways | `items` | repeater | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Title | `title` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Text | `text` | textarea | — |
+
+#### 8. FAQ accordion  ·  `faq`
+
+| Field | Name | Type | Flags |
+| --- | --- | --- | --- |
+| Tag | `tag` | text | — |
+| Heading (H2) | `title` | text | — |
+| Intro | `intro` | wysiwyg | — |
+| Button label | `btn_text` | text | — |
+| Button link | `btn_url` | text | — |
+| Questions | `items` | repeater | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Question | `q` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Answer | `a` | wysiwyg | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Open by default | `open` | true_false | — |
+
+#### 9. CTA band  ·  `cta`
+
+| Field | Name | Type | Flags |
+| --- | --- | --- | --- |
+| Heading (H2) | `title` | text | — |
+| Text | `text` | textarea | — |
+| Buttons | `buttons` | repeater | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Label | `text` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Link | `url` | text | Use /page/ for a page, tel for the phone number, or a full URL. |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Style | `style` | select | options: signal, ink, ghost, light, outline-light, call |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Icon | `icon` | select | options: , arrow, phone, check |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ New tab | `new_tab` | true_false | — |
+
+#### 10. Ways to reach us  ·  `ways`
+
+| Field | Name | Type | Flags |
+| --- | --- | --- | --- |
+| Cards | `items` | repeater | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Icon | `icon` | select | options: , physiotherapy, exercise-physiology, occupational-therapy, clinical-pilates, search, heart, trend |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Title | `title` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Text | `text` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ URL | `url` | text | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ New tab | `new_tab` | true_false | — |
+
+#### 11. Suburb list  ·  `suburbs`
+
+| Field | Name | Type | Flags |
+| --- | --- | --- | --- |
+| Tag | `tag` | text | — |
+| Heading (H2) | `title` | text | — |
+| Intro | `intro` | textarea | — |
+| Body copy | `body` | wysiwyg | — |
+| Small print | `note` | text | — |
+| Paper background | `paper` | true_false | — |
+| Suburbs | `items` | repeater | — |
+| &nbsp;&nbsp;&nbsp;&nbsp;└ Suburb | `text` | text | — |
+
+#### 12. Rich text  ·  `prose`
+
+| Field | Name | Type | Flags |
+| --- | --- | --- | --- |
+| Heading (optional) | `title` | text | — |
+| Content | `body` | wysiwyg | — |
+| Paper background | `paper` | true_false | — |
+
+#### 13. Blog — featured article  ·  `posts_featured`
+
+| Field | Name | Type | Flags |
+| --- | --- | --- | --- |
+| Tag | `tag` | text | — |
+| Heading (H2) | `title` | text | — |
+| Intro | `intro` | textarea | — |
+| Sample article (used until posts exist) | `post` | group | — |
+
+#### 14. Blog — article grid  ·  `posts_grid`
+
+| Field | Name | Type | Flags |
+| --- | --- | --- | --- |
+| Tag | `tag` | text | — |
+| Heading (H2) | `title` | text | — |
+| Intro | `intro` | textarea | — |
 

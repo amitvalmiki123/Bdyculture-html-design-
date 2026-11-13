@@ -48,7 +48,8 @@ in its `style.css` header.
 | Confirm opening hours | same screen | shipped as *“Placeholder — client to confirm clinic hours”* |
 | Build the menus | **Appearance → Menus** | four locations: *Header — primary navigation*, *Footer — services column*, *Footer — quick links column*, *Footer — legal bar*. Until a menu is assigned the shipped default links are used, so the site looks complete immediately |
 | Review footer options | Theme Settings → Footer | logo, tagline, buttons, credit line and disclaimer (the link columns come from the menus) |
-| Create inner pages | Pages → Add New | Physiotherapy, Exercise Physiology, Occupational Therapy, Clinical Pilates, Referrers, Contact, Practice from BDYCULTURE, Privacy Policy |
+| Create inner pages | Pages → Add New | Services, Physiotherapy, Exercise Physiology, Occupational Therapy, Clinical Pilates, Referrers, Contact, Location — Chermside, Practice from BDYCULTURE, Privacy Policy. Use the page slug as the title's permalink (`/physiotherapy/`), so the design's links and the shipped fallbacks line up. Each page fills itself from its own section stack — nothing to paste |
+| Create the blog | Pages → Add New → *Posts page* | a page called *Blog*, then Settings → Reading → *Posts page* → Blog. `home.php` lists your posts, `single.php` renders each article |
 | Point the nav links at those pages | Appearance → Menus → *Header — primary navigation* | the design shipped links to pages whose designs weren't included; add the pages as menu items and edit their labels there |
 | Add forms (optional) | Home → **Contact** tab | paste a CF7 shortcode into the *Form shortcode* field |
 
@@ -67,7 +68,10 @@ Nothing else is required: every section is already populated from `defaults.php`
 | Footer logo, tagline, buttons, credit, legal bar | Theme Settings → **Footer** | the credit line uses `{credit_link}` for the linked agency name |
 | Phone, emails, address, booking URL, hours | Theme Settings → **Clinic details** | see §5 — one change updates the whole site |
 | Home page sections | Pages → *Home* → tab per section | show toggle + order per section |
-| Inner pages | Pages → *(page)* → **Page hero** tab | then normal editor content |
+| Inner pages | Pages → *(page)* → **Page sections** tab | a stack of blocks (hero, services, split, features, steps, funding, FAQ, CTA, ways, suburbs, prose, posts) that can be reordered, duplicated or removed. Each block falls back to the approved design copy |
+| Inner page closing band + map | page **Contact** block / Home → **12. Map** | the dark contact band and the map are appended to every inner page from one place |
+| Enquiry card beside every hero | Theme Settings → **Enquiry card** | one form for the whole site; the Practice page uses its own licence card via the hero's *Card — …* fields |
+| Blog article template | Theme Settings → **Blog article** | the checklist, sidebar headings, related-articles heading, CTA, byline and disclaimer around every post. The post's own title, excerpt, content, category and date come from the post |
 | Colours, fonts, sizes, spacing, container | Appearance → Customize → **Theme Design** | live preview, only changed values printed |
 
 Navigation is a **normal WordPress menu** (`Appearance → Menus`), so the client uses the screen they already know:
@@ -110,8 +114,14 @@ Text is only rewritten if it uses a token — free-form prose you type yourself 
   (`1. Hero` … `11. Map`). Each tab starts with `Show this section` and `Order`.
 * **Global content** (header, drawer, footer, mobile bar, phone/email/address) — **BDYCULTURE → Theme
   Settings**. Edited once, used on every page.
-* **Inner pages** — Pages → *(page)* → *Page hero* tab: tag, intro, hero image, image position, plus an
-  optional meta description. Everything else is normal editor content.
+* **Inner pages** — Pages → *(page)* → *Page sections*. The page is a list of blocks; open a block to edit
+  its tag, heading, copy, buttons, media, panel, checklist or question rows. Blocks can be dragged into a new
+  order, duplicated or removed, and *Add section* offers every design section. Below the list: *Fallback hero*
+  (for a page built with the classic editor instead of blocks) and *SEO*. A page with no blocks at all renders
+  the block set shipped for its slug in `defaults-pages.php`, so the site is never blank.
+* **Blog** — the posts page lists your published articles (`home.php`); each article renders through
+  `single.php` with meta (date, reading time, category), sidebar cards and the article CTA. Publish a post and
+  it appears in the grid automatically — the shipped articles are the fallback used until then.
 * **Design tokens** — Appearance → Customize → **Theme Design**: Colours, Typography, Spacing,
   Container. Live preview updates without a page reload; only changed values are printed.
 * **Images** — every image is an ACF image field (return format: *Image Array*). Alt text is taken from
@@ -142,25 +152,28 @@ bdyculture/
 ├── style.css               # child header (Template: bdyculture-parent) + theme meta
 ├── functions.php           # constants + include manifest only
 ├── defaults.php            # every string/image from the design as PHP fallbacks
+├── defaults-pages.php      # the same, per inner-page block stack
 ├── inc/
 │   ├── setup.php           # add_theme_support, image sizes, editor styles
 │   ├── enqueue.php         # fonts, main.css, responsive.css, main.js, localised map data
 │   ├── security.php        # generator, XML-RPC, REST user enumeration, headers
 │   ├── customizer.php      # Theme Design panel + live preview + inline token CSS
-│   ├── schema.php          # MedicalClinic + FAQPage JSON-LD
+│   ├── schema.php          # MedicalClinic + FAQPage + BreadcrumbList JSON-LD
 │   ├── acf/                # builder + 3 field groups + options page
-│   └── helpers/            # field, format, icon, image, section helpers
+│   └── helpers/            # field, format, icon, image, section, block, post helpers
 ├── template-parts/
-│   ├── global/drawer.php
-│   └── sections/           # home-hero … home-map + page-hero
+│   ├── global/             # drawer, enquiry card
+│   ├── blocks/             # one renderer per inner-page block
+│   └── sections/           # home-hero … home-map
 ├── assets/css/main.css     # base rules only (0 media queries)
 ├── assets/css/responsive.css  # media queries only
 ├── assets/js/main.js       # drawer, tabs, FAQ, reveal, map, form state
 ├── assets/js/customizer-preview.js
-└── 404.php, header.php, footer.php, front-page.php, page.php, index.php
+└── 404.php, header.php, footer.php, front-page.php, page.php, single.php,
+    home.php, index.php
 ```
 
-`docs/acf-fields.md` lists all 260 fields; `docs/content-audit.md` maps every design element to its
+`docs/acf-fields.md` lists every field; `docs/content-audit.md` maps every design element to its
 field; `docs/preservation.md` records the fidelity checks.
 
 ---

@@ -198,6 +198,8 @@ function bdy_tokens( $html, $links = true ) {
 			'{address}'              => esc_html( bdy_address_plain() ),
 			'{address_html}'         => bdy_address_html(),
 			'{credit_link}'          => esc_html( bdy_credit_label() ),
+			'{privacy}'              => esc_html( bdy_privacy_text() ),
+			'{privacy_link}'         => esc_html( bdy_privacy_text() ),
 			'{email_link}'           => $email,
 			'{email}'                => $email,
 			'{referrals_email_link}' => $referrals_email,
@@ -214,6 +216,8 @@ function bdy_tokens( $html, $links = true ) {
 		'{address}'              => esc_html( bdy_address_plain() ),
 		'{address_html}'         => bdy_address_html(),
 		'{credit_link}'          => bdy_credit_html(),
+		'{privacy}'              => esc_html( bdy_privacy_text() ),
+		'{privacy_link}'         => bdy_privacy_html(),
 		'{email_link}'           => $email ? '<a href="' . esc_url( 'mailto:' . bdy_clinic_email() ) . '">' . $email . '</a>' : '',
 		'{email}'                => $email,
 		'{referrals_email_link}' => $referrals_email ? '<a href="' . esc_url( 'mailto:' . bdy_referrals_email() ) . '">' . $referrals_email . '</a>' : '',
@@ -264,6 +268,38 @@ function bdy_credit_label() {
 	$global = bdy_defaults( 'global' );
 
 	return bdy_text( 'footer_credit_label', $global['footer_credit_label'], 'option' );
+}
+
+/**
+ * Privacy page label / linked markup, used by {privacy} and {privacy_link}.
+ *
+ * @return string
+ */
+function bdy_privacy_text() {
+	$global = bdy_defaults( 'global' );
+
+	return bdy_text( 'footer_privacy_text', $global['footer_privacy_text'], 'option' );
+}
+
+/**
+ * Privacy link markup.
+ *
+ * @return string
+ */
+function bdy_privacy_html() {
+	$global = bdy_defaults( 'global' );
+	$label  = bdy_privacy_text();
+	$url    = bdy_option( 'footer_privacy_url', $global['footer_privacy_url'] );
+
+	if ( '' === $label ) {
+		return '';
+	}
+
+	if ( '' === $url ) {
+		return esc_html( $label );
+	}
+
+	return '<a href="' . esc_url( bdy_link( $url ) ) . '">' . esc_html( $label ) . '</a>';
 }
 
 /**
@@ -344,6 +380,11 @@ function bdy_button( $text, $url, $style = 'signal', $args = array() ) {
 	// Icon side: "auto" follows the design (arrow after the label, phone
 	// before it), "right" always puts it after the text, "left" before it.
 	$icon       = $args['icon'] ? bdy_icon( $args['icon'], array( 'size' => (int) $args['icon_size'] ) ) : '';
+
+	// Inside a button the design uses the plain arrow glyph, not the SVG.
+	if ( 'arrow' === $args['icon'] ) {
+		$icon = '<span aria-hidden="true">&rarr;</span>';
+	}
 	$icon_pos   = in_array( $args['icon_pos'], array( 'left', 'right' ), true ) ? $args['icon_pos'] : 'auto';
 	$icon_after = ( 'right' === $icon_pos ) || ( 'auto' === $icon_pos && 'arrow' === $args['icon'] );
 	$label      = bdy_tokens( esc_html( $text ), false );
