@@ -269,7 +269,7 @@ Both website forms are **Contact Form 7** forms. The theme stores only the short
 | Contact band | Contact band → **Form shortcode** | [`cf7-contact-form.txt`](cf7-contact-form.txt) |
 | Enquiry card | Enquiry card → **Form shortcode** | [`cf7-enquiry-form.txt`](cf7-enquiry-form.txt) |
 
-Full walkthrough (Form / Mail / Messages tabs, spam, troubleshooting): [`contact-form-7.md`](contact-form-7.md).
+Copy-paste page with both codes and their Mail/Messages values: [`cf7-paste-forms.md`](cf7-paste-forms.md). Full walkthrough (spam, troubleshooting): [`contact-form-7.md`](contact-form-7.md).
 
 ---
 

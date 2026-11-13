@@ -24,6 +24,7 @@ Upload `dist/bdyculture-parent.zip`, then `dist/bdyculture.zip`, activate the ch
 | [`docs/acf-fields.md`](docs/acf-fields.md) | All 3 field groups, 226 fields, 16 repeaters, tabs, locations, defaults |
 | [`docs/theme-settings-guide.md`](docs/theme-settings-guide.md) | Site Settings setup guide — every tab in order, what to type in each field, what it affects, plus a 25-minute first-run checklist |
 | [`docs/inner-pages-guide.md`](docs/inner-pages-guide.md) | How each inner page is built from blocks: ordering, show/hide, the shared bands, images, adding a page |
+| [`docs/cf7-paste-forms.md`](docs/cf7-paste-forms.md) | **Copy-paste page** — both Contact Form 7 forms (Get in touch band + hero enquiry card) with the Mail and Messages tab values in one place |
 | [`docs/contact-form-7.md`](docs/contact-form-7.md) | Both forms (contact band + enquiry card) in Contact Form 7 — ready-made code: [`cf7-contact-form.txt`](docs/cf7-contact-form.txt), [`cf7-enquiry-form.txt`](docs/cf7-enquiry-form.txt) |
 | [`docs/install.md`](docs/install.md) | Requirements, installation, first-run checklist, editing guide, theme structure |
 | [`docs/homepage-setup-guide.md`](docs/homepage-setup-guide.md) | Field-by-field walkthrough for filling the Home page by hand — every tab, every field, the exact copy |

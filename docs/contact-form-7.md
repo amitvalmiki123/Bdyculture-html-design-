@@ -10,6 +10,9 @@ Two forms on the site, both owned by Contact Form 7:
 Both follow the same rule: the theme stores the **shortcode**, the **heading** and the **lines under
 the form**; labels, fields, options, the button and validation live in the plugin.
 
+> Just want the code to paste? **[`cf7-paste-forms.md`](cf7-paste-forms.md)** has both forms, their
+> Mail and Messages values, and the shortcode step on one page.
+
 ---
 
 ## Contact band
