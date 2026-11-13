@@ -111,7 +111,9 @@ Text is only rewritten if it uses a token — free-form prose you type yourself 
 ## 6. Editing content
 
 * **Home page** — Pages → *Home*. The field group is split into tabs, one per section
-  (`1. Hero` … `11. Map`). Each tab starts with `Show this section` and `Order`.
+  (`1. Hero` … `12. Map`). Each tab starts with `Show this section` and `Order`.
+  **Filling it by hand?** Follow [`homepage-setup-guide.md`](homepage-setup-guide.md) — it lists every
+  field of every tab with the exact content, in the order the fields appear.
 * **Global content** (header, drawer, footer, mobile bar, phone/email/address) — **BDYCULTURE → Theme
   Settings**. Edited once, used on every page.
 * **Inner pages** — Pages → *(page)* → *Page sections*. The page is a list of blocks; open a block to edit

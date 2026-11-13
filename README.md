@@ -7,7 +7,7 @@ theme following `Claude Code Updated Instructions.docx` (Phase 1 = 1:1 conversio
 design-reference/        the uploaded HTML/CSS/JS, untouched (the fidelity reference)
 themes/bdyculture-parent/   minimal parent theme — 3 files
 themes/bdyculture/          the child theme: everything lives here
-docs/                    audit table, ACF reference, install steps, preservation evidence
+docs/                    audit table, ACF reference, homepage fill guide, install steps, preservation evidence
 dist/                    installable zips (upload these in wp-admin)
 ```
 
@@ -23,6 +23,7 @@ Upload `dist/bdyculture-parent.zip`, then `dist/bdyculture.zip`, activate the ch
 | [`docs/content-audit.md`](docs/content-audit.md) | Phase-1 content audit: every design element → its ACF field → its PHP fallback |
 | [`docs/acf-fields.md`](docs/acf-fields.md) | All 3 field groups, 260 fields, 20 repeaters, tabs, locations, defaults |
 | [`docs/install.md`](docs/install.md) | Requirements, installation, first-run checklist, editing guide, theme structure |
+| [`docs/homepage-setup-guide.md`](docs/homepage-setup-guide.md) | Field-by-field walkthrough for filling the Home page by hand — every tab, every field, the exact copy |
 | [`docs/preservation.md`](docs/preservation.md) | Proof the design did not change: DOM parity, CSS-cascade equivalence, runtime checks |
 
 ## What is where
