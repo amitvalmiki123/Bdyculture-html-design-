@@ -88,15 +88,24 @@ class BDYCU_Content_Updater {
 			// 2. Home page.
 		$home_id = (int) get_option( 'page_on_front' );
 		if ( ! $home_id ) {
-			$home_id = (int) wp_insert_post( array(
-				'post_title'   => __( 'Home', 'bdyculture-content-updater' ),
-				'post_name'    => 'home',
-				'post_type'    => 'page',
-				'post_status'  => 'publish',
-				'post_content' => '',
-			) );
-			update_option( 'page_on_front', $home_id );
-			update_option( 'show_on_front', 'page' );
+			// A WordPress XML import restores the Home page but not the front-page
+			// setting. Reuse that page instead of creating a duplicate.
+			$home_page = get_page_by_path( 'home', OBJECT, 'page' );
+			if ( $home_page ) {
+				$home_id = (int) $home_page->ID;
+			} else {
+				$home_id = (int) wp_insert_post( array(
+					'post_title'   => __( 'Home', 'bdyculture-content-updater' ),
+					'post_name'    => 'home',
+					'post_type'    => 'page',
+					'post_status'  => 'publish',
+					'post_content' => '',
+				) );
+			}
+			if ( $home_id ) {
+				update_option( 'page_on_front', $home_id );
+				update_option( 'show_on_front', 'page' );
+			}
 		}
 
 		$homeDefaults = bdy_defaults( 'home' );
