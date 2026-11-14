@@ -124,7 +124,7 @@ function bdy_related_posts( $post_id = 0, $limit = 3 ) {
 			'title'   => get_the_title(),
 			'excerpt' => wp_strip_all_tags( get_the_excerpt() ),
 			'url'     => get_permalink(),
-			'image'   => has_post_thumbnail() ? get_the_post_thumbnail_url( get_the_ID(), 'medium_large' ) : '',
+			'image'   => has_post_thumbnail() ? get_post_thumbnail_id( get_the_ID() ) : '',
 			'meta'    => bdy_post_meta_line( get_the_ID() ),
 			'more'    => __( 'Read more', 'bdyculture' ),
 		);

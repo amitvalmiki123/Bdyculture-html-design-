@@ -95,7 +95,16 @@ while ( have_posts() ) :
 
 				<?php if ( has_post_thumbnail() ) : ?>
 					<figure class="article__hero media-frame--swept">
-						<?php the_post_thumbnail( 'large', array( 'class' => 'img-crop' ) ); ?>
+						<?php
+						echo bdy_image( // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside the helper.
+							get_post_thumbnail_id( get_the_ID() ),
+							array(
+								'class'           => 'img-crop',
+								'full_resolution' => true,
+								'alt'             => get_the_title(),
+							)
+						);
+						?>
 					</figure>
 				<?php endif; ?>
 

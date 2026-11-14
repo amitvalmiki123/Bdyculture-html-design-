@@ -311,7 +311,7 @@ a[href^="mailto:"]:hover { color: var(--signal); }
   left: calc((1 - var(--s, 1)) * var(--x, 50%));
   top: calc((1 - var(--s, 1)) * var(--y, 50%));
   transform: none;
-  transition: none;
+  transition: transform 1.4s cubic-bezier(.2,.7,.2,1);
 }
 .media-frame--swept { border-top-left-radius: clamp(56px, 8vw, 150px); overflow: hidden; }
 .hero__lower { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 28px; margin-top: 34px; }

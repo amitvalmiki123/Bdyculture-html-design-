@@ -73,6 +73,8 @@ function bdy_is_url( $value ) {
  * @param mixed $image Image value.
  * @param array $args  class, alt, sizes, srcset, loading, fetchpriority, eager,
  *                     decorative, width, height, fallback, full_resolution, attr, echo.
+ *                     full_resolution defaults to true so attachment images use
+ *                     the original Media Library file instead of a generated size.
  * @return string
  */
 function bdy_image( $image, $args = array() ) {
@@ -90,7 +92,7 @@ function bdy_image( $image, $args = array() ) {
 			'width'         => 0,
 			'height'        => 0,
 			'fallback'      => '',
-			'full_resolution' => false,
+			'full_resolution' => true,
 			'attr'          => array(),
 			'echo'          => false,
 		)
@@ -140,6 +142,7 @@ function bdy_image_html( $image, $args ) {
 	} elseif ( is_numeric( $image ) ) {
 		$attachment_id = (int) $image;
 		$src           = wp_get_attachment_image_src( $attachment_id, 'full' );
+		$media_alt     = (string) get_post_meta( $attachment_id, '_wp_attachment_image_alt', true );
 		if ( $src ) {
 			$url    = (string) $src[0];
 			$width  = (int) $src[1];
@@ -252,8 +255,7 @@ function bdy_image_html( $image, $args ) {
 		}
 	}
 
-	// Use core's image markup when we have a real attachment, so WordPress
-	// can add responsive srcset/sizes and its own performance filters.
+	// Use core's image markup when responsive srcset is explicitly requested.
 	if ( $attachment_id && ! $args['full_resolution'] ) {
 		$attr['loading'] = $loading;
 		if ( $fetchpriority ) {

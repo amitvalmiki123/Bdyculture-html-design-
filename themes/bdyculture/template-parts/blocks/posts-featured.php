@@ -36,7 +36,7 @@ if ( $bdy_query->have_posts() ) {
 	$bdy_url   = get_permalink();
 	$bdy_sum   = wp_strip_all_tags( get_the_excerpt() );
 	$bdy_meta  = bdy_post_meta_line( get_the_ID() );
-	$bdy_img   = has_post_thumbnail() ? get_the_post_thumbnail_url( get_the_ID(), 'large' ) : $bdy_img;
+	$bdy_img   = has_post_thumbnail() ? get_post_thumbnail_id( get_the_ID() ) : $bdy_img;
 	$bdy_crop  = has_post_thumbnail() ? '' : $bdy_crop;
 	wp_reset_postdata();
 }
