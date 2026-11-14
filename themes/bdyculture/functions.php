@@ -51,7 +51,6 @@ require_once THEME_DIR . '/inc/cf7-autofill.php';
 require_once THEME_DIR . '/inc/enqueue.php';
 require_once THEME_DIR . '/inc/security.php';
 require_once THEME_DIR . '/inc/customizer.php';
-require_once THEME_DIR . '/inc/seed.php';
 require_once THEME_DIR . '/inc/schema.php';
 
 /**
