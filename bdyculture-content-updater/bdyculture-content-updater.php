@@ -3,7 +3,7 @@
  * Plugin Name: BDYCULTURE Content Updater
  * Plugin URI: https://www.bdyculture.com.au/
  * Description: Fills all empty ACF fields and Site Settings from the HTML design content. Use once, then deactivate and delete.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: BDYCULTURE
  * Text Domain: bdyculture-content-updater
  * Requires Plugins: advanced-custom-fields-pro
@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'BDYCU_VERSION', '1.1.0' );
+define( 'BDYCU_VERSION', '1.1.1' );
 define( 'BDYCU_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BDYCU_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
@@ -86,6 +86,12 @@ function bdycu_handle_run_update() {
 	}
 
 	check_admin_referer( 'bdycu_run_update' );
+
+	// The updater writes many ACF values across all designed pages. Give local
+	// installations more than PHP's common 30-second default to finish safely.
+	if ( function_exists( 'set_time_limit' ) ) {
+		@set_time_limit( 300 );
+	}
 
 	$overwrite = ! empty( $_POST['bdycu_overwrite'] );
 

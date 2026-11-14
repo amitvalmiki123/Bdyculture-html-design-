@@ -4,7 +4,7 @@ Tags: acf, content, import, seed, design
 Requires at least: 6.0
 Tested up to: 6.5
 Requires Plugins: advanced-custom-fields-pro
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 
 Fills all empty ACF fields and Site Settings from the shipped HTML design.
 Use once, then deactivate and delete.
@@ -47,6 +47,9 @@ changes to the theme.
 5. Deactivate and delete the plugin
 
 == Changelog ==
+
+= 1.1.1 =
+* Allow up to five minutes for the one-time update on slower local installations
 
 = 1.1.0 =
 * Match design image filenames to Media Library attachments and merge only missing ACF images
