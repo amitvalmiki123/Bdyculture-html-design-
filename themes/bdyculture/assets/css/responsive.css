@@ -7,6 +7,38 @@
    max-height guards and print.
    ===================================================================== */
 
+@media (max-width: 599px) {
+  /* Mobile: drawer font size comfortable for small screens */
+  .drawer__nav > a { font-size: clamp(1.5rem, 6vw, 2.1rem); }
+  .drawer__sub { grid-template-columns: 1fr; gap: 8px 0; }
+  .drawer__sub a { font-size: 0.95rem; }
+
+  /* Mobile: cards stack single column (default, but ensure) */
+  .svc-grid { grid-template-columns: 1fr; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .ways { grid-template-columns: 1fr; }
+
+  /* Mobile: tighter section gaps */
+  .split { gap: clamp(28px, 4vw, 40px); }
+  .pair__grid { gap: clamp(20px, 3vw, 36px); }
+}
+
+@media (min-width: 600px) and (max-width: 1099px) {
+  /* Tablet: drawer font size smaller than mobile clamp cap */
+  .drawer__nav > a { font-size: clamp(1.4rem, 4.5vw, 1.9rem); }
+  .drawer__sub { grid-template-columns: 1fr; gap: 8px 0; }
+  .drawer__sub a { font-size: 1rem; }
+
+  /* Tablet: cards single column so they stack properly */
+  .svc-grid { grid-template-columns: 1fr; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .ways { grid-template-columns: 1fr; }
+
+  /* Tablet: tighter gaps for stacked sections */
+  .split { gap: clamp(32px, 4vw, 48px); }
+  .pair__grid { gap: clamp(24px, 3vw, 40px); }
+}
+
 @media (min-width: 600px) {
   .field-row { grid-template-columns: 1fr 1fr; }
   .stage__tabs { gap: 0 20px; }
