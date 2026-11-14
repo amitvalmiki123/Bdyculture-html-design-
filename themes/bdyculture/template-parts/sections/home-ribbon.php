@@ -38,9 +38,9 @@ if ( ! $bdy_images ) {
 				echo bdy_image( // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside helper.
 					isset( $bdy_row['ribbon_image'] ) ? $bdy_row['ribbon_image'] : '',
 					array(
-						'class'      => 'img-crop',
-						'fallback'   => 'hero-gym-bright.webp',
-						'sizes'      => '420px',
+						'class'           => 'img-crop',
+						'fallback'        => 'hero-gym-bright.webp',
+						'full_resolution' => true,
 						'decorative' => true,
 						'attr'       => array( 'style' => $bdy_crop ),
 					)

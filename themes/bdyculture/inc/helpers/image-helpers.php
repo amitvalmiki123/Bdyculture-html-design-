@@ -72,7 +72,7 @@ function bdy_is_url( $value ) {
  *
  * @param mixed $image Image value.
  * @param array $args  class, alt, sizes, srcset, loading, fetchpriority, eager,
- *                     decorative, width, height, fallback, attr, echo.
+ *                     decorative, width, height, fallback, full_resolution, attr, echo.
  * @return string
  */
 function bdy_image( $image, $args = array() ) {
@@ -90,6 +90,7 @@ function bdy_image( $image, $args = array() ) {
 			'width'         => 0,
 			'height'        => 0,
 			'fallback'      => '',
+			'full_resolution' => false,
 			'attr'          => array(),
 			'echo'          => false,
 		)
@@ -128,6 +129,14 @@ function bdy_image_html( $image, $args ) {
 		$width         = ! empty( $image['width'] ) ? (int) $image['width'] : $width;
 		$height        = ! empty( $image['height'] ) ? (int) $image['height'] : $height;
 		$media_alt     = isset( $image['alt'] ) ? (string) $image['alt'] : '';
+		if ( $attachment_id && $args['full_resolution'] ) {
+			$src = wp_get_attachment_image_src( $attachment_id, 'full' );
+			if ( $src ) {
+				$url    = (string) $src[0];
+				$width  = (int) $src[1];
+				$height = (int) $src[2];
+			}
+		}
 	} elseif ( is_numeric( $image ) ) {
 		$attachment_id = (int) $image;
 		$src           = wp_get_attachment_image_src( $attachment_id, 'full' );
@@ -220,10 +229,10 @@ function bdy_image_html( $image, $args ) {
 			: bdy_sizes_scale( $sizes, $bdy_factor );
 	}
 
-	if ( $sizes ) {
+	if ( $sizes && ! $args['full_resolution'] ) {
 		$attr['sizes'] = $sizes;
 	}
-	if ( $srcset ) {
+	if ( $srcset && ! $args['full_resolution'] ) {
 		$attr['srcset'] = $srcset;
 	}
 
@@ -245,7 +254,7 @@ function bdy_image_html( $image, $args ) {
 
 	// Use core's image markup when we have a real attachment, so WordPress
 	// can add responsive srcset/sizes and its own performance filters.
-	if ( $attachment_id ) {
+	if ( $attachment_id && ! $args['full_resolution'] ) {
 		$attr['loading'] = $loading;
 		if ( $fetchpriority ) {
 			$attr['fetchpriority'] = $fetchpriority;
