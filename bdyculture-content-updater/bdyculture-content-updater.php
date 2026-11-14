@@ -49,12 +49,17 @@ function bdycu_init() {
 
 /**
  * Admin menu entry.
+ *
+ * Adds under BDYCULTURE settings if that parent exists, otherwise under Tools.
+ * This avoids a 404 when the theme options page is not yet registered.
  */
 add_action( 'admin_menu', 'bdycu_admin_menu' );
 
 function bdycu_admin_menu() {
+	// Always place under Tools so it works regardless of theme activation state.
 	add_submenu_page(
-		'bdyculture-settings',
+		'tools.php',
+		$parent,
 		__( 'Content Updater', 'bdyculture-content-updater' ),
 		__( 'Content Updater', 'bdyculture-content-updater' ),
 		'manage_options',
