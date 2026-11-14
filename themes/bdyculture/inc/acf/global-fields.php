@@ -77,8 +77,9 @@ function bdy_acf_global_fields() {
 					'header_nav_note',
 					'<strong>' . __( 'Navigation lives in Appearance → Menus', 'bdyculture' ) . '</strong><br>' . __( 'Assign a menu to “Header — primary navigation”. Sub-items become the Services drop-down; the icon is picked automatically from the page slug (or add a class like <code>icon-heart</code> to a menu item). The mobile drawer uses the same menu.', 'bdyculture' )
 				),
-				bdy_acf_field( 'header_enquire_text', __( '"Enquire" button label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
-				bdy_acf_field( 'header_book_text', __( '"Book Online" button label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+		bdy_acf_field( 'header_enquire_text', __( '"Enquire" button label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
+		bdy_acf_field( 'header_enquire_url', __( '"Enquire" button URL', 'bdyculture' ), 'url', array( 'wrapper' => array( 'width' => '50' ), 'placeholder' => '/#enquire', 'instructions' => __( 'Leave empty to link to the enquiry section on the homepage.', 'bdyculture' ) ) ),
+		bdy_acf_field( 'header_book_text', __( '"Book Online" button label', 'bdyculture' ), 'text', array( 'wrapper' => array( 'width' => '50' ) ) ),
 				bdy_acf_field( 'header_drawer_enquire_text', __( 'Mobile drawer enquiry label', 'bdyculture' ), 'text' ),
 
 				bdy_acf_tab( 'enquiry', __( 'Enquiry card', 'bdyculture' ) ),

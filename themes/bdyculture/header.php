@@ -17,7 +17,10 @@ $bdy_nav      = bdy_menu_tree( 'primary', $bdy_global['header_nav'] );
 $bdy_book     = bdy_booking_url();
 $bdy_book_txt = bdy_string( 'header_book_text', $bdy_global['header_book_text'], 'option' );
 $bdy_enq_txt  = bdy_string( 'header_enquire_text', $bdy_global['header_enquire_text'], 'option' );
-$bdy_enq_href = is_front_page() ? '#enquire' : home_url( '/#enquire' );
+$bdy_enq_href = bdy_string( 'header_enquire_url', $bdy_global['header_enquire_url'], 'option' );
+if ( '' === $bdy_enq_href ) {
+	$bdy_enq_href = is_front_page() ? '#enquire' : home_url( '/#enquire' );
+}
 $bdy_phone    = bdy_phone_display();
 $bdy_logo     = bdy_option( 'clinic_logo' );
 ?><!DOCTYPE html>

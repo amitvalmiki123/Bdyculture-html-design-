@@ -92,8 +92,9 @@ function bdy_defaults_all() {
 			'article_byline_note'        => 'placeholder — content team to confirm author and reviewer',
 			'article_disclaimer'         => 'This article is general information only and is not a substitute for individual health advice. Results vary between individuals.',
 
-			'header_enquire_text'       => 'Enquire',
-			'header_drawer_enquire_text' => 'Send an enquiry',
+		'header_enquire_text'       => 'Enquire',
+		'header_enquire_url'        => '',
+		'header_drawer_enquire_text' => 'Send an enquiry',
 			'header_book_text'          => 'Book Online',
 
 			'mobile_bar_call_text'      => 'Call',
