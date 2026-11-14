@@ -60,9 +60,19 @@ $bdy_cta_href  = $bdy_cta_url ? $bdy_cta_url : $bdy_book;
 					<h2><?php echo esc_html( $bdy_col_title ); ?></h2>
 				<?php endif; ?>
 
-				<?php if ( $bdy_has_text ) : ?>
-					<address><?php echo $bdy_col_text; // phpcs:ignore WordPress.Security.EscapeOutput -- kses + tokens. ?></address>
-				<?php endif; ?>
+		<?php if ( $bdy_has_text ) : ?>
+			<?php
+			$bdy_dir_url  = bdy_directions_url();
+			$bdy_address_markup = $bdy_col_text; // phpcs:ignore WordPress.Security.EscapeOutput -- kses + tokens.
+			?>
+			<?php if ( $bdy_dir_url ) : ?>
+				<a href="<?php echo esc_url( $bdy_dir_url ); ?>" target="_blank" rel="noopener">
+					<address><?php echo $bdy_address_markup; ?></address>
+				</a>
+			<?php else : ?>
+				<address><?php echo $bdy_address_markup; ?></address>
+			<?php endif; ?>
+		<?php endif; ?>
 
 				<?php foreach ( $bdy_links as $bdy_link ) : ?>
 					<?php

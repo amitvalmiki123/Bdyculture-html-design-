@@ -53,6 +53,7 @@ h1, h2, h3 { text-wrap: balance; overflow-wrap: anywhere; font-weight: 700; lett
 .logo img { height: var(--logo-h); width: auto; }
 .nav, .header__cta { display: none; }
 .header__call { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%; background: var(--signal); color: var(--ink); }
+.header__phone:hover { color: var(--signal); }
 .nav-toggle { width: 48px; height: 48px; border: 0; background: var(--ink); border-radius: var(--r); cursor: pointer; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
 .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--white); transition: transform .25s; }
 .nav-toggle[aria-expanded="true"] span:first-child { transform: translateY(4px) rotate(45deg); }
@@ -265,7 +266,13 @@ from { opacity: 0; transform: translateY(-6px); }
 .footer__col h2 { font: 500 .875rem/1 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--mute-dark); margin-bottom: 10px; }
 .footer__col a, .footer__col address { color: var(--white); text-decoration: none; min-height: 44px; display: flex; align-items: center; font-style: normal; overflow-wrap: anywhere; }
 .footer__col address { min-height: 0; padding: 6px 0 10px; line-height: 1.5; }
+.footer__col a address { display: block; min-height: auto; padding: 0; }
 .footer__col a:hover { color: var(--signal); }
+.footer__col a:hover address { color: var(--signal); }
+
+/* Hover colour for tel: and mailto: links everywhere (header, contact, drawer, etc.) */
+a[href^="tel:"]:hover,
+a[href^="mailto:"]:hover { color: var(--signal); }
 .footer__wordmark { font-size: clamp(3rem, 15.6vw, 15.5rem); font-weight: 800; letter-spacing: -.06em; line-height: .85; text-align: center; color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,.28); margin: 16px 0 0; white-space: nowrap; overflow: hidden; user-select: none; }
 .footer__legal { display: flex; flex-wrap: wrap; gap: 10px 28px; padding: 22px 0 28px; border-top: 1px solid var(--line-dark); color: var(--mute-dark); font-size: .9375rem; }
 .footer__legal a { color: var(--white); display: inline-flex; align-items: center; min-height: 44px; }
