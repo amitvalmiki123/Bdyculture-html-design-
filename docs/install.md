@@ -33,8 +33,9 @@ design** from `defaults.php`. Nothing breaks, but nothing is editable either.
 3. Activate **Advanced Custom Fields PRO** and enter the licence key.
 4. If you want a real form, activate **Contact Form 7** (optional).
 
-The parent folder must stay named `bdyculture-parent` — the child declares `Template: bdyculture-parent`
-in its `style.css` header.
+The upload archives include their theme folders (`bdyculture-parent/` and `bdyculture/`) so WordPress installs them under stable directory names. The child declares `Template: bdyculture-parent` in its `style.css` header.
+
+**Replacing the older child theme:** if the existing theme folder has a generated name such as `bdyculture-randomcode`, upload this corrected `bdyculture.zip` and activate the new **BDYCULTURE** entry. WordPress will install it into `wp-content/themes/bdyculture/`; it will not rename the old folder automatically. Once the new entry is active and verified, remove the old duplicate from **Appearance → Themes**. Do not delete the active theme. Site Settings and page content are stored in the database and are not removed when deleting the old theme.
 
 ---
 

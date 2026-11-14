@@ -1,9 +1,7 @@
 <?php
 /**
  * Mobile drawer — global navigation (managed in Site Settings).
- *
- * Secondary drop-down links (marked "Secondary link") appear in the desktop
- * drop-down only, exactly like the original design.
+ * Secondary navigation links can be expanded/collapsed with an accessible toggle.
  *
  * @package BDYCULTURE
  */
@@ -21,7 +19,7 @@ $bdy_phone   = bdy_phone_display();
 ?>
 <div class="drawer" id="drawer" aria-hidden="true">
 	<nav class="drawer__nav" aria-label="<?php esc_attr_e( 'Mobile', 'bdyculture' ); ?>">
-		<?php foreach ( $bdy_nav as $bdy_item ) : ?>
+		<?php foreach ( $bdy_nav as $bdy_index => $bdy_item ) : ?>
 			<?php
 			$bdy_label = isset( $bdy_item['nav_label'] ) ? $bdy_item['nav_label'] : '';
 			if ( '' === trim( (string) $bdy_label ) ) {
@@ -31,24 +29,34 @@ $bdy_phone   = bdy_phone_display();
 			$bdy_href     = bdy_link( isset( $bdy_item['nav_link'] ) ? $bdy_item['nav_link'] : '' );
 			$bdy_current  = ! empty( $bdy_item['nav_current'] );
 			$bdy_blank    = ! empty( $bdy_item['nav_new_tab'] ) ? ' target="_blank" rel="noopener"' : '';
-			?>
-			<a href="<?php echo esc_url( $bdy_href ); ?>"<?php echo $bdy_current ? ' aria-current="page"' : ''; ?><?php echo $bdy_blank; // phpcs:ignore WordPress.Security.EscapeOutput -- static attribute string. ?>><?php echo esc_html( $bdy_label ); ?></a>
-
-			<?php
 			$bdy_secondary = array();
 			foreach ( $bdy_children as $bdy_child ) {
-				if ( empty( $bdy_child['child_alt'] ) && ! empty( $bdy_child['child_label'] ) ) {
+				if ( ! empty( $bdy_child['child_label'] ) ) {
 					$bdy_secondary[] = $bdy_child;
 				}
 			}
 			?>
 			<?php if ( $bdy_secondary ) : ?>
-				<div class="drawer__sub">
-					<?php foreach ( $bdy_secondary as $bdy_child ) : ?>
-						<?php $bdy_child_blank = ! empty( $bdy_child['child_new_tab'] ) ? ' target="_blank" rel="noopener"' : ''; ?>
-						<a href="<?php echo esc_url( bdy_link( isset( $bdy_child['child_link'] ) ? $bdy_child['child_link'] : '' ) ); ?>"<?php echo $bdy_child_blank; // phpcs:ignore WordPress.Security.EscapeOutput -- static attribute string. ?>><?php echo esc_html( $bdy_child['child_label'] ); ?></a>
-					<?php endforeach; ?>
+				<?php $bdy_sub_id = 'drawer-sub-' . absint( $bdy_index ); ?>
+				<div class="drawer__group">
+					<div class="drawer__row">
+						<a class="drawer__link" href="<?php echo esc_url( $bdy_href ); ?>"<?php echo $bdy_current ? ' aria-current="page"' : ''; ?><?php echo $bdy_blank; // phpcs:ignore WordPress.Security.EscapeOutput -- static attribute string. ?>><?php echo esc_html( $bdy_label ); ?></a>
+						<button class="drawer__sub-toggle" type="button" aria-expanded="false" aria-controls="<?php echo esc_attr( $bdy_sub_id ); ?>" aria-label="<?php echo esc_attr( sprintf( __( 'Show %s submenu', 'bdyculture' ), $bdy_label ) ); ?>" data-show-label="<?php echo esc_attr( sprintf( __( 'Show %s submenu', 'bdyculture' ), $bdy_label ) ); ?>" data-hide-label="<?php echo esc_attr( sprintf( __( 'Hide %s submenu', 'bdyculture' ), $bdy_label ) ); ?>">
+							<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="m4 6 5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+						</button>
+					</div>
+					<div class="drawer__sub" id="<?php echo esc_attr( $bdy_sub_id ); ?>" hidden>
+						<?php foreach ( $bdy_secondary as $bdy_child ) : ?>
+							<?php
+							$bdy_child_blank = ! empty( $bdy_child['child_new_tab'] ) ? ' target="_blank" rel="noopener"' : '';
+							$bdy_child_cur   = ! empty( $bdy_child['child_current'] );
+							?>
+							<a href="<?php echo esc_url( bdy_link( isset( $bdy_child['child_link'] ) ? $bdy_child['child_link'] : '' ) ); ?>"<?php echo $bdy_child_cur ? ' aria-current="page"' : ''; ?><?php echo $bdy_child_blank; // phpcs:ignore WordPress.Security.EscapeOutput -- static attribute string. ?>><?php echo esc_html( $bdy_child['child_label'] ); ?></a>
+						<?php endforeach; ?>
+					</div>
 				</div>
+			<?php else : ?>
+				<a class="drawer__link" href="<?php echo esc_url( $bdy_href ); ?>"<?php echo $bdy_current ? ' aria-current="page"' : ''; ?><?php echo $bdy_blank; // phpcs:ignore WordPress.Security.EscapeOutput -- static attribute string. ?>><?php echo esc_html( $bdy_label ); ?></a>
 			<?php endif; ?>
 		<?php endforeach; ?>
 	</nav>

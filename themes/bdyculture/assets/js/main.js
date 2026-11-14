@@ -34,6 +34,15 @@
     $$('a', drawer).forEach(function (a) {
       a.addEventListener('click', function () { setDrawer(false); });
     });
+    $$('.drawer__sub-toggle', drawer).forEach(function (button) {
+      button.addEventListener('click', function () {
+        var expanded = button.getAttribute('aria-expanded') === 'true';
+        var submenu = d.getElementById(button.getAttribute('aria-controls'));
+        button.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        button.setAttribute('aria-label', expanded ? button.getAttribute('data-show-label') : button.getAttribute('data-hide-label'));
+        if (submenu) submenu.hidden = expanded;
+      });
+    });
     d.addEventListener('keydown', function (e) { if (e.key === 'Escape') setDrawer(false); });
     window.matchMedia('(min-width: 1100px)').addEventListener('change', function (m) { if (m.matches) setDrawer(false); });
   }
