@@ -14,7 +14,7 @@ class BDYCU_Admin_Page {
 	}
 
 	public function enqueue_assets( $hook ) {
-		if ( 'toplevel_page_bdyculture-content-updater' !== $hook &&
+		if ( 'tools_page_bdyculture-content-updater' !== $hook &&
 			'admin.php?page=bdyculture-content-updater' !== $hook ) {
 			return;
 		}
@@ -66,11 +66,12 @@ class BDYCU_Admin_Page {
 			echo '<li>' . esc_html__( 'Home page — all section show/order toggles and field values.', 'bdyculture-content-updater' ) . '</li>';
 			echo '<li>' . esc_html__( '10 inner pages — all top-level fields and page_sections flexible content blocks.', 'bdyculture-content-updater' ) . '</li>';
 			echo '<li>' . esc_html__( 'Shared bands — contact/map show/order on every page.', 'bdyculture-content-updater' ) . '</li>';
+			echo '<li>' . esc_html__( 'Matching Media Library images — design photo filenames are resolved to attachment IDs and merged into empty/invalid ACF image fields.', 'bdyculture-content-updater' ) . '</li>';
 			echo '</ul>';
 
 			echo '<h2>' . esc_html__( 'What is NOT touched', 'bdyculture-content-updater' ) . '</h2>';
 			echo '<ul>';
-			echo '<li>' . esc_html__( 'Image, gallery, file and post-picker fields — design photos ship with the theme; these stay empty so the theme’s fallback photos are used.', 'bdyculture-content-updater' ) . '</li>';
+			echo '<li>' . esc_html__( 'Image fields are matched to existing Media Library attachments by filename (including a changed extension such as .webp to .jpg). Valid images already selected in ACF are left untouched; fields without a matching uploaded image keep their theme fallback.', 'bdyculture-content-updater' ) . '</li>';
 			echo '<li>' . esc_html__( 'CF7 form fields (form_tag, form_shortcode, etc.) — forms live in Contact Form 7, not the theme.', 'bdyculture-content-updater' ) . '</li>';
 			echo '<li>' . esc_html__( 'SEO fields (page_meta_description) — SEO is handled by your SEO plugin.', 'bdyculture-content-updater' ) . '</li>';
 			echo '</ul>';

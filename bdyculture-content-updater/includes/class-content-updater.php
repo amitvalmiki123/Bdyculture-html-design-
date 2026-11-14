@@ -12,6 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class BDYCU_Content_Updater {
 
+	/** @var array|null Cached Media Library lookup by filename and stem. */
+	private $attachment_index = null;
+
 	/**
 	 * Run the content update.
 	 *
@@ -51,21 +54,38 @@ class BDYCU_Content_Updater {
 		// 1. Site Settings (global options).
 		$globals = bdy_defaults( 'global' );
 		if ( is_array( $globals ) ) {
-			foreach ( $globals as $key => $value ) {
-				$report['options']['total']++;
-				if ( ! $overwrite && $this->is_option_set( $key ) ) {
-					$report['options']['skipped']++;
-					continue;
-				}
-				$clean = $this->clean_value( $value, $key );
-				if ( $clean !== null ) {
-					update_field( $key, $clean, 'option' );
-					$report['options']['filled']++;
+				foreach ( $globals as $key => $value ) {
+					$report['options']['total']++;
+					$def = acf_get_field( 'field_' . $key );
+					if ( ! $overwrite && $this->is_option_set( $key ) ) {
+						$current = get_field( $key, 'option', false );
+						$merged  = $this->merge_image_values( $current, $value, $def );
+						if ( $merged !== $current ) {
+							update_field( $key, $merged, 'option' );
+							$report['options']['filled']++;
+						} else {
+							$report['options']['skipped']++;
+						}
+						continue;
+					}
+					$clean = $this->clean_value( $value, $key, is_array( $def ) ? $def : null );
+					if ( $clean !== null ) {
+						update_field( $key, $clean, 'option' );
+						$report['options']['filled']++;
+					}
 				}
 			}
-		}
+			$this->fill_named_image_defaults(
+				'option',
+				array(
+					'clinic_logo'       => 'logo-black.png',
+					'clinic_logo_light' => 'logo-white.png',
+					'footer_logo'       => 'logo-white.png',
+				),
+				$report['options']
+			);
 
-		// 2. Home page.
+			// 2. Home page.
 		$home_id = (int) get_option( 'page_on_front' );
 		if ( ! $home_id ) {
 			$home_id = (int) wp_insert_post( array(
@@ -120,7 +140,14 @@ class BDYCU_Content_Updater {
 					}
 
 					if ( ! $overwrite && $this->is_field_set( $key, $home_id ) ) {
-						$homeReport['skipped']++;
+						$current = get_field( $key, $home_id, false );
+						$merged  = $this->merge_image_values( $current, $value, $def );
+						if ( $merged !== $current ) {
+							update_field( $key, $merged, $home_id );
+							$homeReport['filled']++;
+						} else {
+							$homeReport['skipped']++;
+						}
 						continue;
 					}
 
@@ -128,6 +155,11 @@ class BDYCU_Content_Updater {
 					$homeReport['filled']++;
 				}
 			}
+			$this->fill_named_image_defaults(
+				$home_id,
+				array( 'home_hero_image' => 'hero-gym-bright.webp' ),
+				$homeReport
+			);
 
 			$report['home'] = $homeReport;
 		}
@@ -141,8 +173,12 @@ class BDYCU_Content_Updater {
 				continue;
 			}
 
-			// Find or create the page.
-			$page = get_page_by_path( $slug );
+			// Find by canonical slug. The current XAMPP export uses /chermside/
+			// for the designed Location — Chermside page, so treat it as an alias.
+			$page = get_page_by_path( $slug, OBJECT, 'page' );
+			if ( ! $page && 'location-chermside' === $slug ) {
+				$page = get_page_by_path( 'chermside', OBJECT, 'page' );
+			}
 			if ( ! $page ) {
 				$pageId = (int) wp_insert_post( array(
 					'post_title'   => $title,
@@ -152,11 +188,8 @@ class BDYCU_Content_Updater {
 					'post_content' => '',
 				) );
 			} else {
+				// Keep the existing page title/slug and every client-edited value.
 				$pageId = (int) $page->ID;
-				// Update title if needed.
-				if ( $page->post_title !== $title ) {
-					wp_update_post( array( 'ID' => $pageId, 'post_title' => $title ) );
-				}
 			}
 
 			$pageReport = array(
@@ -187,7 +220,14 @@ class BDYCU_Content_Updater {
 				}
 
 				if ( ! $overwrite && $this->is_field_set( $key, $pageId ) ) {
-					$pageReport['skipped']++;
+					$current = get_field( $key, $pageId, false );
+					$merged  = $this->merge_image_values( $current, $value, $def );
+					if ( $merged !== $current ) {
+						update_field( $key, $merged, $pageId );
+						$pageReport['filled']++;
+					} else {
+						$pageReport['skipped']++;
+					}
 					continue;
 				}
 
@@ -200,7 +240,15 @@ class BDYCU_Content_Updater {
 			$blockRows = $this->bdy_seed_block_rows( $design[ $slug ]['sections'], $layouts );
 
 			if ( ! $overwrite && $this->is_field_set( 'page_sections', $pageId ) ) {
-				$pageReport['blocks'] = -1; // skipped entirely
+				$currentBlocks = get_field( 'page_sections', $pageId, false );
+				$sectionField  = acf_get_field( 'field_page_sections' );
+				$mergedBlocks  = $this->merge_image_values( $currentBlocks, $blockRows, $sectionField );
+				if ( $mergedBlocks !== $currentBlocks ) {
+					update_field( 'page_sections', $mergedBlocks, $pageId );
+					$pageReport['blocks'] = count( (array) $currentBlocks );
+				} else {
+					$pageReport['blocks'] = -1; // content retained; no missing design image matched
+				}
 			} else {
 				update_field( 'page_sections', $blockRows, $pageId );
 				$pageReport['blocks'] = count( $blockRows );
@@ -254,14 +302,68 @@ class BDYCU_Content_Updater {
 	}
 
 	/**
-	 * Clean a value against its ACF field definition (same logic as theme seed).
+	 * Fill well-known logo/hero fields from matching media items when blank.
+	 * Existing valid attachment selections are never replaced.
+	 *
+	 * @param int|string $post_id ACF post ID or "option".
+	 * @param array      $images  Field name => design filename.
+	 * @param array      $report  Mutable field counter.
+	 * @return void
+	 */
+	private function fill_named_image_defaults( $post_id, $images, &$report ) {
+		foreach ( $images as $field_name => $filename ) {
+			$field = acf_get_field( 'field_' . $field_name );
+			if ( ! is_array( $field ) || 'image' !== ( isset( $field['type'] ) ? $field['type'] : '' ) ) {
+				continue;
+			}
+			$current = get_field( $field_name, $post_id, false );
+			if ( is_numeric( $current ) && $this->is_attachment( (int) $current ) ) {
+				continue;
+			}
+			$current_id = $this->resolve_image_reference( $current );
+			$id = $current_id ? $current_id : $this->resolve_image_reference( $filename );
+			if ( ! $id ) {
+				continue;
+			}
+			if ( (int) $current !== (int) $id ) {
+				update_field( $field_name, $id, $post_id );
+				if ( isset( $report['filled'] ) ) {
+					$report['filled']++;
+				}
+			}
+		}
+	}
+
+	/**
+	 * Convert design defaults into values ACF can store. Image filenames are
+	 * resolved to attachment IDs from the current site's Media Library.
 	 */
 	private function clean_value( $value, $key, $def = null ) {
+		if ( ! is_array( $def ) && function_exists( 'acf_get_field' ) ) {
+			$def = acf_get_field( 'field_' . $key );
+		}
+		$def  = is_array( $def ) ? $def : array();
+		$type = isset( $def['type'] ) ? (string) $def['type'] : '';
+
+		if ( 'image' === $type ) {
+			$id = $this->resolve_image_reference( $value );
+			return $id ? $id : null;
+		}
+
+		if ( 'gallery' === $type ) {
+			$ids = array();
+			foreach ( (array) $value as $image ) {
+				$id = $this->resolve_image_reference( $image );
+				if ( $id ) {
+					$ids[] = $id;
+				}
+			}
+			return $ids ? $ids : null;
+		}
+
 		if ( is_array( $value ) ) {
-			// Repeater or clone.
-			$type = isset( $def['type'] ) ? (string) $def['type'] : '';
+			$subs = isset( $def['sub_fields'] ) && is_array( $def['sub_fields'] ) ? $def['sub_fields'] : array();
 			if ( 'repeater' === $type || 'clone' === $type ) {
-				$subs = isset( $def['sub_fields'] ) && is_array( $def['sub_fields'] ) ? $def['sub_fields'] : array();
 				$rows = array();
 				foreach ( $value as $row ) {
 					if ( ! is_array( $row ) ) {
@@ -284,14 +386,213 @@ class BDYCU_Content_Updater {
 				}
 				return $rows ? $rows : null;
 			}
+
+			if ( 'group' === $type ) {
+				$clean = array();
+				foreach ( $subs as $sub ) {
+					$sname = isset( $sub['name'] ) ? (string) $sub['name'] : '';
+					if ( '' === $sname || ! array_key_exists( $sname, $value ) ) {
+						continue;
+					}
+					$c = $this->clean_value( $value[ $sname ], $sname, $sub );
+					if ( null !== $c ) {
+						$clean[ $sname ] = $c;
+					}
+				}
+				return $clean ? $clean : null;
+			}
+
 			return null;
 		}
 
-		if ( $value === '' || $value === null ) {
+		if ( '' === $value || null === $value ) {
 			return null;
 		}
-
 		return $value;
+	}
+
+	/**
+	 * Fill/repair only image values inside existing fields; all text and valid
+	 * client-selected attachment IDs are kept unchanged.
+	 */
+	private function merge_image_values( $current, $defaults, $field ) {
+		if ( ! is_array( $field ) ) {
+			return $current;
+		}
+		$type = isset( $field['type'] ) ? (string) $field['type'] : '';
+
+		if ( 'image' === $type ) {
+			if ( is_numeric( $current ) && $this->is_attachment( (int) $current ) ) {
+				return (int) $current;
+			}
+			$current_id = $this->resolve_image_reference( $current );
+			if ( $current_id && is_string( $current ) && $current !== (string) $current_id ) {
+				return $current_id;
+			}
+			$default_id = $this->resolve_image_reference( $defaults );
+			return $default_id ? $default_id : $current;
+		}
+
+		if ( 'gallery' === $type ) {
+			if ( ! empty( $current ) ) {
+				return $current;
+			}
+			$clean = $this->clean_value( $defaults, isset( $field['name'] ) ? $field['name'] : '', $field );
+			return null !== $clean ? $clean : $current;
+		}
+
+		$subs = isset( $field['sub_fields'] ) && is_array( $field['sub_fields'] ) ? $field['sub_fields'] : array();
+		if ( 'group' === $type ) {
+			if ( ! is_array( $current ) ) {
+				$current = array();
+			}
+			$defaults = is_array( $defaults ) ? $defaults : array();
+			$merged = $current;
+			foreach ( $subs as $sub ) {
+				$name = isset( $sub['name'] ) ? (string) $sub['name'] : '';
+				if ( '' === $name ) {
+					continue;
+				}
+				$before = array_key_exists( $name, $merged ) ? $merged[ $name ] : null;
+				$after  = $this->merge_image_values( $before, isset( $defaults[ $name ] ) ? $defaults[ $name ] : null, $sub );
+				if ( $after !== $before ) {
+					$merged[ $name ] = $after;
+				}
+			}
+			return $merged;
+		}
+
+		if ( 'repeater' === $type || 'clone' === $type ) {
+			if ( ! is_array( $current ) || ! is_array( $defaults ) ) {
+				return $current;
+			}
+			$merged = $current;
+			foreach ( $merged as $index => $row ) {
+				if ( ! is_array( $row ) || ! isset( $defaults[ $index ] ) || ! is_array( $defaults[ $index ] ) ) {
+					continue;
+				}
+				foreach ( $subs as $sub ) {
+					$name = isset( $sub['name'] ) ? (string) $sub['name'] : '';
+					if ( '' === $name || ! array_key_exists( $name, $defaults[ $index ] ) ) {
+						continue;
+					}
+					$before = array_key_exists( $name, $row ) ? $row[ $name ] : null;
+					$after  = $this->merge_image_values( $before, $defaults[ $index ][ $name ], $sub );
+					if ( $after !== $before ) {
+						$merged[ $index ][ $name ] = $after;
+					}
+				}
+			}
+			return $merged;
+		}
+
+		if ( 'flexible_content' === $type && is_array( $current ) && is_array( $defaults ) ) {
+			$layouts = isset( $field['layouts'] ) && is_array( $field['layouts'] ) ? $field['layouts'] : array();
+			$merged  = $current;
+			foreach ( $merged as $index => $row ) {
+				if ( ! is_array( $row ) || empty( $row['acf_fc_layout'] ) ) {
+					continue;
+				}
+				$defaultRow = isset( $defaults[ $index ] ) && isset( $defaults[ $index ]['acf_fc_layout'] ) && $defaults[ $index ]['acf_fc_layout'] === $row['acf_fc_layout'] ? $defaults[ $index ] : null;
+				if ( ! is_array( $defaultRow ) ) {
+					continue;
+				}
+				foreach ( $layouts as $layout ) {
+					if ( ! isset( $layout['name'] ) || $layout['name'] !== $row['acf_fc_layout'] ) {
+						continue;
+					}
+					foreach ( (array) $layout['sub_fields'] as $sub ) {
+						$name = isset( $sub['name'] ) ? (string) $sub['name'] : '';
+						if ( '' === $name || ! array_key_exists( $name, $defaultRow ) ) {
+							continue;
+						}
+						$before = array_key_exists( $name, $row ) ? $row[ $name ] : null;
+						$after  = $this->merge_image_values( $before, $defaultRow[ $name ], $sub );
+						if ( $after !== $before ) {
+							$merged[ $index ][ $name ] = $after;
+						}
+					}
+					break;
+				}
+			}
+			return $merged;
+		}
+
+		return $current;
+	}
+
+	/** Resolve a design filename or URL to a Media Library attachment ID. */
+	private function resolve_image_reference( $value ) {
+		if ( is_array( $value ) ) {
+			if ( ! empty( $value['ID'] ) ) {
+				$value = $value['ID'];
+			} elseif ( ! empty( $value['id'] ) ) {
+				$value = $value['id'];
+			} elseif ( ! empty( $value['url'] ) ) {
+				$value = $value['url'];
+			} else {
+				return 0;
+			}
+		}
+		if ( is_numeric( $value ) ) {
+			return $this->is_attachment( (int) $value ) ? (int) $value : 0;
+		}
+		if ( ! is_string( $value ) || '' === trim( $value ) ) {
+			return 0;
+		}
+		$url_id = attachment_url_to_postid( $value );
+		if ( $url_id ) {
+			return (int) $url_id;
+		}
+		$path = parse_url( $value, PHP_URL_PATH );
+		$base = strtolower( rawurldecode( basename( $path ? $path : $value ) ) );
+		$stem = strtolower( pathinfo( $base, PATHINFO_FILENAME ) );
+		$index = $this->get_attachment_index();
+		if ( isset( $index['files'][ $base ] ) ) {
+			return (int) $index['files'][ $base ];
+		}
+		if ( isset( $index['stems'][ $stem ] ) && 1 === count( $index['stems'][ $stem ] ) ) {
+			return (int) $index['stems'][ $stem ][0];
+		}
+		return 0;
+	}
+
+	/** Build a cached lookup of original Media Library filenames. */
+	private function get_attachment_index() {
+		if ( is_array( $this->attachment_index ) ) {
+			return $this->attachment_index;
+		}
+		$index = array( 'files' => array(), 'stems' => array() );
+		$ids   = get_posts( array(
+			'post_type'      => 'attachment',
+			'post_status'    => 'inherit',
+			'posts_per_page' => -1,
+			'fields'         => 'ids',
+			'orderby'        => 'ID',
+			'order'          => 'ASC',
+		) );
+		foreach ( $ids as $id ) {
+			$file = get_attached_file( $id );
+			if ( ! $file ) {
+				continue;
+			}
+			$base = strtolower( basename( $file ) );
+			$stem = strtolower( pathinfo( $base, PATHINFO_FILENAME ) );
+			if ( ! isset( $index['files'][ $base ] ) ) {
+				$index['files'][ $base ] = (int) $id;
+			}
+			if ( ! isset( $index['stems'][ $stem ] ) ) {
+				$index['stems'][ $stem ] = array();
+			}
+			$index['stems'][ $stem ][] = (int) $id;
+		}
+		$this->attachment_index = $index;
+		return $index;
+	}
+
+	/** Check that an ID belongs to a Media Library attachment. */
+	private function is_attachment( $id ) {
+		return $id > 0 && 'attachment' === get_post_type( $id );
 	}
 
 	/**
