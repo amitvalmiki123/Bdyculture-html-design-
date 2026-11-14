@@ -1,0 +1,29 @@
+/*
+Theme Name: BDYCULTURE
+Theme URI: https://www.bdyculture.com.au/
+Description: Custom WordPress theme for BDYCULTURE Rehab & Performance Clinic, Chermside. Built 1:1 from the approved HTML design (v2): ACF-managed sections for the homepage and every inner page, native WP menus for the header and footer links, BEM CSS with design tokens, responsive styles in a separate media-query-only stylesheet and a Theme Design Customizer panel. Requires the BDYCULTURE Parent theme and Advanced Custom Fields PRO.
+Author: Digital Movement
+Author URI: https://www.bdyculture.com.au/
+Template: bdyculture-parent
+Version: 1.6.5
+Requires at least: 6.4
+Requires PHP: 8.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: bdyculture
+Tags: accessibility-ready, custom-colors, custom-logo, translation-ready
+*/
+
+/*
+ * This file carries the child-theme header only — WordPress requires it.
+ *
+ * All styling is enqueued from inc/enqueue.php in this order:
+ *   1. Google Fonts (display=swap)
+ *   2. assets/css/main.css        — base rules, design tokens, zero media queries
+ *   3. assets/css/responsive.css  — media queries only (600 / 768 / 1100 / 1600,
+ *                                   prefers-reduced-motion, print)
+ *
+ * Do not add CSS here. Section styles live with their section in
+ * assets/css/main.css; anything that needs a breakpoint belongs in
+ * assets/css/responsive.css.
+ */
