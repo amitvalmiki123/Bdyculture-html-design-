@@ -14,6 +14,24 @@
 
   root.classList.remove('no-js');
 
+  /* Open every third-party web link in a separate tab, site-wide. */
+  $$('a[href]').forEach(function (link) {
+    var destination;
+    try {
+      destination = new window.URL(link.getAttribute('href'), window.location.href);
+    } catch (error) {
+      return;
+    }
+    if ((destination.protocol === 'http:' || destination.protocol === 'https:') && destination.host !== window.location.host) {
+      link.target = '_blank';
+      var rel = (link.getAttribute('rel') || '').split(/\s+/).filter(Boolean);
+      ['noopener', 'noreferrer'].forEach(function (token) {
+        if (rel.indexOf(token) === -1) rel.push(token);
+      });
+      link.setAttribute('rel', rel.join(' '));
+    }
+  });
+
   /* ---------- drawer ---------- */
   var toggle = $('.nav-toggle');
   var drawer = $('#drawer');

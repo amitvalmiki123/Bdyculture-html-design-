@@ -181,8 +181,31 @@ function bdy_booking_url() {
  */
 function bdy_directions_url() {
 	$global = bdy_defaults( 'global' );
+	$url    = trim( (string) bdy_option( 'clinic_directions_url', $global['clinic_directions_url'] ) );
 
-	return (string) bdy_option( 'clinic_directions_url', $global['clinic_directions_url'] );
+	if ( $url ) {
+		return $url;
+	}
+
+	$address = bdy_address_plain();
+	return $address ? 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode( $address ) : '';
+}
+
+/**
+ * Address markup that links to directions and opens the map in a new tab.
+ *
+ * @param bool $with_breaks Use the two-line address formatting.
+ * @return string
+ */
+function bdy_address_link( $with_breaks = false ) {
+	$label = $with_breaks ? bdy_address_html() : esc_html( bdy_address_plain() );
+	$url   = bdy_directions_url();
+
+	if ( '' === $label || '' === $url ) {
+		return $label;
+	}
+
+	return '<a class="clinic-address" href="' . esc_url( $url ) . '" target="_blank" rel="noopener noreferrer">' . $label . '</a>';
 }
 
 /**
@@ -225,8 +248,8 @@ function bdy_tokens( $html, $links = true ) {
 		'{phone_link}'           => bdy_phone_link(),
 		'{phone}'                => esc_html( bdy_phone_display() ),
 		'{phone_tel}'            => esc_attr( bdy_phone_number() ),
-		'{address}'              => esc_html( bdy_address_plain() ),
-		'{address_html}'         => bdy_address_html(),
+		'{address}'              => bdy_address_link(),
+		'{address_html}'         => bdy_address_link( true ),
 		'{hours}'                => esc_html( bdy_hours() ),
 		'{credit_link}'          => bdy_credit_html(),
 		'{privacy}'              => esc_html( bdy_privacy_text() ),

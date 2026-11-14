@@ -21,6 +21,8 @@ figure, figcaption, blockquote, fieldset, dl, dd { margin: 0; padding: 0; }
 h1, h2, h3, p, ul, ol { margin: 0; padding: 0; }
 ul, ol { list-style: none; }
 a { color: inherit; }
+a:not(.btn):hover, a:not(.btn):focus-visible { color: var(--signal); }
+a[href^="tel:"], a[href^="mailto:"] { white-space: nowrap; }
 h1, h2, h3 { text-wrap: balance; overflow-wrap: anywhere; font-weight: 700; letter-spacing: -.03em; line-height: 1.02; }
 :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
 .section--dark :focus-visible, .site-footer :focus-visible, .drawer :focus-visible, .stage__panels :focus-visible, .card-form :focus-visible { outline-color: var(--signal); }
@@ -226,7 +228,7 @@ from { opacity: 0; transform: translateY(-6px); }
 }
 .contact__grid { display: grid; gap: 40px; align-items: start; }
 .contact__info { display: grid; gap: 22px; }
-.contact__phone { display: inline-flex; align-items: center; min-height: 48px; font-size: clamp(2.2rem, 1rem + 5vw, 4.6rem); font-weight: 700; letter-spacing: -.04em; line-height: 1; text-decoration: none; color: var(--signal); overflow-wrap: anywhere; }
+.contact__phone { display: inline-block; width: max-content; max-width: 100%; min-height: 48px; font-size: clamp(2.2rem, 1rem + 5vw, 4.6rem); font-weight: 700; letter-spacing: -.04em; line-height: 1; text-decoration: none; color: var(--signal); white-space: nowrap; overflow-wrap: normal; }
 .contact__phone:hover { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 8px; }
 .contact__list { display: grid; border-top: 1px solid var(--line-dark); }
 .contact__list div { display: grid; gap: 4px; padding: 14px 0; border-bottom: 1px solid var(--line-dark); }
@@ -267,6 +269,7 @@ from { opacity: 0; transform: translateY(-6px); }
 .footer__col a, .footer__col address { color: var(--white); text-decoration: none; min-height: 44px; display: flex; align-items: center; font-style: normal; overflow-wrap: anywhere; }
 .footer__col address { min-height: 0; padding: 6px 0 10px; line-height: 1.5; }
 .footer__col a address { display: block; min-height: auto; padding: 0; }
+.footer__col address a.clinic-address { display: block; min-height: 0; padding: 0; }
 .footer__col a:hover { color: var(--signal); }
 .footer__col a:hover address { color: var(--signal); }
 
@@ -279,8 +282,10 @@ a[href^="mailto:"]:hover { color: var(--signal); }
 .footer__note { flex-basis: 100%; max-width: 60em; }
 .mobile-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 85; display: grid; grid-template-columns: 1fr 1.4fr; gap: 10px; padding: 10px var(--gutter) calc(10px + env(safe-area-inset-bottom)); background: var(--ink); border-top: 1px solid var(--line-dark); }
 .mobile-bar a { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; border-radius: var(--r); font-weight: 700; text-decoration: none; font-size: 1.0625rem; }
-.mbar__call { background: var(--white); color: var(--ink); }
-.mbar__book { background: var(--signal); color: var(--ink); }
+.mobile-bar__call { background: var(--white); color: var(--ink); }
+.mobile-bar__book { background: var(--signal); color: var(--ink); }
+.mobile-bar a.mobile-bar__call:hover, .mobile-bar a.mobile-bar__call:focus-visible { background: var(--signal); color: var(--ink); }
+.mobile-bar a.mobile-bar__book:hover, .mobile-bar a.mobile-bar__book:focus-visible { background: var(--white); color: var(--ink); }
 .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
 .reveal.is-in { opacity: 1; transform: none; }
 .reveal-clip { clip-path: inset(0 100% 0 0); transition: clip-path 1.1s cubic-bezier(.7,0,.2,1); }
@@ -419,6 +424,7 @@ to { transform: translateX(calc(-50% - 10px)); }
 .site-footer { border-top: 4px solid var(--signal); }
 .site-footer .footer__grid { padding: clamp(48px, 5vw, 80px) 0 32px; }
 .site-footer .footer__col a, .site-footer .footer__col address { color: var(--white); }
+.site-footer .footer__col a:hover, .site-footer .footer__col a:hover address, .site-footer .footer__col a.clinic-address:hover { color: var(--signal); }
 .site-footer .footer__credit { color: var(--mute-dark); }
 .mapbox { border-top-left-radius: clamp(56px, 9vw, 160px); overflow: hidden; background: var(--ink); }
 .mapbox__map { height: clamp(420px, 56vw, 640px); }
