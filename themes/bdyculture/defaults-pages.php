@@ -2093,12 +2093,12 @@ function bdy_page_defaults() {
 					'body' => '',
 					'items' => array(
 						array(
-							'icon' => '',
+							'icon' => 'door',
 							'title' => 'Professional Consulting Space',
 							'text' => 'Work from a professionally presented clinical environment designed for allied-health practice and patient care.',
 						),
 						array(
-							'icon' => '',
+							'icon' => 'users',
 							'title' => 'Multidisciplinary Clinic Environment',
 							'text' => 'Operate alongside complementary allied-health professionals within a clinic designed around rehabilitation, collaboration and coordinated patient care.',
 						),
@@ -2108,7 +2108,7 @@ function bdy_page_defaults() {
 							'text' => 'Access a dedicated rehabilitation environment with strength, conditioning and functional exercise equipment to support appropriate patient rehabilitation.',
 						),
 						array(
-							'icon' => '',
+							'icon' => 'location',
 							'title' => 'Chermside Clinic Location',
 							'text' => 'Establish your practice presence in Chermside, with convenient access for patients from across Brisbane’s northside.',
 						),

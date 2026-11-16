@@ -38,9 +38,22 @@ if ( ! $bdy_items ) {
 			</header>
 		<?php endif; ?>
 
+		<?php
+		$bdy_icon_fallbacks = array(
+			'Professional Consulting Space'          => 'door',
+			'Multidisciplinary Clinic Environment'   => 'users',
+			'Chermside Clinic Location'               => 'location',
+		);
+		?>
 		<div class="feature-grid<?php echo $bdy_four ? ' feature-grid--four' : ''; ?>">
 			<?php foreach ( $bdy_items as $bdy_item ) : ?>
-				<?php $bdy_ico = bdy_b_row( $bdy_item, 'icon' ); ?>
+				<?php
+				$bdy_title = bdy_b_row( $bdy_item, 'title' );
+				$bdy_ico   = bdy_b_row( $bdy_item, 'icon' );
+				if ( '' === $bdy_ico && isset( $bdy_icon_fallbacks[ $bdy_title ] ) ) {
+					$bdy_ico = $bdy_icon_fallbacks[ $bdy_title ];
+				}
+				?>
 				<article class="feature reveal">
 					<?php if ( $bdy_ico ) : ?>
 						<i class="feature__ico" aria-hidden="true"><?php echo bdy_icon( $bdy_ico, array( 'size' => 26, 'stroke' => '1.7' ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- whitelisted SVG. ?></i>
