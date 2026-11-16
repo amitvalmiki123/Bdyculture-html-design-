@@ -1,0 +1,97 @@
+/* Dedicated Thank You page styles; isolated from the site's editable CSS. */
+.thank-you-section {
+  padding: clamp(36px, 5vw, 76px) 0;
+  background: var(--paper);
+}
+
+.thank-you-card {
+  display: grid;
+  grid-template-columns: 68px minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 40px);
+  align-items: start;
+  width: min(100%, 920px);
+  margin-inline: auto;
+  padding: clamp(24px, 5vw, 58px);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--signal);
+  box-shadow: 12px 12px 0 var(--ink);
+}
+
+.thank-you-card__mark {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  color: var(--ink);
+  background: var(--signal);
+  border-radius: 50%;
+}
+
+.thank-you-card__content {
+  display: grid;
+  justify-items: start;
+  gap: 18px;
+  min-width: 0;
+}
+
+.thank-you-card__content .tag {
+  margin-bottom: 2px;
+}
+
+.thank-you-card__content h2 {
+  max-width: 16ch;
+  font-size: clamp(2rem, 1.25rem + 2.2vw, 3.35rem);
+}
+
+.thank-you-card__intro {
+  max-width: 42em;
+  color: var(--mute);
+  font-size: clamp(1.05rem, 1rem + .35vw, 1.2rem);
+  line-height: 1.6;
+}
+
+.thank-you-card__call {
+  padding: 14px 18px;
+  color: var(--ink);
+  background: var(--paper);
+  border-left: 4px solid var(--signal);
+}
+
+.thank-you-card__call a {
+  font-weight: 700;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+
+.thank-you-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+@media (max-width: 599px) {
+  .thank-you-section {
+    padding-block: 28px 44px;
+  }
+
+  .thank-you-card {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    box-shadow: 7px 7px 0 var(--ink);
+  }
+
+  .thank-you-card__mark {
+    width: 56px;
+    height: 56px;
+  }
+
+  .thank-you-card__actions {
+    width: 100%;
+  }
+
+  .thank-you-card__actions .btn {
+    flex: 1 1 100%;
+  }
+}

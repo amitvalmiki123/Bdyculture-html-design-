@@ -29,6 +29,10 @@ function bdy_enqueue_assets() {
 	wp_enqueue_style( 'bdyculture-main', THEME_URI . '/assets/css/main.css', array(), THEME_VERSION );
 	wp_enqueue_style( 'bdyculture-responsive', THEME_URI . '/assets/css/responsive.css', array( 'bdyculture-main' ), THEME_VERSION );
 
+	if ( is_page( 'thank-you' ) ) {
+		wp_enqueue_style( 'bdyculture-thank-you', THEME_URI . '/assets/css/thank-you.css', array( 'bdyculture-main', 'bdyculture-responsive' ), THEME_VERSION );
+	}
+
 	wp_enqueue_script(
 		'bdyculture-main',
 		THEME_URI . '/assets/js/main.js',
