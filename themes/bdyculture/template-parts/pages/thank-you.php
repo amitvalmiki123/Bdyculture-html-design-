@@ -11,8 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $bdy_phone        = bdy_phone_display();
 $bdy_phone_number = bdy_phone_number();
-$bdy_page_content = get_the_content();
-$bdy_has_content  = '' !== trim( wp_strip_all_tags( $bdy_page_content ) );
+$bdy_page_content       = get_the_content();
+$bdy_has_content        = '' !== trim( wp_strip_all_tags( $bdy_page_content ) );
+$bdy_has_custom_eyebrow = false !== strpos( $bdy_page_content, 'class="tag"' ) || false !== strpos( $bdy_page_content, 'class="tag ' );
 ?>
 <section class="hero hero--inner hero--noform" aria-labelledby="hero-title">
 	<div class="container hero__grid">
@@ -35,7 +36,9 @@ $bdy_has_content  = '' !== trim( wp_strip_all_tags( $bdy_page_content ) );
 			</div>
 
 			<div class="thank-you-card__content">
-				<p class="tag"><?php esc_html_e( 'Message received', 'bdyculture' ); ?></p>
+				<?php if ( ! $bdy_has_custom_eyebrow ) : ?>
+					<p class="tag"><?php esc_html_e( 'Message received', 'bdyculture' ); ?></p>
+				<?php endif; ?>
 				<?php if ( $bdy_has_content ) : ?>
 					<div class="thank-you-card__editor">
 						<?php the_content(); ?>
