@@ -14,6 +14,39 @@
 
   root.classList.remove('no-js');
 
+  /* ---------- Contact Form 7 input normalization ---------- */
+  function setupContactInputs(form) {
+    $$('input[type="email"]', form).forEach(function (input) {
+      input.setAttribute('autocapitalize', 'none');
+      input.setAttribute('autocorrect', 'off');
+      input.setAttribute('spellcheck', 'false');
+    });
+    $$('input[type="tel"]', form).forEach(function (input) {
+      input.setAttribute('inputmode', 'tel');
+      input.setAttribute('pattern', '\\+?[0-9]+');
+      input.setAttribute('title', 'Use digits only, with an optional + at the beginning for the country code.');
+    });
+  }
+
+  $$('.wpcf7 form').forEach(setupContactInputs);
+  d.addEventListener('input', function (event) {
+    var input = event.target;
+    if (!input || !input.matches) return;
+    if (input.matches('.wpcf7 input[type="email"]')) {
+      input.value = input.value.toLowerCase();
+    } else if (input.matches('.wpcf7 input[type="tel"]')) {
+      var raw = input.value;
+      var hasLeadingPlus = raw.charAt(0) === '+';
+      var digits = raw.replace(/[^0-9]/g, '');
+      input.value = (hasLeadingPlus ? '+' : '') + digits;
+    }
+  });
+
+  /* Redirect every CF7 form only after Contact Form 7 confirms it was sent. */
+  d.addEventListener('wpcf7mailsent', function () {
+    if (config.thankYouUrl) window.location.assign(config.thankYouUrl);
+  });
+
   /* Open every third-party web link in a separate tab, site-wide. */
   $$('a[href]').forEach(function (link) {
     var destination;

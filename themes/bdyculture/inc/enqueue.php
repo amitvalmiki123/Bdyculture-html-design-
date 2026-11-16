@@ -50,9 +50,11 @@ add_action( 'wp_enqueue_scripts', 'bdy_enqueue_assets' );
  * @return array
  */
 function bdy_script_data() {
-	$defaults = bdy_defaults( 'global' );
+	$defaults   = bdy_defaults( 'global' );
+	$thank_you  = get_page_by_path( 'thank-you', OBJECT, 'page' );
 
 	return array(
+		'thankYouUrl' => $thank_you ? esc_url_raw( get_permalink( $thank_you ) ) : '',
 		'map'     => array(
 			'center'   => array(
 				(float) bdy_number( 'map_lat', (float) $defaults['map_lat'], 'option' ),

@@ -75,6 +75,44 @@ function bdy_cf7_hidden_source( $fields ) {
 }
 add_filter( 'wpcf7_form_hidden_fields', 'bdy_cf7_hidden_source' );
 
+/** Lowercase submitted email-address values as a server-side fallback. */
+function bdy_cf7_lowercase_emails( $posted_data ) {
+	if ( ! is_array( $posted_data ) ) {
+		return $posted_data;
+	}
+
+	foreach ( $posted_data as $name => $value ) {
+		if ( is_string( $value ) && is_email( trim( $value ) ) ) {
+			$posted_data[ $name ] = strtolower( trim( $value ) );
+		}
+	}
+
+	return $posted_data;
+}
+add_filter( 'wpcf7_posted_data', 'bdy_cf7_lowercase_emails' );
+
+/** Enforce digits and an optional leading plus in every CF7 telephone field. */
+function bdy_cf7_validate_phone( $result, $tag ) {
+	if ( ! is_object( $tag ) || empty( $tag->name ) || ! class_exists( 'WPCF7_Submission' ) ) {
+		return $result;
+	}
+
+	$submission = WPCF7_Submission::get_instance();
+	$posted     = $submission ? $submission->get_posted_data() : array();
+	$value      = isset( $posted[ $tag->name ] ) && is_scalar( $posted[ $tag->name ] )
+		? trim( (string) $posted[ $tag->name ] )
+		: '';
+
+	// Leave empty values to CF7's required-field validator.
+	if ( '' !== $value && ! preg_match( '/^\\+?[0-9]+$/', $value ) ) {
+		$result->invalidate( $tag, __( 'Use digits only, with an optional + at the beginning for the country code.', 'bdyculture' ) );
+	}
+
+	return $result;
+}
+add_filter( 'wpcf7_validate_tel', 'bdy_cf7_validate_phone', 20, 2 );
+add_filter( 'wpcf7_validate_tel*', 'bdy_cf7_validate_phone', 20, 2 );
+
 /**
  * Pre-select a dropdown option that matches the page.
  *
