@@ -11,6 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $bdy_phone        = bdy_phone_display();
 $bdy_phone_number = bdy_phone_number();
+$bdy_page_content = get_the_content();
+$bdy_has_content  = '' !== trim( wp_strip_all_tags( $bdy_page_content ) );
 ?>
 <section class="hero hero--inner hero--noform" aria-labelledby="hero-title">
 	<div class="container hero__grid">
@@ -25,7 +27,7 @@ $bdy_phone_number = bdy_phone_number();
 	</div>
 </section>
 
-<section class="thank-you-section" aria-labelledby="thank-you-title">
+<section class="thank-you-section" aria-label="<?php esc_attr_e( 'Submission confirmation', 'bdyculture' ); ?>">
 	<div class="container">
 		<div class="thank-you-card">
 			<div class="thank-you-card__mark" aria-hidden="true">
@@ -34,10 +36,16 @@ $bdy_phone_number = bdy_phone_number();
 
 			<div class="thank-you-card__content">
 				<p class="tag"><?php esc_html_e( 'Message received', 'bdyculture' ); ?></p>
-				<h2 id="thank-you-title"><?php esc_html_e( 'Thanks for reaching out.', 'bdyculture' ); ?></h2>
-				<p class="thank-you-card__intro">
-					<?php esc_html_e( 'Your message is with our Chermside team. We’ll be in touch during business hours.', 'bdyculture' ); ?>
-				</p>
+				<?php if ( $bdy_has_content ) : ?>
+					<div class="thank-you-card__editor">
+						<?php the_content(); ?>
+					</div>
+				<?php else : ?>
+					<h2><?php esc_html_e( 'Thanks for reaching out.', 'bdyculture' ); ?></h2>
+					<p class="thank-you-card__intro">
+						<?php esc_html_e( 'Your message is with our Chermside team. We’ll be in touch during business hours.', 'bdyculture' ); ?>
+					</p>
+				<?php endif; ?>
 
 				<?php if ( $bdy_phone && $bdy_phone_number ) : ?>
 					<p class="thank-you-card__call">

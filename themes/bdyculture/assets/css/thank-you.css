@@ -39,6 +39,26 @@
   margin-bottom: 2px;
 }
 
+.thank-you-card__editor {
+  display: grid;
+  gap: 16px;
+  max-width: 48em;
+}
+
+.thank-you-card__editor h2 {
+  max-width: 16ch;
+  font-size: clamp(2rem, 1.25rem + 2.2vw, 3.35rem);
+}
+
+.thank-you-card__editor h3 {
+  font-size: var(--h3);
+}
+
+.thank-you-card__editor p,
+.thank-you-card__editor li {
+  color: var(--mute);
+}
+
 .thank-you-card__content h2 {
   max-width: 16ch;
   font-size: clamp(2rem, 1.25rem + 2.2vw, 3.35rem);
