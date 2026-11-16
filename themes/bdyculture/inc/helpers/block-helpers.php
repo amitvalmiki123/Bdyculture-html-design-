@@ -239,6 +239,10 @@ function bdy_b_body( $html ) {
 		return '';
 	}
 
+	// WYSIWYG fields can retain empty paragraphs after imported/editing passes.
+	// They become empty grid items in blocks such as the FAQ header, adding gaps.
+	$html = preg_replace( '/<p\b[^>]*>\s*(?:&nbsp;|&#0*160;|&#x0*a0;|<br\s*\/?\s*>|\x{00a0}|\s)*<\/p>/iu', '', $html );
+
 	$map = array(
 		'wrap'  => 'container',
 		'swept' => 'media-frame--swept',

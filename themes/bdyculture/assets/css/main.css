@@ -215,6 +215,7 @@ from { clip-path: inset(0 0 100% 0); opacity: .4; } to { clip-path: inset(0); op
 .faq__grid { display: grid; gap: 36px; }
 .faq__head { display: grid; gap: 20px; align-content: start; }
 .faq__head p:not(.tag) { color: var(--mute); max-width: 28em; }
+.faq__head .faq__intro { color: var(--mute); max-width: 28em; }
 .faq__head .btn { justify-self: start; }
 .faq__list { border-top: 2px solid var(--ink); }
 .faq__list details { border-bottom: 1px solid var(--line); }
