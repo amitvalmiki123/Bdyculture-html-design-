@@ -34,7 +34,7 @@ if ( ! $bdy_crumbs ) {
 	);
 }
 ?>
-<section class="hero hero--inner<?php echo $bdy_no_form ? ' hero--noform' : ''; ?>" aria-labelledby="hero-title">
+<section class="hero hero--inner<?php echo $bdy_no_form ? ' hero--noform' : ''; ?>" aria-labelledby="hero-title"<?php echo bdy_featured_hero_style_attr(); // phpcs:ignore WordPress.Security.EscapeOutput -- helper returns an escaped style attribute. ?>>
 	<div class="container hero__grid">
 		<div class="hero__copy">
 			<?php if ( $bdy_crumbs || $bdy_current ) : ?>

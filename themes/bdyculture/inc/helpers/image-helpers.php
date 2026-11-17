@@ -55,6 +55,28 @@ function bdy_theme_image( $file ) {
 }
 
 /**
+ * Featured-image CSS property for inner page hero backgrounds.
+ *
+ * Returns an escaped style attribute, or an empty string when no featured
+ * image is set so the theme's standard hero image remains the fallback.
+ *
+ * @return string
+ */
+function bdy_featured_hero_style_attr() {
+	$post_id = get_the_ID();
+	$image   = $post_id ? get_post_thumbnail_id( $post_id ) : 0;
+	$url     = $image ? wp_get_attachment_image_url( $image, 'full' ) : '';
+
+	if ( ! $url ) {
+		return '';
+	}
+
+	$style = '--bdy-hero-image: url("' . esc_url_raw( $url ) . '")';
+
+	return ' style="' . esc_attr( $style ) . '"';
+}
+
+/**
  * Is this string an absolute/protocol-relative URL (as opposed to a theme file)?
  *
  * @param string $value Value.

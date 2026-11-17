@@ -26,7 +26,7 @@ while ( have_posts() ) :
 			bdy_render_page_blocks();
 		} else {
 			?>
-			<section class="hero hero--inner hero--noform" aria-labelledby="hero-title">
+			<section class="hero hero--inner hero--noform" aria-labelledby="hero-title"<?php echo bdy_featured_hero_style_attr(); // phpcs:ignore WordPress.Security.EscapeOutput -- helper returns an escaped style attribute. ?>>
 				<div class="container hero__grid">
 					<div class="hero__copy">
 						<nav class="crumbs" aria-label="<?php esc_attr_e( 'Breadcrumb', 'bdyculture' ); ?>">

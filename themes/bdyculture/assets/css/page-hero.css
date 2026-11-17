@@ -1,0 +1,4 @@
+/* Use a page's WordPress Featured Image as its inner-page hero background. */
+.hero--inner::before {
+  background-image: var(--bdy-hero-image, url("../images/hero-gym-bright.webp"));
+}
