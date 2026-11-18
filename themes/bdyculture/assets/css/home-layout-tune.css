@@ -1,0 +1,10 @@
+/* Homepage refinements matching the approved desktop image proportion and CTA accent. */
+@media (min-width: 1100px) {
+  .continuum__photo {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+.contact .card-form--light {
+  box-shadow: 12px 12px 0 var(--signal);
+}

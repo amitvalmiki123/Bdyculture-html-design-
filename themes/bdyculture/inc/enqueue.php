@@ -33,6 +33,10 @@ function bdy_enqueue_assets() {
 		wp_enqueue_style( 'bdyculture-page-hero', THEME_URI . '/assets/css/page-hero.css', array( 'bdyculture-main', 'bdyculture-responsive' ), THEME_VERSION );
 	}
 
+	if ( is_front_page() ) {
+		wp_enqueue_style( 'bdyculture-home-layout-tune', THEME_URI . '/assets/css/home-layout-tune.css', array( 'bdyculture-main', 'bdyculture-responsive' ), THEME_VERSION );
+	}
+
 	if ( is_page( 'thank-you' ) ) {
 		wp_enqueue_style( 'bdyculture-thank-you', THEME_URI . '/assets/css/thank-you.css', array( 'bdyculture-main', 'bdyculture-responsive' ), THEME_VERSION );
 	}
