@@ -1,6 +1,6 @@
 <?php
 /**
- * Block — featured article (latest post, or the shipped sample).
+ * Block — the latest published article, displayed as the full-width feature.
  *
  * @package BDYCULTURE
  *
@@ -14,36 +14,30 @@ if ( ! defined( 'ABSPATH' ) ) {
 $bdy_tag   = bdy_b( $args, 'tag' );
 $bdy_title = bdy_b( $args, 'title' );
 $bdy_intro = bdy_b( $args, 'intro' );
-$bdy_post  = bdy_b_items( $args, 'post' );
-$bdy_url   = isset( $bdy_post['url'] ) ? bdy_link( $bdy_post['url'] ) : '';
-$bdy_img   = isset( $bdy_post['image'] ) ? $bdy_post['image'] : '';
-$bdy_crop  = isset( $bdy_post['crop'] ) ? $bdy_post['crop'] : '';
-$bdy_meta  = isset( $bdy_post['meta'] ) && is_array( $bdy_post['meta'] ) ? $bdy_post['meta'] : array();
-$bdy_head  = isset( $bdy_post['title'] ) ? $bdy_post['title'] : '';
-$bdy_sum   = isset( $bdy_post['excerpt'] ) ? $bdy_post['excerpt'] : '';
 $bdy_btn   = bdy_b( $args, 'btn_text', __( 'Read the article', 'bdyculture' ) );
 
 $bdy_query = new WP_Query(
 	array(
+		'post_type'           => 'post',
+		'post_status'         => 'publish',
 		'posts_per_page'      => 1,
 		'ignore_sticky_posts' => true,
 	)
 );
 
-if ( $bdy_query->have_posts() ) {
-	$bdy_query->the_post();
-	$bdy_head  = get_the_title();
-	$bdy_url   = get_permalink();
-	$bdy_sum   = wp_strip_all_tags( get_the_excerpt() );
-	$bdy_meta  = bdy_post_meta_line( get_the_ID() );
-	$bdy_img   = has_post_thumbnail() ? get_post_thumbnail_id( get_the_ID() ) : $bdy_img;
-	$bdy_crop  = has_post_thumbnail() ? '' : $bdy_crop;
+if ( ! $bdy_query->have_posts() ) {
 	wp_reset_postdata();
-}
-
-if ( ! $bdy_head ) {
 	return;
 }
+
+$bdy_query->the_post();
+$bdy_head = get_the_title();
+$bdy_url  = get_permalink();
+$bdy_sum  = wp_strip_all_tags( get_the_excerpt() );
+$bdy_meta = bdy_post_meta_line( get_the_ID() );
+$bdy_img  = has_post_thumbnail() ? get_post_thumbnail_id( get_the_ID() ) : '';
+$bdy_crop = '';
+wp_reset_postdata();
 ?>
 <section class="section">
 	<div class="container">
