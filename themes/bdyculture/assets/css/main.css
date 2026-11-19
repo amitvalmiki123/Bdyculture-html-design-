@@ -762,3 +762,10 @@ body { font-size: var(--body-size, 1.0625rem); }
 
 /* ---------- 404 ---------- */
 .page-404__actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Keep the gold card shadow above page-level form styling overrides. */
+body .card-form,
+body .card-form.card-form--light,
+body .contact--lime .card-form {
+  box-shadow: 14px 14px 0 var(--signal) !important;
+}
