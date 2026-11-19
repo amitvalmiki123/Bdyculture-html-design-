@@ -20,10 +20,11 @@ $bdy_media   = bdy_b_items( $args, 'media' );
 $bdy_panel   = bdy_b_items( $args, 'panel' );
 $bdy_reverse = bdy_b_flag( $args, 'reverse' );
 $bdy_paper   = bdy_b_flag( $args, 'paper' );
+$bdy_tight_spacing = 'referrers' === bdy_page_key();
 $bdy_has_media = ! empty( $bdy_media['image'] );
 $bdy_has_panel = ! empty( $bdy_panel['title'] ) || ! empty( $bdy_panel['body'] ) || ! empty( $bdy_panel['rows'] ) || ! empty( $bdy_panel['links'] );
 ?>
-<section class="section<?php echo $bdy_paper ? ' section--paper' : ''; ?>">
+<section class="section<?php echo $bdy_paper ? ' section--paper' : ''; ?><?php echo $bdy_tight_spacing ? ' section--referrers-tight' : ''; ?>">
 	<div class="container split<?php echo $bdy_reverse ? ' split--rev' : ''; ?>">
 		<?php
 		if ( $bdy_has_media && $bdy_reverse ) :
