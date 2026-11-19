@@ -54,6 +54,9 @@ function bdy_icon_choices() {
 		$choices[ $name ] = ucwords( str_replace( '-', ' ', $name ) );
 	}
 
+	// `phone` is rendered by a dedicated handset SVG rather than the path library.
+	$choices['phone'] = __( 'Phone', 'bdyculture' );
+
 	return $choices;
 }
 

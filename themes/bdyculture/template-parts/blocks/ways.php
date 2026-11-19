@@ -20,8 +20,16 @@ if ( ! $bdy_items ) {
 <section class="section contact-ways">
 	<div class="container ways">
 		<?php foreach ( $bdy_items as $bdy_item ) : ?>
-			<?php $bdy_ico = bdy_b_row( $bdy_item, 'icon' ); ?>
-			<a class="way reveal" href="<?php echo esc_url( bdy_link( bdy_b_row( $bdy_item, 'url' ) ) ); ?>"<?php echo ! empty( $bdy_item['new_tab'] ) ? ' target="_blank" rel="noopener"' : ''; ?>>
+			<?php
+			$bdy_ico = bdy_b_row( $bdy_item, 'icon' );
+			$bdy_url = bdy_b_row( $bdy_item, 'url' );
+
+			// Telephone links always get the handset icon, even if an old row saved another icon.
+			if ( 0 === stripos( trim( (string) $bdy_url ), 'tel:' ) ) {
+				$bdy_ico = 'phone';
+			}
+			?>
+			<a class="way reveal" href="<?php echo esc_url( bdy_link( $bdy_url ) ); ?>"<?php echo ! empty( $bdy_item['new_tab'] ) ? ' target="_blank" rel="noopener"' : ''; ?>>
 				<?php if ( $bdy_ico ) : ?>
 					<i class="way__ico" aria-hidden="true"><?php echo bdy_icon( $bdy_ico, array( 'size' => 26, 'stroke' => '1.7' ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- whitelisted SVG. ?></i>
 				<?php endif; ?>
