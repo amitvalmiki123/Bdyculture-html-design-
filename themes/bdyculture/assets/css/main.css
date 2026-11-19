@@ -108,7 +108,7 @@ input:user-invalid { border-color: #ff7a7a; }
 .form-ok p { color: var(--mute-dark); }
 .form-ok a { color: var(--signal); }
 .form-ok__dot { width: 34px; height: 34px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 0 8px rgba(201,158,68,.18); }
-.card-form--light { background: var(--white); color: var(--ink); box-shadow: none; }
+.card-form--light { background: var(--white); color: var(--ink); box-shadow: 14px 14px 0 var(--signal); }
 .card-form--light .card-form__head p:not(.tag) { color: var(--mute); }
 .card-form--light input, .card-form--light select, .card-form--light textarea { background: var(--paper); border-color: var(--line); }
 .card-form--light .form-ok { background: var(--white); }
@@ -384,7 +384,7 @@ to { transform: translateX(calc(-50% - 10px)); }
 .contact--lime .contact__list a { color: var(--ink); font-weight: 600; }
 .contact--lime .contact__placeholder { color: var(--ink); font-style: italic; text-decoration: underline dotted; }
 .contact--lime .btn--ink:hover { background: var(--ink-3); }
-.contact--lime .card-form { box-shadow: 12px 12px 0 var(--white); }
+.contact--lime .card-form { box-shadow: 14px 14px 0 var(--signal); }
 .contact--lime .field--grow textarea { background: var(--white); }
 .contact--lime :focus-visible { outline-color: var(--ink); }
 .contact--lime .card-form :focus-visible { outline-color: var(--signal); }
