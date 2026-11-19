@@ -1,0 +1,37 @@
+<div class="card-form__head">
+  <p>We’ll reply during business hours. For urgent medical help, call 000.</p>
+</div>
+
+<div class="field-row">
+  <div class="field">
+    <label for="cf-name">Full name</label>
+    [text* your-name id:cf-name autocomplete:name]
+  </div>
+  <div class="field">
+    <label for="cf-phone">Phone</label>
+    [tel* your-phone id:cf-phone autocomplete:tel]
+  </div>
+</div>
+
+<div class="field-row">
+  <div class="field">
+    <label for="cf-email">Email</label>
+    [email* your-email id:cf-email autocomplete:email]
+  </div>
+  <div class="field">
+    <label for="cf-service">Enquiry type</label>
+    [select enquiry-type id:cf-service "Book an appointment" "Home visit enquiry" "Referring a patient" "General question"]
+  </div>
+</div>
+
+<div class="field">
+  <label for="cf-interest">I’m interested in</label>
+  [select interest id:cf-interest "Physiotherapy" "Exercise Physiology" "Occupational Therapy" "Clinical Pilates" "I’m not sure yet"]
+</div>
+
+<div class="field field--grow">
+  <label for="cf-msg">Message</label>
+  [textarea your-message id:cf-msg rows:4]
+</div>
+
+[submit class:btn class:btn--ink class:btn--block class:btn--lg "Send message"]
