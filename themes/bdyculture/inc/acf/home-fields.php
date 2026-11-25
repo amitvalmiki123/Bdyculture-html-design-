@@ -381,7 +381,23 @@ function bdy_acf_home_fields() {
 	$fields[] = bdy_acf_tab( 'shared', __( '11. Contact band & map (shared)', 'bdyculture' ) );
 	$fields[] = bdy_acf_message(
 		'shared',
-		__( 'Both bands are edited once in BDYCULTURE → Theme Settings, then shown here and on every inner page. Set the order below and switch either band off on this page.', 'bdyculture' )
+		__( 'The contact band remains global by default. The optional homepage-only heading and intro below override just those two pieces of copy on the homepage; all other pages continue to use BDYCULTURE → Theme Settings. Set the order below and switch either shared band off on this page.', 'bdyculture' )
+	);
+	$fields[] = bdy_acf_textarea(
+		'home_contact_title',
+		__( 'Homepage-only contact heading (H2)', 'bdyculture' ),
+		array(
+			'rows'         => 2,
+			'instructions' => __( 'Optional. Leave blank to use the heading from Site Settings → Contact band. This override affects only the homepage.', 'bdyculture' ),
+		)
+	);
+	$fields[] = bdy_acf_textarea(
+		'home_contact_intro',
+		__( 'Homepage-only contact intro', 'bdyculture' ),
+		array(
+			'rows'         => 3,
+			'instructions' => __( 'Optional. Leave blank to use the intro from Site Settings → Contact band. This override affects only the homepage.', 'bdyculture' ),
+		)
 	);
 	$fields   = array_merge( $fields, bdy_acf_layout_fields( 'home', 'contact', 100 ) );
 	$fields   = array_merge( $fields, bdy_acf_layout_fields( 'home', 'map', 110 ) );

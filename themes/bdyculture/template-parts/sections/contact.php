@@ -17,6 +17,20 @@ $bdy_g        = bdy_defaults( 'global' );
 $bdy_tag      = bdy_string( 'contact_tag', $bdy_g['contact_tag'], 'option' );
 $bdy_title    = bdy_html( 'contact_title', $bdy_g['contact_title'], 'option' );
 $bdy_intro    = bdy_html( 'contact_intro', $bdy_g['contact_intro'], 'option' );
+
+// Optional homepage-only copy; inner pages continue to use the global settings.
+if ( is_front_page() ) {
+	$bdy_home_title = bdy_html( 'home_contact_title', '' );
+	$bdy_home_intro = bdy_html( 'home_contact_intro', '' );
+
+	if ( '' !== trim( wp_strip_all_tags( $bdy_home_title ) ) ) {
+		$bdy_title = $bdy_home_title;
+	}
+	if ( '' !== trim( wp_strip_all_tags( $bdy_home_intro ) ) ) {
+		$bdy_intro = $bdy_home_intro;
+	}
+}
+
 $bdy_list     = bdy_rows( 'contact_list', $bdy_g['contact_list'], 'option' );
 $bdy_phone    = bdy_phone_display();
 // The form itself is built in Contact Form 7 (or another form plugin) — only
