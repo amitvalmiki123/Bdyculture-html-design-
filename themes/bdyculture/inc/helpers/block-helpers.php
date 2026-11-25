@@ -267,3 +267,40 @@ function bdy_b_body( $html ) {
 
 	return wp_kses_post( $html );
 }
+
+/**
+ * Render a centered booking CTA after selected service-page sections only.
+ *
+ * The section content remains ACF-managed; this adds a shared Nookal button
+ * without changing any saved page data.
+ *
+ * @return void
+ */
+function bdy_service_booking_cta() {
+	$service_pages = array( 'physiotherapy', 'exercise-physiology', 'occupational-therapy', 'clinical-pilates' );
+
+	if ( ! in_array( bdy_page_key(), $service_pages, true ) ) {
+		return;
+	}
+
+	$booking_url = bdy_booking_url();
+	if ( '' === trim( $booking_url ) ) {
+		return;
+	}
+	?>
+	<div class="service-section__cta" style="grid-column: 1 / -1; display: flex; justify-content: center; margin-top: clamp(24px, 3vw, 40px);">
+		<?php
+		echo bdy_button( // phpcs:ignore WordPress.Security.EscapeOutput -- escaped inside the helper.
+			__( 'Book Online', 'bdyculture' ),
+			$booking_url,
+			'signal',
+			array(
+				'size'    => 'lg',
+				'icon'    => 'arrow',
+				'new_tab' => true,
+			)
+		);
+		?>
+	</div>
+	<?php
+}

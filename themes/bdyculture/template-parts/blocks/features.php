@@ -63,5 +63,6 @@ if ( ! $bdy_items ) {
 				</article>
 			<?php endforeach; ?>
 		</div>
+		<?php bdy_service_booking_cta(); ?>
 	</div>
 </section>
