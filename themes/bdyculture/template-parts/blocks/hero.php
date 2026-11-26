@@ -63,7 +63,7 @@ if ( ! $bdy_crumbs ) {
 			<h1 id="hero-title"><?php echo esc_html( $bdy_title ); ?></h1>
 
 			<?php if ( $bdy_lead ) : ?>
-				<p class="lead"><?php echo esc_html( $bdy_lead ); ?></p>
+				<p class="lead" style="white-space: pre-line;"><?php echo esc_html( $bdy_lead ); ?></p>
 			<?php endif; ?>
 
 			<?php if ( $bdy_buttons ) : ?>
